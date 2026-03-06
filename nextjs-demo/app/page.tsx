@@ -76,7 +76,8 @@ function CodeBlock({ code }: { code: string }) {
         background: C.page,
         color: '#94a3b8',
         fontSize: '12px', lineHeight: '1.7',
-        overflowX: 'auto', maxHeight: '280px', overflowY: 'auto',
+        whiteSpace: 'pre-wrap', wordBreak: 'break-all',
+        maxHeight: '280px', overflowY: 'auto',
         fontFamily: "'Fira Code', 'Cascadia Code', Consolas, monospace",
       }}>
         <code>{code}</code>
