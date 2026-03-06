@@ -9,134 +9,71 @@ const LOGO_TITLE_URL = 'https://i.imgur.com/zvEbOFE.png'
 // ─── Example snippets ────────────────────────────────────────────────────────
 
 const EXAMPLES: Record<string, string> = {
-  Starter: `<!-- VeloraCSS — Welcome to the Playground -->
-<!-- Edit this HTML to try out the framework! -->
-<div class="vel-min-h-screen vel-bg-white">
+  Starter: `<!--
+  Welcome to VeloraCSS Playground!
+  Edit this HTML to start building — changes appear live in the preview.
+  Pick a different example from the Examples dropdown above.
+-->
+<div style="min-height:100vh;background:#0b1120;background-image:radial-gradient(circle,#1e293b 1px,transparent 1px);background-size:30px 30px;display:flex;align-items:center;justify-content:center;padding:40px 20px;font-family:system-ui,sans-serif">
+  <div style="background:#111827;border:1px solid #1e2d45;border-radius:20px;padding:44px 48px;max-width:540px;width:100%;box-shadow:0 32px 64px rgba(0,0,0,.6)">
 
-  <!-- Hero -->
-  <div class="vel-bg-neutral-950 vel-px-8 vel-pt-14 vel-pb-12 vel-text-center">
-    <div class="vel-inline-flex vel-items-center vel-gap-3 vel-mb-5">
-      <div style="background:#6366f1;color:#fff;font-weight:900;font-size:18px;padding:6px 14px;border-radius:8px;letter-spacing:-0.02em">vel</div>
-      <span style="font-size:2rem;font-weight:800;color:#f1f5f9;letter-spacing:-0.03em">VeloraCSS</span>
-      <span class="vel-bg-primary-light vel-text-primary vel-text-xs vel-font-semibold vel-px-2 vel-py-1 vel-rounded-full">v0.1.0</span>
+    <!-- Logo -->
+    <div style="display:flex;align-items:center;gap:12px;margin-bottom:32px">
+      <img src="https://i.imgur.com/ROa2Khd.png" style="height:48px;width:auto">
+      <img src="https://i.imgur.com/zvEbOFE.png" style="height:30px;width:auto">
+      <span style="background:#6366f120;color:#818cf8;font-size:11px;font-weight:700;padding:3px 8px;border-radius:99px;border:1px solid #6366f140;margin-left:2px">v0.1.0</span>
     </div>
-    <p class="vel-text-lg vel-text-neutral-400 vel-max-w-md vel-mx-auto vel-mb-8">
-      A modern utility-first CSS framework.<br>Edit this HTML and see changes live.
+
+    <!-- Heading -->
+    <h1 style="color:#f1f5f9;font-size:1.375rem;font-weight:700;margin:0 0 10px;letter-spacing:-0.02em">
+      Welcome to the VeloraCSS Playground
+    </h1>
+    <p style="color:#64748b;font-size:0.9rem;line-height:1.7;margin:0 0 30px">
+      An online playground for <strong style="color:#818cf8">VeloraCSS</strong> — a fully original
+      utility-first CSS framework with rich components and zero dependencies.
+      Edit the HTML on the left and see changes instantly.
     </p>
-    <div class="vel-flex vel-gap-3 vel-justify-center vel-flex-wrap">
-      <button class="vel-btn vel-btn-primary vel-btn-lg">Get Started</button>
-      <button class="vel-btn vel-btn-lg" style="background:#ffffff15;color:#f1f5f9;border:1px solid #ffffff20">View Docs</button>
+
+    <!-- Feature list -->
+    <ul style="list-style:none;padding:0;margin:0 0 34px;display:flex;flex-direction:column;gap:14px">
+      <li style="display:flex;align-items:flex-start;gap:14px">
+        <span style="width:22px;height:22px;background:#6366f120;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:12px;flex-shrink:0;margin-top:1px">✦</span>
+        <div>
+          <span style="color:#e2e8f0;font-size:0.875rem;font-weight:600">Utility-first classes</span>
+          <span style="color:#475569;font-size:0.8rem;display:block;margin-top:2px">vel-flex, vel-p-4, vel-text-lg and hundreds more</span>
+        </div>
+      </li>
+      <li style="display:flex;align-items:flex-start;gap:14px">
+        <span style="width:22px;height:22px;background:#22c55e20;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:12px;flex-shrink:0;margin-top:1px">✦</span>
+        <div>
+          <span style="color:#e2e8f0;font-size:0.875rem;font-weight:600">Rich components</span>
+          <span style="color:#475569;font-size:0.8rem;display:block;margin-top:2px">vel-btn, vel-card with full variant sets</span>
+        </div>
+      </li>
+      <li style="display:flex;align-items:flex-start;gap:14px">
+        <span style="width:22px;height:22px;background:#0ea5e920;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:12px;flex-shrink:0;margin-top:1px">✦</span>
+        <div>
+          <span style="color:#e2e8f0;font-size:0.875rem;font-weight:600">Responsive breakpoints</span>
+          <span style="color:#475569;font-size:0.8rem;display:block;margin-top:2px">vel-sm:flex · vel-md:grid-cols-3 · vel-lg:hidden</span>
+        </div>
+      </li>
+      <li style="display:flex;align-items:flex-start;gap:14px">
+        <span style="width:22px;height:22px;background:#f59e0b20;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:12px;flex-shrink:0;margin-top:1px">✦</span>
+        <div>
+          <span style="color:#e2e8f0;font-size:0.875rem;font-weight:600">State variants</span>
+          <span style="color:#475569;font-size:0.8rem;display:block;margin-top:2px">vel-hover:bg-primary · vel-focus:ring · vel-dark:text-white</span>
+        </div>
+      </li>
+    </ul>
+
+    <!-- Prompt box -->
+    <div style="background:#0b1120;border:1px solid #1e2d45;border-radius:12px;padding:14px 18px;display:flex;align-items:flex-start;gap:12px">
+      <span style="color:#6366f1;font-size:20px;margin-top:-2px">←</span>
+      <p style="color:#475569;font-size:0.8rem;line-height:1.6;margin:0">
+        Edit the HTML on the left to get started, or choose a demo from the
+        <strong style="color:#94a3b8">Examples</strong> dropdown above.
+      </p>
     </div>
-  </div>
-
-  <!-- Feature strip -->
-  <div class="vel-bg-neutral-50 vel-border-b vel-border-neutral-200 vel-px-8 vel-py-4">
-    <div class="vel-flex vel-gap-6 vel-justify-center vel-flex-wrap">
-      <span class="vel-flex vel-items-center vel-gap-2 vel-text-sm vel-text-neutral-600 vel-font-medium">
-        <span class="vel-text-primary">✦</span> Utility-first
-      </span>
-      <span class="vel-flex vel-items-center vel-gap-2 vel-text-sm vel-text-neutral-600 vel-font-medium">
-        <span class="vel-text-success">✦</span> Rich components
-      </span>
-      <span class="vel-flex vel-items-center vel-gap-2 vel-text-sm vel-text-neutral-600 vel-font-medium">
-        <span class="vel-text-info">✦</span> Design tokens
-      </span>
-      <span class="vel-flex vel-items-center vel-gap-2 vel-text-sm vel-text-neutral-600 vel-font-medium">
-        <span class="vel-text-warning">✦</span> Dark mode
-      </span>
-      <span class="vel-flex vel-items-center vel-gap-2 vel-text-sm vel-text-neutral-600 vel-font-medium">
-        <span class="vel-text-danger">✦</span> Responsive
-      </span>
-    </div>
-  </div>
-
-  <!-- Main content -->
-  <div class="vel-max-w-4xl vel-mx-auto vel-px-8 vel-py-10">
-
-    <!-- Buttons -->
-    <section class="vel-mb-10">
-      <h2 class="vel-text-xs vel-font-semibold vel-text-neutral-400 vel-uppercase vel-tracking-widest vel-mb-4">Buttons</h2>
-      <div class="vel-flex vel-flex-wrap vel-gap-3 vel-mb-3">
-        <button class="vel-btn vel-btn-primary">Primary</button>
-        <button class="vel-btn vel-btn-secondary">Secondary</button>
-        <button class="vel-btn vel-btn-success">Success</button>
-        <button class="vel-btn vel-btn-danger">Danger</button>
-        <button class="vel-btn vel-btn-warning">Warning</button>
-        <button class="vel-btn vel-btn-info">Info</button>
-      </div>
-      <div class="vel-flex vel-flex-wrap vel-gap-3">
-        <button class="vel-btn vel-btn-outline-primary">Outline</button>
-        <button class="vel-btn vel-btn-ghost">Ghost</button>
-        <button class="vel-btn vel-btn-link">Link</button>
-        <button class="vel-btn vel-btn-primary vel-btn-sm">Small</button>
-        <button class="vel-btn vel-btn-primary vel-btn-lg">Large</button>
-        <button class="vel-btn vel-btn-primary" disabled>Disabled</button>
-      </div>
-    </section>
-
-    <!-- Cards -->
-    <section class="vel-mb-10">
-      <h2 class="vel-text-xs vel-font-semibold vel-text-neutral-400 vel-uppercase vel-tracking-widest vel-mb-4">Cards</h2>
-      <div class="vel-grid vel-grid-cols-3 vel-gap-5">
-        <div class="vel-card vel-card-hover">
-          <div class="vel-card-body">
-            <h3 class="vel-text-base vel-font-semibold vel-text-neutral-900 vel-mb-1">Hover Card</h3>
-            <p class="vel-text-neutral-500 vel-text-sm vel-mb-3">Lifts on hover with shadow.</p>
-            <button class="vel-btn vel-btn-primary vel-btn-sm">Action</button>
-          </div>
-        </div>
-        <div class="vel-card vel-card-elevated">
-          <div class="vel-card-body">
-            <h3 class="vel-text-base vel-font-semibold vel-text-neutral-900 vel-mb-1">Elevated</h3>
-            <p class="vel-text-neutral-500 vel-text-sm vel-mb-3">No border, large shadow.</p>
-            <button class="vel-btn vel-btn-outline-primary vel-btn-sm">Action</button>
-          </div>
-        </div>
-        <div class="vel-card vel-card-primary">
-          <div class="vel-card-body">
-            <h3 class="vel-text-base vel-font-semibold vel-text-white vel-mb-1">Primary</h3>
-            <p class="vel-text-sm vel-mb-3" style="color:rgba(255,255,255,.75)">Brand-colored card.</p>
-            <button class="vel-btn vel-btn-sm" style="background:#ffffff25;color:#fff;border:1px solid #ffffff30">Action</button>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Typography -->
-    <section class="vel-mb-10">
-      <h2 class="vel-text-xs vel-font-semibold vel-text-neutral-400 vel-uppercase vel-tracking-widest vel-mb-4">Typography</h2>
-      <div class="vel-card vel-card-flat vel-p-6">
-        <p class="vel-text-5xl vel-font-black vel-text-neutral-900 vel-leading-none vel-mb-3">Display</p>
-        <p class="vel-text-3xl vel-font-bold vel-text-neutral-900 vel-mb-2">Heading 1</p>
-        <p class="vel-text-xl vel-font-medium vel-text-neutral-700 vel-mb-2">Heading 2</p>
-        <p class="vel-text-base vel-text-neutral-600 vel-mb-1">Body — the quick brown fox jumps over the lazy dog.</p>
-        <p class="vel-text-sm vel-text-neutral-500">Small — secondary information and captions.</p>
-      </div>
-    </section>
-
-    <!-- Color palette -->
-    <section class="vel-mb-4">
-      <h2 class="vel-text-xs vel-font-semibold vel-text-neutral-400 vel-uppercase vel-tracking-widest vel-mb-4">Colors</h2>
-      <div class="vel-flex vel-gap-3 vel-mb-3">
-        <div class="vel-bg-primary vel-text-white vel-p-4 vel-rounded-xl vel-flex-1 vel-text-center vel-text-sm vel-font-medium">primary</div>
-        <div class="vel-bg-secondary vel-text-white vel-p-4 vel-rounded-xl vel-flex-1 vel-text-center vel-text-sm vel-font-medium">secondary</div>
-        <div class="vel-bg-success vel-text-white vel-p-4 vel-rounded-xl vel-flex-1 vel-text-center vel-text-sm vel-font-medium">success</div>
-        <div class="vel-bg-danger vel-text-white vel-p-4 vel-rounded-xl vel-flex-1 vel-text-center vel-text-sm vel-font-medium">danger</div>
-        <div class="vel-bg-warning vel-p-4 vel-rounded-xl vel-flex-1 vel-text-center vel-text-sm vel-font-medium">warning</div>
-        <div class="vel-bg-info vel-text-white vel-p-4 vel-rounded-xl vel-flex-1 vel-text-center vel-text-sm vel-font-medium">info</div>
-      </div>
-      <div class="vel-flex vel-gap-2">
-        <div class="vel-bg-neutral-100 vel-flex-1 vel-py-3 vel-rounded-lg vel-text-center" style="font-size:10px;color:#334155">100</div>
-        <div class="vel-bg-neutral-200 vel-flex-1 vel-py-3 vel-rounded-lg vel-text-center" style="font-size:10px;color:#334155">200</div>
-        <div class="vel-bg-neutral-300 vel-flex-1 vel-py-3 vel-rounded-lg vel-text-center" style="font-size:10px;color:#334155">300</div>
-        <div class="vel-bg-neutral-400 vel-flex-1 vel-py-3 vel-rounded-lg vel-text-center" style="font-size:10px;color:#fff">400</div>
-        <div class="vel-bg-neutral-500 vel-flex-1 vel-py-3 vel-rounded-lg vel-text-center" style="font-size:10px;color:#fff">500</div>
-        <div class="vel-bg-neutral-600 vel-flex-1 vel-py-3 vel-rounded-lg vel-text-center" style="font-size:10px;color:#fff">600</div>
-        <div class="vel-bg-neutral-700 vel-flex-1 vel-py-3 vel-rounded-lg vel-text-center" style="font-size:10px;color:#fff">700</div>
-        <div class="vel-bg-neutral-800 vel-flex-1 vel-py-3 vel-rounded-lg vel-text-center" style="font-size:10px;color:#fff">800</div>
-        <div class="vel-bg-neutral-900 vel-flex-1 vel-py-3 vel-rounded-lg vel-text-center" style="font-size:10px;color:#fff">900</div>
-      </div>
-    </section>
 
   </div>
 </div>`,
@@ -515,28 +452,28 @@ export default function App() {
       {/* ── Header ── */}
       <header style={{
         display: 'flex', alignItems: 'center', justifyContent: 'space-between',
-        padding: '0 14px', height: '50px', flexShrink: 0,
+        padding: '0 16px', height: '58px', flexShrink: 0,
         background: C.header, borderBottom: `1px solid ${C.border}`,
       }}>
 
         {/* Left: Logo + Examples */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
           {/* Logo */}
-          <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
             {LOGO_SMALL_URL ? (
-              <img src={LOGO_SMALL_URL} alt="VeloraCSS" style={{ height: '26px', width: 'auto' }} />
+              <img src={LOGO_SMALL_URL} alt="VeloraCSS" style={{ height: '40px', width: 'auto' }} />
             ) : (
-              <div style={{ background: C.accent, color: '#fff', fontWeight: 800, fontSize: '12px', padding: '3px 8px', borderRadius: '6px' }}>vel</div>
+              <div style={{ background: C.accent, color: '#fff', fontWeight: 900, fontSize: '15px', padding: '5px 12px', borderRadius: '8px' }}>vel</div>
             )}
             {LOGO_TITLE_URL ? (
-              <img src={LOGO_TITLE_URL} alt="VeloraCSS" style={{ height: '17px', width: 'auto' }} />
+              <img src={LOGO_TITLE_URL} alt="VeloraCSS" style={{ height: '26px', width: 'auto' }} />
             ) : (
-              <span style={{ fontWeight: 700, fontSize: '14px', color: C.text }}>VeloraCSS</span>
+              <span style={{ fontWeight: 800, fontSize: '17px', color: C.text, letterSpacing: '-0.02em' }}>VeloraCSS</span>
             )}
           </div>
 
           {/* Divider */}
-          <div style={{ width: '1px', height: '20px', background: C.border }} />
+          <div style={{ width: '1px', height: '24px', background: C.border }} />
 
           {/* Version badge */}
           <span style={{
