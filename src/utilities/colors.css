@@ -1,0 +1,110 @@
+/* VeloraCSS — Color Utilities */
+
+/* ─── Text Colors ─────────────────────────── */
+.vel-text-inherit    { color: inherit; }
+.vel-text-current    { color: currentColor; }
+.vel-text-transparent{ color: transparent; }
+.vel-text-white      { color: #ffffff; }
+.vel-text-black      { color: #000000; }
+
+.vel-text-primary    { color: var(--vel-color-primary); }
+.vel-text-secondary  { color: var(--vel-color-secondary); }
+.vel-text-success    { color: var(--vel-color-success); }
+.vel-text-danger     { color: var(--vel-color-danger); }
+.vel-text-warning    { color: var(--vel-color-warning); }
+.vel-text-info       { color: var(--vel-color-info); }
+
+.vel-text-neutral-50  { color: var(--vel-neutral-50); }
+.vel-text-neutral-100 { color: var(--vel-neutral-100); }
+.vel-text-neutral-200 { color: var(--vel-neutral-200); }
+.vel-text-neutral-300 { color: var(--vel-neutral-300); }
+.vel-text-neutral-400 { color: var(--vel-neutral-400); }
+.vel-text-neutral-500 { color: var(--vel-neutral-500); }
+.vel-text-neutral-600 { color: var(--vel-neutral-600); }
+.vel-text-neutral-700 { color: var(--vel-neutral-700); }
+.vel-text-neutral-800 { color: var(--vel-neutral-800); }
+.vel-text-neutral-900 { color: var(--vel-neutral-900); }
+.vel-text-neutral-950 { color: var(--vel-neutral-950); }
+
+/* ─── Background Colors ──────────────────── */
+.vel-bg-inherit     { background-color: inherit; }
+.vel-bg-current     { background-color: currentColor; }
+.vel-bg-transparent { background-color: transparent; }
+.vel-bg-white       { background-color: #ffffff; }
+.vel-bg-black       { background-color: #000000; }
+
+.vel-bg-primary     { background-color: var(--vel-color-primary); }
+.vel-bg-secondary   { background-color: var(--vel-color-secondary); }
+.vel-bg-success     { background-color: var(--vel-color-success); }
+.vel-bg-danger      { background-color: var(--vel-color-danger); }
+.vel-bg-warning     { background-color: var(--vel-color-warning); }
+.vel-bg-info        { background-color: var(--vel-color-info); }
+
+.vel-bg-primary-light   { background-color: var(--vel-color-primary-light); }
+.vel-bg-success-light   { background-color: var(--vel-color-success-light); }
+.vel-bg-danger-light    { background-color: var(--vel-color-danger-light); }
+.vel-bg-warning-light   { background-color: var(--vel-color-warning-light); }
+.vel-bg-info-light      { background-color: var(--vel-color-info-light); }
+
+.vel-bg-neutral-50  { background-color: var(--vel-neutral-50); }
+.vel-bg-neutral-100 { background-color: var(--vel-neutral-100); }
+.vel-bg-neutral-200 { background-color: var(--vel-neutral-200); }
+.vel-bg-neutral-300 { background-color: var(--vel-neutral-300); }
+.vel-bg-neutral-400 { background-color: var(--vel-neutral-400); }
+.vel-bg-neutral-500 { background-color: var(--vel-neutral-500); }
+.vel-bg-neutral-600 { background-color: var(--vel-neutral-600); }
+.vel-bg-neutral-700 { background-color: var(--vel-neutral-700); }
+.vel-bg-neutral-800 { background-color: var(--vel-neutral-800); }
+.vel-bg-neutral-900 { background-color: var(--vel-neutral-900); }
+.vel-bg-neutral-950 { background-color: var(--vel-neutral-950); }
+
+/* Background opacity (composable) */
+.vel-bg-opacity-0   { --vel-bg-opacity: 0; }
+.vel-bg-opacity-25  { --vel-bg-opacity: 0.25; }
+.vel-bg-opacity-50  { --vel-bg-opacity: 0.5; }
+.vel-bg-opacity-75  { --vel-bg-opacity: 0.75; }
+.vel-bg-opacity-100 { --vel-bg-opacity: 1; }
+
+/* ─── Border Colors ─────────────────────── */
+.vel-border-inherit     { border-color: inherit; }
+.vel-border-current     { border-color: currentColor; }
+.vel-border-transparent { border-color: transparent; }
+.vel-border-white       { border-color: #ffffff; }
+.vel-border-black       { border-color: #000000; }
+
+.vel-border-primary   { border-color: var(--vel-color-primary); }
+.vel-border-secondary { border-color: var(--vel-color-secondary); }
+.vel-border-success   { border-color: var(--vel-color-success); }
+.vel-border-danger    { border-color: var(--vel-color-danger); }
+.vel-border-warning   { border-color: var(--vel-color-warning); }
+.vel-border-info      { border-color: var(--vel-color-info); }
+
+.vel-border-neutral-100 { border-color: var(--vel-neutral-100); }
+.vel-border-neutral-200 { border-color: var(--vel-neutral-200); }
+.vel-border-neutral-300 { border-color: var(--vel-neutral-300); }
+.vel-border-neutral-400 { border-color: var(--vel-neutral-400); }
+.vel-border-neutral-500 { border-color: var(--vel-neutral-500); }
+.vel-border-neutral-600 { border-color: var(--vel-neutral-600); }
+.vel-border-neutral-700 { border-color: var(--vel-neutral-700); }
+.vel-border-neutral-800 { border-color: var(--vel-neutral-800); }
+.vel-border-neutral-900 { border-color: var(--vel-neutral-900); }
+
+/* ─── Background position/size/repeat ─────── */
+.vel-bg-auto     { background-size: auto; }
+.vel-bg-cover    { background-size: cover; }
+.vel-bg-contain  { background-size: contain; }
+
+.vel-bg-center   { background-position: center; }
+.vel-bg-top      { background-position: top; }
+.vel-bg-right    { background-position: right; }
+.vel-bg-bottom   { background-position: bottom; }
+.vel-bg-left     { background-position: left; }
+
+.vel-bg-repeat      { background-repeat: repeat; }
+.vel-bg-no-repeat   { background-repeat: no-repeat; }
+.vel-bg-repeat-x    { background-repeat: repeat-x; }
+.vel-bg-repeat-y    { background-repeat: repeat-y; }
+
+.vel-bg-fixed       { background-attachment: fixed; }
+.vel-bg-local       { background-attachment: local; }
+.vel-bg-scroll      { background-attachment: scroll; }

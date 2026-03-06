@@ -1,0 +1,152 @@
+/* VeloraCSS — Flexbox Utilities */
+
+/* Direction */
+.vel-flex-row            { flex-direction: row; }
+.vel-flex-row-reverse    { flex-direction: row-reverse; }
+.vel-flex-col            { flex-direction: column; }
+.vel-flex-col-reverse    { flex-direction: column-reverse; }
+
+/* Wrap */
+.vel-flex-wrap         { flex-wrap: wrap; }
+.vel-flex-wrap-reverse { flex-wrap: wrap-reverse; }
+.vel-flex-nowrap       { flex-wrap: nowrap; }
+
+/* Flex shorthand */
+.vel-flex-1      { flex: 1 1 0%; }
+.vel-flex-auto   { flex: 1 1 auto; }
+.vel-flex-initial{ flex: 0 1 auto; }
+.vel-flex-none   { flex: none; }
+
+/* Grow */
+.vel-grow   { flex-grow: 1; }
+.vel-grow-0 { flex-grow: 0; }
+
+/* Shrink */
+.vel-shrink   { flex-shrink: 1; }
+.vel-shrink-0 { flex-shrink: 0; }
+
+/* Basis */
+.vel-basis-0       { flex-basis: 0px; }
+.vel-basis-full    { flex-basis: 100%; }
+.vel-basis-auto    { flex-basis: auto; }
+.vel-basis-1\/2    { flex-basis: 50%; }
+.vel-basis-1\/3    { flex-basis: 33.333333%; }
+.vel-basis-2\/3    { flex-basis: 66.666667%; }
+.vel-basis-1\/4    { flex-basis: 25%; }
+.vel-basis-3\/4    { flex-basis: 75%; }
+.vel-basis-1\/5    { flex-basis: 20%; }
+.vel-basis-2\/5    { flex-basis: 40%; }
+.vel-basis-3\/5    { flex-basis: 60%; }
+.vel-basis-4\/5    { flex-basis: 80%; }
+
+/* Align items */
+.vel-items-start    { align-items: flex-start; }
+.vel-items-end      { align-items: flex-end; }
+.vel-items-center   { align-items: center; }
+.vel-items-baseline { align-items: baseline; }
+.vel-items-stretch  { align-items: stretch; }
+
+/* Align self */
+.vel-self-auto     { align-self: auto; }
+.vel-self-start    { align-self: flex-start; }
+.vel-self-end      { align-self: flex-end; }
+.vel-self-center   { align-self: center; }
+.vel-self-baseline { align-self: baseline; }
+.vel-self-stretch  { align-self: stretch; }
+
+/* Justify content */
+.vel-justify-start   { justify-content: flex-start; }
+.vel-justify-end     { justify-content: flex-end; }
+.vel-justify-center  { justify-content: center; }
+.vel-justify-between { justify-content: space-between; }
+.vel-justify-around  { justify-content: space-around; }
+.vel-justify-evenly  { justify-content: space-evenly; }
+.vel-justify-stretch { justify-content: stretch; }
+
+/* Justify items */
+.vel-justify-items-start   { justify-items: start; }
+.vel-justify-items-end     { justify-items: end; }
+.vel-justify-items-center  { justify-items: center; }
+.vel-justify-items-stretch { justify-items: stretch; }
+
+/* Justify self */
+.vel-justify-self-auto    { justify-self: auto; }
+.vel-justify-self-start   { justify-self: start; }
+.vel-justify-self-end     { justify-self: end; }
+.vel-justify-self-center  { justify-self: center; }
+.vel-justify-self-stretch { justify-self: stretch; }
+
+/* Align content */
+.vel-content-normal  { align-content: normal; }
+.vel-content-start   { align-content: flex-start; }
+.vel-content-end     { align-content: flex-end; }
+.vel-content-center  { align-content: center; }
+.vel-content-between { align-content: space-between; }
+.vel-content-around  { align-content: space-around; }
+.vel-content-evenly  { align-content: space-evenly; }
+.vel-content-stretch { align-content: stretch; }
+
+/* Place content */
+.vel-place-content-start   { place-content: start; }
+.vel-place-content-end     { place-content: end; }
+.vel-place-content-center  { place-content: center; }
+.vel-place-content-between { place-content: space-between; }
+.vel-place-content-around  { place-content: space-around; }
+.vel-place-content-evenly  { place-content: space-evenly; }
+.vel-place-content-stretch { place-content: stretch; }
+
+/* Place items */
+.vel-place-items-start   { place-items: start; }
+.vel-place-items-end     { place-items: end; }
+.vel-place-items-center  { place-items: center; }
+.vel-place-items-stretch { place-items: stretch; }
+
+/* Place self */
+.vel-place-self-auto    { place-self: auto; }
+.vel-place-self-start   { place-self: start; }
+.vel-place-self-end     { place-self: end; }
+.vel-place-self-center  { place-self: center; }
+.vel-place-self-stretch { place-self: stretch; }
+
+/* Order */
+.vel-order-first { order: -9999; }
+.vel-order-last  { order: 9999; }
+.vel-order-none  { order: 0; }
+.vel-order-1     { order: 1; }
+.vel-order-2     { order: 2; }
+.vel-order-3     { order: 3; }
+.vel-order-4     { order: 4; }
+.vel-order-5     { order: 5; }
+
+/* Gap */
+.vel-gap-0  { gap: 0px; }
+.vel-gap-1  { gap: var(--vel-space-1); }
+.vel-gap-2  { gap: var(--vel-space-2); }
+.vel-gap-3  { gap: var(--vel-space-3); }
+.vel-gap-4  { gap: var(--vel-space-4); }
+.vel-gap-5  { gap: var(--vel-space-5); }
+.vel-gap-6  { gap: var(--vel-space-6); }
+.vel-gap-7  { gap: var(--vel-space-7); }
+.vel-gap-8  { gap: var(--vel-space-8); }
+.vel-gap-10 { gap: var(--vel-space-10); }
+.vel-gap-12 { gap: var(--vel-space-12); }
+.vel-gap-16 { gap: var(--vel-space-16); }
+.vel-gap-px { gap: 1px; }
+
+.vel-gap-x-0  { column-gap: 0px; }
+.vel-gap-x-1  { column-gap: var(--vel-space-1); }
+.vel-gap-x-2  { column-gap: var(--vel-space-2); }
+.vel-gap-x-3  { column-gap: var(--vel-space-3); }
+.vel-gap-x-4  { column-gap: var(--vel-space-4); }
+.vel-gap-x-5  { column-gap: var(--vel-space-5); }
+.vel-gap-x-6  { column-gap: var(--vel-space-6); }
+.vel-gap-x-8  { column-gap: var(--vel-space-8); }
+
+.vel-gap-y-0  { row-gap: 0px; }
+.vel-gap-y-1  { row-gap: var(--vel-space-1); }
+.vel-gap-y-2  { row-gap: var(--vel-space-2); }
+.vel-gap-y-3  { row-gap: var(--vel-space-3); }
+.vel-gap-y-4  { row-gap: var(--vel-space-4); }
+.vel-gap-y-5  { row-gap: var(--vel-space-5); }
+.vel-gap-y-6  { row-gap: var(--vel-space-6); }
+.vel-gap-y-8  { row-gap: var(--vel-space-8); }

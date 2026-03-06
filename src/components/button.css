@@ -1,0 +1,227 @@
+/* VeloraCSS — Button Component */
+
+.vel-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--vel-space-2);
+  padding: var(--vel-space-2) var(--vel-space-4);
+  font-size: var(--vel-text-sm);
+  font-weight: 500;
+  line-height: 1.25rem;
+  border-radius: var(--vel-radius-md);
+  border: 1px solid transparent;
+  cursor: pointer;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: color 150ms ease, background-color 150ms ease, border-color 150ms ease, box-shadow 150ms ease, opacity 150ms ease;
+  user-select: none;
+  vertical-align: middle;
+}
+
+.vel-btn:focus-visible {
+  outline: 2px solid var(--vel-color-primary);
+  outline-offset: 2px;
+}
+
+.vel-btn:disabled,
+.vel-btn.vel-btn-disabled {
+  opacity: 0.5;
+  pointer-events: none;
+  cursor: not-allowed;
+}
+
+/* ─── Variants ────────────────────────────── */
+
+.vel-btn-primary {
+  background-color: var(--vel-color-primary);
+  color: var(--vel-color-primary-fg);
+  border-color: var(--vel-color-primary);
+}
+.vel-btn-primary:hover {
+  background-color: var(--vel-color-primary-hover);
+  border-color: var(--vel-color-primary-hover);
+}
+
+.vel-btn-secondary {
+  background-color: var(--vel-color-secondary);
+  color: var(--vel-color-secondary-fg);
+  border-color: var(--vel-color-secondary);
+}
+.vel-btn-secondary:hover {
+  background-color: var(--vel-color-secondary-hover);
+  border-color: var(--vel-color-secondary-hover);
+}
+
+.vel-btn-success {
+  background-color: var(--vel-color-success);
+  color: var(--vel-color-success-fg);
+  border-color: var(--vel-color-success);
+}
+.vel-btn-success:hover {
+  background-color: var(--vel-color-success-hover);
+  border-color: var(--vel-color-success-hover);
+}
+
+.vel-btn-danger {
+  background-color: var(--vel-color-danger);
+  color: var(--vel-color-danger-fg);
+  border-color: var(--vel-color-danger);
+}
+.vel-btn-danger:hover {
+  background-color: var(--vel-color-danger-hover);
+  border-color: var(--vel-color-danger-hover);
+}
+
+.vel-btn-warning {
+  background-color: var(--vel-color-warning);
+  color: var(--vel-color-warning-fg);
+  border-color: var(--vel-color-warning);
+}
+.vel-btn-warning:hover {
+  background-color: var(--vel-color-warning-hover);
+  border-color: var(--vel-color-warning-hover);
+}
+
+.vel-btn-info {
+  background-color: var(--vel-color-info);
+  color: var(--vel-color-info-fg);
+  border-color: var(--vel-color-info);
+}
+.vel-btn-info:hover {
+  background-color: var(--vel-color-info-hover);
+  border-color: var(--vel-color-info-hover);
+}
+
+/* ─── Outline Variants ────────────────────── */
+
+.vel-btn-outline-primary {
+  background-color: transparent;
+  color: var(--vel-color-primary);
+  border-color: var(--vel-color-primary);
+}
+.vel-btn-outline-primary:hover {
+  background-color: var(--vel-color-primary);
+  color: var(--vel-color-primary-fg);
+}
+
+.vel-btn-outline-secondary {
+  background-color: transparent;
+  color: var(--vel-color-secondary);
+  border-color: var(--vel-color-secondary);
+}
+.vel-btn-outline-secondary:hover {
+  background-color: var(--vel-color-secondary);
+  color: var(--vel-color-secondary-fg);
+}
+
+.vel-btn-outline-success {
+  background-color: transparent;
+  color: var(--vel-color-success);
+  border-color: var(--vel-color-success);
+}
+.vel-btn-outline-success:hover {
+  background-color: var(--vel-color-success);
+  color: var(--vel-color-success-fg);
+}
+
+.vel-btn-outline-danger {
+  background-color: transparent;
+  color: var(--vel-color-danger);
+  border-color: var(--vel-color-danger);
+}
+.vel-btn-outline-danger:hover {
+  background-color: var(--vel-color-danger);
+  color: var(--vel-color-danger-fg);
+}
+
+.vel-btn-outline-warning {
+  background-color: transparent;
+  color: var(--vel-color-warning);
+  border-color: var(--vel-color-warning);
+}
+.vel-btn-outline-warning:hover {
+  background-color: var(--vel-color-warning);
+  color: var(--vel-color-warning-fg);
+}
+
+.vel-btn-outline-info {
+  background-color: transparent;
+  color: var(--vel-color-info);
+  border-color: var(--vel-color-info);
+}
+.vel-btn-outline-info:hover {
+  background-color: var(--vel-color-info);
+  color: var(--vel-color-info-fg);
+}
+
+/* ─── Ghost Variant ───────────────────────── */
+
+.vel-btn-ghost {
+  background-color: transparent;
+  color: var(--vel-neutral-700);
+  border-color: transparent;
+}
+.vel-btn-ghost:hover {
+  background-color: var(--vel-neutral-100);
+  color: var(--vel-neutral-900);
+}
+
+/* ─── Link Variant ────────────────────────── */
+
+.vel-btn-link {
+  background-color: transparent;
+  color: var(--vel-color-primary);
+  border-color: transparent;
+  padding-left: 0;
+  padding-right: 0;
+}
+.vel-btn-link:hover {
+  text-decoration: underline;
+}
+
+/* ─── Sizes ───────────────────────────────── */
+
+.vel-btn-xs {
+  padding: var(--vel-space-1) var(--vel-space-2);
+  font-size: var(--vel-text-xs);
+  line-height: 1rem;
+  border-radius: var(--vel-radius);
+}
+
+.vel-btn-sm {
+  padding: calc(var(--vel-space-1) + 1px) var(--vel-space-3);
+  font-size: var(--vel-text-sm);
+  line-height: 1.25rem;
+}
+
+.vel-btn-lg {
+  padding: var(--vel-space-3) var(--vel-space-6);
+  font-size: var(--vel-text-base);
+  line-height: 1.5rem;
+  border-radius: var(--vel-radius-lg);
+}
+
+.vel-btn-xl {
+  padding: var(--vel-space-4) var(--vel-space-8);
+  font-size: var(--vel-text-lg);
+  line-height: 1.75rem;
+  border-radius: var(--vel-radius-xl);
+}
+
+/* ─── Block (full width) ──────────────────── */
+
+.vel-btn-block {
+  display: flex;
+  width: 100%;
+}
+
+/* ─── Icon button ─────────────────────────── */
+
+.vel-btn-icon {
+  padding: var(--vel-space-2);
+  aspect-ratio: 1;
+}
+
+.vel-btn-icon.vel-btn-sm  { padding: var(--vel-space-1); }
+.vel-btn-icon.vel-btn-lg  { padding: var(--vel-space-3); }

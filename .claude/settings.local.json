@@ -1,0 +1,18 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(explorer E:\\\\PROJECTS\\\\skrat-claude-kit:*)",
+      "Bash(cmd.exe:*)",
+      "Bash(mkdir:*)",
+      "Bash(node build.mjs)",
+      "Bash(grep -c \"vel-sm\\\\\\\\:\" dist/velora.css)",
+      "Bash(grep -c \"vel-hover\\\\\\\\:\" dist/velora.css)",
+      "Bash(grep -c \"vel-focus\\\\\\\\:\" dist/velora.css)",
+      "Bash(grep -c \"vel-active\\\\\\\\:\" dist/velora.css)",
+      "Bash(grep -c \"vel-dark\\\\\\\\:\" dist/velora.css)",
+      "Bash(grep \"vel-sm\\\\\\\\:flex\" dist/velora.css)",
+      "Bash(grep \"vel-hover\\\\\\\\:bg-primary\" dist/velora.css)",
+      "Bash(grep \"vel-dark\\\\\\\\:text-\" dist/velora.css)"
+    ]
+  }
+}

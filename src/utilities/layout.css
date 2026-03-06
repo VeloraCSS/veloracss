@@ -1,0 +1,143 @@
+/* VeloraCSS — Layout Utilities */
+
+/* Display */
+.vel-block        { display: block; }
+.vel-inline-block { display: inline-block; }
+.vel-inline       { display: inline; }
+.vel-flex         { display: flex; }
+.vel-inline-flex  { display: inline-flex; }
+.vel-grid         { display: grid; }
+.vel-inline-grid  { display: inline-grid; }
+.vel-hidden       { display: none; }
+.vel-table        { display: table; }
+.vel-table-row    { display: table-row; }
+.vel-table-cell   { display: table-cell; }
+.vel-contents     { display: contents; }
+
+/* Position */
+.vel-static   { position: static; }
+.vel-relative { position: relative; }
+.vel-absolute { position: absolute; }
+.vel-fixed    { position: fixed; }
+.vel-sticky   { position: sticky; }
+
+/* Inset */
+.vel-inset-0    { inset: 0px; }
+.vel-inset-auto { inset: auto; }
+.vel-inset-x-0  { left: 0px; right: 0px; }
+.vel-inset-y-0  { top: 0px; bottom: 0px; }
+.vel-top-0      { top: 0px; }
+.vel-top-auto   { top: auto; }
+.vel-right-0    { right: 0px; }
+.vel-right-auto { right: auto; }
+.vel-bottom-0   { bottom: 0px; }
+.vel-bottom-auto{ bottom: auto; }
+.vel-left-0     { left: 0px; }
+.vel-left-auto  { left: auto; }
+
+/* Overflow */
+.vel-overflow-auto    { overflow: auto; }
+.vel-overflow-hidden  { overflow: hidden; }
+.vel-overflow-visible { overflow: visible; }
+.vel-overflow-scroll  { overflow: scroll; }
+.vel-overflow-x-auto  { overflow-x: auto; }
+.vel-overflow-x-hidden{ overflow-x: hidden; }
+.vel-overflow-y-auto  { overflow-y: auto; }
+.vel-overflow-y-hidden{ overflow-y: hidden; }
+.vel-overflow-y-scroll{ overflow-y: scroll; }
+
+/* Overscroll */
+.vel-overscroll-auto    { overscroll-behavior: auto; }
+.vel-overscroll-contain { overscroll-behavior: contain; }
+.vel-overscroll-none    { overscroll-behavior: none; }
+
+/* Visibility */
+.vel-visible   { visibility: visible; }
+.vel-invisible { visibility: hidden; }
+.vel-collapse  { visibility: collapse; }
+
+/* Z-index */
+.vel-z-0    { z-index: var(--vel-z-0); }
+.vel-z-10   { z-index: var(--vel-z-10); }
+.vel-z-20   { z-index: var(--vel-z-20); }
+.vel-z-30   { z-index: var(--vel-z-30); }
+.vel-z-40   { z-index: var(--vel-z-40); }
+.vel-z-50   { z-index: var(--vel-z-50); }
+.vel-z-auto { z-index: var(--vel-z-auto); }
+
+/* Float */
+.vel-float-left  { float: left; }
+.vel-float-right { float: right; }
+.vel-float-none  { float: none; }
+.vel-clearfix::after { content: ""; display: table; clear: both; }
+
+/* Clear */
+.vel-clear-left  { clear: left; }
+.vel-clear-right { clear: right; }
+.vel-clear-both  { clear: both; }
+.vel-clear-none  { clear: none; }
+
+/* Isolation */
+.vel-isolate      { isolation: isolate; }
+.vel-isolation-auto { isolation: auto; }
+
+/* Object fit */
+.vel-object-contain    { object-fit: contain; }
+.vel-object-cover      { object-fit: cover; }
+.vel-object-fill       { object-fit: fill; }
+.vel-object-none       { object-fit: none; }
+.vel-object-scale-down { object-fit: scale-down; }
+
+/* Object position */
+.vel-object-bottom       { object-position: bottom; }
+.vel-object-center       { object-position: center; }
+.vel-object-left         { object-position: left; }
+.vel-object-left-bottom  { object-position: left bottom; }
+.vel-object-left-top     { object-position: left top; }
+.vel-object-right        { object-position: right; }
+.vel-object-right-bottom { object-position: right bottom; }
+.vel-object-right-top    { object-position: right top; }
+.vel-object-top          { object-position: top; }
+
+/* Box sizing */
+.vel-box-border  { box-sizing: border-box; }
+.vel-box-content { box-sizing: content-box; }
+
+/* Aspect ratio */
+.vel-aspect-auto   { aspect-ratio: auto; }
+.vel-aspect-square { aspect-ratio: 1 / 1; }
+.vel-aspect-video  { aspect-ratio: 16 / 9; }
+
+/* Columns */
+.vel-columns-1  { columns: 1; }
+.vel-columns-2  { columns: 2; }
+.vel-columns-3  { columns: 3; }
+.vel-columns-4  { columns: 4; }
+.vel-columns-auto { columns: auto; }
+
+/* Container */
+.vel-container {
+  width: 100%;
+  margin-right: auto;
+  margin-left: auto;
+  padding-right: var(--vel-space-4);
+  padding-left: var(--vel-space-4);
+}
+@media (min-width: 640px)  { .vel-container { max-width: 640px; } }
+@media (min-width: 768px)  { .vel-container { max-width: 768px; } }
+@media (min-width: 1024px) { .vel-container { max-width: 1024px; } }
+@media (min-width: 1280px) { .vel-container { max-width: 1280px; } }
+@media (min-width: 1536px) { .vel-container { max-width: 1536px; } }
+
+/* Screen reader only */
+.vel-sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}

@@ -1,0 +1,95 @@
+/* VeloraCSS — Card Component */
+
+.vel-card {
+  background-color: #ffffff;
+  border-radius: var(--vel-radius-xl);
+  border: 1px solid var(--vel-neutral-200);
+  box-shadow: var(--vel-shadow-sm);
+  overflow: hidden;
+}
+
+.vel-card-header {
+  padding: var(--vel-space-4) var(--vel-space-6);
+  border-bottom: 1px solid var(--vel-neutral-200);
+  font-weight: 600;
+  font-size: var(--vel-text-base);
+  color: var(--vel-neutral-900);
+}
+
+.vel-card-body {
+  padding: var(--vel-space-6);
+}
+
+.vel-card-footer {
+  padding: var(--vel-space-4) var(--vel-space-6);
+  border-top: 1px solid var(--vel-neutral-200);
+  background-color: var(--vel-neutral-50);
+}
+
+.vel-card-img-top {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.vel-card-img-bottom {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-bottom-left-radius: calc(var(--vel-radius-xl) - 1px);
+  border-bottom-right-radius: calc(var(--vel-radius-xl) - 1px);
+}
+
+/* ─── Card variants ───────────────────────── */
+
+.vel-card-flat {
+  background-color: #ffffff;
+  border-radius: var(--vel-radius-xl);
+  border: 1px solid var(--vel-neutral-200);
+  box-shadow: none;
+  overflow: hidden;
+}
+
+.vel-card-elevated {
+  background-color: #ffffff;
+  border-radius: var(--vel-radius-xl);
+  border: none;
+  box-shadow: var(--vel-shadow-lg);
+  overflow: hidden;
+}
+
+.vel-card-filled {
+  background-color: var(--vel-neutral-100);
+  border-radius: var(--vel-radius-xl);
+  border: none;
+  box-shadow: none;
+  overflow: hidden;
+}
+
+.vel-card-primary {
+  background-color: var(--vel-color-primary);
+  color: var(--vel-color-primary-fg);
+  border-color: var(--vel-color-primary);
+}
+
+.vel-card-primary .vel-card-header,
+.vel-card-primary .vel-card-footer {
+  border-color: rgba(255, 255, 255, 0.2);
+  color: inherit;
+}
+
+.vel-card-primary .vel-card-footer {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+/* ─── Interactive card ────────────────────── */
+
+.vel-card-hover {
+  transition: box-shadow 200ms ease, transform 200ms ease;
+  cursor: pointer;
+}
+
+.vel-card-hover:hover {
+  box-shadow: var(--vel-shadow-lg);
+  transform: translateY(-2px);
+}

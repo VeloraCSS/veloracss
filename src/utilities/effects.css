@@ -1,0 +1,82 @@
+/* VeloraCSS — Effects Utilities */
+
+/* Box shadow */
+.vel-shadow-sm    { box-shadow: var(--vel-shadow-sm); }
+.vel-shadow       { box-shadow: var(--vel-shadow); }
+.vel-shadow-md    { box-shadow: var(--vel-shadow-md); }
+.vel-shadow-lg    { box-shadow: var(--vel-shadow-lg); }
+.vel-shadow-xl    { box-shadow: var(--vel-shadow-xl); }
+.vel-shadow-2xl   { box-shadow: var(--vel-shadow-2xl); }
+.vel-shadow-inner { box-shadow: var(--vel-shadow-inner); }
+.vel-shadow-none  { box-shadow: var(--vel-shadow-none); }
+
+/* Opacity */
+.vel-opacity-0   { opacity: 0; }
+.vel-opacity-5   { opacity: 0.05; }
+.vel-opacity-10  { opacity: 0.1; }
+.vel-opacity-15  { opacity: 0.15; }
+.vel-opacity-20  { opacity: 0.2; }
+.vel-opacity-25  { opacity: 0.25; }
+.vel-opacity-30  { opacity: 0.3; }
+.vel-opacity-40  { opacity: 0.4; }
+.vel-opacity-50  { opacity: 0.5; }
+.vel-opacity-60  { opacity: 0.6; }
+.vel-opacity-70  { opacity: 0.7; }
+.vel-opacity-75  { opacity: 0.75; }
+.vel-opacity-80  { opacity: 0.8; }
+.vel-opacity-90  { opacity: 0.9; }
+.vel-opacity-95  { opacity: 0.95; }
+.vel-opacity-100 { opacity: 1; }
+
+/* Mix blend mode */
+.vel-mix-blend-normal      { mix-blend-mode: normal; }
+.vel-mix-blend-multiply    { mix-blend-mode: multiply; }
+.vel-mix-blend-screen      { mix-blend-mode: screen; }
+.vel-mix-blend-overlay     { mix-blend-mode: overlay; }
+.vel-mix-blend-darken      { mix-blend-mode: darken; }
+.vel-mix-blend-lighten     { mix-blend-mode: lighten; }
+.vel-mix-blend-color-dodge { mix-blend-mode: color-dodge; }
+.vel-mix-blend-color-burn  { mix-blend-mode: color-burn; }
+.vel-mix-blend-difference  { mix-blend-mode: difference; }
+.vel-mix-blend-exclusion   { mix-blend-mode: exclusion; }
+
+/* Filters */
+.vel-blur-none { filter: blur(0); }
+.vel-blur-sm   { filter: blur(4px); }
+.vel-blur      { filter: blur(8px); }
+.vel-blur-md   { filter: blur(12px); }
+.vel-blur-lg   { filter: blur(16px); }
+.vel-blur-xl   { filter: blur(24px); }
+.vel-blur-2xl  { filter: blur(40px); }
+.vel-blur-3xl  { filter: blur(64px); }
+
+.vel-brightness-0   { filter: brightness(0); }
+.vel-brightness-50  { filter: brightness(.5); }
+.vel-brightness-75  { filter: brightness(.75); }
+.vel-brightness-90  { filter: brightness(.9); }
+.vel-brightness-95  { filter: brightness(.95); }
+.vel-brightness-100 { filter: brightness(1); }
+.vel-brightness-105 { filter: brightness(1.05); }
+.vel-brightness-110 { filter: brightness(1.1); }
+.vel-brightness-125 { filter: brightness(1.25); }
+.vel-brightness-150 { filter: brightness(1.5); }
+.vel-brightness-200 { filter: brightness(2); }
+
+.vel-grayscale-0 { filter: grayscale(0); }
+.vel-grayscale   { filter: grayscale(100%); }
+
+.vel-invert-0 { filter: invert(0); }
+.vel-invert   { filter: invert(100%); }
+
+.vel-sepia-0 { filter: sepia(0); }
+.vel-sepia   { filter: sepia(100%); }
+
+/* Backdrop filters */
+.vel-backdrop-blur-none { backdrop-filter: blur(0); }
+.vel-backdrop-blur-sm   { backdrop-filter: blur(4px); }
+.vel-backdrop-blur      { backdrop-filter: blur(8px); }
+.vel-backdrop-blur-md   { backdrop-filter: blur(12px); }
+.vel-backdrop-blur-lg   { backdrop-filter: blur(16px); }
+.vel-backdrop-blur-xl   { backdrop-filter: blur(24px); }
+.vel-backdrop-blur-2xl  { backdrop-filter: blur(40px); }
+.vel-backdrop-blur-3xl  { backdrop-filter: blur(64px); }

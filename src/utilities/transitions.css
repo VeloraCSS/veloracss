@@ -1,0 +1,125 @@
+/* VeloraCSS — Transitions & Transforms */
+
+/* Transition property */
+.vel-transition-none    { transition-property: none; }
+.vel-transition-all     { transition-property: all; transition-timing-function: var(--vel-ease-in-out); transition-duration: var(--vel-duration-150); }
+.vel-transition         { transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter; transition-timing-function: var(--vel-ease-in-out); transition-duration: var(--vel-duration-150); }
+.vel-transition-colors  { transition-property: color, background-color, border-color, text-decoration-color, fill, stroke; transition-timing-function: var(--vel-ease-in-out); transition-duration: var(--vel-duration-150); }
+.vel-transition-opacity { transition-property: opacity; transition-timing-function: var(--vel-ease-in-out); transition-duration: var(--vel-duration-150); }
+.vel-transition-shadow  { transition-property: box-shadow; transition-timing-function: var(--vel-ease-in-out); transition-duration: var(--vel-duration-150); }
+.vel-transition-transform{ transition-property: transform; transition-timing-function: var(--vel-ease-in-out); transition-duration: var(--vel-duration-150); }
+
+/* Duration */
+.vel-duration-0    { transition-duration: 0ms; }
+.vel-duration-75   { transition-duration: var(--vel-duration-75); }
+.vel-duration-100  { transition-duration: var(--vel-duration-100); }
+.vel-duration-150  { transition-duration: var(--vel-duration-150); }
+.vel-duration-200  { transition-duration: var(--vel-duration-200); }
+.vel-duration-300  { transition-duration: var(--vel-duration-300); }
+.vel-duration-500  { transition-duration: var(--vel-duration-500); }
+.vel-duration-700  { transition-duration: var(--vel-duration-700); }
+.vel-duration-1000 { transition-duration: var(--vel-duration-1000); }
+
+/* Timing function */
+.vel-ease-linear  { transition-timing-function: var(--vel-ease-linear); }
+.vel-ease-in      { transition-timing-function: var(--vel-ease-in); }
+.vel-ease-out     { transition-timing-function: var(--vel-ease-out); }
+.vel-ease-in-out  { transition-timing-function: var(--vel-ease-in-out); }
+
+/* Delay */
+.vel-delay-0    { transition-delay: 0ms; }
+.vel-delay-75   { transition-delay: 75ms; }
+.vel-delay-100  { transition-delay: 100ms; }
+.vel-delay-150  { transition-delay: 150ms; }
+.vel-delay-200  { transition-delay: 200ms; }
+.vel-delay-300  { transition-delay: 300ms; }
+.vel-delay-500  { transition-delay: 500ms; }
+.vel-delay-700  { transition-delay: 700ms; }
+.vel-delay-1000 { transition-delay: 1000ms; }
+
+/* ─── Transforms ──────────────────────────── */
+
+/* Scale */
+.vel-scale-0    { transform: scale(0); }
+.vel-scale-50   { transform: scale(.5); }
+.vel-scale-75   { transform: scale(.75); }
+.vel-scale-90   { transform: scale(.9); }
+.vel-scale-95   { transform: scale(.95); }
+.vel-scale-100  { transform: scale(1); }
+.vel-scale-105  { transform: scale(1.05); }
+.vel-scale-110  { transform: scale(1.1); }
+.vel-scale-125  { transform: scale(1.25); }
+.vel-scale-150  { transform: scale(1.5); }
+
+/* Rotate */
+.vel-rotate-0    { transform: rotate(0deg); }
+.vel-rotate-1    { transform: rotate(1deg); }
+.vel-rotate-2    { transform: rotate(2deg); }
+.vel-rotate-3    { transform: rotate(3deg); }
+.vel-rotate-6    { transform: rotate(6deg); }
+.vel-rotate-12   { transform: rotate(12deg); }
+.vel-rotate-45   { transform: rotate(45deg); }
+.vel-rotate-90   { transform: rotate(90deg); }
+.vel-rotate-180  { transform: rotate(180deg); }
+.-vel-rotate-1   { transform: rotate(-1deg); }
+.-vel-rotate-2   { transform: rotate(-2deg); }
+.-vel-rotate-3   { transform: rotate(-3deg); }
+.-vel-rotate-6   { transform: rotate(-6deg); }
+.-vel-rotate-12  { transform: rotate(-12deg); }
+.-vel-rotate-45  { transform: rotate(-45deg); }
+.-vel-rotate-90  { transform: rotate(-90deg); }
+.-vel-rotate-180 { transform: rotate(-180deg); }
+
+/* Translate */
+.vel-translate-x-0    { transform: translateX(0px); }
+.vel-translate-x-full { transform: translateX(100%); }
+.vel-translate-x-1\/2 { transform: translateX(50%); }
+.-vel-translate-x-full{ transform: translateX(-100%); }
+.-vel-translate-x-1\/2{ transform: translateX(-50%); }
+.vel-translate-y-0    { transform: translateY(0px); }
+.vel-translate-y-full { transform: translateY(100%); }
+.vel-translate-y-1\/2 { transform: translateY(50%); }
+.-vel-translate-y-full{ transform: translateY(-100%); }
+.-vel-translate-y-1\/2{ transform: translateY(-50%); }
+
+/* Transform origin */
+.vel-origin-center       { transform-origin: center; }
+.vel-origin-top          { transform-origin: top; }
+.vel-origin-top-right    { transform-origin: top right; }
+.vel-origin-right        { transform-origin: right; }
+.vel-origin-bottom-right { transform-origin: bottom right; }
+.vel-origin-bottom       { transform-origin: bottom; }
+.vel-origin-bottom-left  { transform-origin: bottom left; }
+.vel-origin-left         { transform-origin: left; }
+.vel-origin-top-left     { transform-origin: top left; }
+
+/* ─── Animation ───────────────────────────── */
+@keyframes vel-spin {
+  to { transform: rotate(360deg); }
+}
+@keyframes vel-ping {
+  75%, 100% { transform: scale(2); opacity: 0; }
+}
+@keyframes vel-pulse {
+  50% { opacity: .5; }
+}
+@keyframes vel-bounce {
+  0%, 100% { transform: translateY(-25%); animation-timing-function: cubic-bezier(0.8,0,1,1); }
+  50%       { transform: none; animation-timing-function: cubic-bezier(0,0,0.2,1); }
+}
+@keyframes vel-fade-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+@keyframes vel-slide-in-up {
+  from { transform: translateY(10px); opacity: 0; }
+  to   { transform: translateY(0); opacity: 1; }
+}
+
+.vel-animate-none   { animation: none; }
+.vel-animate-spin   { animation: vel-spin 1s linear infinite; }
+.vel-animate-ping   { animation: vel-ping 1s cubic-bezier(0, 0, 0.2, 1) infinite; }
+.vel-animate-pulse  { animation: vel-pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite; }
+.vel-animate-bounce { animation: vel-bounce 1s infinite; }
+.vel-animate-fade-in    { animation: vel-fade-in 0.2s ease-out; }
+.vel-animate-slide-in   { animation: vel-slide-in-up 0.2s ease-out; }

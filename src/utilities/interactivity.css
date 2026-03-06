@@ -1,0 +1,95 @@
+/* VeloraCSS — Interactivity Utilities */
+
+/* Cursor */
+.vel-cursor-auto        { cursor: auto; }
+.vel-cursor-default     { cursor: default; }
+.vel-cursor-pointer     { cursor: pointer; }
+.vel-cursor-wait        { cursor: wait; }
+.vel-cursor-text        { cursor: text; }
+.vel-cursor-move        { cursor: move; }
+.vel-cursor-help        { cursor: help; }
+.vel-cursor-not-allowed { cursor: not-allowed; }
+.vel-cursor-none        { cursor: none; }
+.vel-cursor-grab        { cursor: grab; }
+.vel-cursor-grabbing    { cursor: grabbing; }
+.vel-cursor-crosshair   { cursor: crosshair; }
+.vel-cursor-zoom-in     { cursor: zoom-in; }
+.vel-cursor-zoom-out    { cursor: zoom-out; }
+
+/* Pointer events */
+.vel-pointer-events-none { pointer-events: none; }
+.vel-pointer-events-auto { pointer-events: auto; }
+
+/* User select */
+.vel-select-none  { user-select: none; }
+.vel-select-text  { user-select: text; }
+.vel-select-all   { user-select: all; }
+.vel-select-auto  { user-select: auto; }
+
+/* Resize */
+.vel-resize-none { resize: none; }
+.vel-resize      { resize: both; }
+.vel-resize-x    { resize: horizontal; }
+.vel-resize-y    { resize: vertical; }
+
+/* Scroll behavior */
+.vel-scroll-auto   { scroll-behavior: auto; }
+.vel-scroll-smooth { scroll-behavior: smooth; }
+
+/* Scroll snap */
+.vel-snap-none       { scroll-snap-type: none; }
+.vel-snap-x          { scroll-snap-type: x var(--vel-scroll-snap-strictness, mandatory); }
+.vel-snap-y          { scroll-snap-type: y var(--vel-scroll-snap-strictness, mandatory); }
+.vel-snap-mandatory  { --vel-scroll-snap-strictness: mandatory; }
+.vel-snap-proximity  { --vel-scroll-snap-strictness: proximity; }
+.vel-snap-start      { scroll-snap-align: start; }
+.vel-snap-end        { scroll-snap-align: end; }
+.vel-snap-center     { scroll-snap-align: center; }
+.vel-snap-align-none { scroll-snap-align: none; }
+.vel-snap-always     { scroll-snap-stop: always; }
+.vel-snap-normal     { scroll-snap-stop: normal; }
+
+/* Touch action */
+.vel-touch-auto        { touch-action: auto; }
+.vel-touch-none        { touch-action: none; }
+.vel-touch-pan-x       { touch-action: pan-x; }
+.vel-touch-pan-y       { touch-action: pan-y; }
+.vel-touch-pan-left    { touch-action: pan-left; }
+.vel-touch-pan-right   { touch-action: pan-right; }
+.vel-touch-pan-up      { touch-action: pan-up; }
+.vel-touch-pan-down    { touch-action: pan-down; }
+.vel-touch-pinch-zoom  { touch-action: pinch-zoom; }
+.vel-touch-manipulation{ touch-action: manipulation; }
+
+/* Will change */
+.vel-will-change-auto      { will-change: auto; }
+.vel-will-change-scroll    { will-change: scroll-position; }
+.vel-will-change-contents  { will-change: contents; }
+.vel-will-change-transform { will-change: transform; }
+
+/* Appearance */
+.vel-appearance-none { appearance: none; }
+.vel-appearance-auto { appearance: auto; }
+
+/* Color scheme */
+.vel-scheme-normal { color-scheme: normal; }
+.vel-scheme-light  { color-scheme: light; }
+.vel-scheme-dark   { color-scheme: dark; }
+
+/* Caret */
+.vel-caret-transparent { caret-color: transparent; }
+.vel-caret-primary     { caret-color: var(--vel-color-primary); }
+.vel-caret-auto        { caret-color: auto; }
+
+/* Focus ring helper */
+.vel-focus-ring:focus-visible {
+  outline: 2px solid var(--vel-color-primary);
+  outline-offset: 2px;
+}
+
+/* Disabled state helper */
+.vel-disabled {
+  opacity: 0.5;
+  pointer-events: none;
+  cursor: not-allowed;
+}
