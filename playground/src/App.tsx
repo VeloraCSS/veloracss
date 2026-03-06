@@ -521,7 +521,7 @@ export default function App() {
         {/* Right: actions */}
         <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
           <a
-            href="http://localhost:3000"
+            href={window.location.hostname === 'localhost' ? 'http://localhost:3000' : `${window.location.origin}/veloracss`}
             target="_blank"
             rel="noopener noreferrer"
             style={{

@@ -5,9 +5,15 @@ import Image from 'next/image'
 
 // ─── Playground link helper ───────────────────────────────────────────────────
 
+function playgroundBase(): string {
+  if (typeof window === 'undefined') return 'http://localhost:5173'
+  const { hostname, origin } = window.location
+  return hostname === 'localhost' ? 'http://localhost:5173' : `${origin}/veloracss/playground`
+}
+
 function toPlaygroundUrl(html: string): string {
   const encoded = btoa(new TextEncoder().encode(html).reduce((s, b) => s + String.fromCharCode(b), ''))
-  return `http://localhost:5173/#code=${encoded}`
+  return `${playgroundBase()}/#code=${encoded}`
 }
 
 // ─── Design tokens ────────────────────────────────────────────────────────────
@@ -323,7 +329,7 @@ export default function Home() {
             padding: '2px 8px', borderRadius: '4px', border: `1px solid ${C.border}`,
           }}>v0.1.0</span>
           <a
-            href="http://localhost:5173"
+            href={playgroundBase()}
             target="_blank"
             rel="noopener noreferrer"
             style={{
@@ -356,7 +362,7 @@ export default function Home() {
           zero dependencies, and a consistent design system — running live in Next.js.
         </p>
         <div style={{ display: 'flex', gap: '12px', justifyContent: 'center', flexWrap: 'wrap' as const }}>
-          <a href="http://localhost:5173" target="_blank" rel="noopener noreferrer"
+          <a href={playgroundBase()} target="_blank" rel="noopener noreferrer"
             style={{ fontSize: '14px', fontWeight: 600, padding: '10px 24px', borderRadius: '8px', background: C.accent, color: '#fff', textDecoration: 'none' }}>
             Open Playground
           </a>
@@ -472,7 +478,7 @@ export default function Home() {
         fontSize: '13px', color: C.muted,
       }}>
         VeloraCSS v0.1.0 — Next.js Demo ·{' '}
-        <a href="http://localhost:5173" style={{ color: C.label, textDecoration: 'none' }}>Open Playground</a>
+        <a href={playgroundBase()} style={{ color: C.label, textDecoration: 'none' }}>Open Playground</a>
       </footer>
 
     </main>
