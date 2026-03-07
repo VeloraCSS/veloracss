@@ -21,6 +21,16 @@ export default function MaxWidthPage() {
         { class: 'vel-max-w-full', properties: 'max-width: 100%' },
         { class: 'vel-max-w-screen', properties: 'max-width: 100vw' },
       ]}
+      examples={[
+        {
+          label: 'Max-width scale',
+          html: `<div class="vel-flex vel-flex-col vel-gap-3">
+  <div class="vel-max-w-xs" style="background:#7c5cfc;color:#fff;padding:10px 16px;border-radius:6px;font-size:13px">vel-max-w-xs (20rem)</div>
+  <div class="vel-max-w-sm" style="background:#0ecb81;color:#fff;padding:10px 16px;border-radius:6px;font-size:13px">vel-max-w-sm (24rem)</div>
+  <div class="vel-max-w-md" style="background:#2ebde5;color:#fff;padding:10px 16px;border-radius:6px;font-size:13px">vel-max-w-md (28rem)</div>
+</div>`,
+        },
+      ]}
     />
   )
 }

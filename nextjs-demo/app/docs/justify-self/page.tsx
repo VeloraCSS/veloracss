@@ -13,6 +13,16 @@ export default function JustifySelfPage() {
         { class: 'vel-justify-self-center', properties: 'justify-self: center' },
         { class: 'vel-justify-self-stretch', properties: 'justify-self: stretch' },
       ]}
+      examples={[
+        {
+          label: 'Per-item inline alignment',
+          html: `<div class="vel-grid vel-grid-cols-3 vel-gap-3" style="background:#1a2236;padding:12px;border-radius:6px">
+  <div class="vel-justify-self-start" style="background:#7c5cfc;color:#fff;padding:8px 14px;border-radius:6px;font-size:12px">self-start</div>
+  <div class="vel-justify-self-center" style="background:#0ecb81;color:#fff;padding:8px 14px;border-radius:6px;font-size:12px">self-center</div>
+  <div class="vel-justify-self-end" style="background:#f0416c;color:#fff;padding:8px 14px;border-radius:6px;font-size:12px">self-end</div>
+</div>`,
+        },
+      ]}
     />
   )
 }

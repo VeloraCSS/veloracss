@@ -32,14 +32,14 @@ export default function DocPage({ title, description, source, table, examples }:
       <p
         style={{
           fontSize: '0.78rem',
-          color: '#64748b',
+          color: '#94a3b8',
           marginBottom: '1rem',
           letterSpacing: '0.01em',
         }}
       >
         Docs{' '}
-        <span style={{ color: '#475569' }}>/</span>{' '}
-        <span style={{ color: '#94a3b8' }}>{title}</span>
+        <span style={{ color: '#64748b' }}>/</span>{' '}
+        <span style={{ color: '#c4b5fd' }}>{title}</span>
       </p>
 
       {/* Title */}
@@ -119,7 +119,7 @@ export default function DocPage({ title, description, source, table, examples }:
                     textAlign: 'left',
                     fontSize: '0.65rem',
                     fontWeight: 600,
-                    color: '#64748b',
+                    color: '#94a3b8',
                     textTransform: 'uppercase',
                     letterSpacing: '0.08em',
                     borderBottom: '1px solid #1e2d45',
@@ -133,7 +133,7 @@ export default function DocPage({ title, description, source, table, examples }:
                     textAlign: 'left',
                     fontSize: '0.65rem',
                     fontWeight: 600,
-                    color: '#64748b',
+                    color: '#94a3b8',
                     textTransform: 'uppercase',
                     letterSpacing: '0.08em',
                     borderBottom: '1px solid #1e2d45',
@@ -174,7 +174,7 @@ export default function DocPage({ title, description, source, table, examples }:
                       padding: '0.55rem 1rem',
                       fontFamily: "'Fira Code', 'Cascadia Code', Consolas, monospace",
                       fontSize: '0.78rem',
-                      color: '#64748b',
+                      color: '#94a3b8',
                     }}
                   >
                     {row.properties}
@@ -199,7 +199,7 @@ export default function DocPage({ title, description, source, table, examples }:
           >
             Examples
           </h2>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '1.75rem' }}>
             {examples.map((example, i) => (
               <div key={i}>
                 <p
@@ -207,19 +207,53 @@ export default function DocPage({ title, description, source, table, examples }:
                     fontSize: '0.8rem',
                     fontWeight: 500,
                     color: '#94a3b8',
-                    marginBottom: '0.4rem',
+                    marginBottom: '0.5rem',
                   }}
                 >
                   {example.label}
                 </p>
+                {/* Live rendered preview */}
+                <div
+                  style={{
+                    background: '#0d1422',
+                    border: '1px solid #1e2d45',
+                    borderRadius: '0.5rem 0.5rem 0 0',
+                    padding: '1.5rem',
+                    borderBottom: 'none',
+                  }}
+                  dangerouslySetInnerHTML={{ __html: example.html }}
+                />
+                {/* Code block */}
                 <div
                   style={{
                     background: '#060b17',
                     border: '1px solid #1e2d45',
-                    borderRadius: '0.5rem',
+                    borderRadius: '0 0 0.5rem 0.5rem',
                     overflow: 'hidden',
                   }}
                 >
+                  <div
+                    style={{
+                      padding: '0.35rem 1rem',
+                      background: '#0a0f1a',
+                      borderBottom: '1px solid #1e2d45',
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: '0.5rem',
+                    }}
+                  >
+                    <span
+                      style={{
+                        fontSize: '0.6rem',
+                        fontWeight: 600,
+                        color: '#64748b',
+                        letterSpacing: '0.08em',
+                        textTransform: 'uppercase' as const,
+                      }}
+                    >
+                      HTML
+                    </span>
+                  </div>
                   <pre
                     style={{
                       margin: 0,
@@ -231,6 +265,8 @@ export default function DocPage({ title, description, source, table, examples }:
                       wordBreak: 'break-all',
                       fontFamily: "'Fira Code', 'Cascadia Code', Consolas, monospace",
                       overflowX: 'auto',
+                      maxHeight: '320px',
+                      overflowY: 'auto',
                     }}
                   >
                     <code>{example.html}</code>

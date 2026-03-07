@@ -47,3 +47,10 @@
 @import './components/steps.css';
 @import './components/divider.css';
 @import './components/kbd.css';
+@import './components/accordion.css';
+@import './components/code-block.css';
+@import './components/chat-bubble.css';
+@import './components/file-upload.css';
+@import './components/hero.css';
+@import './components/feature-list.css';
+@import './components/pricing.css';

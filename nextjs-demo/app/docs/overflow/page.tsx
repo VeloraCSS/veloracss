@@ -17,6 +17,25 @@ export default function OverflowPage() {
         { class: 'vel-overflow-y-hidden', properties: 'overflow-y: hidden' },
         { class: 'vel-overflow-y-scroll', properties: 'overflow-y: scroll' },
       ]}
+      examples={[
+        {
+          label: 'Overflow hidden vs scroll',
+          html: `<div class="vel-flex vel-gap-4">
+  <div>
+    <p style="color:#64748b;font-size:12px;margin-bottom:6px">vel-overflow-hidden</p>
+    <div class="vel-overflow-hidden" style="width:150px;height:80px;background:#1a2236;border:1px solid #1e2d45;border-radius:6px;padding:8px">
+      <div style="width:300px;color:#94a3b8;font-size:12px">This content is wider than its container and gets clipped.</div>
+    </div>
+  </div>
+  <div>
+    <p style="color:#64748b;font-size:12px;margin-bottom:6px">vel-overflow-auto</p>
+    <div class="vel-overflow-auto" style="width:150px;height:80px;background:#1a2236;border:1px solid #1e2d45;border-radius:6px;padding:8px">
+      <div style="width:300px;color:#94a3b8;font-size:12px">This content is wider than its container and scrolls.</div>
+    </div>
+  </div>
+</div>`,
+        },
+      ]}
     />
   )
 }

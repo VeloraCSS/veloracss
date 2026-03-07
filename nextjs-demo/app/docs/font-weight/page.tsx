@@ -17,6 +17,20 @@ export default function FontWeightPage() {
         { class: 'vel-font-extrabold', properties: 'font-weight: 800' },
         { class: 'vel-font-black', properties: 'font-weight: 900' },
       ]}
+      examples={[
+        {
+          label: 'Weight scale',
+          html: `<div class="vel-flex vel-flex-col vel-gap-2">
+  <p class="vel-font-thin vel-text-lg" style="color:#e2e8f0">vel-font-thin — VeloraCSS (100)</p>
+  <p class="vel-font-light vel-text-lg" style="color:#e2e8f0">vel-font-light — VeloraCSS (300)</p>
+  <p class="vel-font-normal vel-text-lg" style="color:#e2e8f0">vel-font-normal — VeloraCSS (400)</p>
+  <p class="vel-font-medium vel-text-lg" style="color:#e2e8f0">vel-font-medium — VeloraCSS (500)</p>
+  <p class="vel-font-semibold vel-text-lg" style="color:#e2e8f0">vel-font-semibold — VeloraCSS (600)</p>
+  <p class="vel-font-bold vel-text-lg" style="color:#e2e8f0">vel-font-bold — VeloraCSS (700)</p>
+  <p class="vel-font-black vel-text-lg" style="color:#a87fff">vel-font-black — VeloraCSS (900)</p>
+</div>`,
+        },
+      ]}
     />
   )
 }

@@ -1,0 +1,115 @@
+/* VeloraCSS — Hero Section Component */
+
+/* ─── Base ────────────────────────────────── */
+
+.vel-hero {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 80vh;
+  padding: var(--vel-space-20) var(--vel-space-6);
+  overflow: hidden;
+  text-align: center;
+  background-color: var(--vel-surface-bg);
+}
+
+/* ─── Size Variants ───────────────────────── */
+
+.vel-hero-sm {
+  min-height: 40vh;
+}
+
+.vel-hero-lg {
+  min-height: 100vh;
+}
+
+/* ─── Background Variants ─────────────────── */
+
+.vel-hero-gradient {
+  background: var(--vel-gradient-primary);
+}
+
+.vel-hero-dark {
+  background-color: var(--vel-surface-bg);
+}
+
+/* ─── Background Pattern ──────────────────── */
+
+.vel-hero-bg-pattern {
+  background-image:
+    radial-gradient(circle, rgba(124, 92, 252, 0.07) 1px, transparent 1px);
+  background-size: 2rem 2rem;
+  background-position: center center;
+}
+
+.vel-hero-bg-pattern::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 80% 60% at 50% 50%, rgba(124, 92, 252, 0.12) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+/* ─── Content ─────────────────────────────── */
+
+.vel-hero-content {
+  position: relative;
+  z-index: var(--vel-z-10);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--vel-space-6);
+  max-width: 64rem;
+  width: 100%;
+}
+
+/* ─── Eyebrow ─────────────────────────────── */
+
+.vel-hero-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--vel-space-2);
+  padding: 0.3em 1em;
+  font-size: var(--vel-size-sm);
+  font-weight: var(--vel-font-semibold);
+  letter-spacing: var(--vel-tracking-wide);
+  background: rgba(124, 92, 252, 0.15);
+  color: var(--vel-primary-300);
+  border: 1px solid rgba(124, 92, 252, 0.3);
+  border-radius: var(--vel-radius-full);
+}
+
+/* ─── Title ───────────────────────────────── */
+
+.vel-hero-title {
+  font-size: clamp(var(--vel-size-4xl), 6vw, var(--vel-size-7xl));
+  font-weight: var(--vel-font-bold);
+  line-height: var(--vel-leading-tight);
+  letter-spacing: var(--vel-tracking-tight);
+  color: var(--vel-color-text);
+  margin: 0;
+}
+
+/* ─── Subtitle ────────────────────────────── */
+
+.vel-hero-subtitle {
+  font-size: clamp(var(--vel-size-base), 2vw, var(--vel-size-xl));
+  color: var(--vel-color-muted);
+  line-height: var(--vel-leading-relaxed);
+  max-width: 42rem;
+  margin: 0;
+}
+
+/* ─── Actions ─────────────────────────────── */
+
+.vel-hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: var(--vel-space-4);
+  margin-top: var(--vel-space-2);
+}

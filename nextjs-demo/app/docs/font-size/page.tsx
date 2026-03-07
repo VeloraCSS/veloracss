@@ -21,6 +21,21 @@ export default function FontSizePage() {
         { class: 'vel-text-8xl', properties: 'font-size: 6rem' },
         { class: 'vel-text-9xl', properties: 'font-size: 8rem' },
       ]}
+      examples={[
+        {
+          label: 'Type scale',
+          html: `<div class="vel-flex vel-flex-col vel-gap-2">
+  <p class="vel-text-xs" style="color:#94a3b8">vel-text-xs — Extra small (0.75rem)</p>
+  <p class="vel-text-sm" style="color:#94a3b8">vel-text-sm — Small (0.875rem)</p>
+  <p class="vel-text-base" style="color:#e2e8f0">vel-text-base — Base (1rem)</p>
+  <p class="vel-text-lg" style="color:#e2e8f0">vel-text-lg — Large (1.125rem)</p>
+  <p class="vel-text-xl" style="color:#e2e8f0">vel-text-xl — X-Large (1.25rem)</p>
+  <p class="vel-text-2xl" style="color:#c4b5fd">vel-text-2xl — 2X-Large (1.5rem)</p>
+  <p class="vel-text-3xl" style="color:#c4b5fd">vel-text-3xl — 3X-Large (1.875rem)</p>
+  <p class="vel-text-4xl" style="color:#a87fff">vel-text-4xl (2.25rem)</p>
+</div>`,
+        },
+      ]}
     />
   )
 }

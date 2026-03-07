@@ -1,0 +1,150 @@
+/* VeloraCSS — Code Block Component */
+
+/* ─── Container ───────────────────────────── */
+
+.vel-code-block {
+  background-color: var(--vel-surface-0);
+  border: 1px solid var(--vel-border-base);
+  border-radius: var(--vel-radius-xl);
+  overflow: hidden;
+  font-family: var(--vel-font-mono);
+}
+
+/* ─── Header ──────────────────────────────── */
+
+.vel-code-block-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--vel-space-3) var(--vel-space-4);
+  background-color: var(--vel-surface-1);
+  border-bottom: 1px solid var(--vel-border-base);
+  gap: var(--vel-space-3);
+}
+
+/* ─── Language Badge ──────────────────────── */
+
+.vel-code-block-lang {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.15em 0.6em;
+  font-size: var(--vel-size-xs);
+  font-weight: var(--vel-font-semibold);
+  letter-spacing: var(--vel-tracking-wide);
+  background: rgba(124, 92, 252, 0.18);
+  color: var(--vel-primary-300);
+  border: 1px solid rgba(124, 92, 252, 0.3);
+  border-radius: var(--vel-radius-full);
+  font-family: var(--vel-font-mono);
+}
+
+/* ─── Filename ────────────────────────────── */
+
+.vel-code-block-filename {
+  font-size: var(--vel-size-sm);
+  color: var(--vel-color-muted);
+  font-family: var(--vel-font-mono);
+  flex: 1;
+}
+
+/* ─── Copy Button ─────────────────────────── */
+
+.vel-code-block-copy {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--vel-space-1);
+  padding: var(--vel-space-1) var(--vel-space-3);
+  font-size: var(--vel-size-xs);
+  font-weight: var(--vel-font-medium);
+  font-family: var(--vel-font-sans);
+  color: var(--vel-color-muted);
+  background: transparent;
+  border: 1px solid var(--vel-border-base);
+  border-radius: var(--vel-radius-md);
+  cursor: pointer;
+  transition:
+    color var(--vel-duration-150) var(--vel-ease-out),
+    border-color var(--vel-duration-150) var(--vel-ease-out),
+    background-color var(--vel-duration-150) var(--vel-ease-out);
+  white-space: nowrap;
+}
+
+.vel-code-block-copy:hover {
+  color: var(--vel-color-text);
+  border-color: var(--vel-primary-500);
+  background-color: rgba(124, 92, 252, 0.08);
+}
+
+/* ─── Body ────────────────────────────────── */
+
+.vel-code-block-body {
+  overflow-x: auto;
+  padding: var(--vel-space-4);
+}
+
+.vel-code-block-body pre {
+  margin: 0;
+  padding: 0;
+  background: transparent;
+  overflow: visible;
+}
+
+.vel-code-block-body code {
+  font-family: var(--vel-font-mono);
+  font-size: var(--vel-size-sm);
+  line-height: 1.7;
+  color: var(--vel-neutral-400);
+  white-space: pre;
+}
+
+/* ─── Line Numbers ────────────────────────── */
+
+.vel-code-block-line-numbers .vel-code-block-body {
+  display: flex;
+  gap: var(--vel-space-4);
+}
+
+.vel-code-block-line-numbers .vel-code-block-body::before {
+  content: counter(vel-line-count);
+  counter-reset: vel-line-count 0;
+  display: block;
+  flex-shrink: 0;
+  min-width: 2rem;
+  color: var(--vel-color-muted);
+  text-align: right;
+  font-family: var(--vel-font-mono);
+  font-size: var(--vel-size-sm);
+  line-height: 1.7;
+  user-select: none;
+  border-right: 1px solid var(--vel-border-base);
+  padding-right: var(--vel-space-3);
+}
+
+/* ─── Terminal Variant ────────────────────── */
+
+.vel-code-block-terminal {
+  background-color: var(--vel-surface-0);
+}
+
+.vel-code-block-terminal .vel-code-block-header {
+  background-color: var(--vel-surface-1);
+  gap: var(--vel-space-2);
+}
+
+.vel-code-block-terminal .vel-code-block-header::before {
+  content: '';
+  display: flex;
+  width: 0.75rem;
+  height: 0.75rem;
+  border-radius: var(--vel-radius-full);
+  background-color: var(--vel-danger-500);
+  box-shadow:
+    1.25rem 0 0 var(--vel-warning-400),
+    2.5rem 0 0 var(--vel-success-400);
+  flex-shrink: 0;
+  margin-right: var(--vel-space-6);
+}
+
+.vel-code-block-terminal .vel-code-block-body code {
+  color: var(--vel-success-400);
+}

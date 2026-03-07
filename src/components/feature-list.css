@@ -1,0 +1,101 @@
+/* VeloraCSS — Feature List Component */
+
+/* ─── Section Wrapper ─────────────────────── */
+
+.vel-features {
+  padding: var(--vel-space-16) var(--vel-space-6);
+}
+
+/* ─── Grid ────────────────────────────────── */
+
+.vel-features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: var(--vel-space-6);
+}
+
+/* ─── Feature Card ────────────────────────── */
+
+.vel-feature-card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--vel-space-4);
+  padding: var(--vel-space-6);
+  background-color: var(--vel-surface-2);
+  border: 1px solid var(--vel-border-base);
+  border-radius: var(--vel-radius-2xl);
+  transition:
+    transform var(--vel-duration-200) var(--vel-ease-spring),
+    box-shadow var(--vel-duration-200) var(--vel-ease-out),
+    border-color var(--vel-duration-200) var(--vel-ease-out);
+}
+
+.vel-feature-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--vel-shadow-xl);
+  border-color: rgba(124, 92, 252, 0.3);
+}
+
+/* ─── Feature Icon ────────────────────────── */
+
+.vel-feature-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 3rem;
+  height: 3rem;
+  border-radius: var(--vel-radius-xl);
+  background: rgba(124, 92, 252, 0.15);
+  color: var(--vel-primary-400);
+  font-size: 1.4rem;
+  flex-shrink: 0;
+}
+
+.vel-feature-icon svg {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+/* ─── Icon Color Variants ─────────────────── */
+
+.vel-feature-icon-primary {
+  background: rgba(124, 92, 252, 0.15);
+  color: var(--vel-primary-400);
+}
+
+.vel-feature-icon-success {
+  background: rgba(14, 203, 129, 0.14);
+  color: var(--vel-success-400);
+}
+
+.vel-feature-icon-info {
+  background: rgba(46, 189, 229, 0.14);
+  color: var(--vel-info-400);
+}
+
+.vel-feature-icon-danger {
+  background: rgba(240, 65, 108, 0.14);
+  color: var(--vel-danger-400);
+}
+
+.vel-feature-icon-warning {
+  background: rgba(255, 157, 0, 0.13);
+  color: var(--vel-warning-400);
+}
+
+/* ─── Feature Text ────────────────────────── */
+
+.vel-feature-title {
+  font-size: var(--vel-size-lg);
+  font-weight: var(--vel-font-semibold);
+  color: var(--vel-color-text);
+  margin: 0;
+  line-height: var(--vel-leading-snug);
+}
+
+.vel-feature-text {
+  font-size: var(--vel-size-base);
+  color: var(--vel-color-muted);
+  line-height: var(--vel-leading-relaxed);
+  margin: 0;
+}

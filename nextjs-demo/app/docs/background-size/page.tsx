@@ -1,0 +1,35 @@
+import DocPage from '../_components/DocPage'
+
+export default function BackgroundSizePage() {
+  return (
+    <DocPage
+      title="Background Size"
+      description="Utilities for controlling the size of an element's background image."
+      source="colors.css"
+      table={[
+        { class: 'vel-bg-auto', properties: 'background-size: auto' },
+        { class: 'vel-bg-cover', properties: 'background-size: cover' },
+        { class: 'vel-bg-contain', properties: 'background-size: contain' },
+      ]}
+      examples={[
+        {
+          label: 'Cover vs contain vs auto',
+          html: `<div style="display:flex;gap:12px;padding:1rem;background:#060b17;flex-wrap:wrap;align-items:flex-start;">
+  <div style="text-align:center;">
+    <div class="vel-bg-cover vel-bg-center" style="width:120px;height:80px;border-radius:6px;border:1px solid #1e2d45;background-image:url('https://placehold.co/200x100/7c5cfc/fff?text=cover');"></div>
+    <p style="color:#64748b;font-size:0.75rem;margin-top:4px;">vel-bg-cover</p>
+  </div>
+  <div style="text-align:center;">
+    <div class="vel-bg-contain vel-bg-center vel-bg-no-repeat" style="width:120px;height:80px;border-radius:6px;border:1px solid #1e2d45;background-color:#0d1422;background-image:url('https://placehold.co/200x100/a87fff/fff?text=contain');"></div>
+    <p style="color:#64748b;font-size:0.75rem;margin-top:4px;">vel-bg-contain</p>
+  </div>
+  <div style="text-align:center;">
+    <div class="vel-bg-auto vel-bg-center vel-bg-no-repeat" style="width:120px;height:80px;border-radius:6px;border:1px solid #1e2d45;background-color:#0d1422;background-image:url('https://placehold.co/60x40/38bdf8/fff?text=auto');"></div>
+    <p style="color:#64748b;font-size:0.75rem;margin-top:4px;">vel-bg-auto</p>
+  </div>
+</div>`,
+        },
+      ]}
+    />
+  )
+}

@@ -672,8 +672,8 @@ export default function Home() {
               <p className="vel-text-2xl vel-font-semibold" style={{ color: '#cbd5e1' }}>Heading 2</p>
               <p className="vel-text-xl vel-font-medium" style={{ color: '#94a3b8' }}>Heading 3</p>
               <p className="vel-text-base" style={{ color: C.muted }}>Body — the quick brown fox jumps over the lazy dog.</p>
-              <p className="vel-text-sm" style={{ color: '#475569' }}>Small — secondary information and captions.</p>
-              <p className="vel-text-xs vel-uppercase vel-tracking-wider vel-font-semibold" style={{ color: '#334155' }}>Label / Eyebrow</p>
+              <p className="vel-text-sm" style={{ color: '#64748b' }}>Small — secondary information and captions.</p>
+              <p className="vel-text-xs vel-uppercase vel-tracking-wider vel-font-semibold" style={{ color: '#475569' }}>Label / Eyebrow</p>
             </div>
           </PreviewBox>
           <CodeBlock code={TYPOGRAPHY_CODE} />

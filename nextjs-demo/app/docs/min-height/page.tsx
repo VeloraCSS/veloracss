@@ -14,6 +14,21 @@ export default function MinHeightPage() {
         { class: 'vel-min-h-max', properties: 'min-height: max-content' },
         { class: 'vel-min-h-fit', properties: 'min-height: fit-content' },
       ]}
+      examples={[
+        {
+          label: 'min-h-16 guarantees minimum height',
+          html: `<div class="vel-flex vel-gap-4 vel-items-start">
+  <div>
+    <p style="color:#64748b;font-size:11px;margin-bottom:6px">Without min-height</p>
+    <div style="background:#1a2236;border:1px solid #1e2d45;border-radius:6px;padding:10px;width:120px;color:#94a3b8;font-size:12px">Short</div>
+  </div>
+  <div>
+    <p style="color:#64748b;font-size:11px;margin-bottom:6px">vel-min-h-16</p>
+    <div class="vel-min-h-16" style="background:#7c5cfc20;border:1px dashed #7c5cfc60;border-radius:6px;padding:10px;width:120px;color:#a87fff;font-size:12px">Short</div>
+  </div>
+</div>`,
+        },
+      ]}
     />
   )
 }

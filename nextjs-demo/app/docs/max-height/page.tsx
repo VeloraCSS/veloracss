@@ -16,6 +16,17 @@ export default function MaxHeightPage() {
         { class: 'vel-max-h-64', properties: 'max-height: 16rem' },
         { class: 'vel-max-h-96', properties: 'max-height: 24rem' },
       ]}
+      examples={[
+        {
+          label: 'Capped height with scroll',
+          html: `<div class="vel-max-h-24 vel-overflow-auto" style="background:#1a2236;border:1px solid #1e2d45;border-radius:6px;padding:12px">
+  <p style="color:#94a3b8;font-size:13px">vel-max-h-24 limits height to 6rem.</p>
+  <p style="color:#64748b;font-size:13px;margin-top:8px">Content below gets scrolled.</p>
+  <p style="color:#64748b;font-size:13px;margin-top:8px">More content here.</p>
+  <p style="color:#64748b;font-size:13px;margin-top:8px">Even more content.</p>
+</div>`,
+        },
+      ]}
     />
   )
 }

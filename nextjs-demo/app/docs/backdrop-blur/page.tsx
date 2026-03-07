@@ -1,0 +1,60 @@
+import DocPage from '../_components/DocPage'
+
+export default function BackdropBlurPage() {
+  return (
+    <DocPage
+      title="Backdrop Blur"
+      description="Utilities for applying backdrop blur and other backdrop filter effects to an element."
+      source="effects.css"
+      table={[
+        { class: 'vel-backdrop-blur-none', properties: 'backdrop-filter: blur(0)' },
+        { class: 'vel-backdrop-blur-sm', properties: 'backdrop-filter: blur(4px)' },
+        { class: 'vel-backdrop-blur', properties: 'backdrop-filter: blur(8px)' },
+        { class: 'vel-backdrop-blur-md', properties: 'backdrop-filter: blur(12px)' },
+        { class: 'vel-backdrop-blur-lg', properties: 'backdrop-filter: blur(16px)' },
+        { class: 'vel-backdrop-blur-xl', properties: 'backdrop-filter: blur(24px)' },
+        { class: 'vel-backdrop-blur-2xl', properties: 'backdrop-filter: blur(40px)' },
+        { class: 'vel-backdrop-blur-3xl', properties: 'backdrop-filter: blur(64px)' },
+        { class: 'vel-backdrop-brightness-50', properties: 'backdrop-filter: brightness(0.5)' },
+        { class: 'vel-backdrop-brightness-75', properties: 'backdrop-filter: brightness(0.75)' },
+        { class: 'vel-backdrop-brightness-100', properties: 'backdrop-filter: brightness(1)' },
+        { class: 'vel-backdrop-brightness-125', properties: 'backdrop-filter: brightness(1.25)' },
+        { class: 'vel-backdrop-brightness-150', properties: 'backdrop-filter: brightness(1.5)' },
+        { class: 'vel-backdrop-opacity-10', properties: 'backdrop-filter: opacity(0.1)' },
+        { class: 'vel-backdrop-opacity-25', properties: 'backdrop-filter: opacity(0.25)' },
+        { class: 'vel-backdrop-opacity-50', properties: 'backdrop-filter: opacity(0.5)' },
+        { class: 'vel-backdrop-opacity-75', properties: 'backdrop-filter: opacity(0.75)' },
+        { class: 'vel-backdrop-opacity-100', properties: 'backdrop-filter: opacity(1)' },
+      ]}
+      examples={[
+        {
+          label: 'Backdrop blur on a glassmorphism card',
+          html: `<div style="padding:2rem;background:#060b17;position:relative;overflow:hidden;min-height:160px;">
+  <!-- Colorful background to show backdrop effect -->
+  <div style="position:absolute;inset:0;background:linear-gradient(135deg,#7c5cfc,#38bdf8,#34d399);opacity:0.4;"></div>
+  <div style="position:absolute;top:10px;left:10px;width:100px;height:100px;border-radius:50%;background:#ec4899;filter:blur(30px);opacity:0.6;"></div>
+  <div style="position:absolute;bottom:10px;right:10px;width:80px;height:80px;border-radius:50%;background:#f97316;filter:blur(25px);opacity:0.6;"></div>
+
+  <!-- Glassmorphism card using backdrop blur -->
+  <div class="vel-backdrop-blur-md vel-rounded-xl" style="position:relative;padding:20px 24px;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);max-width:280px;">
+    <h3 style="color:#fff;margin:0 0 6px;font-size:1rem;font-weight:600;">Glassmorphism Card</h3>
+    <p style="color:rgba(255,255,255,0.7);margin:0;font-size:0.85rem;">Uses vel-backdrop-blur-md to blur the background through the card.</p>
+  </div>
+</div>`,
+        },
+        {
+          label: 'Backdrop blur scale comparison',
+          html: `<div style="display:flex;gap:12px;padding:2rem;flex-wrap:wrap;position:relative;overflow:hidden;min-height:120px;background:#060b17;">
+  <div style="position:absolute;inset:0;background:linear-gradient(135deg,#7c5cfc 0%,#ec4899 50%,#f97316 100%);opacity:0.5;"></div>
+  <div class="vel-backdrop-blur-none vel-rounded-lg" style="position:relative;padding:12px 16px;background:rgba(0,0,0,0.2);border:1px solid rgba(255,255,255,0.2);color:#fff;font-size:0.75rem;text-align:center;min-width:60px;">none</div>
+  <div class="vel-backdrop-blur-sm vel-rounded-lg" style="position:relative;padding:12px 16px;background:rgba(0,0,0,0.2);border:1px solid rgba(255,255,255,0.2);color:#fff;font-size:0.75rem;text-align:center;min-width:60px;">sm</div>
+  <div class="vel-backdrop-blur vel-rounded-lg" style="position:relative;padding:12px 16px;background:rgba(0,0,0,0.2);border:1px solid rgba(255,255,255,0.2);color:#fff;font-size:0.75rem;text-align:center;min-width:60px;">8px</div>
+  <div class="vel-backdrop-blur-md vel-rounded-lg" style="position:relative;padding:12px 16px;background:rgba(0,0,0,0.2);border:1px solid rgba(255,255,255,0.2);color:#fff;font-size:0.75rem;text-align:center;min-width:60px;">md</div>
+  <div class="vel-backdrop-blur-lg vel-rounded-lg" style="position:relative;padding:12px 16px;background:rgba(0,0,0,0.2);border:1px solid rgba(255,255,255,0.2);color:#fff;font-size:0.75rem;text-align:center;min-width:60px;">lg</div>
+  <div class="vel-backdrop-blur-xl vel-rounded-lg" style="position:relative;padding:12px 16px;background:rgba(0,0,0,0.2);border:1px solid rgba(255,255,255,0.2);color:#fff;font-size:0.75rem;text-align:center;min-width:60px;">xl</div>
+</div>`,
+        },
+      ]}
+    />
+  )
+}

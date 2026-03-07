@@ -1,6 +1,23 @@
 1:"$Sreact.fragment"
-2:I[46193,["/veloracss/_next/static/chunks/30a4d2e0f1be160c.js","/veloracss/_next/static/chunks/ea336b5b6d04ce60.js"],"default"]
-3:I[93373,["/veloracss/_next/static/chunks/89d43586d21f2643.js","/veloracss/_next/static/chunks/27e596ffa243fe8c.js"],"OutletBoundary"]
-4:"$Sreact.suspense"
-0:{"buildId":"3QY-IQxwEfbGU4y9Fs9Gi","rsc":["$","$1","c",{"children":[["$","$L2",null,{"title":"Break After","description":"Utilities for controlling how a column or page should break after an element.","source":"layout.css","table":[{"class":"vel-break-after-auto","properties":"break-after: auto"},{"class":"vel-break-after-avoid","properties":"break-after: avoid"},{"class":"vel-break-after-all","properties":"break-after: all"},{"class":"vel-break-after-column","properties":"break-after: column"},{"class":"vel-break-after-page","properties":"break-after: page"}]}],[["$","script","script-0",{"src":"/veloracss/_next/static/chunks/ea336b5b6d04ce60.js","async":true}]],["$","$L3",null,{"children":["$","$4",null,{"name":"Next.MetadataOutlet","children":"$@5"}]}]]}],"loading":null,"isPartial":false}
-5:null
+2:I[46193,["/veloracss/_next/static/chunks/c4989586ebada130.js","/veloracss/_next/static/chunks/9e0b6985a43250a8.js"],"default"]
+4:I[93373,["/veloracss/_next/static/chunks/89d43586d21f2643.js","/veloracss/_next/static/chunks/27e596ffa243fe8c.js"],"OutletBoundary"]
+5:"$Sreact.suspense"
+3:T471,<div class="vel-grid vel-grid-cols-2 vel-gap-4">
+  <div style="background:#1a2236;border:1px solid #1e2d45;padding:12px;border-radius:6px">
+    <code style="color:#a87fff;font-size:12px">vel-break-after-auto</code>
+    <p style="color:#64748b;font-size:12px;margin-top:4px">Normal column/page break behavior</p>
+  </div>
+  <div style="background:#1a2236;border:1px solid #1e2d45;padding:12px;border-radius:6px">
+    <code style="color:#a87fff;font-size:12px">vel-break-after-column</code>
+    <p style="color:#64748b;font-size:12px;margin-top:4px">Forces column break after element</p>
+  </div>
+  <div style="background:#1a2236;border:1px solid #1e2d45;padding:12px;border-radius:6px">
+    <code style="color:#a87fff;font-size:12px">vel-break-after-avoid</code>
+    <p style="color:#64748b;font-size:12px;margin-top:4px">Avoids break after element</p>
+  </div>
+  <div style="background:#1a2236;border:1px solid #1e2d45;padding:12px;border-radius:6px">
+    <code style="color:#a87fff;font-size:12px">vel-break-after-page</code>
+    <p style="color:#64748b;font-size:12px;margin-top:4px">Forces page break after element</p>
+  </div>
+</div>0:{"buildId":"NRouR21by_GvLJWHLILAz","rsc":["$","$1","c",{"children":[["$","$L2",null,{"title":"Break After","description":"Utilities for controlling how a column or page should break after an element.","source":"layout.css","table":[{"class":"vel-break-after-auto","properties":"break-after: auto"},{"class":"vel-break-after-avoid","properties":"break-after: avoid"},{"class":"vel-break-after-all","properties":"break-after: all"},{"class":"vel-break-after-column","properties":"break-after: column"},{"class":"vel-break-after-page","properties":"break-after: page"}],"examples":[{"label":"Break after variants","html":"$3"}]}],[["$","script","script-0",{"src":"/veloracss/_next/static/chunks/9e0b6985a43250a8.js","async":true}]],["$","$L4",null,{"children":["$","$5",null,{"name":"Next.MetadataOutlet","children":"$@6"}]}]]}],"loading":null,"isPartial":false}
+6:null

@@ -1,0 +1,91 @@
+/* VeloraCSS — Accordion Component */
+
+/* ─── Container ───────────────────────────── */
+
+.vel-accordion {
+  border: 1px solid var(--vel-border-base);
+  border-radius: var(--vel-radius-xl);
+  overflow: hidden;
+  background-color: var(--vel-surface-1);
+}
+
+/* ─── Item ────────────────────────────────── */
+
+.vel-accordion-item {
+  border-bottom: 1px solid var(--vel-border-base);
+}
+
+.vel-accordion-item:last-child {
+  border-bottom: none;
+}
+
+/* ─── Trigger ─────────────────────────────── */
+
+.vel-accordion-trigger {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: var(--vel-space-4) var(--vel-space-5);
+  background: transparent;
+  border: none;
+  color: var(--vel-color-text);
+  font-size: var(--vel-size-base);
+  font-weight: var(--vel-font-medium);
+  font-family: var(--vel-font-sans);
+  text-align: left;
+  cursor: pointer;
+  transition: background-color var(--vel-duration-150) var(--vel-ease-out);
+}
+
+.vel-accordion-trigger:hover {
+  background-color: var(--vel-surface-2);
+}
+
+/* ─── Trigger Icon ────────────────────────── */
+
+.vel-accordion-trigger-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 1.25rem;
+  height: 1.25rem;
+  color: var(--vel-color-muted);
+  transition: transform var(--vel-duration-200) var(--vel-ease-in-out);
+}
+
+.vel-accordion-trigger-icon.vel-open {
+  transform: rotate(180deg);
+}
+
+/* ─── Content ─────────────────────────────── */
+
+.vel-accordion-content {
+  padding: 0 var(--vel-space-5) var(--vel-space-5);
+  color: var(--vel-color-muted);
+  font-size: var(--vel-size-base);
+  line-height: var(--vel-leading-relaxed);
+}
+
+/* ─── Flush Variant ───────────────────────── */
+
+.vel-accordion-flush {
+  border: none;
+  border-radius: 0;
+  background-color: transparent;
+}
+
+.vel-accordion-flush .vel-accordion-item {
+  border-bottom: 1px solid var(--vel-border-base);
+}
+
+.vel-accordion-flush .vel-accordion-trigger {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.vel-accordion-flush .vel-accordion-content {
+  padding-left: 0;
+  padding-right: 0;
+}

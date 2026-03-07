@@ -1,6 +1,28 @@
 1:"$Sreact.fragment"
-2:I[46193,["/veloracss/_next/static/chunks/30a4d2e0f1be160c.js","/veloracss/_next/static/chunks/ea336b5b6d04ce60.js"],"default"]
-3:I[93373,["/veloracss/_next/static/chunks/89d43586d21f2643.js","/veloracss/_next/static/chunks/27e596ffa243fe8c.js"],"OutletBoundary"]
-4:"$Sreact.suspense"
-0:{"buildId":"3QY-IQxwEfbGU4y9Fs9Gi","rsc":["$","$1","c",{"children":[["$","$L2",null,{"title":"Place Items","description":"Utilities for controlling how items are justified and aligned at the same time.","source":"flexbox.css","table":[{"class":"vel-place-items-center","properties":"place-items: center"},{"class":"vel-place-items-start","properties":"place-items: start"},{"class":"vel-place-items-end","properties":"place-items: end"},{"class":"vel-place-items-stretch","properties":"place-items: stretch"}]}],[["$","script","script-0",{"src":"/veloracss/_next/static/chunks/ea336b5b6d04ce60.js","async":true}]],["$","$L3",null,{"children":["$","$4",null,{"name":"Next.MetadataOutlet","children":"$@5"}]}]]}],"loading":null,"isPartial":false}
-5:null
+2:I[46193,["/veloracss/_next/static/chunks/c4989586ebada130.js","/veloracss/_next/static/chunks/9e0b6985a43250a8.js"],"default"]
+4:I[93373,["/veloracss/_next/static/chunks/89d43586d21f2643.js","/veloracss/_next/static/chunks/27e596ffa243fe8c.js"],"OutletBoundary"]
+5:"$Sreact.suspense"
+3:T5e3,<div class="vel-flex vel-gap-4">
+  <div style="flex:1">
+    <p style="color:#64748b;font-size:11px;margin-bottom:4px">vel-place-items-start</p>
+    <div class="vel-grid vel-grid-cols-2 vel-place-items-start vel-gap-2" style="background:#1a2236;padding:8px;border-radius:6px;height:100px">
+      <div style="background:#7c5cfc;color:#fff;padding:6px 10px;border-radius:4px;font-size:12px">A</div>
+      <div style="background:#7c5cfc;color:#fff;padding:6px 10px;border-radius:4px;font-size:12px">B</div>
+    </div>
+  </div>
+  <div style="flex:1">
+    <p style="color:#64748b;font-size:11px;margin-bottom:4px">vel-place-items-center</p>
+    <div class="vel-grid vel-grid-cols-2 vel-place-items-center vel-gap-2" style="background:#1a2236;padding:8px;border-radius:6px;height:100px">
+      <div style="background:#0ecb81;color:#fff;padding:6px 10px;border-radius:4px;font-size:12px">A</div>
+      <div style="background:#0ecb81;color:#fff;padding:6px 10px;border-radius:4px;font-size:12px">B</div>
+    </div>
+  </div>
+  <div style="flex:1">
+    <p style="color:#64748b;font-size:11px;margin-bottom:4px">vel-place-items-end</p>
+    <div class="vel-grid vel-grid-cols-2 vel-place-items-end vel-gap-2" style="background:#1a2236;padding:8px;border-radius:6px;height:100px">
+      <div style="background:#f0416c;color:#fff;padding:6px 10px;border-radius:4px;font-size:12px">A</div>
+      <div style="background:#f0416c;color:#fff;padding:6px 10px;border-radius:4px;font-size:12px">B</div>
+    </div>
+  </div>
+</div>0:{"buildId":"NRouR21by_GvLJWHLILAz","rsc":["$","$1","c",{"children":[["$","$L2",null,{"title":"Place Items","description":"Utilities for controlling how items are justified and aligned at the same time.","source":"flexbox.css","table":[{"class":"vel-place-items-center","properties":"place-items: center"},{"class":"vel-place-items-start","properties":"place-items: start"},{"class":"vel-place-items-end","properties":"place-items: end"},{"class":"vel-place-items-stretch","properties":"place-items: stretch"}],"examples":[{"label":"Place items variants","html":"$3"}]}],[["$","script","script-0",{"src":"/veloracss/_next/static/chunks/9e0b6985a43250a8.js","async":true}]],["$","$L4",null,{"children":["$","$5",null,{"name":"Next.MetadataOutlet","children":"$@6"}]}]]}],"loading":null,"isPartial":false}
+6:null

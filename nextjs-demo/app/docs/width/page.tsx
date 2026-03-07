@@ -27,6 +27,17 @@ export default function WidthPage() {
         { class: 'vel-w-1/4', properties: 'width: 25%' },
         { class: 'vel-w-3/4', properties: 'width: 75%' },
       ]}
+      examples={[
+        {
+          label: 'Width scale',
+          html: `<div class="vel-flex vel-flex-col vel-gap-2">
+  <div class="vel-w-1/4" style="background:#7c5cfc;color:#fff;padding:8px;border-radius:6px;font-size:12px">w-1/4</div>
+  <div class="vel-w-1/2" style="background:#7c5cfc;color:#fff;padding:8px;border-radius:6px;font-size:12px">w-1/2</div>
+  <div class="vel-w-3/4" style="background:#7c5cfc;color:#fff;padding:8px;border-radius:6px;font-size:12px">w-3/4</div>
+  <div class="vel-w-full" style="background:#7c5cfc;color:#fff;padding:8px;border-radius:6px;font-size:12px">w-full</div>
+</div>`,
+        },
+      ]}
     />
   )
 }

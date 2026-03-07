@@ -1,0 +1,55 @@
+import DocPage from '../_components/DocPage'
+
+export default function BrightnessPage() {
+  return (
+    <DocPage
+      title="Brightness"
+      description="Utilities for applying brightness filter functions to an element."
+      source="effects.css"
+      table={[
+        { class: 'vel-brightness-0', properties: 'filter: brightness(0)' },
+        { class: 'vel-brightness-50', properties: 'filter: brightness(0.5)' },
+        { class: 'vel-brightness-75', properties: 'filter: brightness(0.75)' },
+        { class: 'vel-brightness-90', properties: 'filter: brightness(0.9)' },
+        { class: 'vel-brightness-95', properties: 'filter: brightness(0.95)' },
+        { class: 'vel-brightness-100', properties: 'filter: brightness(1)' },
+        { class: 'vel-brightness-105', properties: 'filter: brightness(1.05)' },
+        { class: 'vel-brightness-110', properties: 'filter: brightness(1.1)' },
+        { class: 'vel-brightness-125', properties: 'filter: brightness(1.25)' },
+        { class: 'vel-brightness-150', properties: 'filter: brightness(1.5)' },
+        { class: 'vel-brightness-200', properties: 'filter: brightness(2)' },
+      ]}
+      examples={[
+        {
+          label: 'Brightness scale',
+          html: `<div style="display:flex;gap:8px;padding:1rem;background:#060b17;flex-wrap:wrap;align-items:flex-end;">
+  <div style="text-align:center;">
+    <div class="vel-brightness-50 vel-bg-primary vel-rounded-md" style="width:52px;height:52px;"></div>
+    <p style="color:#64748b;font-size:0.65rem;margin-top:4px;">50</p>
+  </div>
+  <div style="text-align:center;">
+    <div class="vel-brightness-75 vel-bg-primary vel-rounded-md" style="width:52px;height:52px;"></div>
+    <p style="color:#64748b;font-size:0.65rem;margin-top:4px;">75</p>
+  </div>
+  <div style="text-align:center;">
+    <div class="vel-brightness-100 vel-bg-primary vel-rounded-md" style="width:52px;height:52px;"></div>
+    <p style="color:#64748b;font-size:0.65rem;margin-top:4px;">100</p>
+  </div>
+  <div style="text-align:center;">
+    <div class="vel-brightness-125 vel-bg-primary vel-rounded-md" style="width:52px;height:52px;"></div>
+    <p style="color:#64748b;font-size:0.65rem;margin-top:4px;">125</p>
+  </div>
+  <div style="text-align:center;">
+    <div class="vel-brightness-150 vel-bg-primary vel-rounded-md" style="width:52px;height:52px;"></div>
+    <p style="color:#64748b;font-size:0.65rem;margin-top:4px;">150</p>
+  </div>
+  <div style="text-align:center;">
+    <div class="vel-brightness-200 vel-bg-primary vel-rounded-md" style="width:52px;height:52px;"></div>
+    <p style="color:#64748b;font-size:0.65rem;margin-top:4px;">200</p>
+  </div>
+</div>`,
+        },
+      ]}
+    />
+  )
+}

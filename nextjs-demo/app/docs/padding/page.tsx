@@ -25,6 +25,33 @@ export default function PaddingPage() {
         { class: 'vel-pb-4', properties: 'padding-bottom: 1rem' },
         { class: 'vel-pl-4', properties: 'padding-left: 1rem' },
       ]}
+      examples={[
+        {
+          label: 'Padding scale',
+          html: `<div class="vel-flex vel-items-end vel-gap-4">
+  <div class="vel-p-2" style="background:#7c5cfc20;border:1px dashed #7c5cfc60;border-radius:6px">
+    <div style="background:#7c5cfc;color:#fff;border-radius:4px;font-size:12px">p-2</div>
+  </div>
+  <div class="vel-p-4" style="background:#7c5cfc20;border:1px dashed #7c5cfc60;border-radius:6px">
+    <div style="background:#7c5cfc;color:#fff;border-radius:4px;font-size:12px">p-4</div>
+  </div>
+  <div class="vel-p-8" style="background:#7c5cfc20;border:1px dashed #7c5cfc60;border-radius:6px">
+    <div style="background:#7c5cfc;color:#fff;border-radius:4px;font-size:12px">p-8</div>
+  </div>
+</div>`,
+        },
+        {
+          label: 'Directional padding',
+          html: `<div class="vel-flex vel-gap-4">
+  <div class="vel-pt-8 vel-pb-2 vel-px-4" style="background:#0ecb8120;border:1px dashed #0ecb8160;border-radius:6px">
+    <div style="background:#0ecb81;color:#fff;border-radius:4px;font-size:12px;padding:4px 8px">pt-8 pb-2 px-4</div>
+  </div>
+  <div class="vel-py-6 vel-px-2" style="background:#2ebde520;border:1px dashed #2ebde560;border-radius:6px">
+    <div style="background:#2ebde5;color:#fff;border-radius:4px;font-size:12px;padding:4px 8px">py-6 px-2</div>
+  </div>
+</div>`,
+        },
+      ]}
     />
   )
 }

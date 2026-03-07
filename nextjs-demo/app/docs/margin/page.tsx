@@ -23,6 +23,21 @@ export default function MarginPage() {
         { class: 'vel-mb-4', properties: 'margin-bottom: 1rem' },
         { class: 'vel-ml-4', properties: 'margin-left: 1rem' },
       ]}
+      examples={[
+        {
+          label: 'Margin scale',
+          html: `<div style="background:#1a2236;border-radius:8px;padding:4px">
+  <div class="vel-m-2" style="background:#7c5cfc;color:#fff;padding:8px 16px;border-radius:6px;font-size:13px">vel-m-2</div>
+  <div class="vel-m-6" style="background:#0ecb81;color:#fff;padding:8px 16px;border-radius:6px;font-size:13px">vel-m-6</div>
+</div>`,
+        },
+        {
+          label: 'Auto centering',
+          html: `<div style="background:#1a2236;border-radius:8px;padding:8px">
+  <div class="vel-mx-auto" style="background:#7c5cfc;color:#fff;padding:10px;border-radius:6px;width:fit-content;font-size:13px">vel-mx-auto (centered)</div>
+</div>`,
+        },
+      ]}
     />
   )
 }

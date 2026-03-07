@@ -27,7 +27,7 @@ const EXAMPLES: Record<string, string> = {
       Welcome to the VeloraCSS Playground
     </h1>
     <p style="color:#64748b;font-size:0.9rem;line-height:1.7;margin:0 0 30px">
-      An online playground for <strong style="color:#818cf8">VeloraCSS</strong> — a fully original
+      An online playground for <strong style="color:#c4b5fd">VeloraCSS</strong> — a fully original
       utility-first CSS framework with rich components and zero dependencies.
       Edit the HTML on the left and see changes instantly.
     </p>
@@ -35,38 +35,38 @@ const EXAMPLES: Record<string, string> = {
     <!-- Feature list -->
     <ul style="list-style:none;padding:0;margin:0 0 34px;display:flex;flex-direction:column;gap:14px">
       <li style="display:flex;align-items:flex-start;gap:14px">
-        <span style="width:22px;height:22px;background:#6366f120;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:12px;flex-shrink:0;margin-top:1px">✦</span>
+        <span style="width:22px;height:22px;background:#7c5cfc20;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:12px;flex-shrink:0;margin-top:1px">✦</span>
         <div>
           <span style="color:#e2e8f0;font-size:0.875rem;font-weight:600">Utility-first classes</span>
           <span style="color:#475569;font-size:0.8rem;display:block;margin-top:2px">vel-flex, vel-p-4, vel-text-lg and hundreds more</span>
         </div>
       </li>
       <li style="display:flex;align-items:flex-start;gap:14px">
-        <span style="width:22px;height:22px;background:#22c55e20;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:12px;flex-shrink:0;margin-top:1px">✦</span>
+        <span style="width:22px;height:22px;background:#0ecb8120;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:12px;flex-shrink:0;margin-top:1px">✦</span>
         <div>
           <span style="color:#e2e8f0;font-size:0.875rem;font-weight:600">Rich components</span>
-          <span style="color:#475569;font-size:0.8rem;display:block;margin-top:2px">vel-btn, vel-card with full variant sets</span>
+          <span style="color:#475569;font-size:0.8rem;display:block;margin-top:2px">vel-btn, vel-card, vel-badge, vel-alert, vel-navbar &amp; more</span>
         </div>
       </li>
       <li style="display:flex;align-items:flex-start;gap:14px">
-        <span style="width:22px;height:22px;background:#0ea5e920;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:12px;flex-shrink:0;margin-top:1px">✦</span>
+        <span style="width:22px;height:22px;background:#2ebde520;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:12px;flex-shrink:0;margin-top:1px">✦</span>
         <div>
-          <span style="color:#e2e8f0;font-size:0.875rem;font-weight:600">Responsive breakpoints</span>
-          <span style="color:#475569;font-size:0.8rem;display:block;margin-top:2px">vel-sm:flex · vel-md:grid-cols-3 · vel-lg:hidden</span>
+          <span style="color:#e2e8f0;font-size:0.875rem;font-weight:600">Gradients &amp; glows</span>
+          <span style="color:#475569;font-size:0.8rem;display:block;margin-top:2px">vel-bg-gradient-aurora · vel-btn-glow-primary · vel-glow-sm</span>
         </div>
       </li>
       <li style="display:flex;align-items:flex-start;gap:14px">
-        <span style="width:22px;height:22px;background:#f59e0b20;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:12px;flex-shrink:0;margin-top:1px">✦</span>
+        <span style="width:22px;height:22px;background:#ff9d0020;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:12px;flex-shrink:0;margin-top:1px">✦</span>
         <div>
-          <span style="color:#e2e8f0;font-size:0.875rem;font-weight:600">State variants</span>
-          <span style="color:#475569;font-size:0.8rem;display:block;margin-top:2px">vel-hover:bg-primary · vel-focus:ring · vel-dark:text-white</span>
+          <span style="color:#e2e8f0;font-size:0.875rem;font-weight:600">Animation utilities</span>
+          <span style="color:#475569;font-size:0.8rem;display:block;margin-top:2px">vel-animate-fade-in · vel-animate-slide-up · vel-animate-pulse</span>
         </div>
       </li>
     </ul>
 
     <!-- Prompt box -->
     <div style="background:#0b1120;border:1px solid #1e2d45;border-radius:12px;padding:14px 18px;display:flex;align-items:flex-start;gap:12px">
-      <span style="color:#6366f1;font-size:20px;margin-top:-2px">←</span>
+      <span style="color:#7c5cfc;font-size:20px;margin-top:-2px">←</span>
       <p style="color:#475569;font-size:0.8rem;line-height:1.6;margin:0">
         Edit the HTML on the left to get started, or choose a demo from the
         <strong style="color:#94a3b8">Examples</strong> dropdown above.
@@ -244,7 +244,7 @@ const EXAMPLES: Record<string, string> = {
   <!-- Nav -->
   <nav class="vel-flex vel-items-center vel-justify-between vel-px-8 vel-py-5 vel-border-b vel-border-neutral-100">
     <div class="vel-flex vel-items-center vel-gap-2">
-      <div style="background:#6366f1;color:#fff;font-weight:800;font-size:13px;padding:4px 10px;border-radius:6px">vel</div>
+      <div style="background:#7c5cfc;color:#fff;font-weight:800;font-size:13px;padding:4px 10px;border-radius:6px">vel</div>
       <span class="vel-font-semibold vel-text-neutral-900">VeloraCSS</span>
     </div>
     <div class="vel-flex vel-items-center vel-gap-6">
@@ -258,7 +258,7 @@ const EXAMPLES: Record<string, string> = {
   <!-- Hero -->
   <div class="vel-flex vel-flex-col vel-items-center vel-text-center vel-px-8 vel-pt-20 vel-pb-16">
     <div class="vel-bg-primary-light vel-text-primary vel-text-xs vel-font-semibold vel-px-3 vel-py-1 vel-rounded-full vel-mb-6">
-      Now in v0.1 — utility-first CSS
+      Now in v0.2 — gradients, animations &amp; 10 new components
     </div>
     <h1 class="vel-text-6xl vel-font-black vel-text-neutral-900 vel-tracking-tight vel-mb-6" style="line-height:1.1">
       Build fast.<br>Look great.
@@ -320,8 +320,8 @@ const C = {
   border:    '#1e2d45',
   text:      '#e2e8f0',
   muted:     '#64748b',
-  accent:    '#6366f1',
-  accentHov: '#4f52d6',
+  accent:    '#7c5cfc',
+  accentHov: '#6b46f0',
 }
 
 // ─── Helpers ──────────────────────────────────────────────────────────────────
@@ -466,7 +466,7 @@ export default function App() {
           <span style={{
             fontSize: '11px', color: C.muted, background: C.surface2,
             padding: '2px 7px', borderRadius: '4px', border: `1px solid ${C.border}`,
-          }}>v0.1.0</span>
+          }}>v0.2.0</span>
 
           {/* Divider */}
           <div style={{ width: '1px', height: '20px', background: C.border }} />
@@ -520,6 +520,20 @@ export default function App() {
 
         {/* Right: actions */}
         <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+          <a
+            href={window.location.hostname === 'localhost' ? 'http://localhost:3000/docs' : `${window.location.origin}/veloracss/docs`}
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{
+              display: 'flex', alignItems: 'center', gap: '6px',
+              padding: '5px 12px', borderRadius: '6px', fontSize: '12px',
+              fontWeight: 500, cursor: 'pointer', textDecoration: 'none',
+              background: C.surface2, color: '#c4b5fd',
+              border: `1px solid ${C.border}`,
+            }}
+          >
+            Docs
+          </a>
           <a
             href={window.location.hostname === 'localhost' ? 'http://localhost:3000' : `${window.location.origin}/veloracss`}
             target="_blank"

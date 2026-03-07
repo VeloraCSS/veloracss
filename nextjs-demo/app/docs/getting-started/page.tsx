@@ -1,3 +1,5 @@
+import Link from 'next/link'
+
 export default function GettingStartedPage() {
   return (
     <main style={{ padding: '2.5rem', maxWidth: '860px', fontFamily: 'system-ui, -apple-system, sans-serif', color: '#e2e8f0' }}>
@@ -35,139 +37,55 @@ export default function GettingStartedPage() {
           marginBottom: '2.5rem',
         }}
       >
-        Install VeloraCSS in seconds and start building.
+        Add VeloraCSS to your project in seconds and start building with{' '}
+        <code style={{ fontFamily: 'Consolas, monospace', fontSize: '0.95rem', color: '#a87fff', background: 'rgba(124,92,252,0.1)', padding: '1px 6px', borderRadius: '4px' }}>vel-</code>
+        {' '}utility classes.
       </p>
 
-      {/* CDN */}
+      {/* GitHub CDN */}
       <section style={{ marginBottom: '2.5rem' }}>
         <h2 style={{ fontSize: '1.2rem', fontWeight: 600, color: '#e2e8f0', marginBottom: '0.5rem' }}>
-          CDN
+          Via GitHub (direct link)
         </h2>
         <p style={{ color: '#94a3b8', fontSize: '0.9rem', lineHeight: 1.7, marginBottom: '1rem' }}>
-          The fastest way to try VeloraCSS is via the CDN. Drop this tag into your{' '}
-          <code style={{ fontFamily: 'Consolas, monospace', fontSize: '0.85rem', color: '#a87fff', background: 'rgba(124,92,252,0.1)', padding: '1px 5px', borderRadius: '4px' }}>&lt;head&gt;</code>{' '}
-          and you&apos;re ready.
+          The quickest way to use VeloraCSS is to link the built CSS directly from the GitHub release. Drop this into your{' '}
+          <code style={{ fontFamily: 'Consolas, monospace', fontSize: '0.85rem', color: '#a87fff', background: 'rgba(124,92,252,0.1)', padding: '1px 5px', borderRadius: '4px' }}>&lt;head&gt;</code>:
         </p>
-        <div
-          style={{
-            background: '#060b17',
-            border: '1px solid #1e2d45',
-            borderRadius: '0.625rem',
-            overflow: 'hidden',
-          }}
-        >
-          <div
-            style={{
-              padding: '0.5rem 1rem',
-              background: '#0d1422',
-              borderBottom: '1px solid #1e2d45',
-              display: 'flex',
-              alignItems: 'center',
-              gap: '0.5rem',
-            }}
-          >
-            <span
-              style={{
-                fontSize: '0.65rem',
-                fontWeight: 600,
-                color: '#64748b',
-                letterSpacing: '0.08em',
-                textTransform: 'uppercase',
-              }}
-            >
-              HTML
-            </span>
-          </div>
-          <pre
-            style={{
-              margin: 0,
-              padding: '1rem',
-              fontSize: '0.8rem',
-              lineHeight: 1.7,
-              color: '#94a3b8',
-              whiteSpace: 'pre-wrap',
-              wordBreak: 'break-all',
-              fontFamily: "'Fira Code', 'Cascadia Code', Consolas, monospace",
-            }}
-          >
-            <code>{`<link rel="stylesheet" href="https://unpkg.com/veloracss/dist/velora.min.css">`}</code>
-          </pre>
-        </div>
+        <CodeBox lang="HTML" code={`<link rel="stylesheet" href="https://raw.githubusercontent.com/VeloraX/veloracss/main/dist/velora.min.css">`} />
+        <p style={{ color: '#64748b', fontSize: '0.82rem', marginTop: '0.75rem', lineHeight: 1.6 }}>
+          Or download <code style={{ color: '#a87fff' }}>velora.css</code> / <code style={{ color: '#a87fff' }}>velora.min.css</code> from the{' '}
+          <a href="https://github.com/VeloraX/veloracss/tree/main/dist" target="_blank" rel="noopener noreferrer" style={{ color: '#a87fff' }}>dist/ folder on GitHub</a>.
+        </p>
       </section>
 
-      {/* npm */}
+      {/* Build from source */}
       <section style={{ marginBottom: '2.5rem' }}>
         <h2 style={{ fontSize: '1.2rem', fontWeight: 600, color: '#e2e8f0', marginBottom: '0.5rem' }}>
-          npm
+          Build from source
         </h2>
         <p style={{ color: '#94a3b8', fontSize: '0.9rem', lineHeight: 1.7, marginBottom: '1rem' }}>
-          Install VeloraCSS as an npm package for use in any build tool or bundler.
+          Clone the repo and build locally for full customization:
         </p>
-        <div
-          style={{
-            background: '#060b17',
-            border: '1px solid #1e2d45',
-            borderRadius: '0.625rem',
-            overflow: 'hidden',
-          }}
-        >
-          <div
-            style={{
-              padding: '0.5rem 1rem',
-              background: '#0d1422',
-              borderBottom: '1px solid #1e2d45',
-            }}
-          >
-            <span
-              style={{
-                fontSize: '0.65rem',
-                fontWeight: 600,
-                color: '#64748b',
-                letterSpacing: '0.08em',
-                textTransform: 'uppercase',
-              }}
-            >
-              Terminal
-            </span>
-          </div>
-          <pre
-            style={{
-              margin: 0,
-              padding: '1rem',
-              fontSize: '0.8rem',
-              lineHeight: 1.7,
-              color: '#94a3b8',
-              fontFamily: "'Fira Code', 'Cascadia Code', Consolas, monospace",
-            }}
-          >
-            <code>npm install veloracss</code>
-          </pre>
-        </div>
-        <p style={{ color: '#64748b', fontSize: '0.82rem', marginTop: '0.75rem', lineHeight: 1.6 }}>
-          Then import in your entry CSS or JS:
+        <CodeBox lang="Terminal" code={`git clone https://github.com/VeloraX/veloracss.git
+cd veloracss
+npm install
+npm run build
+# → dist/velora.css and dist/velora.min.css`} />
+      </section>
+
+      {/* npm — coming soon */}
+      <section style={{ marginBottom: '2.5rem' }}>
+        <h2 style={{ fontSize: '1.2rem', fontWeight: 600, color: '#e2e8f0', marginBottom: '0.5rem' }}>
+          npm{' '}
+          <span style={{ fontSize: '0.65rem', fontWeight: 600, color: '#ff9d00', background: 'rgba(255,157,0,0.12)', border: '1px solid rgba(255,157,0,0.3)', padding: '2px 8px', borderRadius: '99px', verticalAlign: 'middle', letterSpacing: '0.04em' }}>
+            COMING SOON
+          </span>
+        </h2>
+        <p style={{ color: '#94a3b8', fontSize: '0.9rem', lineHeight: 1.7, marginBottom: '1rem' }}>
+          npm packaging is on the roadmap (Phase 7). Once published you&apos;ll be able to install with:
         </p>
-        <div
-          style={{
-            background: '#060b17',
-            border: '1px solid #1e2d45',
-            borderRadius: '0.625rem',
-            overflow: 'hidden',
-            marginTop: '0.5rem',
-          }}
-        >
-          <pre
-            style={{
-              margin: 0,
-              padding: '1rem',
-              fontSize: '0.8rem',
-              lineHeight: 1.7,
-              color: '#94a3b8',
-              fontFamily: "'Fira Code', 'Cascadia Code', Consolas, monospace",
-            }}
-          >
-            <code>{`@import 'veloracss/dist/velora.css';`}</code>
-          </pre>
-        </div>
+        <CodeBox lang="Terminal" code={`# Not yet available — coming in Phase 7
+npm install veloracss`} />
       </section>
 
       {/* First component */}
@@ -180,54 +98,13 @@ export default function GettingStartedPage() {
           <code style={{ fontFamily: 'Consolas, monospace', fontSize: '0.85rem', color: '#a87fff', background: 'rgba(124,92,252,0.1)', padding: '1px 5px', borderRadius: '4px' }}>vel-</code>{' '}
           utility classes. Here&apos;s a card with a button:
         </p>
-        <div
-          style={{
-            background: '#060b17',
-            border: '1px solid #1e2d45',
-            borderRadius: '0.625rem',
-            overflow: 'hidden',
-          }}
-        >
-          <div
-            style={{
-              padding: '0.5rem 1rem',
-              background: '#0d1422',
-              borderBottom: '1px solid #1e2d45',
-            }}
-          >
-            <span
-              style={{
-                fontSize: '0.65rem',
-                fontWeight: 600,
-                color: '#64748b',
-                letterSpacing: '0.08em',
-                textTransform: 'uppercase',
-              }}
-            >
-              HTML
-            </span>
-          </div>
-          <pre
-            style={{
-              margin: 0,
-              padding: '1rem',
-              fontSize: '0.78rem',
-              lineHeight: 1.8,
-              color: '#94a3b8',
-              whiteSpace: 'pre-wrap',
-              wordBreak: 'break-all',
-              fontFamily: "'Fira Code', 'Cascadia Code', Consolas, monospace",
-            }}
-          >
-            <code>{`<div class="vel-card vel-p-6 vel-max-w-sm">
+        <CodeBox lang="HTML" code={`<div class="vel-card vel-p-6 vel-max-w-sm">
   <h2 class="vel-text-xl vel-font-semibold vel-mb-2">Hello, VeloraCSS</h2>
   <p class="vel-text-sm vel-text-neutral-500 vel-mb-4">
     Utility-first styling, ready out of the box.
   </p>
   <button class="vel-btn vel-btn-primary">Get started</button>
-</div>`}</code>
-          </pre>
-        </div>
+</div>`} />
       </section>
 
       {/* Design tokens */}
@@ -238,7 +115,7 @@ export default function GettingStartedPage() {
         <p style={{ color: '#94a3b8', fontSize: '0.9rem', lineHeight: 1.7, marginBottom: '1rem' }}>
           VeloraCSS exposes its entire design system via CSS custom properties under the{' '}
           <code style={{ fontFamily: 'Consolas, monospace', fontSize: '0.85rem', color: '#a87fff', background: 'rgba(124,92,252,0.1)', padding: '1px 5px', borderRadius: '4px' }}>--vel-</code>{' '}
-          namespace. You can reference these in your own CSS to keep your project in sync with the framework.
+          namespace. Override any token at <code style={{ color: '#a87fff', background: 'rgba(124,92,252,0.1)', padding: '1px 5px', borderRadius: '4px', fontSize: '0.85rem' }}>:root</code> to customize the framework.
         </p>
 
         <div
@@ -250,12 +127,12 @@ export default function GettingStartedPage() {
           }}
         >
           {[
-            { token: '--vel-color-primary', description: 'Brand violet', value: '#7c5cfc' },
-            { token: '--vel-color-success', description: 'Success green', value: '#22c55e' },
-            { token: '--vel-color-danger', description: 'Danger red', value: '#ef4444' },
-            { token: '--vel-color-warning', description: 'Warning amber', value: '#f59e0b' },
+            { token: '--vel-primary-500', description: 'Brand violet', value: '#7c5cfc' },
+            { token: '--vel-success-500', description: 'Success emerald', value: '#0ecb81' },
+            { token: '--vel-danger-500', description: 'Danger rose', value: '#f0416c' },
+            { token: '--vel-warning-500', description: 'Warning amber', value: '#ff9d00' },
             { token: '--vel-space-4', description: '1rem spacing unit', value: '1rem' },
-            { token: '--vel-radius-md', description: 'Medium border radius', value: '0.5rem' },
+            { token: '--vel-radius-lg', description: 'Large border radius', value: '0.5rem' },
           ].map(({ token, description, value }) => (
             <div
               key={token}
@@ -278,12 +155,12 @@ export default function GettingStartedPage() {
               >
                 {token}
               </code>
-              <span style={{ fontSize: '0.75rem', color: '#64748b' }}>{description}</span>
+              <span style={{ fontSize: '0.75rem', color: '#94a3b8' }}>{description}</span>
               <span
                 style={{
                   display: 'block',
                   fontSize: '0.7rem',
-                  color: '#475569',
+                  color: '#64748b',
                   fontFamily: 'Consolas, monospace',
                   marginTop: '0.2rem',
                 }}
@@ -294,52 +171,11 @@ export default function GettingStartedPage() {
           ))}
         </div>
 
-        <div
-          style={{
-            background: '#060b17',
-            border: '1px solid #1e2d45',
-            borderRadius: '0.625rem',
-            overflow: 'hidden',
-          }}
-        >
-          <div
-            style={{
-              padding: '0.5rem 1rem',
-              background: '#0d1422',
-              borderBottom: '1px solid #1e2d45',
-            }}
-          >
-            <span
-              style={{
-                fontSize: '0.65rem',
-                fontWeight: 600,
-                color: '#64748b',
-                letterSpacing: '0.08em',
-                textTransform: 'uppercase',
-              }}
-            >
-              CSS
-            </span>
-          </div>
-          <pre
-            style={{
-              margin: 0,
-              padding: '1rem',
-              fontSize: '0.78rem',
-              lineHeight: 1.8,
-              color: '#94a3b8',
-              whiteSpace: 'pre-wrap',
-              fontFamily: "'Fira Code', 'Cascadia Code', Consolas, monospace",
-            }}
-          >
-            <code>{`.my-hero {
-  background: var(--vel-color-primary);
-  padding: var(--vel-space-4);
-  border-radius: var(--vel-radius-md);
-  color: #fff;
-}`}</code>
-          </pre>
-        </div>
+        <CodeBox lang="CSS" code={`:root {
+  --vel-primary-500: #7c5cfc;  /* override brand color */
+  --vel-radius-lg: 0.75rem;    /* override radius */
+  --vel-font-sans: 'Inter', system-ui, sans-serif;
+}`} />
       </section>
 
       {/* Next steps */}
@@ -348,16 +184,16 @@ export default function GettingStartedPage() {
           Next steps
         </h2>
         <p style={{ color: '#94a3b8', fontSize: '0.9rem', lineHeight: 1.7, marginBottom: '1rem' }}>
-          Explore the full reference in the sidebar. Start with Layout and Typography utilities, then dive into the pre-built component classes for faster assembly.
+          Explore the full reference in the sidebar. Start with utilities, then dive into the components.
         </p>
-        <div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap' }}>
+        <div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap' as const }}>
           {[
-            { label: 'Utility Classes', slug: 'utility-classes' },
-            { label: 'Theme Variables', slug: 'theme-variables' },
-            { label: 'Colors', slug: 'colors' },
             { label: 'Buttons', slug: 'buttons' },
+            { label: 'Cards', slug: 'cards' },
+            { label: 'Layout — Display', slug: 'display' },
+            { label: 'Typography — Font Size', slug: 'font-size' },
           ].map(({ label, slug }) => (
-            <a
+            <Link
               key={slug}
               href={`/docs/${slug}`}
               style={{
@@ -369,11 +205,10 @@ export default function GettingStartedPage() {
                 color: '#a87fff',
                 border: '1px solid rgba(124, 92, 252, 0.25)',
                 textDecoration: 'none',
-                transition: 'background 0.12s, border-color 0.12s',
               }}
             >
               {label} →
-            </a>
+            </Link>
           ))}
         </div>
       </section>
@@ -384,16 +219,60 @@ export default function GettingStartedPage() {
           href="https://github.com/VeloraX/veloracss"
           target="_blank"
           rel="noopener noreferrer"
-          style={{
-            fontSize: '0.8rem',
-            color: '#64748b',
-            textDecoration: 'none',
-          }}
+          style={{ fontSize: '0.8rem', color: '#64748b', textDecoration: 'none' }}
         >
           Edit on GitHub →
         </a>
       </div>
 
     </main>
+  )
+}
+
+function CodeBox({ lang, code }: { lang: string; code: string }) {
+  return (
+    <div
+      style={{
+        background: '#060b17',
+        border: '1px solid #1e2d45',
+        borderRadius: '0.625rem',
+        overflow: 'hidden',
+      }}
+    >
+      <div
+        style={{
+          padding: '0.5rem 1rem',
+          background: '#0d1422',
+          borderBottom: '1px solid #1e2d45',
+        }}
+      >
+        <span
+          style={{
+            fontSize: '0.65rem',
+            fontWeight: 600,
+            color: '#64748b',
+            letterSpacing: '0.08em',
+            textTransform: 'uppercase' as const,
+          }}
+        >
+          {lang}
+        </span>
+      </div>
+      <pre
+        style={{
+          margin: 0,
+          padding: '1rem',
+          fontSize: '0.78rem',
+          lineHeight: 1.8,
+          color: '#94a3b8',
+          whiteSpace: 'pre-wrap',
+          wordBreak: 'break-all',
+          fontFamily: "'Fira Code', 'Cascadia Code', Consolas, monospace",
+          overflowX: 'auto',
+        }}
+      >
+        <code>{code}</code>
+      </pre>
+    </div>
   )
 }

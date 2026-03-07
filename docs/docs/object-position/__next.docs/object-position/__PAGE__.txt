@@ -1,6 +1,35 @@
 1:"$Sreact.fragment"
-2:I[46193,["/veloracss/_next/static/chunks/30a4d2e0f1be160c.js","/veloracss/_next/static/chunks/ea336b5b6d04ce60.js"],"default"]
-3:I[93373,["/veloracss/_next/static/chunks/89d43586d21f2643.js","/veloracss/_next/static/chunks/27e596ffa243fe8c.js"],"OutletBoundary"]
-4:"$Sreact.suspense"
-0:{"buildId":"3QY-IQxwEfbGU4y9Fs9Gi","rsc":["$","$1","c",{"children":[["$","$L2",null,{"title":"Object Position","description":"Utilities for controlling how a replaced element's content should be positioned.","source":"layout.css","table":[{"class":"vel-object-center","properties":"object-position: center"},{"class":"vel-object-top","properties":"object-position: top"},{"class":"vel-object-bottom","properties":"object-position: bottom"},{"class":"vel-object-left","properties":"object-position: left"},{"class":"vel-object-right","properties":"object-position: right"},{"class":"vel-object-left-top","properties":"object-position: left top"},{"class":"vel-object-right-top","properties":"object-position: right top"},{"class":"vel-object-left-bottom","properties":"object-position: left bottom"},{"class":"vel-object-right-bottom","properties":"object-position: right bottom"}]}],[["$","script","script-0",{"src":"/veloracss/_next/static/chunks/ea336b5b6d04ce60.js","async":true}]],["$","$L3",null,{"children":["$","$4",null,{"name":"Next.MetadataOutlet","children":"$@5"}]}]]}],"loading":null,"isPartial":false}
-5:null
+2:I[46193,["/veloracss/_next/static/chunks/c4989586ebada130.js","/veloracss/_next/static/chunks/9e0b6985a43250a8.js"],"default"]
+6:I[93373,["/veloracss/_next/static/chunks/89d43586d21f2643.js","/veloracss/_next/static/chunks/27e596ffa243fe8c.js"],"OutletBoundary"]
+7:"$Sreact.suspense"
+3:T972,<div style="display:flex;gap:1rem;flex-wrap:wrap;align-items:flex-start">
+  <div style="text-align:center">
+    <div style="width:100px;height:68px;overflow:hidden;border-radius:0.375rem;border:1px solid #1e2d45">
+      <div style="width:200px;height:136px;background:linear-gradient(135deg,#7c5cfc 0%,#0ecb81 50%,#f0416c 100%);object-fit:cover;object-position:top;transform:translateX(0) translateY(0)"></div>
+    </div>
+    <p style="font-size:0.68rem;color:#64748b;margin-top:0.35rem;font-family:monospace">vel-object-top</p>
+  </div><div style="text-align:center">
+    <div style="width:100px;height:68px;overflow:hidden;border-radius:0.375rem;border:1px solid #1e2d45">
+      <div style="width:200px;height:136px;background:linear-gradient(135deg,#7c5cfc 0%,#0ecb81 50%,#f0416c 100%);object-fit:cover;object-position:center;transform:translateX(-25%) translateY(-17%)"></div>
+    </div>
+    <p style="font-size:0.68rem;color:#64748b;margin-top:0.35rem;font-family:monospace">vel-object-center</p>
+  </div><div style="text-align:center">
+    <div style="width:100px;height:68px;overflow:hidden;border-radius:0.375rem;border:1px solid #1e2d45">
+      <div style="width:200px;height:136px;background:linear-gradient(135deg,#7c5cfc 0%,#0ecb81 50%,#f0416c 100%);object-fit:cover;object-position:bottom;transform:translateX(0) translateY(-50%)"></div>
+    </div>
+    <p style="font-size:0.68rem;color:#64748b;margin-top:0.35rem;font-family:monospace">vel-object-bottom</p>
+  </div><div style="text-align:center">
+    <div style="width:100px;height:68px;overflow:hidden;border-radius:0.375rem;border:1px solid #1e2d45">
+      <div style="width:200px;height:136px;background:linear-gradient(135deg,#7c5cfc 0%,#0ecb81 50%,#f0416c 100%);object-fit:cover;object-position:left;transform:translateX(0) translateY(0)"></div>
+    </div>
+    <p style="font-size:0.68rem;color:#64748b;margin-top:0.35rem;font-family:monospace">vel-object-left</p>
+  </div><div style="text-align:center">
+    <div style="width:100px;height:68px;overflow:hidden;border-radius:0.375rem;border:1px solid #1e2d45">
+      <div style="width:200px;height:136px;background:linear-gradient(135deg,#7c5cfc 0%,#0ecb81 50%,#f0416c 100%);object-fit:cover;object-position:right;transform:translateX(-50%) translateY(0)"></div>
+    </div>
+    <p style="font-size:0.68rem;color:#64748b;margin-top:0.35rem;font-family:monospace">vel-object-right</p>
+  </div>
+</div>0:{"buildId":"NRouR21by_GvLJWHLILAz","rsc":["$","$1","c",{"children":[["$","$L2",null,{"title":"Object Position","description":"Utilities for controlling how a replaced element's content should be positioned.","source":"layout.css","table":[{"class":"vel-object-center","properties":"object-position: center"},{"class":"vel-object-top","properties":"object-position: top"},{"class":"vel-object-bottom","properties":"object-position: bottom"},{"class":"vel-object-left","properties":"object-position: left"},{"class":"vel-object-right","properties":"object-position: right"},{"class":"vel-object-left-top","properties":"object-position: left top"},{"class":"vel-object-right-top","properties":"object-position: right top"},{"class":"vel-object-left-bottom","properties":"object-position: left bottom"},{"class":"vel-object-right-bottom","properties":"object-position: right bottom"}],"examples":[{"label":"Object position controls which part of an image is visible when cropped","html":"$3"},{"label":"Using vel-object-cover + vel-object-top on an image element","html":"<div style=\"display:flex;gap:1.5rem;align-items:flex-start\">\n  <div>\n    <div style=\"width:140px;height:90px;border-radius:0.5rem;border:1px solid #1e2d45;overflow:hidden;background:linear-gradient(to bottom,#7c5cfc,#a87fff,#060b17)\"></div>\n    <p style=\"font-size:0.72rem;color:#94a3b8;margin-top:0.5rem;text-align:center;font-family:monospace\">vel-object-top</p>\n  </div>\n  <div>\n    <div style=\"width:140px;height:90px;border-radius:0.5rem;border:1px solid #1e2d45;overflow:hidden;background:linear-gradient(to top,#0ecb81,#38bdf8,#060b17)\"></div>\n    <p style=\"font-size:0.72rem;color:#94a3b8;margin-top:0.5rem;text-align:center;font-family:monospace\">vel-object-bottom</p>\n  </div>\n  <div>\n    <div style=\"width:140px;height:90px;border-radius:0.5rem;border:1px solid #1e2d45;overflow:hidden;background:radial-gradient(circle at center,#f0416c,#ff9d00,#060b17)\"></div>\n    <p style=\"font-size:0.72rem;color:#94a3b8;margin-top:0.5rem;text-align:center;font-family:monospace\">vel-object-center</p>\n  </div>\n</div>"}]}],["$L4"],"$L5"]}],"loading":null,"isPartial":false}
+4:["$","script","script-0",{"src":"/veloracss/_next/static/chunks/9e0b6985a43250a8.js","async":true}]
+5:["$","$L6",null,{"children":["$","$7",null,{"name":"Next.MetadataOutlet","children":"$@8"}]}]
+8:null

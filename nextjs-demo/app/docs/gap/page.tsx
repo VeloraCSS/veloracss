@@ -21,6 +21,29 @@ export default function GapPage() {
         { class: 'vel-gap-x-4', properties: 'column-gap: 1rem' },
         { class: 'vel-gap-y-4', properties: 'row-gap: 1rem' },
       ]}
+      examples={[
+        {
+          label: 'Gap sizes',
+          html: `<div class="vel-flex vel-flex-col vel-gap-4">
+  <div>
+    <p style="color:#64748b;font-size:11px;margin-bottom:4px">vel-gap-2</p>
+    <div class="vel-flex vel-gap-2">
+      <div style="background:#7c5cfc;color:#fff;padding:10px 18px;border-radius:6px">A</div>
+      <div style="background:#7c5cfc;color:#fff;padding:10px 18px;border-radius:6px">B</div>
+      <div style="background:#7c5cfc;color:#fff;padding:10px 18px;border-radius:6px">C</div>
+    </div>
+  </div>
+  <div>
+    <p style="color:#64748b;font-size:11px;margin-bottom:4px">vel-gap-8</p>
+    <div class="vel-flex vel-gap-8">
+      <div style="background:#0ecb81;color:#fff;padding:10px 18px;border-radius:6px">A</div>
+      <div style="background:#0ecb81;color:#fff;padding:10px 18px;border-radius:6px">B</div>
+      <div style="background:#0ecb81;color:#fff;padding:10px 18px;border-radius:6px">C</div>
+    </div>
+  </div>
+</div>`,
+        },
+      ]}
     />
   )
 }

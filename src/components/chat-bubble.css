@@ -1,0 +1,125 @@
+/* VeloraCSS — Chat Bubble Component */
+
+/* ─── Container ───────────────────────────── */
+
+.vel-chat {
+  display: flex;
+  flex-direction: column;
+  gap: var(--vel-space-4);
+}
+
+/* ─── Alignment Variants ──────────────────── */
+
+.vel-chat-start {
+  align-items: flex-start;
+}
+
+.vel-chat-end {
+  align-items: flex-end;
+}
+
+/* ─── Row Layout ──────────────────────────── */
+
+.vel-chat-start,
+.vel-chat-end {
+  display: flex;
+  flex-direction: row;
+  gap: var(--vel-space-3);
+}
+
+.vel-chat-end {
+  flex-direction: row-reverse;
+}
+
+/* ─── Avatar ──────────────────────────────── */
+
+.vel-chat-avatar {
+  width: 2rem;
+  height: 2rem;
+  border-radius: var(--vel-radius-full);
+  overflow: hidden;
+  flex-shrink: 0;
+  background-color: var(--vel-surface-3);
+  border: 1px solid var(--vel-border-base);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--vel-size-xs);
+  font-weight: var(--vel-font-semibold);
+  color: var(--vel-color-muted);
+}
+
+.vel-chat-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* ─── Meta Wrapper ────────────────────────── */
+
+.vel-chat-meta {
+  display: flex;
+  flex-direction: column;
+  gap: var(--vel-space-1);
+  max-width: 70%;
+}
+
+.vel-chat-end .vel-chat-meta {
+  align-items: flex-end;
+}
+
+/* ─── Header / Footer ─────────────────────── */
+
+.vel-chat-header,
+.vel-chat-footer {
+  font-size: var(--vel-size-xs);
+  color: var(--vel-color-muted);
+  padding: 0 var(--vel-space-1);
+}
+
+/* ─── Bubble ──────────────────────────────── */
+
+.vel-chat-bubble {
+  display: inline-block;
+  padding: var(--vel-space-3) var(--vel-space-4);
+  background-color: var(--vel-surface-3);
+  color: var(--vel-color-text);
+  font-size: var(--vel-size-base);
+  line-height: var(--vel-leading-relaxed);
+  border: 1px solid var(--vel-border-base);
+  word-break: break-word;
+}
+
+.vel-chat-start .vel-chat-bubble {
+  border-radius: var(--vel-radius-sm) var(--vel-radius-2xl) var(--vel-radius-2xl) var(--vel-radius-2xl);
+}
+
+.vel-chat-end .vel-chat-bubble {
+  border-radius: var(--vel-radius-2xl) var(--vel-radius-sm) var(--vel-radius-2xl) var(--vel-radius-2xl);
+}
+
+/* ─── Bubble Variants ─────────────────────── */
+
+.vel-chat-bubble-primary {
+  background: var(--vel-gradient-primary);
+  color: var(--vel-color-primary-fg);
+  border-color: transparent;
+}
+
+.vel-chat-bubble-success {
+  background: rgba(14, 203, 129, 0.18);
+  color: var(--vel-success-300);
+  border-color: rgba(14, 203, 129, 0.3);
+}
+
+.vel-chat-bubble-info {
+  background: rgba(46, 189, 229, 0.15);
+  color: var(--vel-info-300);
+  border-color: rgba(46, 189, 229, 0.28);
+}
+
+.vel-chat-bubble-danger {
+  background: rgba(240, 65, 108, 0.15);
+  color: var(--vel-danger-300);
+  border-color: rgba(240, 65, 108, 0.3);
+}

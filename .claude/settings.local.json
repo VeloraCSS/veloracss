@@ -1,6 +1,12 @@
 {
   "permissions": {
     "allow": [
+      "Bash(*)",
+      "Edit(*)",
+      "Write(*)",
+      "Read(*)",
+      "WebFetch(*)",
+      "WebSearch(*)",
       "Bash(explorer E:\\\\PROJECTS\\\\skrat-claude-kit:*)",
       "Bash(cmd.exe:*)",
       "Bash(mkdir:*)",
@@ -23,7 +29,19 @@
       "Bash(cp -r nextjs-demo/out/. docs/)",
       "Bash(cp -r playground-dist/. docs/playground/)",
       "Bash(touch docs/.nojekyll)",
-      "WebFetch(domain:raw.githubusercontent.com)"
+      "WebFetch(domain:raw.githubusercontent.com)",
+      "Read(//e/tmp/velorax-github/**)",
+      "Bash(FILTER_BRANCH_SQUELCH_WARNING=1 git filter-branch -f --env-filter ':*)",
+      "Bash(grep -c \"vel-sm\\\\\\\\:\" e:/PROJECTS/VeloraCSS/dist/velora.css)",
+      "Bash(grep -c \"vel-hover\\\\\\\\:\" e:/PROJECTS/VeloraCSS/dist/velora.css)",
+      "Bash(grep -c \"vel-dark\\\\\\\\:\" e:/PROJECTS/VeloraCSS/dist/velora.css)",
+      "Bash(npm run playground:build)",
+      "Bash(# Check a few pages to see if they have examples head -20 e:/PROJECTS/VeloraCSS/nextjs-demo/app/docs/buttons/page.tsx)",
+      "Bash(grep -i \"example\\\\|html:\" head -20 e:/PROJECTS/VeloraCSS/nextjs-demo/app/docs/grid-template-columns/page.tsx)",
+      "Bash(grep -i \"example\\\\|html:\" head -20 e:/PROJECTS/VeloraCSS/nextjs-demo/app/docs/animation/page.tsx)",
+      "Bash(grep -rL \"examples\" e:/PROJECTS/VeloraCSS/nextjs-demo/app/docs/*/page.tsx)",
+      "Bash(rm -rf docs/*)",
+      "Bash(cp -r nextjs-demo/out/* docs/)"
     ]
   }
 }
