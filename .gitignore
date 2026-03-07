@@ -2,3 +2,4 @@ node_modules/
 dist/
 playground-dist/
 .DS_Store
+.claude/

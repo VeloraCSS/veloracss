@@ -12,7 +12,18 @@
       "Bash(grep -c \"vel-dark\\\\\\\\:\" dist/velora.css)",
       "Bash(grep \"vel-sm\\\\\\\\:flex\" dist/velora.css)",
       "Bash(grep \"vel-hover\\\\\\\\:bg-primary\" dist/velora.css)",
-      "Bash(grep \"vel-dark\\\\\\\\:text-\" dist/velora.css)"
+      "Bash(grep \"vel-dark\\\\\\\\:text-\" dist/velora.css)",
+      "Bash(curl -L -o playground/public/logo-icon.png \"https://i.imgur.com/ROa2Khd.png\")",
+      "Bash(curl -L -o playground/public/logo-title.png \"https://i.imgur.com/zvEbOFE.png\")",
+      "Bash(npm run build)",
+      "Bash(gh auth status)",
+      "Bash(NODE_ENV=production npx vite build)",
+      "Bash(rm -rf docs)",
+      "Bash(mkdir -p docs/playground)",
+      "Bash(cp -r nextjs-demo/out/. docs/)",
+      "Bash(cp -r playground-dist/. docs/playground/)",
+      "Bash(touch docs/.nojekyll)",
+      "WebFetch(domain:raw.githubusercontent.com)"
     ]
   }
 }
