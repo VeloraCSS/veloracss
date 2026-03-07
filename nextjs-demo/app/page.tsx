@@ -1,19 +1,18 @@
 'use client'
 
 import { useState, useCallback } from 'react'
-import Image from 'next/image'
 
-// ─── Playground link helper ───────────────────────────────────────────────────
+// ─── Build-time constants ─────────────────────────────────────────────────────
 
-function playgroundBase(): string {
-  if (typeof window === 'undefined') return 'http://localhost:5173'
-  const { hostname, origin } = window.location
-  return hostname === 'localhost' ? 'http://localhost:5173' : `${origin}/veloracss/playground`
-}
+const IS_PROD = process.env.NODE_ENV === 'production'
+const BASE_PATH     = IS_PROD ? '/veloracss' : ''
+const PLAYGROUND_URL = IS_PROD
+  ? 'https://velorax.github.io/veloracss/playground'
+  : 'http://localhost:5173'
 
 function toPlaygroundUrl(html: string): string {
   const encoded = btoa(new TextEncoder().encode(html).reduce((s, b) => s + String.fromCharCode(b), ''))
-  return `${playgroundBase()}/#code=${encoded}`
+  return `${PLAYGROUND_URL}/#code=${encoded}`
 }
 
 // ─── Design tokens ────────────────────────────────────────────────────────────
@@ -322,14 +321,14 @@ export default function Home() {
         background: C.header, borderBottom: `1px solid ${C.border}`,
         backdropFilter: 'blur(8px)',
       }}>
-        <Image src="/velora_actual.png" alt="VeloraCSS" width={122} height={28} priority />
+        <img src={`${BASE_PATH}/velora_actual.png`} alt="VeloraCSS" style={{ height: '28px', width: 'auto' }} />
         <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
           <span style={{
             fontSize: '11px', color: C.muted, background: C.surface2,
             padding: '2px 8px', borderRadius: '4px', border: `1px solid ${C.border}`,
           }}>v0.1.0</span>
           <a
-            href={playgroundBase()}
+            href={PLAYGROUND_URL}
             target="_blank"
             rel="noopener noreferrer"
             style={{
@@ -362,7 +361,7 @@ export default function Home() {
           zero dependencies, and a consistent design system — running live in Next.js.
         </p>
         <div style={{ display: 'flex', gap: '12px', justifyContent: 'center', flexWrap: 'wrap' as const }}>
-          <a href={playgroundBase()} target="_blank" rel="noopener noreferrer"
+          <a href={PLAYGROUND_URL} target="_blank" rel="noopener noreferrer"
             style={{ fontSize: '14px', fontWeight: 600, padding: '10px 24px', borderRadius: '8px', background: C.accent, color: '#fff', textDecoration: 'none' }}>
             Open Playground
           </a>
@@ -478,7 +477,7 @@ export default function Home() {
         fontSize: '13px', color: C.muted,
       }}>
         VeloraCSS v0.1.0 — Next.js Demo ·{' '}
-        <a href={playgroundBase()} style={{ color: C.label, textDecoration: 'none' }}>Open Playground</a>
+        <a href={PLAYGROUND_URL} style={{ color: C.label, textDecoration: 'none' }}>Open Playground</a>
       </footer>
 
     </main>

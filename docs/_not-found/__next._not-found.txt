@@ -1,4 +1,4 @@
 1:"$Sreact.fragment"
-2:I[79876,["/veloracss/_next/static/chunks/89d43586d21f2643.js","/veloracss/_next/static/chunks/27e596ffa243fe8c.js"],"default"]
-3:I[31722,["/veloracss/_next/static/chunks/89d43586d21f2643.js","/veloracss/_next/static/chunks/27e596ffa243fe8c.js"],"default"]
-0:{"buildId":"vHVC5nWbX5vTa11W6y--w","rsc":["$","$1","c",{"children":[null,["$","$L2",null,{"parallelRouterKey":"children","template":["$","$L3",null,{}]}]]}],"loading":null,"isPartial":false}
+2:I[79876,["/veloracss/_next/static/chunks/b20d1e68ce5c54bf.js"],"default"]
+3:I[31722,["/veloracss/_next/static/chunks/b20d1e68ce5c54bf.js"],"default"]
+0:{"buildId":"A-p5iWyfM3jbQ-gqZeYpO","rsc":["$","$1","c",{"children":[null,["$","$L2",null,{"parallelRouterKey":"children","template":["$","$L3",null,{}]}]]}],"loading":null,"isPartial":false}
