@@ -1,0 +1,49 @@
+/* VeloraCSS — SVG Fill & Stroke Utilities */
+
+/* ─── Fill ──────────────────────────────────── */
+.vel-fill-none        { fill: none; }
+.vel-fill-current     { fill: currentColor; }
+.vel-fill-transparent { fill: transparent; }
+.vel-fill-white       { fill: #ffffff; }
+.vel-fill-black       { fill: #000000; }
+
+.vel-fill-primary     { fill: var(--vel-color-primary); }
+.vel-fill-success     { fill: var(--vel-color-success); }
+.vel-fill-danger      { fill: var(--vel-color-danger); }
+.vel-fill-warning     { fill: var(--vel-color-warning); }
+.vel-fill-info        { fill: var(--vel-color-info); }
+
+.vel-fill-neutral-50  { fill: var(--vel-neutral-50); }
+.vel-fill-neutral-100 { fill: var(--vel-neutral-100); }
+.vel-fill-neutral-200 { fill: var(--vel-neutral-200); }
+.vel-fill-neutral-300 { fill: var(--vel-neutral-300); }
+.vel-fill-neutral-400 { fill: var(--vel-neutral-400); }
+.vel-fill-neutral-500 { fill: var(--vel-neutral-500); }
+.vel-fill-neutral-600 { fill: var(--vel-neutral-600); }
+.vel-fill-neutral-700 { fill: var(--vel-neutral-700); }
+.vel-fill-neutral-800 { fill: var(--vel-neutral-800); }
+.vel-fill-neutral-900 { fill: var(--vel-neutral-900); }
+.vel-fill-neutral-950 { fill: var(--vel-neutral-950); }
+
+/* ─── Stroke ────────────────────────────────── */
+.vel-stroke-none        { stroke: none; }
+.vel-stroke-current     { stroke: currentColor; }
+.vel-stroke-transparent { stroke: transparent; }
+.vel-stroke-white       { stroke: #ffffff; }
+.vel-stroke-black       { stroke: #000000; }
+
+.vel-stroke-primary     { stroke: var(--vel-color-primary); }
+.vel-stroke-success     { stroke: var(--vel-color-success); }
+.vel-stroke-danger      { stroke: var(--vel-color-danger); }
+.vel-stroke-warning     { stroke: var(--vel-color-warning); }
+.vel-stroke-info        { stroke: var(--vel-color-info); }
+
+.vel-stroke-neutral-400 { stroke: var(--vel-neutral-400); }
+.vel-stroke-neutral-500 { stroke: var(--vel-neutral-500); }
+.vel-stroke-neutral-600 { stroke: var(--vel-neutral-600); }
+
+/* ─── Stroke Width ──────────────────────────── */
+.vel-stroke-0 { stroke-width: 0; }
+.vel-stroke-1 { stroke-width: 1; }
+.vel-stroke-2 { stroke-width: 2; }
+.vel-stroke-3 { stroke-width: 3; }

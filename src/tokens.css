@@ -283,6 +283,16 @@
   --vel-ring-warning: 0 0 0 3px rgba(255, 157, 0, 0.4);
   --vel-ring-info:    0 0 0 3px rgba(46, 189, 229, 0.4);
 
+  /* ─── Transform composition ─────────────────────────────────── */
+  /* Applied by .vel-transform; each utility overrides only its own variable */
+  --vel-transform-translate-x: translateX(0);
+  --vel-transform-translate-y: translateY(0);
+  --vel-transform-rotate:      rotate(0deg);
+  --vel-transform-scale-x:     scaleX(1);
+  --vel-transform-scale-y:     scaleY(1);
+  --vel-transform-skew-x:      skewX(0deg);
+  --vel-transform-skew-y:      skewY(0deg);
+
   /* ─── Transitions ────────────────────────── */
   --vel-duration-75:   75ms;
   --vel-duration-100:  100ms;

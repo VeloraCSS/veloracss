@@ -45,17 +45,16 @@
   background: var(--vel-gradient-primary);
   color: #ffffff;
   border-color: transparent;
-  box-shadow: 0 2px 8px rgba(124, 92, 252, 0.35);
 }
 .vel-btn-primary:hover {
-  box-shadow: var(--vel-glow-primary);
+  box-shadow: 0 4px 14px rgba(124, 92, 252, 0.4);
   transform: translateY(-1px);
-  filter: brightness(1.1);
+  filter: brightness(1.08);
 }
 .vel-btn-primary:active {
   transform: translateY(0);
   filter: brightness(0.95);
-  box-shadow: var(--vel-glow-sm-primary);
+  box-shadow: none;
 }
 
 /* ─── Secondary ───────────────────────────── */
@@ -64,16 +63,16 @@
   background: var(--vel-gradient-secondary);
   color: #ffffff;
   border-color: transparent;
-  box-shadow: 0 2px 8px rgba(79, 110, 156, 0.3);
 }
 .vel-btn-secondary:hover {
   transform: translateY(-1px);
-  filter: brightness(1.12);
-  box-shadow: 0 0 20px rgba(79, 110, 156, 0.45);
+  filter: brightness(1.1);
+  box-shadow: 0 4px 12px rgba(79, 110, 156, 0.35);
 }
 .vel-btn-secondary:active {
   transform: translateY(0);
   filter: brightness(0.95);
+  box-shadow: none;
 }
 
 /* ─── Success ─────────────────────────────── */
@@ -82,16 +81,16 @@
   background: var(--vel-gradient-success);
   color: #ffffff;
   border-color: transparent;
-  box-shadow: 0 2px 8px rgba(14, 203, 129, 0.35);
 }
 .vel-btn-success:hover {
-  box-shadow: var(--vel-glow-success);
+  box-shadow: 0 4px 14px rgba(14, 203, 129, 0.4);
   transform: translateY(-1px);
   filter: brightness(1.08);
 }
 .vel-btn-success:active {
   transform: translateY(0);
   filter: brightness(0.95);
+  box-shadow: none;
 }
 
 /* ─── Danger ──────────────────────────────── */
@@ -100,16 +99,16 @@
   background: var(--vel-gradient-danger);
   color: #ffffff;
   border-color: transparent;
-  box-shadow: 0 2px 8px rgba(240, 65, 108, 0.35);
 }
 .vel-btn-danger:hover {
-  box-shadow: var(--vel-glow-danger);
+  box-shadow: 0 4px 14px rgba(240, 65, 108, 0.4);
   transform: translateY(-1px);
-  filter: brightness(1.1);
+  filter: brightness(1.08);
 }
 .vel-btn-danger:active {
   transform: translateY(0);
   filter: brightness(0.95);
+  box-shadow: none;
 }
 
 /* ─── Warning ─────────────────────────────── */
@@ -118,16 +117,16 @@
   background: var(--vel-gradient-warning);
   color: #1c1200;
   border-color: transparent;
-  box-shadow: 0 2px 8px rgba(255, 157, 0, 0.3);
 }
 .vel-btn-warning:hover {
-  box-shadow: var(--vel-glow-warning);
+  box-shadow: 0 4px 14px rgba(255, 157, 0, 0.35);
   transform: translateY(-1px);
   filter: brightness(1.08);
 }
 .vel-btn-warning:active {
   transform: translateY(0);
   filter: brightness(0.95);
+  box-shadow: none;
 }
 
 /* ─── Info ────────────────────────────────── */
@@ -136,16 +135,16 @@
   background: var(--vel-gradient-info);
   color: #ffffff;
   border-color: transparent;
-  box-shadow: 0 2px 8px rgba(46, 189, 229, 0.3);
 }
 .vel-btn-info:hover {
-  box-shadow: var(--vel-glow-info);
+  box-shadow: 0 4px 14px rgba(46, 189, 229, 0.4);
   transform: translateY(-1px);
-  filter: brightness(1.1);
+  filter: brightness(1.08);
 }
 .vel-btn-info:active {
   transform: translateY(0);
   filter: brightness(0.95);
+  box-shadow: none;
 }
 
 /* ─── Outline Variants ────────────────────── */

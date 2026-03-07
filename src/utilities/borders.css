@@ -98,10 +98,11 @@
 .vel-outline-offset-8 { outline-offset: 8px; }
 
 .vel-ring {
-  box-shadow: 0 0 0 3px var(--vel-color-primary);
+  box-shadow: var(--vel-ring-primary);
 }
-.vel-ring-primary   { box-shadow: 0 0 0 3px var(--vel-color-primary); }
-.vel-ring-success   { box-shadow: 0 0 0 3px var(--vel-color-success); }
-.vel-ring-danger    { box-shadow: 0 0 0 3px var(--vel-color-danger); }
-.vel-ring-warning   { box-shadow: 0 0 0 3px var(--vel-color-warning); }
-.vel-ring-neutral   { box-shadow: 0 0 0 3px var(--vel-neutral-400); }
+.vel-ring-primary { box-shadow: var(--vel-ring-primary); }
+.vel-ring-success { box-shadow: var(--vel-ring-success); }
+.vel-ring-danger  { box-shadow: var(--vel-ring-danger); }
+.vel-ring-warning { box-shadow: var(--vel-ring-warning); }
+.vel-ring-info    { box-shadow: var(--vel-ring-info); }
+.vel-ring-neutral { box-shadow: 0 0 0 3px var(--vel-neutral-400); }

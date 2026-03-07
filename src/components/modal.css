@@ -1,0 +1,99 @@
+/* VeloraCSS — Modal Component */
+/* JS controls: add .vel-modal-open to body, toggle [aria-hidden] or .vel-modal-hidden */
+
+.vel-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: var(--vel-z-50);
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--vel-space-4);
+}
+
+.vel-modal-backdrop.vel-modal-hidden {
+  display: none;
+}
+
+body.vel-modal-open {
+  overflow: hidden;
+}
+
+.vel-modal {
+  background: var(--vel-surface-1);
+  border: 1px solid var(--vel-border-base);
+  border-radius: var(--vel-radius-xl);
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.5);
+  width: 100%;
+  max-width: 32rem;
+  max-height: calc(100vh - 2rem);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  animation: vel-scale-in 0.2s var(--vel-ease-out);
+}
+
+.vel-modal-sm   { max-width: 24rem; }
+.vel-modal-lg   { max-width: 48rem; }
+.vel-modal-xl   { max-width: 64rem; }
+.vel-modal-full {
+  max-width: none;
+  width: 100%;
+  height: 100%;
+  border-radius: 0;
+  max-height: 100vh;
+}
+
+.vel-modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--vel-space-5) var(--vel-space-6);
+  border-bottom: 1px solid var(--vel-border-base);
+  font-size: var(--vel-text-lg);
+  font-weight: 600;
+  color: var(--vel-color-text);
+  flex-shrink: 0;
+}
+
+.vel-modal-body {
+  padding: var(--vel-space-6);
+  overflow-y: auto;
+  flex: 1;
+  color: var(--vel-color-text);
+  font-size: var(--vel-text-sm);
+  line-height: 1.6;
+}
+
+.vel-modal-footer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: var(--vel-space-3);
+  padding: var(--vel-space-4) var(--vel-space-6);
+  border-top: 1px solid var(--vel-border-base);
+  flex-shrink: 0;
+}
+
+.vel-modal-close {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  border-radius: var(--vel-radius-md);
+  border: none;
+  background: transparent;
+  color: var(--vel-color-muted);
+  cursor: pointer;
+  font-size: 1.25rem;
+  line-height: 1;
+  transition: background 150ms ease, color 150ms ease;
+}
+
+.vel-modal-close:hover {
+  background: var(--vel-surface-3);
+  color: var(--vel-color-text);
+}

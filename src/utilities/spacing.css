@@ -159,3 +159,109 @@
 .vel-space-y-4 > * + * { margin-top: var(--vel-space-4); }
 .vel-space-y-6 > * + * { margin-top: var(--vel-space-6); }
 .vel-space-y-8 > * + * { margin-top: var(--vel-space-8); }
+
+/* ─── Negative Margins ─────────────────────── */
+.-vel-m-px { margin: -1px; }
+.-vel-m-1  { margin: -0.25rem; }
+.-vel-m-2  { margin: -0.5rem; }
+.-vel-m-3  { margin: -0.75rem; }
+.-vel-m-4  { margin: -1rem; }
+.-vel-m-5  { margin: -1.25rem; }
+.-vel-m-6  { margin: -1.5rem; }
+.-vel-m-8  { margin: -2rem; }
+.-vel-m-10 { margin: -2.5rem; }
+.-vel-m-12 { margin: -3rem; }
+.-vel-m-16 { margin: -4rem; }
+
+.-vel-mx-1  { margin-left: -0.25rem; margin-right: -0.25rem; }
+.-vel-mx-2  { margin-left: -0.5rem; margin-right: -0.5rem; }
+.-vel-mx-3  { margin-left: -0.75rem; margin-right: -0.75rem; }
+.-vel-mx-4  { margin-left: -1rem; margin-right: -1rem; }
+.-vel-mx-6  { margin-left: -1.5rem; margin-right: -1.5rem; }
+.-vel-mx-8  { margin-left: -2rem; margin-right: -2rem; }
+
+.-vel-my-1  { margin-top: -0.25rem; margin-bottom: -0.25rem; }
+.-vel-my-2  { margin-top: -0.5rem; margin-bottom: -0.5rem; }
+.-vel-my-4  { margin-top: -1rem; margin-bottom: -1rem; }
+.-vel-my-6  { margin-top: -1.5rem; margin-bottom: -1.5rem; }
+
+.-vel-mt-px { margin-top: -1px; }
+.-vel-mt-1  { margin-top: -0.25rem; }
+.-vel-mt-2  { margin-top: -0.5rem; }
+.-vel-mt-3  { margin-top: -0.75rem; }
+.-vel-mt-4  { margin-top: -1rem; }
+.-vel-mt-6  { margin-top: -1.5rem; }
+.-vel-mt-8  { margin-top: -2rem; }
+.-vel-mt-12 { margin-top: -3rem; }
+.-vel-mt-16 { margin-top: -4rem; }
+
+.-vel-mr-px { margin-right: -1px; }
+.-vel-mr-1  { margin-right: -0.25rem; }
+.-vel-mr-2  { margin-right: -0.5rem; }
+.-vel-mr-4  { margin-right: -1rem; }
+
+.-vel-mb-px { margin-bottom: -1px; }
+.-vel-mb-1  { margin-bottom: -0.25rem; }
+.-vel-mb-2  { margin-bottom: -0.5rem; }
+.-vel-mb-4  { margin-bottom: -1rem; }
+
+.-vel-ml-px { margin-left: -1px; }
+.-vel-ml-1  { margin-left: -0.25rem; }
+.-vel-ml-2  { margin-left: -0.5rem; }
+.-vel-ml-4  { margin-left: -1rem; }
+
+/* ─── Scroll Margin ─────────────────────────── */
+.vel-scroll-m-0  { scroll-margin: 0; }
+.vel-scroll-m-1  { scroll-margin: 0.25rem; }
+.vel-scroll-m-2  { scroll-margin: 0.5rem; }
+.vel-scroll-m-4  { scroll-margin: 1rem; }
+.vel-scroll-m-6  { scroll-margin: 1.5rem; }
+.vel-scroll-m-8  { scroll-margin: 2rem; }
+.vel-scroll-m-16 { scroll-margin: 4rem; }
+.vel-scroll-m-20 { scroll-margin: 5rem; }
+
+.vel-scroll-mt-0  { scroll-margin-top: 0; }
+.vel-scroll-mt-1  { scroll-margin-top: 0.25rem; }
+.vel-scroll-mt-2  { scroll-margin-top: 0.5rem; }
+.vel-scroll-mt-4  { scroll-margin-top: 1rem; }
+.vel-scroll-mt-6  { scroll-margin-top: 1.5rem; }
+.vel-scroll-mt-8  { scroll-margin-top: 2rem; }
+.vel-scroll-mt-16 { scroll-margin-top: 4rem; }
+.vel-scroll-mt-20 { scroll-margin-top: 5rem; }
+
+.vel-scroll-mb-0 { scroll-margin-bottom: 0; }
+.vel-scroll-mb-1 { scroll-margin-bottom: 0.25rem; }
+.vel-scroll-mb-2 { scroll-margin-bottom: 0.5rem; }
+.vel-scroll-mb-4 { scroll-margin-bottom: 1rem; }
+.vel-scroll-mb-8 { scroll-margin-bottom: 2rem; }
+
+/* ─── Scroll Padding ────────────────────────── */
+.vel-scroll-p-0  { scroll-padding: 0; }
+.vel-scroll-p-1  { scroll-padding: 0.25rem; }
+.vel-scroll-p-2  { scroll-padding: 0.5rem; }
+.vel-scroll-p-4  { scroll-padding: 1rem; }
+.vel-scroll-p-6  { scroll-padding: 1.5rem; }
+.vel-scroll-p-8  { scroll-padding: 2rem; }
+.vel-scroll-p-16 { scroll-padding: 4rem; }
+.vel-scroll-p-20 { scroll-padding: 5rem; }
+
+.vel-scroll-pt-0  { scroll-padding-top: 0; }
+.vel-scroll-pt-1  { scroll-padding-top: 0.25rem; }
+.vel-scroll-pt-2  { scroll-padding-top: 0.5rem; }
+.vel-scroll-pt-4  { scroll-padding-top: 1rem; }
+.vel-scroll-pt-6  { scroll-padding-top: 1.5rem; }
+.vel-scroll-pt-8  { scroll-padding-top: 2rem; }
+.vel-scroll-pt-16 { scroll-padding-top: 4rem; }
+.vel-scroll-pt-20 { scroll-padding-top: 5rem; }
+
+.vel-scroll-pb-0 { scroll-padding-bottom: 0; }
+.vel-scroll-pb-1 { scroll-padding-bottom: 0.25rem; }
+.vel-scroll-pb-2 { scroll-padding-bottom: 0.5rem; }
+.vel-scroll-pb-4 { scroll-padding-bottom: 1rem; }
+.vel-scroll-pb-8 { scroll-padding-bottom: 2rem; }
+
+.vel-scroll-px-0 { scroll-padding-left: 0; scroll-padding-right: 0; }
+.vel-scroll-px-2 { scroll-padding-left: 0.5rem; scroll-padding-right: 0.5rem; }
+.vel-scroll-px-4 { scroll-padding-left: 1rem; scroll-padding-right: 1rem; }
+.vel-scroll-px-6 { scroll-padding-left: 1.5rem; scroll-padding-right: 1.5rem; }
+.vel-scroll-px-8 { scroll-padding-left: 2rem; scroll-padding-right: 2rem; }

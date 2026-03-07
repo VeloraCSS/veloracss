@@ -132,3 +132,50 @@
 /* Content */
 .vel-content-none  { content: none; }
 .vel-content-empty { content: ""; }
+
+/* ─── Text Decoration Style ────────────────── */
+.vel-decoration-solid  { text-decoration-style: solid; }
+.vel-decoration-double { text-decoration-style: double; }
+.vel-decoration-dotted { text-decoration-style: dotted; }
+.vel-decoration-dashed { text-decoration-style: dashed; }
+.vel-decoration-wavy   { text-decoration-style: wavy; }
+
+/* ─── Text Decoration Thickness ────────────── */
+.vel-decoration-auto { text-decoration-thickness: auto; }
+.vel-decoration-0    { text-decoration-thickness: 0; }
+.vel-decoration-1    { text-decoration-thickness: 1px; }
+.vel-decoration-2    { text-decoration-thickness: 2px; }
+.vel-decoration-4    { text-decoration-thickness: 4px; }
+.vel-decoration-8    { text-decoration-thickness: 8px; }
+
+/* ─── Underline Offset ──────────────────────── */
+.vel-underline-offset-auto { text-underline-offset: auto; }
+.vel-underline-offset-0    { text-underline-offset: 0; }
+.vel-underline-offset-1    { text-underline-offset: 1px; }
+.vel-underline-offset-2    { text-underline-offset: 2px; }
+.vel-underline-offset-4    { text-underline-offset: 4px; }
+.vel-underline-offset-8    { text-underline-offset: 8px; }
+
+/* ─── Text Decoration Color ─────────────────── */
+.vel-decoration-current     { text-decoration-color: currentColor; }
+.vel-decoration-transparent { text-decoration-color: transparent; }
+.vel-decoration-primary     { text-decoration-color: var(--vel-color-primary); }
+.vel-decoration-success     { text-decoration-color: var(--vel-color-success); }
+.vel-decoration-danger      { text-decoration-color: var(--vel-color-danger); }
+.vel-decoration-warning     { text-decoration-color: var(--vel-color-warning); }
+.vel-decoration-info        { text-decoration-color: var(--vel-color-info); }
+.vel-decoration-neutral-400 { text-decoration-color: var(--vel-neutral-400); }
+.vel-decoration-neutral-500 { text-decoration-color: var(--vel-neutral-500); }
+.vel-decoration-neutral-600 { text-decoration-color: var(--vel-neutral-600); }
+.vel-decoration-white       { text-decoration-color: #ffffff; }
+
+/* ─── Font Variant Numeric ──────────────────── */
+.vel-normal-nums        { font-variant-numeric: normal; }
+.vel-ordinal            { font-variant-numeric: ordinal; }
+.vel-slashed-zero       { font-variant-numeric: slashed-zero; }
+.vel-lining-nums        { font-variant-numeric: lining-nums; }
+.vel-oldstyle-nums      { font-variant-numeric: oldstyle-nums; }
+.vel-proportional-nums  { font-variant-numeric: proportional-nums; }
+.vel-tabular-nums       { font-variant-numeric: tabular-nums; }
+.vel-diagonal-fractions { font-variant-numeric: diagonal-fractions; }
+.vel-stacked-fractions  { font-variant-numeric: stacked-fractions; }

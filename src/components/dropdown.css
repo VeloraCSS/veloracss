@@ -1,0 +1,102 @@
+/* VeloraCSS — Dropdown Component */
+/* CSS-only via :focus-within; JS can toggle .vel-dropdown-open for full control */
+
+.vel-dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.vel-dropdown-trigger {
+  cursor: pointer;
+}
+
+.vel-dropdown-menu {
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 0;
+  z-index: var(--vel-z-20);
+  min-width: 12rem;
+  background: var(--vel-surface-1);
+  border: 1px solid var(--vel-border-base);
+  border-radius: var(--vel-radius-xl);
+  padding: var(--vel-space-2);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4), 0 2px 8px rgba(0, 0, 0, 0.2);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-4px);
+  transition: opacity 150ms ease, transform 150ms ease, visibility 150ms;
+  pointer-events: none;
+}
+
+.vel-dropdown:focus-within .vel-dropdown-menu,
+.vel-dropdown.vel-dropdown-open .vel-dropdown-menu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+/* Right-aligned variant */
+.vel-dropdown-menu-right {
+  left: auto;
+  right: 0;
+}
+
+/* Upward variant */
+.vel-dropdown-menu-top {
+  top: auto;
+  bottom: calc(100% + 6px);
+}
+
+.vel-dropdown-item {
+  display: flex;
+  align-items: center;
+  gap: var(--vel-space-2);
+  width: 100%;
+  padding: var(--vel-space-2) var(--vel-space-3);
+  border-radius: var(--vel-radius-md);
+  border: none;
+  background: transparent;
+  color: var(--vel-color-text);
+  font-size: var(--vel-text-sm);
+  font-weight: 400;
+  text-align: left;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background 100ms ease, color 100ms ease;
+}
+
+.vel-dropdown-item:hover {
+  background: var(--vel-surface-3);
+  color: var(--vel-color-text);
+}
+
+.vel-dropdown-item.vel-dropdown-item-active,
+.vel-dropdown-item:focus {
+  background: var(--vel-surface-3);
+  color: var(--vel-color-primary);
+  outline: none;
+}
+
+.vel-dropdown-item-danger {
+  color: var(--vel-color-danger);
+}
+.vel-dropdown-item-danger:hover {
+  background: rgba(240, 65, 108, 0.1);
+  color: var(--vel-color-danger);
+}
+
+.vel-dropdown-divider {
+  height: 1px;
+  background: var(--vel-border-base);
+  margin: var(--vel-space-2) 0;
+}
+
+.vel-dropdown-header {
+  padding: var(--vel-space-1) var(--vel-space-3) var(--vel-space-2);
+  font-size: var(--vel-text-xs);
+  font-weight: 600;
+  color: var(--vel-color-muted);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}

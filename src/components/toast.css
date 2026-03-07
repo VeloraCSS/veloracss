@@ -1,0 +1,100 @@
+/* VeloraCSS — Toast / Notification Component */
+/* JS manages showing/hiding toasts. Container positions them. */
+
+.vel-toast-container {
+  position: fixed;
+  z-index: var(--vel-z-50);
+  display: flex;
+  flex-direction: column;
+  gap: var(--vel-space-3);
+  pointer-events: none;
+  padding: var(--vel-space-4);
+  max-width: 26rem;
+  width: 100%;
+}
+
+/* ─── Position variants ──────────────────── */
+.vel-toast-top-right     { top: 0; right: 0; align-items: flex-end; }
+.vel-toast-top-left      { top: 0; left: 0; align-items: flex-start; }
+.vel-toast-top-center    { top: 0; left: 50%; transform: translateX(-50%); align-items: center; }
+.vel-toast-bottom-right  { bottom: 0; right: 0; align-items: flex-end; }
+.vel-toast-bottom-left   { bottom: 0; left: 0; align-items: flex-start; }
+.vel-toast-bottom-center { bottom: 0; left: 50%; transform: translateX(-50%); align-items: center; }
+
+.vel-toast {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--vel-space-3);
+  padding: var(--vel-space-4);
+  border-radius: var(--vel-radius-xl);
+  border: 1px solid var(--vel-border-base);
+  background: var(--vel-surface-2);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+  pointer-events: auto;
+  animation: vel-slide-right 0.25s var(--vel-ease-out);
+  color: var(--vel-color-text);
+  font-size: var(--vel-text-sm);
+  line-height: 1.5;
+  max-width: 100%;
+}
+
+.vel-toast-icon {
+  font-size: 1.125rem;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.vel-toast-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.vel-toast-title {
+  font-weight: 600;
+  margin-bottom: 2px;
+}
+
+.vel-toast-close {
+  flex-shrink: 0;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: var(--vel-color-muted);
+  font-size: 1rem;
+  padding: 0;
+  line-height: 1;
+  margin-left: auto;
+  transition: color 150ms ease;
+}
+.vel-toast-close:hover { color: var(--vel-color-text); }
+
+/* ─── Color variants ─────────────────────── */
+.vel-toast-success {
+  border-color: rgba(14, 203, 129, 0.3);
+  background: rgba(14, 203, 129, 0.08);
+}
+.vel-toast-success .vel-toast-icon { color: var(--vel-color-success); }
+
+.vel-toast-danger {
+  border-color: rgba(240, 65, 108, 0.3);
+  background: rgba(240, 65, 108, 0.08);
+}
+.vel-toast-danger .vel-toast-icon { color: var(--vel-color-danger); }
+
+.vel-toast-warning {
+  border-color: rgba(255, 157, 0, 0.3);
+  background: rgba(255, 157, 0, 0.08);
+}
+.vel-toast-warning .vel-toast-icon { color: var(--vel-color-warning); }
+
+.vel-toast-info {
+  border-color: rgba(46, 189, 229, 0.3);
+  background: rgba(46, 189, 229, 0.08);
+}
+.vel-toast-info .vel-toast-icon { color: var(--vel-color-info); }
+
+.vel-toast-primary {
+  border-color: rgba(124, 92, 252, 0.3);
+  background: rgba(124, 92, 252, 0.08);
+}
+.vel-toast-primary .vel-toast-icon { color: var(--vel-color-primary); }

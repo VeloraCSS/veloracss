@@ -1,0 +1,52 @@
+/* VeloraCSS — Breadcrumb Component */
+
+.vel-breadcrumb {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  font-size: var(--vel-text-sm);
+  color: var(--vel-color-muted);
+}
+
+.vel-breadcrumb-item {
+  display: flex;
+  align-items: center;
+}
+
+/* Separator — customizable via CSS variable */
+.vel-breadcrumb-item + .vel-breadcrumb-item::before {
+  content: var(--vel-breadcrumb-separator, '/');
+  padding: 0 var(--vel-space-2);
+  color: var(--vel-color-muted);
+  opacity: 0.5;
+}
+
+/* Chevron variant */
+.vel-breadcrumb-chevron .vel-breadcrumb-item + .vel-breadcrumb-item::before {
+  content: '›';
+}
+
+/* Dot variant */
+.vel-breadcrumb-dot .vel-breadcrumb-item + .vel-breadcrumb-item::before {
+  content: '·';
+}
+
+.vel-breadcrumb-link {
+  color: var(--vel-color-muted);
+  text-decoration: none;
+  transition: color 150ms ease;
+}
+
+.vel-breadcrumb-link:hover {
+  color: var(--vel-color-primary);
+}
+
+.vel-breadcrumb-active {
+  color: var(--vel-color-text);
+  font-weight: 500;
+  cursor: default;
+}

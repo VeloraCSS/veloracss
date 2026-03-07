@@ -1,0 +1,62 @@
+/* VeloraCSS — Skeleton Loading Component */
+/* Uses the vel-shimmer animation from animations.css */
+
+.vel-skeleton {
+  background: var(--vel-surface-2);
+  border-radius: var(--vel-radius-md);
+  position: relative;
+  overflow: hidden;
+  display: block;
+}
+
+.vel-skeleton::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.06) 50%,
+    transparent 100%
+  );
+  background-size: 200% 100%;
+  animation: vel-shimmer 1.5s ease-in-out infinite;
+}
+
+/* ─── Text skeleton ──────────────────────── */
+.vel-skeleton-text {
+  height: 1em;
+  border-radius: var(--vel-radius-sm);
+  width: 100%;
+}
+
+.vel-skeleton-text + .vel-skeleton-text {
+  margin-top: var(--vel-space-2);
+}
+
+/* Shorter last line for natural look */
+.vel-skeleton-text:last-child { width: 60%; }
+
+/* ─── Preset shapes ──────────────────────── */
+.vel-skeleton-circle {
+  border-radius: 9999px;
+}
+
+.vel-skeleton-rect {
+  border-radius: var(--vel-radius-lg);
+}
+
+/* ─── Size variants ──────────────────────── */
+.vel-skeleton-xs  { height: 0.75rem; }
+.vel-skeleton-sm  { height: 1rem; }
+.vel-skeleton-md  { height: 1.25rem; }
+.vel-skeleton-lg  { height: 1.5rem; }
+.vel-skeleton-xl  { height: 2rem; }
+.vel-skeleton-2xl { height: 3rem; }
+.vel-skeleton-3xl { height: 4rem; }
+
+/* ─── Avatar skeleton presets ────────────── */
+.vel-skeleton-avatar-sm { width: 2rem;   height: 2rem;   border-radius: 9999px; }
+.vel-skeleton-avatar    { width: 2.5rem; height: 2.5rem; border-radius: 9999px; }
+.vel-skeleton-avatar-lg { width: 3.5rem; height: 3.5rem; border-radius: 9999px; }
+.vel-skeleton-avatar-xl { width: 5rem;   height: 5rem;   border-radius: 9999px; }

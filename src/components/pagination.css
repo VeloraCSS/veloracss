@@ -1,0 +1,78 @@
+/* VeloraCSS — Pagination Component */
+
+.vel-pagination {
+  display: flex;
+  align-items: center;
+  gap: var(--vel-space-1);
+  flex-wrap: wrap;
+}
+
+.vel-page-item {
+  display: inline-flex;
+}
+
+.vel-page-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 2.25rem;
+  height: 2.25rem;
+  padding: 0 var(--vel-space-3);
+  border-radius: var(--vel-radius-lg);
+  border: 1px solid var(--vel-border-base);
+  background: var(--vel-surface-1);
+  color: var(--vel-color-text);
+  font-size: var(--vel-text-sm);
+  font-weight: 500;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background 150ms ease, border-color 150ms ease, color 150ms ease;
+  user-select: none;
+}
+
+.vel-page-link:hover {
+  background: var(--vel-surface-3);
+  border-color: var(--vel-primary-500);
+  color: var(--vel-primary-300);
+}
+
+.vel-page-link.vel-page-link-active {
+  background: var(--vel-gradient-primary);
+  border-color: transparent;
+  color: #ffffff;
+  font-weight: 600;
+  cursor: default;
+}
+
+.vel-page-link.vel-page-link-disabled {
+  opacity: 0.4;
+  pointer-events: none;
+  cursor: not-allowed;
+}
+
+/* ─── Sizes ──────────────────────────────── */
+.vel-pagination-sm .vel-page-link {
+  min-width: 1.75rem;
+  height: 1.75rem;
+  font-size: var(--vel-text-xs);
+  padding: 0 var(--vel-space-2);
+}
+
+.vel-pagination-lg .vel-page-link {
+  min-width: 3rem;
+  height: 3rem;
+  font-size: var(--vel-text-base);
+  padding: 0 var(--vel-space-4);
+}
+
+/* ─── Ellipsis ───────────────────────────── */
+.vel-page-ellipsis {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 2.25rem;
+  height: 2.25rem;
+  color: var(--vel-color-muted);
+  font-size: var(--vel-text-sm);
+  user-select: none;
+}

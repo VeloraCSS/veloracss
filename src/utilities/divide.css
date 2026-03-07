@@ -1,0 +1,53 @@
+/* VeloraCSS — Divide Utilities */
+/* Adds borders between direct child elements */
+
+/* ─── Divide X (vertical line between children) */
+.vel-divide-x > * + * {
+  border-left-width: 1px;
+  border-left-style: solid;
+}
+.vel-divide-x-0 > * + * { border-left-width: 0; }
+.vel-divide-x-2 > * + * { border-left-width: 2px; border-left-style: solid; }
+.vel-divide-x-4 > * + * { border-left-width: 4px; border-left-style: solid; }
+.vel-divide-x-8 > * + * { border-left-width: 8px; border-left-style: solid; }
+
+/* ─── Divide Y (horizontal line between children) */
+.vel-divide-y > * + * {
+  border-top-width: 1px;
+  border-top-style: solid;
+}
+.vel-divide-y-0 > * + * { border-top-width: 0; }
+.vel-divide-y-2 > * + * { border-top-width: 2px; border-top-style: solid; }
+.vel-divide-y-4 > * + * { border-top-width: 4px; border-top-style: solid; }
+.vel-divide-y-8 > * + * { border-top-width: 8px; border-top-style: solid; }
+
+/* ─── Divide Style ──────────────────────────── */
+.vel-divide-solid  > * + * { border-style: solid; }
+.vel-divide-dashed > * + * { border-style: dashed; }
+.vel-divide-dotted > * + * { border-style: dotted; }
+.vel-divide-none   > * + * { border-style: none; }
+
+/* ─── Divide Color ──────────────────────────── */
+.vel-divide-transparent > * + * { border-color: transparent; }
+.vel-divide-current     > * + * { border-color: currentColor; }
+.vel-divide-white       > * + * { border-color: #ffffff; }
+.vel-divide-black       > * + * { border-color: #000000; }
+
+.vel-divide-primary   > * + * { border-color: var(--vel-color-primary); }
+.vel-divide-success   > * + * { border-color: var(--vel-color-success); }
+.vel-divide-danger    > * + * { border-color: var(--vel-color-danger); }
+.vel-divide-warning   > * + * { border-color: var(--vel-color-warning); }
+.vel-divide-info      > * + * { border-color: var(--vel-color-info); }
+
+.vel-divide-neutral-100 > * + * { border-color: var(--vel-neutral-100); }
+.vel-divide-neutral-200 > * + * { border-color: var(--vel-neutral-200); }
+.vel-divide-neutral-300 > * + * { border-color: var(--vel-neutral-300); }
+.vel-divide-neutral-400 > * + * { border-color: var(--vel-neutral-400); }
+.vel-divide-neutral-500 > * + * { border-color: var(--vel-neutral-500); }
+.vel-divide-neutral-600 > * + * { border-color: var(--vel-neutral-600); }
+.vel-divide-neutral-700 > * + * { border-color: var(--vel-neutral-700); }
+.vel-divide-neutral-800 > * + * { border-color: var(--vel-neutral-800); }
+.vel-divide-neutral-900 > * + * { border-color: var(--vel-neutral-900); }
+
+/* Default divide color — matches border-base token */
+.vel-divide-base > * + * { border-color: var(--vel-border-base); }
