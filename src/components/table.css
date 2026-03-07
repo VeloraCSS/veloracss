@@ -1,0 +1,90 @@
+/* VeloraCSS — Table Component */
+
+.vel-table-wrapper {
+  width: 100%;
+  overflow-x: auto;
+  border-radius: var(--vel-radius-xl);
+  border: 1px solid var(--vel-border-base);
+}
+
+.vel-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--vel-text-sm);
+  color: var(--vel-color-text);
+}
+
+.vel-table thead {
+  background-color: var(--vel-surface-1);
+  border-bottom: 1px solid var(--vel-border-base);
+}
+
+.vel-table thead th {
+  padding: var(--vel-space-3) var(--vel-space-4);
+  text-align: left;
+  font-weight: 600;
+  font-size: var(--vel-text-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--vel-color-muted);
+  white-space: nowrap;
+}
+
+.vel-table tbody tr {
+  border-bottom: 1px solid var(--vel-border-subtle);
+  transition: background-color 100ms ease;
+}
+
+.vel-table tbody tr:last-child {
+  border-bottom: none;
+}
+
+.vel-table tbody td {
+  padding: var(--vel-space-3) var(--vel-space-4);
+  vertical-align: middle;
+}
+
+/* ─── Striped ─────────────────────────────── */
+
+.vel-table-striped tbody tr:nth-child(even) {
+  background-color: rgba(255, 255, 255, 0.02);
+}
+
+/* ─── Hover ───────────────────────────────── */
+
+.vel-table-hover tbody tr:hover {
+  background-color: rgba(124, 92, 252, 0.06);
+}
+
+/* ─── Bordered ────────────────────────────── */
+
+.vel-table-bordered td,
+.vel-table-bordered th {
+  border: 1px solid var(--vel-border-base);
+}
+
+/* ─── Compact ─────────────────────────────── */
+
+.vel-table-sm thead th,
+.vel-table-sm tbody td {
+  padding: var(--vel-space-2) var(--vel-space-3);
+}
+
+/* ─── Sortable column indicator ───────────── */
+
+.vel-table th[data-sortable] {
+  cursor: pointer;
+  user-select: none;
+}
+.vel-table th[data-sortable]:hover {
+  color: var(--vel-color-text);
+}
+.vel-table th[aria-sort='ascending']::after  { content: ' ↑'; color: var(--vel-primary-400); }
+.vel-table th[aria-sort='descending']::after { content: ' ↓'; color: var(--vel-primary-400); }
+
+/* ─── Row accent variants ─────────────────── */
+
+.vel-tr-primary { background-color: rgba(124, 92, 252, 0.08) !important; }
+.vel-tr-success { background-color: rgba(14, 203, 129, 0.07) !important; }
+.vel-tr-danger  { background-color: rgba(240, 65, 108, 0.07) !important; }
+.vel-tr-warning { background-color: rgba(255, 157, 0, 0.07)  !important; }

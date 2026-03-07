@@ -1,0 +1,90 @@
+/* VeloraCSS — Spinner Component */
+
+.vel-spinner {
+  display: inline-block;
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 50%;
+  border: 2.5px solid rgba(124, 92, 252, 0.2);
+  border-top-color: var(--vel-primary-500);
+  animation: vel-spin 0.65s linear infinite;
+  flex-shrink: 0;
+}
+
+/* ─── Color Variants ──────────────────────── */
+
+.vel-spinner-primary {
+  border-color: rgba(124, 92, 252, 0.2);
+  border-top-color: var(--vel-primary-500);
+}
+
+.vel-spinner-success {
+  border-color: rgba(14, 203, 129, 0.2);
+  border-top-color: var(--vel-success-400);
+}
+
+.vel-spinner-danger {
+  border-color: rgba(240, 65, 108, 0.2);
+  border-top-color: var(--vel-danger-500);
+}
+
+.vel-spinner-warning {
+  border-color: rgba(255, 157, 0, 0.2);
+  border-top-color: var(--vel-warning-500);
+}
+
+.vel-spinner-info {
+  border-color: rgba(46, 189, 229, 0.2);
+  border-top-color: var(--vel-info-400);
+}
+
+.vel-spinner-white {
+  border-color: rgba(255, 255, 255, 0.2);
+  border-top-color: #ffffff;
+}
+
+.vel-spinner-neutral {
+  border-color: var(--vel-surface-3);
+  border-top-color: var(--vel-color-muted);
+}
+
+/* ─── Sizes ───────────────────────────────── */
+
+.vel-spinner-xs { width: 0.75rem; height: 0.75rem; border-width: 2px; }
+.vel-spinner-sm { width: 1rem;    height: 1rem;    border-width: 2px; }
+.vel-spinner-md { width: 1.5rem;  height: 1.5rem;  border-width: 2.5px; }
+.vel-spinner-lg { width: 2.5rem;  height: 2.5rem;  border-width: 3px; }
+.vel-spinner-xl { width: 3.5rem;  height: 3.5rem;  border-width: 4px; }
+
+/* ─── Dots Spinner variant ────────────────── */
+
+.vel-spinner-dots {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  border: none;
+  animation: none;
+}
+
+.vel-spinner-dots::before,
+.vel-spinner-dots::after,
+.vel-spinner-dots span {
+  content: '';
+  display: block;
+  width: 0.45rem;
+  height: 0.45rem;
+  border-radius: 50%;
+  background-color: var(--vel-primary-500);
+  animation: vel-pulse 1.2s ease-in-out infinite;
+}
+
+.vel-spinner-dots span { animation-delay: 0.2s; }
+.vel-spinner-dots::after { animation-delay: 0.4s; }
+
+/* ─── Ring with glow ──────────────────────── */
+
+.vel-spinner-glow {
+  border-color: rgba(124, 92, 252, 0.15);
+  border-top-color: var(--vel-primary-500);
+  box-shadow: 0 0 10px rgba(124, 92, 252, 0.4);
+}

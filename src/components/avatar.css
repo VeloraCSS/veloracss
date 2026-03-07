@@ -1,0 +1,102 @@
+/* VeloraCSS — Avatar Component */
+
+.vel-avatar {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  overflow: hidden;
+  flex-shrink: 0;
+  font-weight: 600;
+  line-height: 1;
+  user-select: none;
+  position: relative;
+  width: 2.5rem;
+  height: 2.5rem;
+  font-size: 0.9rem;
+  background: var(--vel-gradient-primary);
+  color: #ffffff;
+}
+
+.vel-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* ─── Sizes ───────────────────────────────── */
+
+.vel-avatar-xs { width: 1.5rem;  height: 1.5rem;  font-size: 0.55rem; }
+.vel-avatar-sm { width: 2rem;    height: 2rem;    font-size: 0.7rem; }
+.vel-avatar-md { width: 2.5rem;  height: 2.5rem;  font-size: 0.9rem; }
+.vel-avatar-lg { width: 3.5rem;  height: 3.5rem;  font-size: 1.1rem; }
+.vel-avatar-xl { width: 5rem;    height: 5rem;    font-size: 1.5rem; }
+.vel-avatar-2xl{ width: 7rem;    height: 7rem;    font-size: 2rem; }
+
+/* ─── Shape ───────────────────────────────── */
+
+.vel-avatar-square  { border-radius: var(--vel-radius-xl); }
+.vel-avatar-rounded { border-radius: var(--vel-radius-full); }
+
+/* ─── Color Variants ──────────────────────── */
+
+.vel-avatar-primary   { background: var(--vel-gradient-primary); }
+.vel-avatar-success   { background: var(--vel-gradient-success); }
+.vel-avatar-danger    { background: var(--vel-gradient-danger); }
+.vel-avatar-warning   { background: var(--vel-gradient-warning); color: #1c1200; }
+.vel-avatar-info      { background: var(--vel-gradient-info); }
+.vel-avatar-neutral   { background: var(--vel-surface-3); color: var(--vel-color-muted); }
+.vel-avatar-aurora    { background: var(--vel-gradient-aurora); }
+.vel-avatar-cosmos    { background: var(--vel-gradient-cosmos); }
+.vel-avatar-sunset    { background: var(--vel-gradient-sunset); }
+
+/* ─── Ring (border) ───────────────────────── */
+
+.vel-avatar-ring {
+  box-shadow: 0 0 0 2px var(--vel-surface-0), 0 0 0 4px var(--vel-primary-500);
+}
+.vel-avatar-ring-success {
+  box-shadow: 0 0 0 2px var(--vel-surface-0), 0 0 0 4px var(--vel-success-400);
+}
+.vel-avatar-ring-danger {
+  box-shadow: 0 0 0 2px var(--vel-surface-0), 0 0 0 4px var(--vel-danger-500);
+}
+.vel-avatar-ring-warning {
+  box-shadow: 0 0 0 2px var(--vel-surface-0), 0 0 0 4px var(--vel-warning-400);
+}
+
+/* ─── Status Indicator ────────────────────── */
+
+.vel-avatar-status {
+  position: relative;
+}
+.vel-avatar-status::after {
+  content: '';
+  position: absolute;
+  bottom: 2px;
+  right: 2px;
+  width: 0.6rem;
+  height: 0.6rem;
+  border-radius: 50%;
+  border: 2px solid var(--vel-surface-0);
+  background-color: var(--vel-success-400);
+}
+.vel-avatar-status-offline::after  { background-color: var(--vel-color-muted); }
+.vel-avatar-status-busy::after     { background-color: var(--vel-danger-500); }
+.vel-avatar-status-away::after     { background-color: var(--vel-warning-500); }
+
+/* ─── Group ───────────────────────────────── */
+
+.vel-avatar-group {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: flex-end;
+}
+.vel-avatar-group .vel-avatar {
+  border: 2px solid var(--vel-surface-bg);
+  margin-left: -0.75rem;
+}
+.vel-avatar-group .vel-avatar:last-child {
+  margin-left: 0;
+}

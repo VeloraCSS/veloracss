@@ -1,0 +1,108 @@
+/* VeloraCSS — Navbar Component */
+
+.vel-navbar {
+  display: flex;
+  align-items: center;
+  padding: 0 var(--vel-space-6);
+  height: 4rem;
+  background-color: var(--vel-surface-1);
+  border-bottom: 1px solid var(--vel-border-base);
+  position: relative;
+  z-index: var(--vel-z-40);
+}
+
+/* ─── Glass variant ───────────────────────── */
+
+.vel-navbar-glass {
+  display: flex;
+  align-items: center;
+  padding: 0 var(--vel-space-6);
+  height: 4rem;
+  background: rgba(13, 20, 34, 0.75);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--vel-border-subtle);
+  position: relative;
+  z-index: var(--vel-z-40);
+}
+
+/* ─── Sticky ──────────────────────────────── */
+
+.vel-navbar-sticky {
+  position: sticky;
+  top: 0;
+}
+
+.vel-navbar-fixed {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+}
+
+/* ─── Brand ───────────────────────────────── */
+
+.vel-navbar-brand {
+  display: flex;
+  align-items: center;
+  gap: var(--vel-space-2);
+  font-size: var(--vel-text-lg);
+  font-weight: 700;
+  color: var(--vel-color-text);
+  text-decoration: none;
+  letter-spacing: -0.01em;
+  flex-shrink: 0;
+  margin-right: var(--vel-space-8);
+}
+.vel-navbar-brand:hover { color: var(--vel-primary-400); }
+
+/* ─── Nav Links ───────────────────────────── */
+
+.vel-navbar-nav {
+  display: flex;
+  align-items: center;
+  gap: var(--vel-space-1);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  flex: 1;
+}
+
+.vel-navbar-link {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--vel-space-1);
+  padding: var(--vel-space-2) var(--vel-space-3);
+  font-size: var(--vel-text-sm);
+  font-weight: 500;
+  color: var(--vel-color-muted);
+  text-decoration: none;
+  border-radius: var(--vel-radius-lg);
+  transition: color 150ms ease, background-color 150ms ease;
+}
+.vel-navbar-link:hover {
+  color: var(--vel-color-text);
+  background-color: var(--vel-surface-3);
+}
+.vel-navbar-link.vel-active {
+  color: var(--vel-primary-400);
+  background-color: rgba(124, 92, 252, 0.1);
+}
+
+/* ─── End slot ────────────────────────────── */
+
+.vel-navbar-end {
+  display: flex;
+  align-items: center;
+  gap: var(--vel-space-2);
+  margin-left: auto;
+}
+
+/* ─── Divider ─────────────────────────────── */
+
+.vel-navbar-divider {
+  width: 1px;
+  height: 1.5rem;
+  background-color: var(--vel-border-base);
+  margin: 0 var(--vel-space-2);
+}

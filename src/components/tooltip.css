@@ -1,0 +1,147 @@
+/* VeloraCSS — Tooltip Component */
+
+/* CSS-only tooltip using data-tooltip attribute */
+
+[data-tooltip] {
+  position: relative;
+}
+
+[data-tooltip]::before,
+[data-tooltip]::after {
+  position: absolute;
+  z-index: var(--vel-z-50);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 150ms ease, transform 150ms var(--vel-ease-out);
+}
+
+[data-tooltip]::before {
+  content: attr(data-tooltip);
+  bottom: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%) translateY(4px);
+  padding: 0.35em 0.7em;
+  font-size: 0.72rem;
+  font-weight: 500;
+  line-height: 1.4;
+  white-space: nowrap;
+  color: var(--vel-color-text);
+  background-color: var(--vel-surface-4);
+  border: 1px solid var(--vel-border-base);
+  border-radius: var(--vel-radius-lg);
+  box-shadow: 0 8px 24px rgb(0 0 0 / 0.4);
+}
+
+[data-tooltip]::after {
+  content: '';
+  bottom: calc(100% + 2px);
+  left: 50%;
+  transform: translateX(-50%) translateY(4px);
+  border: 5px solid transparent;
+  border-top-color: var(--vel-surface-4);
+}
+
+[data-tooltip]:hover::before,
+[data-tooltip]:hover::after,
+[data-tooltip]:focus-visible::before,
+[data-tooltip]:focus-visible::after {
+  opacity: 1;
+}
+
+[data-tooltip]:hover::before { transform: translateX(-50%) translateY(0); }
+[data-tooltip]:hover::after  { transform: translateX(-50%) translateY(0); }
+
+/* ─── Placement variants ──────────────────── */
+
+[data-tooltip-pos='bottom']::before {
+  bottom: auto;
+  top: calc(100% + 8px);
+  transform: translateX(-50%) translateY(-4px);
+}
+[data-tooltip-pos='bottom']::after {
+  bottom: auto;
+  top: calc(100% + 2px);
+  transform: translateX(-50%) translateY(-4px);
+  border-top-color: transparent;
+  border-bottom-color: var(--vel-surface-4);
+}
+[data-tooltip-pos='bottom']:hover::before { transform: translateX(-50%) translateY(0); }
+[data-tooltip-pos='bottom']:hover::after  { transform: translateX(-50%) translateY(0); }
+
+[data-tooltip-pos='left']::before {
+  bottom: auto;
+  top: 50%;
+  left: auto;
+  right: calc(100% + 8px);
+  transform: translateY(-50%) translateX(4px);
+}
+[data-tooltip-pos='left']::after {
+  bottom: auto;
+  top: 50%;
+  left: auto;
+  right: calc(100% + 2px);
+  transform: translateY(-50%) translateX(4px);
+  border-top-color: transparent;
+  border-left-color: var(--vel-surface-4);
+}
+[data-tooltip-pos='left']:hover::before { transform: translateY(-50%) translateX(0); }
+[data-tooltip-pos='left']:hover::after  { transform: translateY(-50%) translateX(0); }
+
+[data-tooltip-pos='right']::before {
+  bottom: auto;
+  top: 50%;
+  left: calc(100% + 8px);
+  transform: translateY(-50%) translateX(-4px);
+}
+[data-tooltip-pos='right']::after {
+  bottom: auto;
+  top: 50%;
+  left: calc(100% + 2px);
+  transform: translateY(-50%) translateX(-4px);
+  border-top-color: transparent;
+  border-right-color: var(--vel-surface-4);
+}
+[data-tooltip-pos='right']:hover::before { transform: translateY(-50%) translateX(0); }
+[data-tooltip-pos='right']:hover::after  { transform: translateY(-50%) translateX(0); }
+
+/* ─── Color variants ──────────────────────── */
+
+[data-tooltip-color='primary']::before {
+  background: var(--vel-primary-600);
+  border-color: var(--vel-primary-500);
+  color: #fff;
+}
+[data-tooltip-color='primary']::after { border-top-color: var(--vel-primary-600); }
+
+[data-tooltip-color='danger']::before {
+  background: var(--vel-danger-600);
+  border-color: var(--vel-danger-500);
+  color: #fff;
+}
+[data-tooltip-color='danger']::after { border-top-color: var(--vel-danger-600); }
+
+/* ─── vel-tooltip class variant ──────────── */
+
+.vel-tooltip {
+  position: relative;
+  display: inline-block;
+}
+
+.vel-tooltip-content {
+  position: absolute;
+  bottom: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 0.35em 0.7em;
+  font-size: 0.72rem;
+  font-weight: 500;
+  white-space: nowrap;
+  color: var(--vel-color-text);
+  background-color: var(--vel-surface-4);
+  border: 1px solid var(--vel-border-base);
+  border-radius: var(--vel-radius-lg);
+  box-shadow: 0 8px 24px rgb(0 0 0 / 0.4);
+  pointer-events: none;
+  z-index: var(--vel-z-50);
+  animation: vel-scale-in 150ms var(--vel-ease-spring) both;
+}

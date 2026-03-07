@@ -1,0 +1,126 @@
+/* VeloraCSS — Alert Component */
+
+.vel-alert {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--vel-space-3);
+  padding: var(--vel-space-4) var(--vel-space-5);
+  border-radius: var(--vel-radius-xl);
+  border: 1px solid transparent;
+  border-left-width: 3px;
+  font-size: var(--vel-text-sm);
+  line-height: var(--vel-leading-relaxed);
+  position: relative;
+  overflow: hidden;
+}
+
+.vel-alert::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  opacity: 0.04;
+  pointer-events: none;
+}
+
+.vel-alert-title {
+  font-weight: 600;
+  font-size: var(--vel-text-sm);
+  margin-bottom: var(--vel-space-1);
+}
+
+.vel-alert-icon {
+  flex-shrink: 0;
+  width: 1.1em;
+  height: 1.1em;
+  margin-top: 0.1em;
+}
+
+.vel-alert-dismiss {
+  margin-left: auto;
+  flex-shrink: 0;
+  background: none;
+  border: none;
+  cursor: pointer;
+  opacity: 0.55;
+  transition: opacity 150ms ease;
+  color: inherit;
+  padding: 0;
+  line-height: 1;
+  font-size: 1.1rem;
+}
+.vel-alert-dismiss:hover { opacity: 1; }
+
+/* ─── Variants ────────────────────────────── */
+
+.vel-alert-primary {
+  background: rgba(124, 92, 252, 0.1);
+  border-color: rgba(124, 92, 252, 0.25);
+  border-left-color: var(--vel-primary-500);
+  color: var(--vel-primary-200);
+}
+.vel-alert-primary::before { background: var(--vel-gradient-primary); }
+
+.vel-alert-success {
+  background: rgba(14, 203, 129, 0.08);
+  border-color: rgba(14, 203, 129, 0.22);
+  border-left-color: var(--vel-success-400);
+  color: var(--vel-success-200);
+}
+
+.vel-alert-danger {
+  background: rgba(240, 65, 108, 0.08);
+  border-color: rgba(240, 65, 108, 0.22);
+  border-left-color: var(--vel-danger-500);
+  color: var(--vel-danger-200);
+}
+
+.vel-alert-warning {
+  background: rgba(255, 157, 0, 0.08);
+  border-color: rgba(255, 157, 0, 0.22);
+  border-left-color: var(--vel-warning-500);
+  color: var(--vel-warning-200);
+}
+
+.vel-alert-info {
+  background: rgba(46, 189, 229, 0.08);
+  border-color: rgba(46, 189, 229, 0.22);
+  border-left-color: var(--vel-info-400);
+  color: var(--vel-info-200);
+}
+
+.vel-alert-neutral {
+  background: var(--vel-surface-2);
+  border-color: var(--vel-border-base);
+  border-left-color: var(--vel-neutral-600);
+  color: var(--vel-color-text);
+}
+
+/* ─── Filled Variants ─────────────────────── */
+
+.vel-alert-filled-primary {
+  background: var(--vel-gradient-primary);
+  border-color: transparent;
+  border-left-color: rgba(255,255,255,0.3);
+  color: #ffffff;
+}
+
+.vel-alert-filled-success {
+  background: var(--vel-gradient-success);
+  border-color: transparent;
+  border-left-color: rgba(255,255,255,0.3);
+  color: #ffffff;
+}
+
+.vel-alert-filled-danger {
+  background: var(--vel-gradient-danger);
+  border-color: transparent;
+  border-left-color: rgba(255,255,255,0.3);
+  color: #ffffff;
+}
+
+.vel-alert-filled-warning {
+  background: var(--vel-gradient-warning);
+  border-color: transparent;
+  border-left-color: rgba(255,255,255,0.3);
+  color: #1c1200;
+}

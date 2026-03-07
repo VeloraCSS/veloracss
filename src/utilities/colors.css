@@ -108,3 +108,99 @@
 .vel-bg-fixed       { background-attachment: fixed; }
 .vel-bg-local       { background-attachment: local; }
 .vel-bg-scroll      { background-attachment: scroll; }
+
+/* ─── Surface Colors ─────────────────────── */
+.vel-bg-surface-0 { background-color: var(--vel-surface-0); }
+.vel-bg-surface-1 { background-color: var(--vel-surface-1); }
+.vel-bg-surface-2 { background-color: var(--vel-surface-2); }
+.vel-bg-surface-3 { background-color: var(--vel-surface-3); }
+.vel-bg-surface-4 { background-color: var(--vel-surface-4); }
+
+/* ─── Brand Color Ramps ───────────────────── */
+/* Primary (Velora Violet) */
+.vel-text-primary-50  { color: var(--vel-primary-50); }
+.vel-text-primary-100 { color: var(--vel-primary-100); }
+.vel-text-primary-200 { color: var(--vel-primary-200); }
+.vel-text-primary-300 { color: var(--vel-primary-300); }
+.vel-text-primary-400 { color: var(--vel-primary-400); }
+.vel-text-primary-500 { color: var(--vel-primary-500); }
+.vel-text-primary-600 { color: var(--vel-primary-600); }
+.vel-text-primary-700 { color: var(--vel-primary-700); }
+.vel-text-primary-800 { color: var(--vel-primary-800); }
+.vel-text-primary-900 { color: var(--vel-primary-900); }
+.vel-text-primary-950 { color: var(--vel-primary-950); }
+
+.vel-bg-primary-50  { background-color: var(--vel-primary-50); }
+.vel-bg-primary-100 { background-color: var(--vel-primary-100); }
+.vel-bg-primary-200 { background-color: var(--vel-primary-200); }
+.vel-bg-primary-300 { background-color: var(--vel-primary-300); }
+.vel-bg-primary-400 { background-color: var(--vel-primary-400); }
+.vel-bg-primary-500 { background-color: var(--vel-primary-500); }
+.vel-bg-primary-600 { background-color: var(--vel-primary-600); }
+.vel-bg-primary-700 { background-color: var(--vel-primary-700); }
+.vel-bg-primary-800 { background-color: var(--vel-primary-800); }
+.vel-bg-primary-900 { background-color: var(--vel-primary-900); }
+.vel-bg-primary-950 { background-color: var(--vel-primary-950); }
+
+/* Success (Velora Emerald) */
+.vel-text-success-50  { color: var(--vel-success-50); }
+.vel-text-success-100 { color: var(--vel-success-100); }
+.vel-text-success-200 { color: var(--vel-success-200); }
+.vel-text-success-300 { color: var(--vel-success-300); }
+.vel-text-success-400 { color: var(--vel-success-400); }
+.vel-text-success-500 { color: var(--vel-success-500); }
+.vel-text-success-600 { color: var(--vel-success-600); }
+.vel-text-success-700 { color: var(--vel-success-700); }
+
+.vel-bg-success-50  { background-color: var(--vel-success-50); }
+.vel-bg-success-100 { background-color: var(--vel-success-100); }
+.vel-bg-success-300 { background-color: var(--vel-success-300); }
+.vel-bg-success-400 { background-color: var(--vel-success-400); }
+.vel-bg-success-500 { background-color: var(--vel-success-500); }
+.vel-bg-success-700 { background-color: var(--vel-success-700); }
+.vel-bg-success-900 { background-color: var(--vel-success-900); }
+
+/* Danger (Velora Rose) */
+.vel-text-danger-50  { color: var(--vel-danger-50); }
+.vel-text-danger-100 { color: var(--vel-danger-100); }
+.vel-text-danger-300 { color: var(--vel-danger-300); }
+.vel-text-danger-400 { color: var(--vel-danger-400); }
+.vel-text-danger-500 { color: var(--vel-danger-500); }
+.vel-text-danger-600 { color: var(--vel-danger-600); }
+.vel-text-danger-700 { color: var(--vel-danger-700); }
+
+.vel-bg-danger-50  { background-color: var(--vel-danger-50); }
+.vel-bg-danger-100 { background-color: var(--vel-danger-100); }
+.vel-bg-danger-300 { background-color: var(--vel-danger-300); }
+.vel-bg-danger-400 { background-color: var(--vel-danger-400); }
+.vel-bg-danger-500 { background-color: var(--vel-danger-500); }
+.vel-bg-danger-700 { background-color: var(--vel-danger-700); }
+.vel-bg-danger-900 { background-color: var(--vel-danger-900); }
+
+/* Warning (Velora Amber) */
+.vel-text-warning-300 { color: var(--vel-warning-300); }
+.vel-text-warning-400 { color: var(--vel-warning-400); }
+.vel-text-warning-500 { color: var(--vel-warning-500); }
+.vel-text-warning-600 { color: var(--vel-warning-600); }
+
+.vel-bg-warning-100 { background-color: var(--vel-warning-100); }
+.vel-bg-warning-300 { background-color: var(--vel-warning-300); }
+.vel-bg-warning-400 { background-color: var(--vel-warning-400); }
+.vel-bg-warning-500 { background-color: var(--vel-warning-500); }
+.vel-bg-warning-900 { background-color: var(--vel-warning-900); }
+
+/* Info (Velora Sky) */
+.vel-text-info-300 { color: var(--vel-info-300); }
+.vel-text-info-400 { color: var(--vel-info-400); }
+.vel-text-info-500 { color: var(--vel-info-500); }
+.vel-text-info-600 { color: var(--vel-info-600); }
+
+.vel-bg-info-100 { background-color: var(--vel-info-100); }
+.vel-bg-info-300 { background-color: var(--vel-info-300); }
+.vel-bg-info-400 { background-color: var(--vel-info-400); }
+.vel-bg-info-500 { background-color: var(--vel-info-500); }
+.vel-bg-info-900 { background-color: var(--vel-info-900); }
+
+/* ─── Text UI Colors ──────────────────────── */
+.vel-text-body  { color: var(--vel-color-text); }
+.vel-text-muted { color: var(--vel-color-muted); }

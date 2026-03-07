@@ -71,6 +71,27 @@
 .vel-sepia-0 { filter: sepia(0); }
 .vel-sepia   { filter: sepia(100%); }
 
+/* Glow */
+.vel-glow-primary { box-shadow: var(--vel-glow-primary); }
+.vel-glow-success { box-shadow: var(--vel-glow-success); }
+.vel-glow-danger  { box-shadow: var(--vel-glow-danger); }
+.vel-glow-warning { box-shadow: var(--vel-glow-warning); }
+.vel-glow-info    { box-shadow: var(--vel-glow-info); }
+.vel-glow-white   { box-shadow: var(--vel-glow-white); }
+.vel-glow-sm-primary { box-shadow: var(--vel-glow-sm-primary); }
+.vel-glow-sm-success { box-shadow: var(--vel-glow-sm-success); }
+.vel-glow-sm-danger  { box-shadow: var(--vel-glow-sm-danger); }
+.vel-glow-sm-warning { box-shadow: var(--vel-glow-sm-warning); }
+.vel-glow-sm-info    { box-shadow: var(--vel-glow-sm-info); }
+.vel-glow-none    { box-shadow: none; }
+
+/* Ring (focus outline as shadow) */
+.vel-ring-primary { box-shadow: var(--vel-ring-primary); }
+.vel-ring-success { box-shadow: var(--vel-ring-success); }
+.vel-ring-danger  { box-shadow: var(--vel-ring-danger); }
+.vel-ring-warning { box-shadow: var(--vel-ring-warning); }
+.vel-ring-info    { box-shadow: var(--vel-ring-info); }
+
 /* Backdrop filters */
 .vel-backdrop-blur-none { backdrop-filter: blur(0); }
 .vel-backdrop-blur-sm   { backdrop-filter: blur(4px); }

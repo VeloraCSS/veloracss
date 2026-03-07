@@ -1,0 +1,128 @@
+/* VeloraCSS — Tabs Component */
+
+/* ─── Underline Style (default) ───────────── */
+
+.vel-tabs {
+  display: flex;
+  gap: 0;
+  border-bottom: 1px solid var(--vel-border-base);
+  position: relative;
+}
+
+.vel-tab {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--vel-space-2);
+  padding: var(--vel-space-3) var(--vel-space-4);
+  font-size: var(--vel-text-sm);
+  font-weight: 500;
+  color: var(--vel-color-muted);
+  text-decoration: none;
+  border: none;
+  background: none;
+  cursor: pointer;
+  border-bottom: 2px solid transparent;
+  margin-bottom: -1px;
+  transition: color 150ms ease, border-color 150ms ease;
+  white-space: nowrap;
+}
+
+.vel-tab:hover {
+  color: var(--vel-color-text);
+}
+
+.vel-tab.vel-active,
+.vel-tab[aria-selected='true'] {
+  color: var(--vel-primary-400);
+  border-bottom-color: var(--vel-primary-500);
+}
+
+/* ─── Pill Style ──────────────────────────── */
+
+.vel-tabs-pill {
+  display: flex;
+  gap: var(--vel-space-1);
+  padding: var(--vel-space-1);
+  background-color: var(--vel-surface-1);
+  border-radius: var(--vel-radius-xl);
+  border: 1px solid var(--vel-border-base);
+  border-bottom: 1px solid var(--vel-border-base);
+}
+
+.vel-tabs-pill .vel-tab {
+  border-bottom: none;
+  border-radius: var(--vel-radius-lg);
+  margin-bottom: 0;
+  padding: var(--vel-space-2) var(--vel-space-4);
+  transition: background-color 150ms ease, color 150ms ease, box-shadow 150ms ease;
+}
+
+.vel-tabs-pill .vel-tab:hover {
+  background-color: var(--vel-surface-3);
+}
+
+.vel-tabs-pill .vel-tab.vel-active,
+.vel-tabs-pill .vel-tab[aria-selected='true'] {
+  background: var(--vel-gradient-primary);
+  color: #ffffff;
+  box-shadow: var(--vel-glow-sm-primary);
+}
+
+/* ─── Boxed Style ─────────────────────────── */
+
+.vel-tabs-boxed {
+  display: flex;
+  gap: var(--vel-space-1);
+  border-bottom: 1px solid var(--vel-border-base);
+}
+
+.vel-tabs-boxed .vel-tab {
+  border: 1px solid transparent;
+  border-bottom: none;
+  border-radius: var(--vel-radius-lg) var(--vel-radius-lg) 0 0;
+  margin-bottom: -1px;
+}
+
+.vel-tabs-boxed .vel-tab.vel-active,
+.vel-tabs-boxed .vel-tab[aria-selected='true'] {
+  background-color: var(--vel-surface-2);
+  color: var(--vel-color-text);
+  border-color: var(--vel-border-base);
+  border-bottom-color: var(--vel-surface-2);
+}
+
+/* ─── Tab Panel ───────────────────────────── */
+
+.vel-tab-panel {
+  display: none;
+  padding: var(--vel-space-5) 0;
+}
+
+.vel-tab-panel.vel-active,
+.vel-tab-panel[aria-hidden='false'] {
+  display: block;
+  animation: vel-fade-in 200ms var(--vel-ease-out) both;
+}
+
+/* ─── Vertical Tabs ───────────────────────── */
+
+.vel-tabs-vertical {
+  flex-direction: column;
+  gap: var(--vel-space-1);
+  border-bottom: none;
+  border-right: 1px solid var(--vel-border-base);
+}
+
+.vel-tabs-vertical .vel-tab {
+  border-bottom: none;
+  border-right: 2px solid transparent;
+  border-radius: var(--vel-radius-lg) 0 0 var(--vel-radius-lg);
+  margin-bottom: 0;
+  margin-right: -1px;
+}
+
+.vel-tabs-vertical .vel-tab.vel-active {
+  color: var(--vel-primary-400);
+  border-right-color: var(--vel-primary-500);
+  background-color: rgba(124, 92, 252, 0.08);
+}

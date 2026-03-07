@@ -1,6 +1,6 @@
 /* ============================================
-   VeloraCSS v0.1.0
-   A modern utility-first CSS framework
+   VeloraCSS v0.2.0
+   A premium utility-first CSS framework
    ============================================ */
 
 @import './tokens.css';
@@ -16,9 +16,21 @@
 @import './utilities/colors.css';
 @import './utilities/borders.css';
 @import './utilities/effects.css';
+@import './utilities/gradients.css';
+@import './utilities/animations.css';
 @import './utilities/transitions.css';
 @import './utilities/interactivity.css';
 
 /* Components */
 @import './components/button.css';
 @import './components/card.css';
+@import './components/badge.css';
+@import './components/alert.css';
+@import './components/input.css';
+@import './components/navbar.css';
+@import './components/progress.css';
+@import './components/spinner.css';
+@import './components/table.css';
+@import './components/tabs.css';
+@import './components/avatar.css';
+@import './components/tooltip.css';

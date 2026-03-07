@@ -1,0 +1,300 @@
+/* VeloraCSS — Form / Input Components */
+
+/* ─── Base Input ──────────────────────────── */
+
+.vel-input {
+  display: block;
+  width: 100%;
+  padding: var(--vel-space-2) var(--vel-space-4);
+  font-size: var(--vel-text-sm);
+  font-family: var(--vel-font-sans);
+  line-height: 1.5rem;
+  color: var(--vel-color-text);
+  background-color: var(--vel-surface-1);
+  border: 1px solid var(--vel-border-base);
+  border-radius: var(--vel-radius-lg);
+  transition: border-color 150ms ease, box-shadow 150ms ease, background-color 150ms ease;
+  outline: none;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.vel-input::placeholder {
+  color: var(--vel-color-muted);
+  opacity: 0.7;
+}
+
+.vel-input:hover {
+  border-color: rgba(124, 92, 252, 0.4);
+}
+
+.vel-input:focus {
+  border-color: var(--vel-primary-500);
+  box-shadow: var(--vel-ring-primary);
+  background-color: var(--vel-surface-2);
+}
+
+.vel-input:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  background-color: var(--vel-surface-1);
+}
+
+/* ─── Sizes ───────────────────────────────── */
+
+.vel-input-sm {
+  padding: var(--vel-space-1) var(--vel-space-3);
+  font-size: var(--vel-text-sm);
+  border-radius: var(--vel-radius-md);
+}
+
+.vel-input-lg {
+  padding: var(--vel-space-3) var(--vel-space-5);
+  font-size: var(--vel-text-base);
+  border-radius: var(--vel-radius-xl);
+}
+
+/* ─── States ──────────────────────────────── */
+
+.vel-input-success {
+  border-color: var(--vel-success-400);
+}
+.vel-input-success:focus {
+  box-shadow: var(--vel-ring-success);
+  border-color: var(--vel-success-400);
+}
+
+.vel-input-danger {
+  border-color: var(--vel-danger-500);
+}
+.vel-input-danger:focus {
+  box-shadow: var(--vel-ring-danger);
+  border-color: var(--vel-danger-500);
+}
+
+.vel-input-warning {
+  border-color: var(--vel-warning-500);
+}
+.vel-input-warning:focus {
+  box-shadow: var(--vel-ring-warning);
+  border-color: var(--vel-warning-500);
+}
+
+/* ─── Textarea ────────────────────────────── */
+
+.vel-textarea {
+  display: block;
+  width: 100%;
+  padding: var(--vel-space-3) var(--vel-space-4);
+  font-size: var(--vel-text-sm);
+  font-family: var(--vel-font-sans);
+  line-height: var(--vel-leading-relaxed);
+  color: var(--vel-color-text);
+  background-color: var(--vel-surface-1);
+  border: 1px solid var(--vel-border-base);
+  border-radius: var(--vel-radius-xl);
+  resize: vertical;
+  transition: border-color 150ms ease, box-shadow 150ms ease;
+  outline: none;
+  min-height: 6rem;
+}
+.vel-textarea::placeholder { color: var(--vel-color-muted); opacity: 0.7; }
+.vel-textarea:hover  { border-color: rgba(124, 92, 252, 0.4); }
+.vel-textarea:focus  { border-color: var(--vel-primary-500); box-shadow: var(--vel-ring-primary); background-color: var(--vel-surface-2); }
+.vel-textarea:disabled { opacity: 0.5; cursor: not-allowed; }
+
+/* ─── Select ──────────────────────────────── */
+
+.vel-select {
+  display: block;
+  width: 100%;
+  padding: var(--vel-space-2) var(--vel-space-9) var(--vel-space-2) var(--vel-space-4);
+  font-size: var(--vel-text-sm);
+  font-family: var(--vel-font-sans);
+  line-height: 1.5rem;
+  color: var(--vel-color-text);
+  background-color: var(--vel-surface-1);
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%2364748b' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
+  background-position: right var(--vel-space-3) center;
+  background-repeat: no-repeat;
+  background-size: 1.1em;
+  border: 1px solid var(--vel-border-base);
+  border-radius: var(--vel-radius-lg);
+  transition: border-color 150ms ease, box-shadow 150ms ease;
+  outline: none;
+  -webkit-appearance: none;
+  appearance: none;
+  cursor: pointer;
+}
+.vel-select:hover { border-color: rgba(124, 92, 252, 0.4); }
+.vel-select:focus { border-color: var(--vel-primary-500); box-shadow: var(--vel-ring-primary); }
+.vel-select:disabled { opacity: 0.5; cursor: not-allowed; }
+
+/* ─── Checkbox & Radio ────────────────────── */
+
+.vel-checkbox,
+.vel-radio {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--vel-space-2);
+  cursor: pointer;
+  font-size: var(--vel-text-sm);
+  color: var(--vel-color-text);
+  user-select: none;
+}
+
+.vel-checkbox input[type='checkbox'],
+.vel-radio input[type='radio'] {
+  width: 1rem;
+  height: 1rem;
+  flex-shrink: 0;
+  border: 1.5px solid var(--vel-border-base);
+  background-color: var(--vel-surface-1);
+  cursor: pointer;
+  transition: border-color 150ms ease, background-color 150ms ease, box-shadow 150ms ease;
+  -webkit-appearance: none;
+  appearance: none;
+  display: grid;
+  place-content: center;
+}
+.vel-checkbox input[type='checkbox'] { border-radius: var(--vel-radius-sm); }
+.vel-radio    input[type='radio']    { border-radius: 50%; }
+
+.vel-checkbox input[type='checkbox']:checked,
+.vel-radio    input[type='radio']:checked {
+  background-color: var(--vel-primary-500);
+  border-color: var(--vel-primary-500);
+  box-shadow: var(--vel-glow-sm-primary);
+}
+.vel-checkbox input[type='checkbox']:checked::before {
+  content: '';
+  display: block;
+  width: 0.35rem;
+  height: 0.6rem;
+  border: 2px solid #fff;
+  border-top: none;
+  border-left: none;
+  transform: rotate(45deg) translateY(-1px);
+}
+.vel-radio input[type='radio']:checked::before {
+  content: '';
+  display: block;
+  width: 0.4rem;
+  height: 0.4rem;
+  background: #fff;
+  border-radius: 50%;
+}
+
+/* ─── Form Label ──────────────────────────── */
+
+.vel-label {
+  display: block;
+  font-size: var(--vel-text-sm);
+  font-weight: 500;
+  color: var(--vel-color-text);
+  margin-bottom: var(--vel-space-1);
+}
+
+.vel-label-required::after {
+  content: ' *';
+  color: var(--vel-danger-400);
+}
+
+/* ─── Form Group ──────────────────────────── */
+
+.vel-form-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--vel-space-1);
+}
+
+.vel-form-hint {
+  font-size: var(--vel-text-xs);
+  color: var(--vel-color-muted);
+}
+
+.vel-form-error {
+  font-size: var(--vel-text-xs);
+  color: var(--vel-danger-400);
+}
+
+/* ─── Input Group (prefix/suffix) ────────── */
+
+.vel-input-group {
+  display: flex;
+  align-items: stretch;
+}
+
+.vel-input-group .vel-input {
+  border-radius: 0;
+  flex: 1;
+  min-width: 0;
+}
+
+.vel-input-group-addon {
+  display: flex;
+  align-items: center;
+  padding: var(--vel-space-2) var(--vel-space-3);
+  font-size: var(--vel-text-sm);
+  color: var(--vel-color-muted);
+  background-color: var(--vel-surface-3);
+  border: 1px solid var(--vel-border-base);
+  white-space: nowrap;
+}
+
+.vel-input-group > *:first-child,
+.vel-input-group-addon:first-child {
+  border-radius: var(--vel-radius-lg) 0 0 var(--vel-radius-lg);
+}
+.vel-input-group > *:last-child,
+.vel-input-group-addon:last-child {
+  border-radius: 0 var(--vel-radius-lg) var(--vel-radius-lg) 0;
+}
+.vel-input-group > *:not(:first-child) { border-left: 0; }
+
+/* ─── Toggle / Switch ─────────────────────── */
+
+.vel-switch {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--vel-space-3);
+  cursor: pointer;
+  user-select: none;
+}
+
+.vel-switch-track {
+  position: relative;
+  width: 2.5rem;
+  height: 1.35rem;
+  background-color: var(--vel-surface-4);
+  border: 1px solid var(--vel-border-base);
+  border-radius: var(--vel-radius-full);
+  transition: background-color 200ms ease, border-color 200ms ease;
+  flex-shrink: 0;
+}
+
+.vel-switch input[type='checkbox'] { display: none; }
+
+.vel-switch-track::after {
+  content: '';
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: calc(1.35rem - 6px);
+  height: calc(1.35rem - 6px);
+  background: var(--vel-color-muted);
+  border-radius: 50%;
+  transition: transform 200ms var(--vel-ease-spring), background-color 200ms ease;
+}
+
+.vel-switch input:checked ~ .vel-switch-track,
+.vel-switch.vel-switch-on .vel-switch-track {
+  background: var(--vel-gradient-primary);
+  border-color: transparent;
+  box-shadow: var(--vel-glow-sm-primary);
+}
+.vel-switch input:checked ~ .vel-switch-track::after,
+.vel-switch.vel-switch-on .vel-switch-track::after {
+  transform: translateX(1.15rem);
+  background: #ffffff;
+}

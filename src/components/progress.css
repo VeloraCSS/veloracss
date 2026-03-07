@@ -1,0 +1,95 @@
+/* VeloraCSS — Progress Component */
+
+.vel-progress {
+  width: 100%;
+  height: 0.5rem;
+  background-color: var(--vel-surface-3);
+  border-radius: var(--vel-radius-full);
+  overflow: hidden;
+}
+
+.vel-progress-bar {
+  height: 100%;
+  border-radius: var(--vel-radius-full);
+  background: var(--vel-gradient-primary);
+  transition: width 400ms var(--vel-ease-out);
+  position: relative;
+}
+
+/* Animated shimmer on progress bar */
+.vel-progress-bar::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.2) 50%,
+    transparent 100%
+  );
+  animation: vel-shimmer 1.8s infinite;
+}
+
+/* ─── Color Variants ──────────────────────── */
+
+.vel-progress-primary .vel-progress-bar  { background: var(--vel-gradient-primary); }
+.vel-progress-success .vel-progress-bar  { background: var(--vel-gradient-success); }
+.vel-progress-danger  .vel-progress-bar  { background: var(--vel-gradient-danger);  }
+.vel-progress-warning .vel-progress-bar  { background: var(--vel-gradient-warning); }
+.vel-progress-info    .vel-progress-bar  { background: var(--vel-gradient-info);    }
+
+/* ─── Sizes ───────────────────────────────── */
+
+.vel-progress-xs { height: 0.25rem; }
+.vel-progress-sm { height: 0.375rem; }
+.vel-progress-md { height: 0.5rem; }
+.vel-progress-lg { height: 0.75rem; }
+.vel-progress-xl { height: 1rem; }
+
+/* ─── Striped ─────────────────────────────── */
+
+.vel-progress-striped .vel-progress-bar {
+  background-image: linear-gradient(
+    45deg,
+    rgba(255, 255, 255, 0.1) 25%,
+    transparent 25%,
+    transparent 50%,
+    rgba(255, 255, 255, 0.1) 50%,
+    rgba(255, 255, 255, 0.1) 75%,
+    transparent 75%
+  );
+  background-size: 1rem 1rem;
+}
+
+.vel-progress-striped.vel-progress-animated .vel-progress-bar {
+  animation: vel-progress-stripes 1s linear infinite;
+}
+
+@keyframes vel-progress-stripes {
+  from { background-position: 1rem 0; }
+  to   { background-position: 0 0; }
+}
+
+/* ─── Indeterminate (loading unknown) ────── */
+
+.vel-progress-indeterminate .vel-progress-bar {
+  width: 40% !important;
+  animation: vel-progress-indeterminate 1.4s var(--vel-ease-in-out) infinite;
+}
+
+@keyframes vel-progress-indeterminate {
+  0%   { transform: translateX(-100%); }
+  100% { transform: translateX(350%); }
+}
+
+/* ─── Glow variant ────────────────────────── */
+
+.vel-progress-glow .vel-progress-bar {
+  box-shadow: var(--vel-glow-sm-primary);
+}
+.vel-progress-glow.vel-progress-success .vel-progress-bar {
+  box-shadow: var(--vel-glow-sm-success);
+}
+.vel-progress-glow.vel-progress-danger .vel-progress-bar {
+  box-shadow: var(--vel-glow-sm-danger);
+}

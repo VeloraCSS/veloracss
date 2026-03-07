@@ -1,0 +1,98 @@
+/* VeloraCSS — Badge Component */
+
+.vel-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3em;
+  padding: 0.2em 0.65em;
+  font-size: 0.72rem;
+  font-weight: 600;
+  line-height: 1.4;
+  letter-spacing: 0.03em;
+  border-radius: var(--vel-radius-full);
+  border: 1px solid transparent;
+  white-space: nowrap;
+  vertical-align: middle;
+}
+
+/* ─── Variants ────────────────────────────── */
+
+.vel-badge-primary {
+  background: rgba(124, 92, 252, 0.18);
+  color: var(--vel-primary-300);
+  border-color: rgba(124, 92, 252, 0.35);
+}
+
+.vel-badge-secondary {
+  background: rgba(79, 110, 156, 0.18);
+  color: var(--vel-secondary-300);
+  border-color: rgba(79, 110, 156, 0.3);
+}
+
+.vel-badge-success {
+  background: rgba(14, 203, 129, 0.15);
+  color: var(--vel-success-300);
+  border-color: rgba(14, 203, 129, 0.3);
+}
+
+.vel-badge-danger {
+  background: rgba(240, 65, 108, 0.15);
+  color: var(--vel-danger-300);
+  border-color: rgba(240, 65, 108, 0.3);
+}
+
+.vel-badge-warning {
+  background: rgba(255, 157, 0, 0.14);
+  color: var(--vel-warning-300);
+  border-color: rgba(255, 157, 0, 0.28);
+}
+
+.vel-badge-info {
+  background: rgba(46, 189, 229, 0.14);
+  color: var(--vel-info-300);
+  border-color: rgba(46, 189, 229, 0.28);
+}
+
+.vel-badge-neutral {
+  background: var(--vel-surface-3);
+  color: var(--vel-color-muted);
+  border-color: var(--vel-border-base);
+}
+
+/* ─── Solid Variants ──────────────────────── */
+
+.vel-badge-solid-primary   { background: var(--vel-gradient-primary);   color: #fff; border-color: transparent; }
+.vel-badge-solid-success   { background: var(--vel-gradient-success);   color: #fff; border-color: transparent; }
+.vel-badge-solid-danger    { background: var(--vel-gradient-danger);    color: #fff; border-color: transparent; }
+.vel-badge-solid-warning   { background: var(--vel-gradient-warning);   color: #1c1200; border-color: transparent; }
+.vel-badge-solid-info      { background: var(--vel-gradient-info);      color: #fff; border-color: transparent; }
+
+/* ─── Dot indicator ───────────────────────── */
+
+.vel-badge-dot::before {
+  content: '';
+  display: inline-block;
+  width: 0.45em;
+  height: 0.45em;
+  border-radius: 50%;
+  background-color: currentColor;
+  flex-shrink: 0;
+}
+
+/* ─── Sizes ───────────────────────────────── */
+
+.vel-badge-sm {
+  font-size: 0.65rem;
+  padding: 0.15em 0.5em;
+}
+
+.vel-badge-lg {
+  font-size: 0.8rem;
+  padding: 0.3em 0.85em;
+}
+
+/* ─── Pill (square-ish) ───────────────────── */
+
+.vel-badge-square {
+  border-radius: var(--vel-radius-md);
+}

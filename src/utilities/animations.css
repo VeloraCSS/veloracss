@@ -1,0 +1,175 @@
+/* VeloraCSS — Animation Utilities */
+
+/* ─── Keyframes ───────────────────────────── */
+
+@keyframes vel-spin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+@keyframes vel-ping {
+  75%, 100% {
+    transform: scale(2);
+    opacity: 0;
+  }
+}
+
+@keyframes vel-pulse {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.45; }
+}
+
+@keyframes vel-bounce {
+  0%, 100% {
+    transform: translateY(-12%);
+    animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
+  }
+  50% {
+    transform: translateY(0);
+    animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
+  }
+}
+
+@keyframes vel-fade-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes vel-fade-out {
+  from { opacity: 1; }
+  to   { opacity: 0; }
+}
+
+@keyframes vel-slide-up {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes vel-slide-down {
+  from { opacity: 0; transform: translateY(-12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes vel-slide-left {
+  from { opacity: 0; transform: translateX(12px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes vel-slide-right {
+  from { opacity: 0; transform: translateX(-12px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes vel-scale-in {
+  from { opacity: 0; transform: scale(0.92); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+@keyframes vel-scale-out {
+  from { opacity: 1; transform: scale(1); }
+  to   { opacity: 0; transform: scale(0.92); }
+}
+
+@keyframes vel-shake {
+  0%, 100% { transform: translateX(0); }
+  20%      { transform: translateX(-6px); }
+  40%      { transform: translateX(6px); }
+  60%      { transform: translateX(-4px); }
+  80%      { transform: translateX(4px); }
+}
+
+@keyframes vel-glow-pulse {
+  0%, 100% { box-shadow: var(--vel-glow-primary); }
+  50%      { box-shadow: none; }
+}
+
+@keyframes vel-shimmer {
+  0%   { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+/* ─── Animation Classes ───────────────────── */
+
+.vel-animate-spin    { animation: vel-spin    1s linear infinite; }
+.vel-animate-ping    { animation: vel-ping    1s cubic-bezier(0, 0, 0.2, 1) infinite; }
+.vel-animate-pulse   { animation: vel-pulse   2s cubic-bezier(0.4, 0, 0.6, 1) infinite; }
+.vel-animate-bounce  { animation: vel-bounce  1s infinite; }
+
+.vel-animate-fade-in    { animation: vel-fade-in  200ms var(--vel-ease-out) both; }
+.vel-animate-fade-out   { animation: vel-fade-out 200ms var(--vel-ease-in)  both; }
+.vel-animate-slide-up   { animation: vel-slide-up   250ms var(--vel-ease-out) both; }
+.vel-animate-slide-down { animation: vel-slide-down 250ms var(--vel-ease-out) both; }
+.vel-animate-slide-left { animation: vel-slide-left 250ms var(--vel-ease-out) both; }
+.vel-animate-slide-right{ animation: vel-slide-right 250ms var(--vel-ease-out) both; }
+.vel-animate-scale-in   { animation: vel-scale-in  200ms var(--vel-ease-spring) both; }
+.vel-animate-scale-out  { animation: vel-scale-out 200ms var(--vel-ease-in)     both; }
+.vel-animate-shake      { animation: vel-shake 400ms var(--vel-ease-in-out) both; }
+
+.vel-animate-none { animation: none; }
+
+/* ─── Duration Modifiers ──────────────────── */
+.vel-duration-75   { animation-duration: 75ms; }
+.vel-duration-100  { animation-duration: 100ms; }
+.vel-duration-150  { animation-duration: 150ms; }
+.vel-duration-200  { animation-duration: 200ms; }
+.vel-duration-300  { animation-duration: 300ms; }
+.vel-duration-500  { animation-duration: 500ms; }
+.vel-duration-700  { animation-duration: 700ms; }
+.vel-duration-1000 { animation-duration: 1000ms; }
+
+/* ─── Delay Modifiers ─────────────────────── */
+.vel-delay-75   { animation-delay: 75ms; }
+.vel-delay-100  { animation-delay: 100ms; }
+.vel-delay-150  { animation-delay: 150ms; }
+.vel-delay-200  { animation-delay: 200ms; }
+.vel-delay-300  { animation-delay: 300ms; }
+.vel-delay-500  { animation-delay: 500ms; }
+.vel-delay-700  { animation-delay: 700ms; }
+.vel-delay-1000 { animation-delay: 1000ms; }
+
+/* ─── Shimmer (loading skeleton) ──────────── */
+.vel-shimmer {
+  background: linear-gradient(
+    90deg,
+    var(--vel-surface-2) 25%,
+    var(--vel-surface-3) 50%,
+    var(--vel-surface-2) 75%
+  );
+  background-size: 200% 100%;
+  animation: vel-shimmer 1.5s infinite;
+}
+
+/* ─── Transform Utilities ─────────────────── */
+.vel-scale-95  { transform: scale(0.95); }
+.vel-scale-100 { transform: scale(1); }
+.vel-scale-105 { transform: scale(1.05); }
+.vel-scale-110 { transform: scale(1.1); }
+.vel-scale-125 { transform: scale(1.25); }
+.vel-scale-150 { transform: scale(1.5); }
+
+.vel-rotate-0   { transform: rotate(0deg); }
+.vel-rotate-1   { transform: rotate(1deg); }
+.vel-rotate-2   { transform: rotate(2deg); }
+.vel-rotate-3   { transform: rotate(3deg); }
+.vel-rotate-6   { transform: rotate(6deg); }
+.vel-rotate-12  { transform: rotate(12deg); }
+.vel-rotate-45  { transform: rotate(45deg); }
+.vel-rotate-90  { transform: rotate(90deg); }
+.vel-rotate-180 { transform: rotate(180deg); }
+
+.-vel-rotate-1   { transform: rotate(-1deg); }
+.-vel-rotate-2   { transform: rotate(-2deg); }
+.-vel-rotate-3   { transform: rotate(-3deg); }
+.-vel-rotate-6   { transform: rotate(-6deg); }
+.-vel-rotate-12  { transform: rotate(-12deg); }
+.-vel-rotate-45  { transform: rotate(-45deg); }
+.-vel-rotate-90  { transform: rotate(-90deg); }
+.-vel-rotate-180 { transform: rotate(-180deg); }
+
+.vel-translate-y-0  { transform: translateY(0); }
+.vel-translate-y-1  { transform: translateY(0.25rem); }
+.vel-translate-y-2  { transform: translateY(0.5rem); }
+.vel-translate-y-4  { transform: translateY(1rem); }
+.-vel-translate-y-1 { transform: translateY(-0.25rem); }
+.-vel-translate-y-2 { transform: translateY(-0.5rem); }
+.-vel-translate-y-4 { transform: translateY(-1rem); }

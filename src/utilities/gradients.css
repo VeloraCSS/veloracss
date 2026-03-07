@@ -1,0 +1,91 @@
+/* VeloraCSS — Gradient Utilities */
+
+/* ─── Background Gradients ────────────────── */
+.vel-bg-gradient-primary   { background: var(--vel-gradient-primary); }
+.vel-bg-gradient-secondary { background: var(--vel-gradient-secondary); }
+.vel-bg-gradient-success   { background: var(--vel-gradient-success); }
+.vel-bg-gradient-danger    { background: var(--vel-gradient-danger); }
+.vel-bg-gradient-warning   { background: var(--vel-gradient-warning); }
+.vel-bg-gradient-info      { background: var(--vel-gradient-info); }
+.vel-bg-gradient-dark      { background: var(--vel-gradient-dark); }
+.vel-bg-gradient-surface   { background: var(--vel-gradient-surface); }
+.vel-bg-gradient-aurora    { background: var(--vel-gradient-aurora); }
+.vel-bg-gradient-sunset    { background: var(--vel-gradient-sunset); }
+.vel-bg-gradient-ocean     { background: var(--vel-gradient-ocean); }
+.vel-bg-gradient-cosmos    { background: var(--vel-gradient-cosmos); }
+.vel-bg-gradient-midnight  { background: var(--vel-gradient-midnight); }
+
+/* ─── Directional Gradient Helpers ───────── */
+/* Usage: vel-gradient-to-r + vel-from-primary + vel-to-info */
+
+.vel-gradient-to-r  { background-image: linear-gradient(to right, var(--vel-grad-from, transparent), var(--vel-grad-to, transparent)); }
+.vel-gradient-to-l  { background-image: linear-gradient(to left,  var(--vel-grad-from, transparent), var(--vel-grad-to, transparent)); }
+.vel-gradient-to-b  { background-image: linear-gradient(to bottom,var(--vel-grad-from, transparent), var(--vel-grad-to, transparent)); }
+.vel-gradient-to-t  { background-image: linear-gradient(to top,   var(--vel-grad-from, transparent), var(--vel-grad-to, transparent)); }
+.vel-gradient-to-br { background-image: linear-gradient(to bottom right, var(--vel-grad-from, transparent), var(--vel-grad-to, transparent)); }
+.vel-gradient-to-bl { background-image: linear-gradient(to bottom left,  var(--vel-grad-from, transparent), var(--vel-grad-to, transparent)); }
+.vel-gradient-to-tr { background-image: linear-gradient(to top right,    var(--vel-grad-from, transparent), var(--vel-grad-to, transparent)); }
+.vel-gradient-to-tl { background-image: linear-gradient(to top left,     var(--vel-grad-from, transparent), var(--vel-grad-to, transparent)); }
+
+.vel-from-primary   { --vel-grad-from: var(--vel-color-primary); }
+.vel-from-success   { --vel-grad-from: var(--vel-color-success); }
+.vel-from-danger    { --vel-grad-from: var(--vel-color-danger); }
+.vel-from-warning   { --vel-grad-from: var(--vel-color-warning); }
+.vel-from-info      { --vel-grad-from: var(--vel-color-info); }
+.vel-from-white     { --vel-grad-from: #ffffff; }
+.vel-from-black     { --vel-grad-from: #000000; }
+.vel-from-surface-0 { --vel-grad-from: var(--vel-surface-0); }
+.vel-from-surface-1 { --vel-grad-from: var(--vel-surface-1); }
+.vel-from-surface-2 { --vel-grad-from: var(--vel-surface-2); }
+.vel-from-surface-3 { --vel-grad-from: var(--vel-surface-3); }
+.vel-from-transparent { --vel-grad-from: transparent; }
+
+.vel-to-primary   { --vel-grad-to: var(--vel-color-primary); }
+.vel-to-success   { --vel-grad-to: var(--vel-color-success); }
+.vel-to-danger    { --vel-grad-to: var(--vel-color-danger); }
+.vel-to-warning   { --vel-grad-to: var(--vel-color-warning); }
+.vel-to-info      { --vel-grad-to: var(--vel-color-info); }
+.vel-to-white     { --vel-grad-to: #ffffff; }
+.vel-to-black     { --vel-grad-to: #000000; }
+.vel-to-surface-0 { --vel-grad-to: var(--vel-surface-0); }
+.vel-to-surface-1 { --vel-grad-to: var(--vel-surface-1); }
+.vel-to-surface-2 { --vel-grad-to: var(--vel-surface-2); }
+.vel-to-surface-3 { --vel-grad-to: var(--vel-surface-3); }
+.vel-to-transparent { --vel-grad-to: transparent; }
+
+/* ─── Text Gradient ───────────────────────── */
+.vel-text-gradient-primary {
+  background: var(--vel-gradient-primary);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+.vel-text-gradient-aurora {
+  background: var(--vel-gradient-aurora);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+.vel-text-gradient-sunset {
+  background: var(--vel-gradient-sunset);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+.vel-text-gradient-ocean {
+  background: var(--vel-gradient-ocean);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+.vel-text-gradient-cosmos {
+  background: var(--vel-gradient-cosmos);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
