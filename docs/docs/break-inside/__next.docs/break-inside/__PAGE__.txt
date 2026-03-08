@@ -1,5 +1,5 @@
 1:"$Sreact.fragment"
-2:I[46193,["/veloracss/_next/static/chunks/a5d7125d10ab5095.js","/veloracss/_next/static/chunks/ce9484d5b21a0c2f.js"],"default"]
+2:I[46193,["/veloracss/_next/static/chunks/a5d7125d10ab5095.js","/veloracss/_next/static/chunks/059556cc28342b2c.js"],"default"]
 4:I[93373,["/veloracss/_next/static/chunks/89d43586d21f2643.js","/veloracss/_next/static/chunks/27e596ffa243fe8c.js"],"OutletBoundary"]
 5:"$Sreact.suspense"
 3:T491,<div class="vel-grid vel-grid-cols-2 vel-gap-4">
@@ -19,5 +19,5 @@
     <code style="color:#a87fff;font-size:12px">vel-break-inside-avoid-page</code>
     <p style="color:#64748b;font-size:12px;margin-top:4px">Prevents page break inside element</p>
   </div>
-</div>0:{"buildId":"spX3knenDkbV1LRYVkiI8","rsc":["$","$1","c",{"children":[["$","$L2",null,{"title":"Break Inside","description":"Utilities for controlling how a column or page should break within an element.","source":"layout.css","table":[{"class":"vel-break-inside-auto","properties":"break-inside: auto"},{"class":"vel-break-inside-avoid","properties":"break-inside: avoid"},{"class":"vel-break-inside-avoid-page","properties":"break-inside: avoid-page"},{"class":"vel-break-inside-avoid-column","properties":"break-inside: avoid-column"}],"examples":[{"label":"Break inside variants","html":"$3"}]}],[["$","script","script-0",{"src":"/veloracss/_next/static/chunks/ce9484d5b21a0c2f.js","async":true}]],["$","$L4",null,{"children":["$","$5",null,{"name":"Next.MetadataOutlet","children":"$@6"}]}]]}],"loading":null,"isPartial":false}
+</div>0:{"buildId":"gWIIfkk6CLu7M_Rp5VI-B","rsc":["$","$1","c",{"children":[["$","$L2",null,{"title":"Break Inside","description":"Utilities for controlling how a column or page should break within an element.","source":"layout.css","table":[{"class":"vel-break-inside-auto","properties":"break-inside: auto"},{"class":"vel-break-inside-avoid","properties":"break-inside: avoid"},{"class":"vel-break-inside-avoid-page","properties":"break-inside: avoid-page"},{"class":"vel-break-inside-avoid-column","properties":"break-inside: avoid-column"}],"examples":[{"label":"Break inside variants","html":"$3"}]}],[["$","script","script-0",{"src":"/veloracss/_next/static/chunks/059556cc28342b2c.js","async":true}]],["$","$L4",null,{"children":["$","$5",null,{"name":"Next.MetadataOutlet","children":"$@6"}]}]]}],"loading":null,"isPartial":false}
 6:null

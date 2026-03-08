@@ -1,4 +1,5 @@
 import { useState, useCallback, useEffect, useRef } from 'react'
+import LZString from 'lz-string'
 import CodeEditor from './components/Editor'
 import Preview from './components/Preview'
 import veloraCss from '../../dist/velora.css?raw'
@@ -327,14 +328,27 @@ const C = {
 // ─── Helpers ──────────────────────────────────────────────────────────────────
 
 function encode(str: string): string {
-  return btoa(new TextEncoder().encode(str).reduce((s, b) => s + String.fromCharCode(b), ''))
+  return LZString.compressToEncodedURIComponent(str)
 }
 
 function decode(str: string): string {
   try {
-    const bytes = Uint8Array.from(atob(str), c => c.charCodeAt(0))
-    return new TextDecoder().decode(bytes)
+    return LZString.decompressFromEncodedURIComponent(str) ?? ''
   } catch { return '' }
+}
+
+async function copyToClipboard(text: string): Promise<void> {
+  try {
+    await navigator.clipboard.writeText(text)
+  } catch {
+    const el = document.createElement('textarea')
+    el.value = text
+    el.style.cssText = 'position:fixed;top:0;left:0;opacity:0'
+    document.body.appendChild(el)
+    el.select()
+    document.execCommand('copy')
+    document.body.removeChild(el)
+  }
 }
 
 // ─── Sub-components ───────────────────────────────────────────────────────────
@@ -421,15 +435,16 @@ export default function App() {
   }, [])
 
   const handleCopy = useCallback(() => {
-    navigator.clipboard.writeText(html)
+    copyToClipboard(html)
     setCopied(true)
     setTimeout(() => setCopied(false), 2000)
   }, [html])
 
   const handleShare = useCallback(() => {
-    const url = `${window.location.origin}${window.location.pathname}#code=${encode(html)}`
-    navigator.clipboard.writeText(url)
-    window.history.replaceState(null, '', `#code=${encode(html)}`)
+    const compressed = encode(html)
+    const url = `${window.location.origin}${window.location.pathname}#code=${compressed}`
+    copyToClipboard(url)
+    window.history.replaceState(null, '', `#code=${compressed}`)
     setShared(true)
     setTimeout(() => setShared(false), 2500)
   }, [html])
