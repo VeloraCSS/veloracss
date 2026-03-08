@@ -482,19 +482,16 @@ const DNA_CSS = `
 function MacTerminal({ filename, children }: { filename: string; children: string }) {
   const [copied, setCopied] = useState(false)
 
-  const handleCopy = useCallback(async () => {
+  const handleCopy = useCallback(() => {
     const plain = children.replace(/<[^>]+>/g, '')
-    try {
-      await navigator.clipboard.writeText(plain)
-    } catch {
-      const el = document.createElement('textarea')
-      el.value = plain
-      el.style.cssText = 'position:fixed;top:0;left:0;opacity:0'
-      document.body.appendChild(el)
-      el.select()
-      document.execCommand('copy')
-      document.body.removeChild(el)
-    }
+    const el = document.createElement('textarea')
+    el.value = plain
+    el.style.cssText = 'position:fixed;top:-9999px;left:-9999px;opacity:0'
+    document.body.appendChild(el)
+    el.focus()
+    el.select()
+    document.execCommand('copy')
+    document.body.removeChild(el)
     setCopied(true)
     setTimeout(() => setCopied(false), 2000)
   }, [children])

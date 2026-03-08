@@ -3,6 +3,9 @@
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
+/* Prevent white flash on overscroll / iOS rubber-banding */
+html, body { background: #060b17; min-height: 100%; }
+
 /* Themed scrollbars */
 ::-webkit-scrollbar              { width: 8px; height: 8px; }
 ::-webkit-scrollbar-track        { background: #060b17; }

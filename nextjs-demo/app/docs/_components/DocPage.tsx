@@ -24,18 +24,15 @@ interface DocPageProps {
 function MacBlock({ filename, code }: { filename: string; code: string }) {
   const [copied, setCopied] = useState(false)
 
-  const handleCopy = useCallback(async () => {
-    try {
-      await navigator.clipboard.writeText(code)
-    } catch {
-      const el = document.createElement('textarea')
-      el.value = code
-      el.style.cssText = 'position:fixed;top:0;left:0;opacity:0'
-      document.body.appendChild(el)
-      el.select()
-      document.execCommand('copy')
-      document.body.removeChild(el)
-    }
+  const handleCopy = useCallback(() => {
+    const el = document.createElement('textarea')
+    el.value = code
+    el.style.cssText = 'position:fixed;top:-9999px;left:-9999px;opacity:0'
+    document.body.appendChild(el)
+    el.focus()
+    el.select()
+    document.execCommand('copy')
+    document.body.removeChild(el)
     setCopied(true)
     setTimeout(() => setCopied(false), 2000)
   }, [code])
