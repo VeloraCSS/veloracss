@@ -1,6 +1,6 @@
 # VeloraCSS — Project Roadmap & Todo
 
-_Last updated: 2026-03-08. Updated at every milestone. Add items here whenever a new task is identified._
+_Last updated: 2026-03-08 (end of session). Updated at every milestone. Add items here whenever a new task is identified._
 
 ---
 
@@ -53,10 +53,15 @@ _Last updated: 2026-03-08. Updated at every milestone. Add items here whenever a
 
 - [x] Tailwind-style marketing homepage (hero, DNA slider, innovation demos, showcase, stats, OSS banner)
 - [x] Unsplash photo showcase section (real UI cards with photos)
-- [x] VeloraCSS logo as browser favicon (`app/icon.png`)
-- [x] OpenGraph / SEO metadata
+- [x] Whale logo icon as browser favicon — site-wide (`app/icon.png`, `public/icon.png`, layout metadata)
+- [x] OpenGraph / SEO metadata (og:image set to whale icon)
 - [x] Live playground at `/veloracss/playground/`
+- [x] Community nav link in homepage header (replaced duplicate Playground)
 - [x] Deployed to GitHub Pages: https://velorax.github.io/veloracss/
+- [x] Discord floating widget on homepage (live presence count + member list)
+- [x] Shared `SiteHeader` component — consistent nav across all pages (Docs/Community/Playground/GitHub/Discord/ThemeToggle)
+- [x] Community components registry page at `/community` (8 seed components, search, filter, modal preview + copy)
+- [x] Community submission guide (`community/README.md` + `community/template.json`)
 
 ---
 
@@ -111,11 +116,18 @@ _Last updated: 2026-03-08. Updated at every milestone. Add items here whenever a
 - [ ] JetBrains plugin
 - [x] Charts — Bar chart (CSS flex + --vel-bar-h) + Progress Ring (SVG + --vel-ring-pct), docs page
 - [x] Dark/light mode toggle on docs site — ThemeToggle in sidebar, persists via localStorage, full CSS-var theming
-- [ ] Create the playground other sites wish they had: https://play.tailwindcss.com/ but with live editing of all 22 components + token sliders + config editor and instant preview and copyable code snippets and exportable sandbox link and more
+- [ ] **Mega Playground upgrade** — Monaco editor + all 29 component gallery tabs + token sliders + config editor + instant preview + exportable share URL (deferred — next session)
 - [ ] Dark/light mode toggle on playground site
 - [x] Calendar component — full month grid, range selection, mini variant, event dots, disabled days, docs page
 - [x] Carousel component — zero-JS :has() + radio inputs, up to 6 slides, dots, captions, arrows
-- [ ] Social media presence (@veloracss)
+- [ ] Social media presence (@veloracss on X/Twitter, Bluesky)
 - [ ] Sponsorship / Open Collective
-- [ ] Create a F12 DevTools panel for inspecting VeloraCSS tokens and components in any site using the framework
+- [ ] F12 DevTools panel — inspect VeloraCSS tokens and component classes live in any page
+- [ ] **velora.config.js GUI** — visual token editor on community/playground page, auto-generates config file
+- [ ] **Community voting** — upvote components on the community page (GitHub stars or simple count API)
+- [ ] **"Made with VeloraCSS" badge** — embeddable shield/badge for READMEs and sites
+- [ ] **Template Gallery** — full-page layout templates (landing page, dashboard, blog, docs, SaaS, portfolio)
+- [ ] **velora diff** CLI — shows which utilities you actually use vs total bundle, outputs a pruned build
+- [ ] **Figma plugin** — generate vel- classes from selected Figma components
+- [ ] **AI-assisted class suggestions** — type what you want ("make this card blue and shadowy") → vel- output
 
