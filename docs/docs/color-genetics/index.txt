@@ -1,0 +1,58 @@
+1:"$Sreact.fragment"
+2:I[79876,["/veloracss/_next/static/chunks/89d43586d21f2643.js","/veloracss/_next/static/chunks/27e596ffa243fe8c.js"],"default"]
+3:I[31722,["/veloracss/_next/static/chunks/89d43586d21f2643.js","/veloracss/_next/static/chunks/27e596ffa243fe8c.js"],"default"]
+4:I[79360,["/veloracss/_next/static/chunks/21679378a9d5730e.js"],"default"]
+5:I[81619,["/veloracss/_next/static/chunks/dfc2e91235f636e9.js"],"default"]
+6:I[46193,["/veloracss/_next/static/chunks/dfc2e91235f636e9.js","/veloracss/_next/static/chunks/c1712021cf274e24.js"],"default"]
+b:I[20654,[],"default"]
+:HL["/veloracss/_next/static/chunks/1830086f80d9b1a4.css","style"]
+:HL["/veloracss/_next/static/chunks/81a643a30f0b41c3.css","style"]
+7:Tb2c,<div class="vel-grid vel-gap-4" style="grid-template-columns:repeat(2,1fr)">
+  <div style="--vel-dna-hue:258" class="vel-card vel-p-4">
+    <div class="vel-text-xs vel-font-bold vel-text-primary vel-mb-3" style="text-transform:uppercase;letter-spacing:0.1em">Hue 258 — Violet</div>
+    <div class="vel-flex vel-gap-2 vel-mb-3">
+      <div style="width:32px;height:32px;border-radius:50%;background:var(--vel-color-primary)"></div>
+      <div style="width:32px;height:32px;border-radius:50%;background:var(--vel-color-primary-light)"></div>
+      <div style="width:32px;height:32px;border-radius:50%;background:var(--vel-surface-2);border:1px solid var(--vel-border-base)"></div>
+    </div>
+    <button class="vel-btn vel-btn-primary vel-btn-sm">Button</button>
+  </div>
+  <div style="--vel-dna-hue:162" class="vel-card vel-p-4">
+    <div class="vel-text-xs vel-font-bold vel-text-primary vel-mb-3" style="text-transform:uppercase;letter-spacing:0.1em">Hue 162 — Emerald</div>
+    <div class="vel-flex vel-gap-2 vel-mb-3">
+      <div style="width:32px;height:32px;border-radius:50%;background:var(--vel-color-primary)"></div>
+      <div style="width:32px;height:32px;border-radius:50%;background:var(--vel-color-primary-light)"></div>
+      <div style="width:32px;height:32px;border-radius:50%;background:var(--vel-surface-2);border:1px solid var(--vel-border-base)"></div>
+    </div>
+    <button class="vel-btn vel-btn-primary vel-btn-sm">Button</button>
+  </div>
+  <div style="--vel-dna-hue:25" class="vel-card vel-p-4">
+    <div class="vel-text-xs vel-font-bold vel-text-primary vel-mb-3" style="text-transform:uppercase;letter-spacing:0.1em">Hue 25 — Amber</div>
+    <div class="vel-flex vel-gap-2 vel-mb-3">
+      <div style="width:32px;height:32px;border-radius:50%;background:var(--vel-color-primary)"></div>
+      <div style="width:32px;height:32px;border-radius:50%;background:var(--vel-color-primary-light)"></div>
+      <div style="width:32px;height:32px;border-radius:50%;background:var(--vel-surface-2);border:1px solid var(--vel-border-base)"></div>
+    </div>
+    <button class="vel-btn vel-btn-primary vel-btn-sm">Button</button>
+  </div>
+  <div style="--vel-dna-hue:205" class="vel-card vel-p-4">
+    <div class="vel-text-xs vel-font-bold vel-text-primary vel-mb-3" style="text-transform:uppercase;letter-spacing:0.1em">Hue 205 — Ocean</div>
+    <div class="vel-flex vel-gap-2 vel-mb-3">
+      <div style="width:32px;height:32px;border-radius:50%;background:var(--vel-color-primary)"></div>
+      <div style="width:32px;height:32px;border-radius:50%;background:var(--vel-color-primary-light)"></div>
+      <div style="width:32px;height:32px;border-radius:50%;background:var(--vel-surface-2);border:1px solid var(--vel-border-base)"></div>
+    </div>
+    <button class="vel-btn vel-btn-primary vel-btn-sm">Button</button>
+  </div>
+</div>0:{"P":null,"b":"GjuuSfQg3kiWugl2BCpOT","c":["","docs","color-genetics",""],"q":"","i":false,"f":[[["",{"children":["docs",{"children":["color-genetics",{"children":["__PAGE__",{}]}]}]},"$undefined","$undefined",true],[["$","$1","c",{"children":[[["$","link","0",{"rel":"stylesheet","href":"/veloracss/_next/static/chunks/1830086f80d9b1a4.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}],["$","link","1",{"rel":"stylesheet","href":"/veloracss/_next/static/chunks/81a643a30f0b41c3.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}]],["$","html",null,{"lang":"en","children":["$","body",null,{"children":["$","$L2",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L3",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":[["$","$L4",null,{}],[]],"forbidden":"$undefined","unauthorized":"$undefined"}]}]}]]}],{"children":[["$","$1","c",{"children":[[["$","script","script-0",{"src":"/veloracss/_next/static/chunks/dfc2e91235f636e9.js","async":true,"nonce":"$undefined"}]],["$","div",null,{"style":{"display":"flex","minHeight":"100vh","background":"#060b17"},"children":[["$","$L5",null,{}],["$","main",null,{"style":{"marginLeft":"260px","flex":1,"minHeight":"100vh"},"children":["$","$L2",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L3",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]}]]}]]}],{"children":[["$","$1","c",{"children":[null,["$","$L2",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L3",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}],{"children":[["$","$1","c",{"children":[["$","$L6",null,{"title":"Color Genetics","description":"VeloraCSS derives its entire color system from a single CSS variable — --vel-dna-hue. Change one number and every color on the page updates: primary, surfaces, borders, text, and all semantic colors.","source":"tokens.css","table":[{"class":"--vel-dna-hue","properties":"Master hue angle (0–360). Default: 258 (violet)"},{"class":"--vel-color-primary","properties":"oklch(65% 0.21 var(--vel-dna-hue))"},{"class":"--vel-color-primary-light","properties":"oklch(80% 0.14 var(--vel-dna-hue))"},{"class":"--vel-color-primary-dim","properties":"oklch(50% 0.22 var(--vel-dna-hue))"},{"class":"--vel-surface-0","properties":"oklch(7% 0.02 var(--vel-dna-hue))"},{"class":"--vel-surface-1","properties":"oklch(10% 0.025 var(--vel-dna-hue))"},{"class":"--vel-surface-2","properties":"oklch(13% 0.03 var(--vel-dna-hue))"},{"class":"--vel-border-base","properties":"oklch(26% 0.045 var(--vel-dna-hue))"},{"class":"--vel-text-base","properties":"oklch(92% 0.015 var(--vel-dna-hue))"},{"class":"--vel-text-muted","properties":"oklch(50% 0.04 var(--vel-dna-hue))"}],"examples":[{"label":"Four DNA hues — one token change recolors everything","html":"$7"},{"label":"Full component stack — all colors derived from one hue","html":"<div style=\"--vel-dna-hue:300\" class=\"vel-card vel-p-5\">\n  <div class=\"vel-flex vel-items-center vel-gap-3 vel-mb-4\">\n    <div class=\"vel-avatar vel-avatar-md vel-bg-primary vel-text-white vel-flex vel-items-center vel-justify-center vel-font-bold\">VX</div>\n    <div>\n      <div class=\"vel-text-base vel-font-bold\">VeloraX Team</div>\n      <div class=\"vel-text-muted vel-text-sm\">--vel-dna-hue: 300</div>\n    </div>\n    <div class=\"vel-ml-auto\"><span class=\"vel-badge vel-badge-primary\">Active</span></div>\n  </div>\n  <div style=\"height:4px;border-radius:2px;background:var(--vel-surface-3);overflow:hidden;margin-bottom:1rem\">\n    <div style=\"width:72%;height:100%;background:var(--vel-color-primary);border-radius:2px\"></div>\n  </div>\n  <div class=\"vel-flex vel-gap-2\">\n    <button class=\"vel-btn vel-btn-primary vel-btn-sm\">Accept</button>\n    <button class=\"vel-btn vel-btn-secondary vel-btn-sm\">Decline</button>\n  </div>\n</div>"}]}],["$L8"],"$L9"]}],{},null,false,false]},null,false,false]},null,false,false]},null,false,false],"$La",false]],"m":"$undefined","G":["$b",[]],"S":true}
+c:I[93373,["/veloracss/_next/static/chunks/89d43586d21f2643.js","/veloracss/_next/static/chunks/27e596ffa243fe8c.js"],"OutletBoundary"]
+d:"$Sreact.suspense"
+f:I[93373,["/veloracss/_next/static/chunks/89d43586d21f2643.js","/veloracss/_next/static/chunks/27e596ffa243fe8c.js"],"ViewportBoundary"]
+11:I[93373,["/veloracss/_next/static/chunks/89d43586d21f2643.js","/veloracss/_next/static/chunks/27e596ffa243fe8c.js"],"MetadataBoundary"]
+8:["$","script","script-0",{"src":"/veloracss/_next/static/chunks/c1712021cf274e24.js","async":true,"nonce":"$undefined"}]
+9:["$","$Lc",null,{"children":["$","$d",null,{"name":"Next.MetadataOutlet","children":"$@e"}]}]
+a:["$","$1","h",{"children":[null,["$","$Lf",null,{"children":"$L10"}],["$","div",null,{"hidden":true,"children":["$","$L11",null,{"children":["$","$d",null,{"name":"Next.Metadata","children":"$L12"}]}]}],null]}]
+10:[["$","meta","0",{"charSet":"utf-8"}],["$","meta","1",{"name":"viewport","content":"width=device-width, initial-scale=1"}],["$","meta","2",{"name":"color-scheme","content":"dark"}]]
+13:I[25251,["/veloracss/_next/static/chunks/89d43586d21f2643.js","/veloracss/_next/static/chunks/27e596ffa243fe8c.js"],"IconMark"]
+e:null
+12:[["$","title","0",{"children":"VeloraCSS — Next.js Demo"}],["$","meta","1",{"name":"description","content":"VeloraCSS utility-first CSS framework working with Next.js App Router"}],["$","link","2",{"rel":"icon","href":"/veloracss/favicon.ico?favicon.0b3bf435.ico","sizes":"256x256","type":"image/x-icon"}],["$","$L13","3",{}]]

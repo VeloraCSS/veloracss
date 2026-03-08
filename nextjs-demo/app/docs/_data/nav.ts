@@ -215,10 +215,12 @@ export const navSections: NavSection[] = [
   {
     title: 'Innovations',
     items: [
+      { label: 'Color Genetics', slug: 'color-genetics' },
       { label: 'Container Queries', slug: 'container-queries' },
       { label: 'CSS State Machine', slug: 'css-state-machine' },
       { label: 'Scope Theming', slug: 'scope-theming' },
       { label: 'Smart Forms', slug: 'smart-forms' },
+      { label: 'Fluid Scale', slug: 'fluid-scale' },
     ],
   },
 ]
