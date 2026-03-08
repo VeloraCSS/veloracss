@@ -75,16 +75,19 @@ _Last updated: 2026-03-08 (end of session). Updated at every milestone. Add item
 
 ---
 
-## 🔴 IMMEDIATE — Monday Launch
+## 🔴 IMMEDIATE — Monday Evening Launch
 
-- [ ] **npm publish** — run `npm publish` Monday morning (24h cooldown lifts ~6 AM Sun→Mon)
+- [ ] **npm publish** — Monday EVENING after work
   - Token is set: automation token with 2FA bypass in .npmrc
   - Just run: `npm run build && npm publish`
 - [ ] **Git release tag** — `git tag v1.0.0 && git push --tags`
 - [ ] **GitHub Release** — draft release from tag v1.0.0 with changelog notes
-- [ ] **Deprecate old npm versions** (once cooldown lifts):
+- [ ] **Deprecate old npm versions**:
   - `npm deprecate veloracss@0.1.0 "Upgrade to v1.0.0 — full rewrite"`
   - `npm deprecate veloracss@0.1.2 "Upgrade to v1.0.0 — full rewrite"`
+- [ ] **Bluesky** — grab @veloracss handle (Monday evening)
+- [ ] **X/Twitter** — grab @veloracss handle (decide Monday evening)
+- [ ] **Discord post** — announce community page, invite component submissions
 
 ---
 
@@ -116,7 +119,7 @@ _Last updated: 2026-03-08 (end of session). Updated at every milestone. Add item
 - [ ] JetBrains plugin
 - [x] Charts — Bar chart (CSS flex + --vel-bar-h) + Progress Ring (SVG + --vel-ring-pct), docs page
 - [x] Dark/light mode toggle on docs site — ThemeToggle in sidebar, persists via localStorage, full CSS-var theming
-- [ ] **Mega Playground upgrade** — Monaco editor + all 29 component gallery tabs + token sliders + config editor + instant preview + exportable share URL (deferred — next session)
+- [ ] **Mega Playground upgrade** — TOMORROW FIRST. Monaco editor + all 29 component gallery tabs + no-code token slider UI + config editor + instant preview + exportable share URL
 - [ ] Dark/light mode toggle on playground site
 - [x] Calendar component — full month grid, range selection, mini variant, event dots, disabled days, docs page
 - [x] Carousel component — zero-JS :has() + radio inputs, up to 6 slides, dots, captions, arrows
