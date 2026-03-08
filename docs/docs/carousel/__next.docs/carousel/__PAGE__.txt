@@ -1,0 +1,91 @@
+1:"$Sreact.fragment"
+2:I[46193,["/veloracss/_next/static/chunks/b4285017d777c081.js","/veloracss/_next/static/chunks/a9465a69c19c69f8.js"],"default"]
+7:I[93373,["/veloracss/_next/static/chunks/89d43586d21f2643.js","/veloracss/_next/static/chunks/27e596ffa243fe8c.js"],"OutletBoundary"]
+8:"$Sreact.suspense"
+3:Taf1,<div style="padding:24px;background:#060b17;border-radius:12px;font-family:system-ui,sans-serif;">
+  <div class="vel-carousel">
+    <input type="radio" name="demo-carousel" id="vel-slide-1" checked>
+    <input type="radio" name="demo-carousel" id="vel-slide-2">
+    <input type="radio" name="demo-carousel" id="vel-slide-3">
+    <div class="vel-carousel-track">
+      <div class="vel-carousel-slide">
+        <div class="vel-card vel-p-6" style="border-radius:0;border:none;min-height:180px">
+          <div class="vel-text-primary vel-font-bold vel-mb-2">Slide 1 — Color Genetics</div>
+          <div class="vel-text-muted vel-text-sm">One hue drives every color on the page via oklch(). Change --vel-dna-hue and 50+ colors update instantly.</div>
+          <div class="vel-flex vel-gap-2 vel-mt-4">
+            <div style="width:32px;height:32px;border-radius:50%;background:var(--vel-color-primary)"></div>
+            <div style="width:32px;height:32px;border-radius:50%;background:var(--vel-color-success)"></div>
+            <div style="width:32px;height:32px;border-radius:50%;background:var(--vel-color-danger)"></div>
+          </div>
+        </div>
+      </div>
+      <div class="vel-carousel-slide">
+        <div class="vel-card vel-p-6" style="border-radius:0;border:none;min-height:180px">
+          <div class="vel-text-primary vel-font-bold vel-mb-2">Slide 2 — CSS State Machine</div>
+          <div class="vel-text-muted vel-text-sm">Zero-JS tabs, toggles, and carousels using :has() + radio inputs. No JavaScript required for state management.</div>
+          <div class="vel-flex vel-gap-2 vel-mt-4">
+            <span class="vel-badge vel-badge-primary">:has()</span>
+            <span class="vel-badge vel-badge-success">Zero JS</span>
+            <span class="vel-badge vel-badge-warning">radio inputs</span>
+          </div>
+        </div>
+      </div>
+      <div class="vel-carousel-slide">
+        <div class="vel-card vel-p-6" style="border-radius:0;border:none;min-height:180px">
+          <div class="vel-text-primary vel-font-bold vel-mb-2">Slide 3 — Fluid Scale</div>
+          <div class="vel-text-muted vel-text-sm">All spacing and typography tokens use clamp() — smooth scaling between breakpoints with zero media queries.</div>
+          <div class="vel-flex vel-gap-2 vel-mt-4">
+            <button class="vel-btn vel-btn-primary vel-btn-sm">Primary</button>
+            <button class="vel-btn vel-btn-secondary vel-btn-sm">Secondary</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="vel-carousel-dots">
+      <label class="vel-carousel-dot" for="vel-slide-1">1</label>
+      <label class="vel-carousel-dot" for="vel-slide-2">2</label>
+      <label class="vel-carousel-dot" for="vel-slide-3">3</label>
+    </div>
+  </div>
+</div>4:T8d6,<div style="padding:24px;background:#060b17;border-radius:12px;font-family:system-ui,sans-serif;">
+  <div class="vel-carousel vel-carousel-img" style="position:relative;">
+    <input type="radio" name="img-carousel" id="vel-slide-1" checked>
+    <input type="radio" name="img-carousel" id="vel-slide-2">
+    <input type="radio" name="img-carousel" id="vel-slide-3">
+    <div class="vel-carousel-track">
+      <div class="vel-carousel-slide" style="background:var(--vel-surface-2);min-height:200px;display:flex;align-items:center;justify-content:center;position:relative">
+        <div style="font-size:3rem">&#127754;</div>
+        <div class="vel-carousel-caption">
+          <div class="vel-carousel-caption-title">Ocean Theme</div>
+          <div class="vel-carousel-caption-sub">data-vel-theme="ocean" &middot; hue 205</div>
+        </div>
+      </div>
+      <div class="vel-carousel-slide" style="background:var(--vel-surface-2);min-height:200px;display:flex;align-items:center;justify-content:center;position:relative">
+        <div style="font-size:3rem">&#127807;</div>
+        <div class="vel-carousel-caption">
+          <div class="vel-carousel-caption-title">Forest Theme</div>
+          <div class="vel-carousel-caption-sub">data-vel-theme="forest" &middot; hue 145</div>
+        </div>
+      </div>
+      <div class="vel-carousel-slide" style="background:var(--vel-surface-2);min-height:200px;display:flex;align-items:center;justify-content:center;position:relative">
+        <div style="font-size:3rem">&#128293;</div>
+        <div class="vel-carousel-caption">
+          <div class="vel-carousel-caption-title">Ember Theme</div>
+          <div class="vel-carousel-caption-sub">data-vel-theme="ember" &middot; hue 22</div>
+        </div>
+      </div>
+    </div>
+    <div class="vel-carousel-arrows">
+      <label class="vel-carousel-prev" for="vel-slide-3" title="Previous">&#8592;</label>
+      <label class="vel-carousel-next" for="vel-slide-2" title="Next">&#8594;</label>
+    </div>
+    <div class="vel-carousel-dots">
+      <label class="vel-carousel-dot" for="vel-slide-1">1</label>
+      <label class="vel-carousel-dot" for="vel-slide-2">2</label>
+      <label class="vel-carousel-dot" for="vel-slide-3">3</label>
+    </div>
+  </div>
+</div>0:{"buildId":"YxfbBzveisiQxQ1Je3SVS","rsc":["$","$1","c",{"children":[["$","$L2",null,{"title":"Carousel","description":"A zero-JS carousel component using :has() + radio inputs. Slides are controlled by CSS state machine — no JavaScript required. Supports up to 6 slides.","source":"carousel.css","table":[{"class":"vel-carousel","properties":"Root container — clips overflow, positions relative, applies border-radius"},{"class":"vel-carousel-track","properties":"Flex row holding all slides — animated via translateX on :has() state"},{"class":"vel-carousel-slide","properties":"Individual slide — min-width 100%, flex-shrink 0 to fill container"},{"class":"vel-carousel-dots","properties":"Dot navigation bar — flex row centered below the track"},{"class":"vel-carousel-dot","properties":"Label element targeting a radio input — acts as clickable dot indicator"},{"class":"vel-carousel-arrows","properties":"Absolute overlay row for prev/next arrow labels — pointer-events managed"},{"class":"vel-carousel-prev","properties":"Previous arrow label — circular button, backdrop blur, left side"},{"class":"vel-carousel-next","properties":"Next arrow label — circular button, backdrop blur, right side"},{"class":"vel-carousel-img","properties":"Modifier on vel-carousel — sets slides to relative for caption overlay"},{"class":"vel-carousel-caption","properties":"Absolute overlay at slide bottom — gradient fade from black"},{"class":"vel-carousel-caption-title","properties":"Bold heading text inside vel-carousel-caption"},{"class":"vel-carousel-caption-sub","properties":"Muted subtitle text inside vel-carousel-caption"}],"examples":[{"label":"Card content carousel","html":"$3"},{"label":"Image carousel with captions and arrows","html":"$4"}]}],["$L5"],"$L6"]}],"loading":null,"isPartial":false}
+5:["$","script","script-0",{"src":"/veloracss/_next/static/chunks/a9465a69c19c69f8.js","async":true}]
+6:["$","$L7",null,{"children":["$","$8",null,{"name":"Next.MetadataOutlet","children":"$@9"}]}]
+9:null

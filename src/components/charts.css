@@ -1,0 +1,265 @@
+/* VeloraCSS — Charts Component */
+
+/* ════════════════════════════════════════════
+   BAR CHART
+   Usage: set --vel-bar-h on .vel-chart-bar-fill
+   to control each bar's height (0%–100%).
+   ════════════════════════════════════════════ */
+
+/* ─── Outer container ─────────────────────── */
+
+.vel-chart-bar {
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  gap: var(--vel-space-3);
+  padding: var(--vel-space-4) var(--vel-space-4) var(--vel-space-2) var(--vel-space-8);
+  height: 12rem;
+  width: 100%;
+}
+
+/* ─── Y-axis line ─────────────────────────── */
+
+.vel-chart-axis-y {
+  position: absolute;
+  left: var(--vel-space-8);
+  top: var(--vel-space-4);
+  bottom: var(--vel-space-2);
+  width: 1px;
+  background-color: var(--vel-border-base);
+}
+
+/* ─── Horizontal grid lines ───────────────── */
+
+.vel-chart-grid {
+  position: absolute;
+  left: var(--vel-space-8);
+  right: var(--vel-space-4);
+  top: var(--vel-space-4);
+  bottom: var(--vel-space-2);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  pointer-events: none;
+}
+
+.vel-chart-grid-line {
+  width: 100%;
+  height: 1px;
+  background-color: var(--vel-border-subtle);
+}
+
+/* ─── Bar group (one column + label) ─────── */
+
+.vel-chart-bar-group {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  flex: 1;
+  height: 100%;
+  gap: var(--vel-space-1);
+}
+
+/* ─── Value label above bar ───────────────── */
+
+.vel-chart-bar-value {
+  font-size: var(--vel-text-xs);
+  font-weight: var(--vel-font-semibold);
+  color: var(--vel-color-muted);
+  line-height: 1;
+  white-space: nowrap;
+  transition: color 150ms var(--vel-ease-out);
+}
+
+.vel-chart-bar-group:hover .vel-chart-bar-value {
+  color: var(--vel-color-text);
+}
+
+/* ─── The bar fill ────────────────────────── */
+
+.vel-chart-bar-fill {
+  width: 100%;
+  /* Developer sets --vel-bar-h: 75% on this element */
+  height: var(--vel-bar-h, 50%);
+  border-radius: var(--vel-radius-md) var(--vel-radius-md) 0 0;
+  background-color: var(--vel-color-primary);
+  transition: height 500ms var(--vel-ease-spring),
+              background-color 200ms var(--vel-ease-out),
+              opacity 200ms var(--vel-ease-out);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Subtle highlight stripe */
+.vel-chart-bar-fill::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.12) 0%,
+    transparent 60%
+  );
+  pointer-events: none;
+}
+
+.vel-chart-bar-group:hover .vel-chart-bar-fill {
+  opacity: 0.85;
+}
+
+/* ─── Bar label below bar ─────────────────── */
+
+.vel-chart-bar-label {
+  font-size: var(--vel-text-xs);
+  color: var(--vel-color-muted);
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+  margin-top: var(--vel-space-1);
+}
+
+/* ─── Bar color variants ──────────────────── */
+
+.vel-chart-bar-primary .vel-chart-bar-fill  { background-color: var(--vel-color-primary); }
+.vel-chart-bar-success .vel-chart-bar-fill  { background-color: var(--vel-color-success); }
+.vel-chart-bar-danger  .vel-chart-bar-fill  { background-color: var(--vel-color-danger);  }
+.vel-chart-bar-warning .vel-chart-bar-fill  { background-color: var(--vel-color-warning); }
+.vel-chart-bar-info    .vel-chart-bar-fill  { background-color: var(--vel-color-info);    }
+
+/* Per-bar color via inline variant class on the fill element */
+.vel-chart-bar-fill-primary { background-color: var(--vel-color-primary); }
+.vel-chart-bar-fill-success { background-color: var(--vel-color-success); }
+.vel-chart-bar-fill-danger  { background-color: var(--vel-color-danger);  }
+.vel-chart-bar-fill-warning { background-color: var(--vel-color-warning); }
+.vel-chart-bar-fill-info    { background-color: var(--vel-color-info);    }
+
+
+/* ════════════════════════════════════════════
+   PROGRESS RING
+   Developer supplies an SVG with r="42" cx="50" cy="50".
+   The circumference for r=42 is 2π×42 ≈ 263.9.
+   stroke-dasharray is set via inline style or
+   --vel-ring-pct on .vel-chart-ring-fill.
+
+   Rendered track path should have:
+     r="42" cx="50" cy="50"
+   Rendered fill path should have:
+     r="42" cx="50" cy="50"
+     stroke-dasharray="263.9"
+     stroke-dashoffset: calc(263.9 - (263.9 * var(--vel-ring-pct, 0) / 100))
+   ════════════════════════════════════════════ */
+
+/* ─── Wrapper ─────────────────────────────── */
+
+.vel-chart-ring {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 6rem;
+  height: 6rem;
+}
+
+/* ─── SVG element ─────────────────────────── */
+
+.vel-chart-ring-svg {
+  width: 100%;
+  height: 100%;
+  transform: rotate(-90deg);
+  overflow: visible;
+}
+
+/* ─── Track (background circle) ──────────── */
+
+.vel-chart-ring-track {
+  fill: none;
+  stroke: var(--vel-surface-3);
+  stroke-width: 8;
+  stroke-linecap: round;
+}
+
+/* ─── Fill (progress arc) ─────────────────── */
+
+.vel-chart-ring-fill {
+  fill: none;
+  stroke: var(--vel-color-primary);
+  stroke-width: 8;
+  stroke-linecap: round;
+  /*
+    Circumference for r=42: 263.894
+    stroke-dasharray must be set to 263.894 in HTML.
+    stroke-dashoffset controls the progress:
+      offset = 263.894 - (263.894 * pct / 100)
+    Set via inline style or CSS property below.
+  */
+  stroke-dasharray: 263.894;
+  stroke-dashoffset: calc(263.894 - (263.894 * var(--vel-ring-pct, 0) / 100));
+  transition: stroke-dashoffset 600ms var(--vel-ease-out),
+              stroke 200ms var(--vel-ease-out);
+}
+
+/* ─── Label (centered text) ───────────────── */
+
+.vel-chart-ring-label {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--vel-text-sm);
+  font-weight: var(--vel-font-bold);
+  color: var(--vel-color-text);
+  line-height: var(--vel-leading-tight);
+  text-align: center;
+  pointer-events: none;
+}
+
+.vel-chart-ring-label-sub {
+  font-size: var(--vel-text-xs);
+  font-weight: var(--vel-font-normal);
+  color: var(--vel-color-muted);
+  margin-top: 0.1rem;
+}
+
+/* ─── Size variants ───────────────────────── */
+
+.vel-chart-ring-sm {
+  width: 4rem;
+  height: 4rem;
+}
+
+.vel-chart-ring-sm .vel-chart-ring-track,
+.vel-chart-ring-sm .vel-chart-ring-fill {
+  stroke-width: 7;
+}
+
+.vel-chart-ring-sm .vel-chart-ring-label {
+  font-size: var(--vel-text-xs);
+}
+
+.vel-chart-ring-lg {
+  width: 9rem;
+  height: 9rem;
+}
+
+.vel-chart-ring-lg .vel-chart-ring-track,
+.vel-chart-ring-lg .vel-chart-ring-fill {
+  stroke-width: 9;
+}
+
+.vel-chart-ring-lg .vel-chart-ring-label {
+  font-size: var(--vel-text-lg);
+}
+
+/* ─── Color variants ──────────────────────── */
+
+.vel-chart-ring-primary .vel-chart-ring-fill { stroke: var(--vel-color-primary); }
+.vel-chart-ring-success .vel-chart-ring-fill { stroke: var(--vel-color-success); }
+.vel-chart-ring-danger  .vel-chart-ring-fill { stroke: var(--vel-color-danger);  }
+.vel-chart-ring-warning .vel-chart-ring-fill { stroke: var(--vel-color-warning); }
+.vel-chart-ring-info    .vel-chart-ring-fill { stroke: var(--vel-color-info);    }

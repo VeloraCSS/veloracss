@@ -1,0 +1,145 @@
+/* VeloraCSS — Carousel Component
+   Zero-JS carousel using :has() + radio inputs.
+   Supports up to 6 slides.
+*/
+
+/* ─── Container ─────────────────────────────────────────────────────────────── */
+.vel-carousel {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--vel-radius-lg);
+}
+
+/* Hide radio inputs */
+.vel-carousel input[type="radio"] {
+  display: none;
+}
+
+/* ─── Track ─────────────────────────────────────────────────────────────────── */
+.vel-carousel-track {
+  display: flex;
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: transform;
+}
+
+/* ─── Slide ─────────────────────────────────────────────────────────────────── */
+.vel-carousel-slide {
+  min-width: 100%;
+  flex-shrink: 0;
+}
+
+/* ─── Slide position via :has() ─────────────────────────────────────────────── */
+.vel-carousel:has(#vel-slide-1:checked) .vel-carousel-track { transform: translateX(0%); }
+.vel-carousel:has(#vel-slide-2:checked) .vel-carousel-track { transform: translateX(-100%); }
+.vel-carousel:has(#vel-slide-3:checked) .vel-carousel-track { transform: translateX(-200%); }
+.vel-carousel:has(#vel-slide-4:checked) .vel-carousel-track { transform: translateX(-300%); }
+.vel-carousel:has(#vel-slide-5:checked) .vel-carousel-track { transform: translateX(-400%); }
+.vel-carousel:has(#vel-slide-6:checked) .vel-carousel-track { transform: translateX(-500%); }
+
+/* ─── Navigation dots ───────────────────────────────────────────────────────── */
+.vel-carousel-dots {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.875rem 1rem;
+  background: var(--vel-surface-1);
+}
+
+.vel-carousel-dot {
+  display: inline-flex;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: var(--vel-color-muted);
+  font-size: 0.7rem;
+  font-weight: 600;
+  border: 1.5px solid var(--vel-border-base);
+  background: var(--vel-surface-2);
+  transition: background 0.15s, border-color 0.15s, color 0.15s, transform 0.15s;
+  user-select: none;
+}
+
+.vel-carousel-dot:hover {
+  background: var(--vel-surface-3);
+  color: var(--vel-color-text);
+}
+
+/* Active dot */
+.vel-carousel:has(#vel-slide-1:checked) .vel-carousel-dot[for="vel-slide-1"],
+.vel-carousel:has(#vel-slide-2:checked) .vel-carousel-dot[for="vel-slide-2"],
+.vel-carousel:has(#vel-slide-3:checked) .vel-carousel-dot[for="vel-slide-3"],
+.vel-carousel:has(#vel-slide-4:checked) .vel-carousel-dot[for="vel-slide-4"],
+.vel-carousel:has(#vel-slide-5:checked) .vel-carousel-dot[for="vel-slide-5"],
+.vel-carousel:has(#vel-slide-6:checked) .vel-carousel-dot[for="vel-slide-6"] {
+  background: var(--vel-color-primary);
+  border-color: var(--vel-color-primary);
+  color: #fff;
+  transform: scale(1.1);
+}
+
+/* ─── Image carousel variant ────────────────────────────────────────────────── */
+.vel-carousel-img .vel-carousel-slide {
+  position: relative;
+}
+
+.vel-carousel-caption {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  padding: 1rem 1.25rem;
+  background: linear-gradient(to top, rgb(0 0 0 / 0.7), transparent);
+  color: #fff;
+}
+
+.vel-carousel-caption-title {
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+.vel-carousel-caption-sub {
+  font-size: 0.8125rem;
+  color: rgb(255 255 255 / 0.75);
+  margin-top: 0.125rem;
+}
+
+/* ─── Arrow nav labels (prev/next) ──────────────────────────────────────────── */
+.vel-carousel-arrows {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  pointer-events: none;
+  padding: 0 0.75rem;
+  box-sizing: border-box;
+}
+
+.vel-carousel-prev,
+.vel-carousel-next {
+  pointer-events: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: rgb(0 0 0 / 0.45);
+  color: #fff;
+  cursor: pointer;
+  font-size: 1rem;
+  line-height: 1;
+  user-select: none;
+  border: 1px solid rgb(255 255 255 / 0.15);
+  transition: background 0.15s;
+  backdrop-filter: blur(4px);
+}
+
+.vel-carousel-prev:hover,
+.vel-carousel-next:hover {
+  background: rgb(0 0 0 / 0.65);
+}

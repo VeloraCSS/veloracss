@@ -1,0 +1,41 @@
+(globalThis.TURBOPACK||(globalThis.TURBOPACK=[])).push(["object"==typeof document?document.currentScript:void 0,46193,e=>{"use strict";var r=e.i(92944),o=e.i(34726);function t(e){return e.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;")}function l(e,r){return`<span class="${e}">${r}</span>`}function a({filename:e,code:a}){var c;let[s,d]=(0,o.useState)(!1),i=(0,o.useCallback)(async()=>{try{await navigator.clipboard.writeText(a)}catch{let e=document.createElement("textarea");e.value=a,e.style.cssText="position:fixed;top:-9999px;left:-9999px;opacity:0",document.body.appendChild(e),e.focus(),e.select(),document.execCommand("copy"),document.body.removeChild(e)}d(!0),setTimeout(()=>d(!1),2e3)},[a]);return(0,r.jsxs)("div",{style:{background:"#0C0C0C",borderRadius:"0 0 0.625rem 0.625rem",overflow:"hidden",border:"1px solid #2a2a2a",borderTop:"none"},children:[(0,r.jsxs)("div",{style:{display:"flex",alignItems:"center",height:"32px",padding:"0 0.875rem",background:"#1C1C1C",borderBottom:"1px solid #2a2a2a"},children:[(0,r.jsxs)("div",{style:{display:"flex",gap:"6px",alignItems:"center",flexShrink:0},children:[(0,r.jsx)("div",{style:{width:12,height:12,borderRadius:"50%",background:"#ff5f57"}}),(0,r.jsx)("div",{style:{width:12,height:12,borderRadius:"50%",background:"#ffbd2e"}}),(0,r.jsx)("div",{style:{width:12,height:12,borderRadius:"50%",background:"#28c840"}})]}),(0,r.jsx)("span",{style:{flex:1,textAlign:"center",fontSize:"0.72rem",color:"#777",fontFamily:"'Cascadia Code', Consolas, monospace"},children:e}),(0,r.jsx)("button",{onClick:i,style:{fontSize:"0.68rem",fontWeight:600,padding:"0.15rem 0.625rem",height:"22px",cursor:"pointer",border:"none",borderRadius:"0.25rem",fontFamily:"'Cascadia Code', Consolas, monospace",transition:"all 0.15s",flexShrink:0,background:s?"rgba(14,203,129,0.15)":"rgba(255,255,255,0.08)",color:s?"#0ecb81":"#666"},children:s?"✓ Copied":"Copy"})]}),(0,r.jsx)("pre",{style:{margin:0,padding:"1rem 1.25rem",fontSize:"0.775rem",lineHeight:1.75,color:"#CCCCCC",whiteSpace:"pre-wrap",wordBreak:"break-all",fontFamily:"'Cascadia Code', Consolas, 'Courier New', monospace",overflowX:"auto",maxHeight:"320px",overflowY:"auto",background:"#0C0C0C"},children:(0,r.jsx)("code",{dangerouslySetInnerHTML:{__html:(c=a).trimStart().startsWith("<")?function(e){let r=[],o=0;for(;o<e.length;)if(e.startsWith("<!--",o)){let a=e.indexOf("-->",o);if(-1===a){r.push(t(e.slice(o)));break}r.push(l("tc-comment",t(e.slice(o,a+3)))),o=a+3}else if("<"===e[o]){let a=e.indexOf(">",o);if(-1===a){r.push(t(e[o])),o++;continue}r.push(function(e){let r="",o=0;r+=l("tc-kw","&lt;"),"/"===e[++o]&&(r+=l("tc-kw","/"),o++);let a=e.slice(o).match(/^[\w-]+/);for(a&&(r+=l("tc-cls",t(a[0])),o+=a[0].length);o<e.length;){let a=e[o];if(/\s/.test(a)){r+=a,o++;continue}if("/"===a||">"===a)break;let c=e.slice(o).match(/^[\w-]+/);if(!c){r+=t(a),o++;continue}let s=c[0];if("="===e[o+=s.length]){if(r+=l("tc-prop",t(s))+l("tc-kw","="),'"'===e[++o]){let a=e.indexOf('"',o+1),c=t(e.slice(o+1,a)).replace(/(vel-[\w:.-]+)/g,(e,r)=>l("tc-fn",r));r+=l("tc-kw","&quot;")+l("tc-str",c)+l("tc-kw","&quot;"),o=a+1}}else r+=l("tc-prop",t(s))}return o<e.length&&"/"===e[o]&&(r+=l("tc-kw","/"),o++),o<e.length&&">"===e[o]&&(r+=l("tc-kw","&gt;")),r}(e.slice(o,a+1))),o=a+1}else{let l=e.indexOf("<",o),a=-1===l?e.slice(o):e.slice(o,l);r.push(t(a)),o=-1===l?e.length:l}return r.join("")}(c):t(c).replace(/(\/\*[\s\S]*?\*\/)/g,e=>l("tc-comment",e)).replace(/\b(oklch|var|clamp|calc|min|max|rgb|hsl|linear-gradient)\b(?=\()/g,e=>l("tc-fn",e)).replace(/(^|[\n\r])(\s*)(--?[\w-]+)(\s*:)/g,(e,r,o,t,a)=>r+o+l("tc-prop",t)+a).replace(RegExp("(?<![#\\w])(\\d+\\.?\\d*)(px|rem|em|%|deg|ms|s|vh|vw)?\\b","g"),(e,r,o)=>l("tc-num",r+(o??""))).replace(/#([0-9a-fA-F]{3,8})\b/g,e=>l("tc-num",e)).replace(/'([^']*)'/g,(e,r)=>l("tc-str",`'${r}'`))}})})]})}let c=`
+  .vdoc-page { max-width: 900px; padding: 2.5rem; font-family: system-ui, -apple-system, sans-serif; color: var(--vel-color-text); }
+  .vdoc-breadcrumb { font-size: 0.78rem; color: var(--vel-color-muted); margin-bottom: 1rem; letter-spacing: 0.01em; }
+  .vdoc-breadcrumb-sep { color: var(--vel-color-muted); opacity: 0.5; margin: 0 0.3em; }
+  .vdoc-breadcrumb-title { color: var(--vel-color-primary); }
+  .vdoc-title {
+    font-size: 2rem; font-weight: 700; color: var(--vel-color-text);
+    margin: 0 0 0.5rem; letter-spacing: -0.02em; line-height: 1.2;
+    padding-bottom: 0.6rem; border-bottom: 2px solid transparent; display: inline-block;
+    border-image: linear-gradient(90deg, var(--vel-color-primary), var(--vel-color-primary-hover)) 1;
+  }
+  .vdoc-source-badge {
+    display: inline-block; font-family: 'Cascadia Code', Consolas, monospace;
+    font-size: 0.72rem; color: var(--vel-color-muted);
+    background: var(--vel-surface-1); border: 1px solid var(--vel-border-base);
+    border-radius: 99px; padding: 2px 10px; letter-spacing: 0.02em; margin-top: 0.75rem;
+  }
+  .vdoc-description { color: var(--vel-color-muted); font-size: 1.05rem; line-height: 1.7; margin-top: 1.25rem; margin-bottom: 2.5rem; }
+  .vdoc-table-wrap { border: 1px solid var(--vel-border-base); border-radius: 0.75rem; overflow: hidden; }
+  .vdoc-table { width: 100%; border-collapse: collapse; font-size: 0.82rem; }
+  .vdoc-table thead tr { background: var(--vel-surface-1); }
+  .vdoc-table th {
+    padding: 0.55rem 1rem; text-align: left;
+    font-size: 0.65rem; font-weight: 600; color: var(--vel-color-muted);
+    text-transform: uppercase; letter-spacing: 0.08em;
+    border-bottom: 1px solid var(--vel-border-base);
+  }
+  .vdoc-table tbody tr { background: var(--vel-surface-2); transition: background 0.1s; }
+  .vdoc-table tbody tr:hover { background: oklch(65% 0.21 var(--vel-dna-hue, 258) / 0.06); }
+  .vdoc-table td { padding: 0.55rem 1rem; font-family: 'Cascadia Code', Consolas, monospace; }
+  .vdoc-table td:first-child { font-size: 0.8rem; color: var(--vel-color-primary); }
+  .vdoc-table td:last-child { font-size: 0.78rem; color: var(--vel-color-muted); }
+  .vdoc-table tbody tr:not(:last-child) td { border-bottom: 1px solid var(--vel-border-base); }
+  .vdoc-examples-title { font-size: 1.1rem; font-weight: 600; color: var(--vel-color-text); margin-bottom: 1rem; }
+  .vdoc-example-label { font-size: 0.8rem; font-weight: 500; color: var(--vel-color-muted); margin-bottom: 0.5rem; }
+  .vdoc-preview {
+    background: var(--vel-surface-1); border: 1px solid var(--vel-border-base);
+    border-radius: 0.5rem 0.5rem 0 0; padding: 1.5rem; border-bottom: none;
+  }
+  .vdoc-footer { margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--vel-border-base); }
+`;function s({title:e,description:o,source:t,table:l,examples:s}){return(0,r.jsxs)(r.Fragment,{children:[(0,r.jsx)("style",{dangerouslySetInnerHTML:{__html:c}}),(0,r.jsxs)("div",{className:"vdoc-page",children:[(0,r.jsxs)("p",{className:"vdoc-breadcrumb",children:["Docs ",(0,r.jsx)("span",{className:"vdoc-breadcrumb-sep",children:"/"})," ",(0,r.jsx)("span",{className:"vdoc-breadcrumb-title",children:e})]}),(0,r.jsx)("h1",{className:"vdoc-title",children:e}),t&&(0,r.jsx)("div",{children:(0,r.jsxs)("span",{className:"vdoc-source-badge",children:["vel-src: ",t]})}),(0,r.jsx)("p",{className:"vdoc-description",children:o}),l.length>0&&(0,r.jsx)("div",{className:"vdoc-table-wrap",style:{marginBottom:s&&s.length>0?"2.5rem":0},children:(0,r.jsxs)("table",{className:"vdoc-table",children:[(0,r.jsx)("thead",{children:(0,r.jsx)("tr",{children:["Class","Properties"].map(e=>(0,r.jsx)("th",{children:e},e))})}),(0,r.jsx)("tbody",{children:l.map((e,o)=>(0,r.jsxs)("tr",{children:[(0,r.jsx)("td",{children:e.class}),(0,r.jsx)("td",{children:e.properties})]},o))})]})}),s&&s.length>0&&(0,r.jsxs)("div",{children:[(0,r.jsx)("h2",{className:"vdoc-examples-title",children:"Examples"}),(0,r.jsx)("div",{style:{display:"flex",flexDirection:"column",gap:"1.75rem"},children:s.map((e,o)=>(0,r.jsxs)("div",{children:[(0,r.jsx)("p",{className:"vdoc-example-label",children:e.label}),(0,r.jsx)("div",{className:"vdoc-preview",dangerouslySetInnerHTML:{__html:e.html}}),(0,r.jsx)(a,{filename:"example.html",code:e.html})]},o))})]}),(0,r.jsx)("div",{className:"vdoc-footer"})]})]})}e.s(["default",()=>s])}]);

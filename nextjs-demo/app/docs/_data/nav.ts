@@ -203,6 +203,7 @@ export const navSections: NavSection[] = [
       { label: 'Code Block', slug: 'code-block' },
       { label: 'Chat Bubble', slug: 'chat-bubble' },
       { label: 'File Upload', slug: 'file-upload' },
+      { label: 'Carousel', slug: 'carousel' },
     ],
   },
   {

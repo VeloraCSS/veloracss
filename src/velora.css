@@ -57,3 +57,6 @@
 @import './components/hero.css';
 @import './components/feature-list.css';
 @import './components/pricing.css';
+@import './components/carousel.css';
+@import './components/calendar.css';
+@import './components/charts.css';

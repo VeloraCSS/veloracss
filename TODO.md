@@ -97,9 +97,9 @@ _Last updated: 2026-03-08. Updated at every milestone. Add items here whenever a
 ## 🟠 MEDIUM-TERM — v1.x Roadmap
 
 - [ ] **VS Code extension** — autocomplete for `vel-` classes
-- [ ] **velora.config.js** — build-time token overrides
+- [x] **velora.config.js** — build-time token overrides (TOKEN_MAP + loadConfig + :root injection in build.mjs)
 - [ ] **Build-time purging** — strip unused classes for production
-- [ ] **Light mode** — `data-vel-mode="light"` support
+- [x] **Light mode** — `data-vel-mode="light"` support (src/modes.css — tokens + component overrides)
 - [ ] **CLI** — `npx veloracss init`, `velora build`, `velora watch`
 - [x] Contributing guide + issue templates — CONTRIBUTING.md + .github/ISSUE_TEMPLATE/ + PR template
 - [x] Discord / community — https://discord.gg/RKmSyudqAv added to homepage footer + CONTRIBUTING.md
@@ -111,6 +111,8 @@ _Last updated: 2026-03-08. Updated at every milestone. Add items here whenever a
 - [ ] JetBrains plugin
 - [ ] Charts — Bar, Line, Pie (SVG + vel-svg-* utilities)
 - [ ] Dark/light mode toggle on docs site
+- [ ] Create the playground other sites wish they had: https://play.tailwindcss.com/ but with live editing of all 22 components + token sliders + config editor and instant preview and copyable code snippets and exportable sandbox link and more
+- [ ] Dark/light mode toggle on playground site
 - [ ] Calendar component
 - [ ] Carousel component
 - [ ] Social media presence (@veloracss)
