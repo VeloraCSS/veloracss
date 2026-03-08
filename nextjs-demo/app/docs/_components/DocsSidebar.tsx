@@ -39,6 +39,7 @@ export default function DocsSidebar({ currentSlug }: DocsSidebarProps) {
         zIndex: 40,
         scrollbarWidth: 'thin',
         scrollbarColor: '#1e2d45 transparent',
+        fontFamily: 'system-ui, -apple-system, "Segoe UI", Roboto, sans-serif',
       }}
     >
       {/* Logo */}

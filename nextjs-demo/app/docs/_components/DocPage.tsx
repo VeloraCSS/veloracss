@@ -225,19 +225,8 @@ export default function DocPage({ title, description, source, table, examples }:
         </div>
       )}
 
-      {/* Edit on GitHub */}
-      <div style={{ marginTop: '3rem', paddingTop: '1.5rem', borderTop: '1px solid #1e2d45' }}>
-        <a
-          href="https://github.com/VeloraX/veloracss"
-          target="_blank"
-          rel="noopener noreferrer"
-          style={{ fontSize: '0.8rem', color: '#64748b', textDecoration: 'none', transition: 'color 0.12s' }}
-          onMouseEnter={e => { e.currentTarget.style.color = '#94a3b8' }}
-          onMouseLeave={e => { e.currentTarget.style.color = '#64748b' }}
-        >
-          Edit on GitHub →
-        </a>
-      </div>
+      {/* Footer spacer */}
+      <div style={{ marginTop: '3rem', paddingTop: '1.5rem', borderTop: '1px solid #1e2d45' }} />
 
     </div>
   )

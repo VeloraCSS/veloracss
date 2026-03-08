@@ -1,5 +1,5 @@
 1:"$Sreact.fragment"
-2:I[46193,["/veloracss/_next/static/chunks/a5d7125d10ab5095.js","/veloracss/_next/static/chunks/21e04daaae639191.js"],"default"]
+2:I[46193,["/veloracss/_next/static/chunks/feb8d0b5a5f2ff0e.js","/veloracss/_next/static/chunks/522c94c6029a5703.js"],"default"]
 4:I[93373,["/veloracss/_next/static/chunks/89d43586d21f2643.js","/veloracss/_next/static/chunks/27e596ffa243fe8c.js"],"OutletBoundary"]
 5:"$Sreact.suspense"
 3:T597,<div style="display:flex;gap:12px;padding:1rem;background:#060b17;flex-wrap:wrap;align-items:center;">
@@ -27,5 +27,5 @@
     <div class="vel-blur-xl vel-bg-gradient-primary vel-rounded-md" style="width:64px;height:64px;"></div>
     <p style="color:#64748b;font-size:0.7rem;margin-top:4px;">xl</p>
   </div>
-</div>0:{"buildId":"oCB8_TpHGjJzFR6TAzXuG","rsc":["$","$1","c",{"children":[["$","$L2",null,{"title":"Blur","description":"Utilities for applying blur filters to an element.","source":"effects.css","table":[{"class":"vel-blur-none","properties":"filter: blur(0)"},{"class":"vel-blur-sm","properties":"filter: blur(4px)"},{"class":"vel-blur","properties":"filter: blur(8px)"},{"class":"vel-blur-md","properties":"filter: blur(12px)"},{"class":"vel-blur-lg","properties":"filter: blur(16px)"},{"class":"vel-blur-xl","properties":"filter: blur(24px)"},{"class":"vel-blur-2xl","properties":"filter: blur(40px)"},{"class":"vel-blur-3xl","properties":"filter: blur(64px)"}],"examples":[{"label":"Blur scale","html":"$3"}]}],[["$","script","script-0",{"src":"/veloracss/_next/static/chunks/21e04daaae639191.js","async":true}]],["$","$L4",null,{"children":["$","$5",null,{"name":"Next.MetadataOutlet","children":"$@6"}]}]]}],"loading":null,"isPartial":false}
+</div>0:{"buildId":"15pMC-Fku9lo_9RF6_NIJ","rsc":["$","$1","c",{"children":[["$","$L2",null,{"title":"Blur","description":"Utilities for applying blur filters to an element.","source":"effects.css","table":[{"class":"vel-blur-none","properties":"filter: blur(0)"},{"class":"vel-blur-sm","properties":"filter: blur(4px)"},{"class":"vel-blur","properties":"filter: blur(8px)"},{"class":"vel-blur-md","properties":"filter: blur(12px)"},{"class":"vel-blur-lg","properties":"filter: blur(16px)"},{"class":"vel-blur-xl","properties":"filter: blur(24px)"},{"class":"vel-blur-2xl","properties":"filter: blur(40px)"},{"class":"vel-blur-3xl","properties":"filter: blur(64px)"}],"examples":[{"label":"Blur scale","html":"$3"}]}],[["$","script","script-0",{"src":"/veloracss/_next/static/chunks/522c94c6029a5703.js","async":true}]],["$","$L4",null,{"children":["$","$5",null,{"name":"Next.MetadataOutlet","children":"$@6"}]}]]}],"loading":null,"isPartial":false}
 6:null

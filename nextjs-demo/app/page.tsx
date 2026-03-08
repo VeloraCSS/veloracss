@@ -216,12 +216,13 @@ const DNA_CSS = `
     background: rgba(14,203,129,0.15); color: #0ecb81;
   }
   .vhome-terminal-code {
-    padding: 1.25rem 1.5rem; overflow-x: auto;
+    padding: 1.25rem 1.5rem; overflow-x: hidden; overflow-y: auto;
+    white-space: pre-wrap; word-break: break-word;
     font-family: 'Cascadia Code', Menlo, Monaco, 'Courier New', monospace;
     font-size: 0.8125rem; line-height: 1.8; color: #CCCCCC;
-    max-height: 340px; overflow-y: auto;
+    max-height: 340px;
   }
-  .vhome-terminal-code::-webkit-scrollbar { width: 8px; height: 8px; }
+  .vhome-terminal-code::-webkit-scrollbar { width: 8px; }
   .vhome-terminal-code::-webkit-scrollbar-track { background: #111; }
   .vhome-terminal-code::-webkit-scrollbar-thumb { background: #444; border-radius: 4px; }
   .tc-comment { color: #6a9955; }
@@ -518,6 +519,25 @@ const DNA_CSS = `
   .vhome-compare-good { background: var(--vp-subtle); color: var(--vp); border-bottom: 1px solid var(--vp-glow); }
   .vhome-compare-cell pre { padding: 0.75rem; font-size: 0.72rem; line-height: 1.6; color: var(--vt2); background: var(--vs2); font-family: 'Cascadia Code', Consolas, monospace; white-space: pre-wrap; margin: 0; }
 
+  /* ─ DNA LIVE PREVIEW STRIP ─ */
+  .vhome-dna-live {
+    display: flex; align-items: center; gap: 0.75rem; flex-wrap: wrap;
+    justify-content: center; margin-top: 1rem;
+  }
+  .vhome-dna-live-badge {
+    font-size: 0.7rem; font-weight: 700; letter-spacing: 0.06em;
+    padding: 0.25rem 0.7rem; border-radius: 9999px;
+    background: var(--vp-subtle); color: var(--vp); border: 1px solid var(--vp-glow);
+  }
+
+  /* ─ SKELETON SHIMMER (components demo) ─ */
+  .vhome-skeleton-demo {
+    background: linear-gradient(90deg, var(--vs3) 25%, var(--vs4) 50%, var(--vs3) 75%);
+    background-size: 200% 100%;
+    animation: vhome-shimmer 1.6s ease-in-out infinite;
+  }
+  @keyframes vhome-shimmer { 0% { background-position: 200% 0 } 100% { background-position: -200% 0 } }
+
   /* ─ FOOTER BADGE ─ */
   .vhome-footer-badge {
     display: inline-flex; align-items: center;
@@ -720,6 +740,15 @@ export default function Home() {
             <p className="vhome-dna-note">
               One number. Every color on this page derives from it via <code style={{ fontFamily: 'Cascadia Code, Consolas, monospace', color: 'inherit' }}>oklch()</code>.
             </p>
+            {/* Live proof — all elements below react to the slider */}
+            <div className="vhome-dna-live">
+              <div style={{ width: '26px', height: '26px', borderRadius: '50%', background: 'var(--vp)', flexShrink: 0, transition: 'background 0.2s' }} />
+              <button className="vhome-btn-primary" style={{ padding: '0.3rem 0.875rem', fontSize: '0.78rem' }}>Button</button>
+              <span className="vhome-dna-live-badge">Badge</span>
+              <div style={{ width: '72px', height: '3px', borderRadius: '2px', background: 'var(--vp)', flexShrink: 0, transition: 'background 0.2s' }} />
+              <div style={{ width: '26px', height: '26px', borderRadius: '0.375rem', background: 'var(--vp-subtle)', border: '1.5px solid var(--vp)', flexShrink: 0, transition: 'all 0.2s' }} />
+              <span style={{ fontSize: '0.65rem', color: 'var(--vt3)', whiteSpace: 'nowrap' }}>← all react to the hue</span>
+            </div>
           </div>
         </section>
 
@@ -831,8 +860,8 @@ export default function Home() {
                   <div style={{ padding: '1.25rem' }}>
                     <p style={{ fontSize: '0.875rem', color: 'var(--vt2)', marginBottom: '1rem', lineHeight: 1.6 }}>Every color in this card derives from the DNA hue. Drag the slider above to see it react.</p>
                     <div style={{ display: 'flex', gap: '0.75rem' }}>
-                      <button className="vel-btn vel-btn-primary">Action</button>
-                      <button className="vel-btn vel-btn-ghost">Cancel</button>
+                      <button className="vhome-btn-primary">Action</button>
+                      <button className="vhome-btn-outline">Cancel</button>
                     </div>
                   </div>
                 </div>
@@ -1095,17 +1124,15 @@ onClick={() => setTab(0)}`}</pre>
               <div className="vhome-component-preview">
                 <div className="vhome-component-preview-header">Buttons</div>
                 <div className="vhome-component-preview-body">
-                  <div className="vel-flex vel-flex-wrap vel-gap-2 vel-mb-3">
-                    <button className="vel-btn vel-btn-primary">Primary</button>
-                    <button className="vel-btn vel-btn-secondary">Secondary</button>
-                    <button className="vel-btn vel-btn-success">Success</button>
-                    <button className="vel-btn vel-btn-danger">Danger</button>
+                  <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem', marginBottom: '0.625rem' }}>
+                    <button className="vhome-btn-primary">Primary</button>
+                    <button className="vhome-btn-outline">Outline</button>
+                    <button style={{ background: 'var(--vs3)', color: 'var(--vt2)', border: '1px solid var(--vborder)', borderRadius: '0.5rem', padding: '0.625rem 1.25rem', fontSize: '0.875rem', fontWeight: 500, cursor: 'pointer', fontFamily: 'inherit', transition: 'all 0.2s' }}>Ghost</button>
                   </div>
-                  <div className="vel-flex vel-flex-wrap vel-gap-2">
-                    <button className="vel-btn vel-btn-outline-primary">Outline</button>
-                    <button className="vel-btn vel-btn-ghost">Ghost</button>
-                    <button className="vel-btn vel-btn-primary vel-btn-sm">Small</button>
-                    <button className="vel-btn vel-btn-primary" disabled>Disabled</button>
+                  <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem' }}>
+                    <button style={{ background: 'oklch(28% 0.12 162)', color: 'oklch(75% 0.18 162)', border: 'none', borderRadius: '0.5rem', padding: '0.5rem 1rem', fontSize: '0.8rem', fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit' }}>Success</button>
+                    <button style={{ background: 'oklch(28% 0.13 25)', color: 'oklch(72% 0.2 25)', border: 'none', borderRadius: '0.5rem', padding: '0.5rem 1rem', fontSize: '0.8rem', fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit' }}>Danger</button>
+                    <button style={{ background: 'var(--vs2)', color: 'var(--vt3)', border: '1px solid var(--vborder-dim)', borderRadius: '0.5rem', padding: '0.5rem 1rem', fontSize: '0.8rem', fontWeight: 500, cursor: 'not-allowed', fontFamily: 'inherit', opacity: 0.45 }} disabled>Disabled</button>
                   </div>
                 </div>
               </div>
@@ -1113,14 +1140,17 @@ onClick={() => setTab(0)}`}</pre>
               <div className="vhome-component-preview">
                 <div className="vhome-component-preview-header">Badges & Alerts</div>
                 <div className="vhome-component-preview-body">
-                  <div className="vel-flex vel-flex-wrap vel-gap-2 vel-mb-3">
-                    <span className="vel-badge vel-badge-primary">Primary</span>
-                    <span className="vel-badge vel-badge-success">Success</span>
-                    <span className="vel-badge vel-badge-danger">Danger</span>
-                    <span className="vel-badge vel-badge-warning">Warning</span>
-                    <span className="vel-badge vel-badge-info">Info</span>
+                  <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.375rem', marginBottom: '0.75rem' }}>
+                    {[
+                      { label: 'Primary', bg: 'var(--vp-subtle)',             color: 'var(--vp)',               border: 'var(--vp-glow)' },
+                      { label: 'Success', bg: 'oklch(22% 0.08 162 / 0.6)',   color: 'oklch(72% 0.18 162)',     border: 'oklch(72% 0.18 162 / 0.35)' },
+                      { label: 'Danger',  bg: 'oklch(22% 0.09 25 / 0.6)',    color: 'oklch(68% 0.2 25)',       border: 'oklch(68% 0.2 25 / 0.35)' },
+                      { label: 'Warning', bg: 'oklch(25% 0.09 55 / 0.6)',    color: 'oklch(78% 0.18 55)',      border: 'oklch(78% 0.18 55 / 0.35)' },
+                    ].map(b => (
+                      <span key={b.label} style={{ background: b.bg, color: b.color, border: `1px solid ${b.border}`, borderRadius: '9999px', padding: '0.2rem 0.65rem', fontSize: '0.7rem', fontWeight: 700, letterSpacing: '0.04em' }}>{b.label}</span>
+                    ))}
                   </div>
-                  <div className="vel-alert vel-alert-info" style={{ fontSize: '0.8125rem' }}>
+                  <div style={{ background: 'var(--vp-subtle)', border: '1px solid var(--vp-glow)', borderRadius: '0.5rem', padding: '0.625rem 0.875rem', fontSize: '0.8125rem', color: 'var(--vp)', lineHeight: 1.5 }}>
                     Info — Something worth knowing.
                   </div>
                 </div>
@@ -1129,10 +1159,15 @@ onClick={() => setTab(0)}`}</pre>
               <div className="vhome-component-preview">
                 <div className="vhome-component-preview-header">Cards</div>
                 <div className="vhome-component-preview-body" style={{ padding: '0.75rem' }}>
-                  <div className="vel-card vel-card-hover" style={{ marginBottom: '0.5rem' }}>
-                    <div className="vel-card-body" style={{ padding: '0.875rem' }}>
-                      <p style={{ fontSize: '0.8125rem', color: 'var(--vt2, #94a3b8)' }}>Hover to see elevation.</p>
-                      <button className="vel-btn vel-btn-primary vel-btn-sm" style={{ marginTop: '0.5rem' }}>Action</button>
+                  <div
+                    style={{ background: 'var(--vs2)', border: '1px solid var(--vborder)', borderRadius: '0.75rem', overflow: 'hidden', transition: 'box-shadow 0.22s, border-color 0.22s' }}
+                    onMouseEnter={e => { (e.currentTarget as HTMLDivElement).style.boxShadow = '0 8px 28px -6px var(--vp-glow)'; (e.currentTarget as HTMLDivElement).style.borderColor = 'var(--vp-glow)'; }}
+                    onMouseLeave={e => { (e.currentTarget as HTMLDivElement).style.boxShadow = 'none'; (e.currentTarget as HTMLDivElement).style.borderColor = 'var(--vborder)'; }}
+                  >
+                    <div style={{ background: 'var(--vp-subtle)', borderBottom: '1px solid var(--vborder)', padding: '0.625rem 1rem', fontSize: '0.7rem', fontWeight: 700, color: 'var(--vp)', textTransform: 'uppercase' as const, letterSpacing: '0.07em' }}>Feature Card</div>
+                    <div style={{ padding: '0.875rem' }}>
+                      <p style={{ fontSize: '0.8125rem', color: 'var(--vt2)', marginBottom: '0.75rem', lineHeight: 1.55 }}>Hover to see DNA-token elevation.</p>
+                      <button className="vhome-btn-primary" style={{ padding: '0.4rem 0.875rem', fontSize: '0.8rem' }}>Action</button>
                     </div>
                   </div>
                 </div>
@@ -1141,46 +1176,51 @@ onClick={() => setTab(0)}`}</pre>
               <div className="vhome-component-preview">
                 <div className="vhome-component-preview-header">Steps</div>
                 <div className="vhome-component-preview-body">
-                  <div className="vel-steps">
-                    <div className="vel-step vel-step-complete">
-                      <div className="vel-step-indicator">✓</div>
-                      <div className="vel-step-label">Account</div>
+                  {[
+                    { num: '✓', label: 'Account', done: true,  active: false },
+                    { num: '2', label: 'Profile',  done: false, active: true  },
+                    { num: '3', label: 'Billing',  done: false, active: false },
+                  ].map((s, i) => (
+                    <div key={s.label} style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: i < 2 ? '0.75rem' : 0 }}>
+                      <div style={{ width: '28px', height: '28px', borderRadius: '50%', flexShrink: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '0.8rem', fontWeight: 700, background: s.done ? 'var(--vp)' : s.active ? 'var(--vp-subtle)' : 'var(--vs3)', color: s.done ? 'oklch(12% 0.02 var(--vel-dna-hue))' : s.active ? 'var(--vp)' : 'var(--vt3)', border: s.done ? 'none' : s.active ? '2px solid var(--vp)' : '1px solid var(--vborder)', transition: 'all 0.2s' }}>{s.num}</div>
+                      <span style={{ fontSize: '0.875rem', fontWeight: s.active ? 600 : 400, color: s.done ? 'var(--vt2)' : s.active ? 'var(--vt1)' : 'var(--vt3)' }}>{s.label}</span>
                     </div>
-                    <div className="vel-step vel-step-active">
-                      <div className="vel-step-indicator">2</div>
-                      <div className="vel-step-label">Profile</div>
-                    </div>
-                    <div className="vel-step">
-                      <div className="vel-step-indicator">3</div>
-                      <div className="vel-step-label">Billing</div>
-                    </div>
-                  </div>
+                  ))}
                 </div>
               </div>
               {/* Skeleton */}
               <div className="vhome-component-preview">
                 <div className="vhome-component-preview-header">Skeleton Loaders</div>
                 <div className="vhome-component-preview-body">
-                  <div className="vel-flex vel-gap-3 vel-mb-3">
-                    <div className="vel-skeleton vel-skeleton-avatar-lg" />
-                    <div style={{ flex: 1 }}>
-                      <div className="vel-skeleton vel-skeleton-text vel-skeleton-lg vel-mb-2" />
-                      <div className="vel-skeleton vel-skeleton-text vel-skeleton-sm" />
+                  <div style={{ display: 'flex', gap: '0.75rem', marginBottom: '0.75rem', alignItems: 'center' }}>
+                    <div className="vhome-skeleton-demo" style={{ width: '44px', height: '44px', borderRadius: '50%', flexShrink: 0 }} />
+                    <div style={{ flex: 1, display: 'grid', gap: '0.375rem' }}>
+                      <div className="vhome-skeleton-demo" style={{ height: '11px', borderRadius: '6px', width: '68%' }} />
+                      <div className="vhome-skeleton-demo" style={{ height: '10px', borderRadius: '5px', width: '42%' }} />
                     </div>
                   </div>
-                  <div className="vel-skeleton vel-skeleton-rect" style={{ width: '100%', height: '48px' }} />
+                  <div className="vhome-skeleton-demo" style={{ height: '48px', borderRadius: '0.5rem', width: '100%' }} />
                 </div>
               </div>
               {/* Kbd */}
               <div className="vhome-component-preview">
                 <div className="vhome-component-preview-header">Keyboard & Dividers</div>
                 <div className="vhome-component-preview-body">
-                  <div className="vel-flex vel-flex-wrap vel-gap-3 vel-mb-4">
-                    <span className="vel-kbd-combo"><kbd className="vel-kbd">Ctrl</kbd><kbd className="vel-kbd">K</kbd></span>
-                    <span className="vel-kbd-combo"><kbd className="vel-kbd">⌘</kbd><kbd className="vel-kbd">Shift</kbd><kbd className="vel-kbd">P</kbd></span>
-                    <kbd className="vel-kbd vel-kbd-lg">Enter</kbd>
+                  <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem', marginBottom: '1rem', alignItems: 'center' }}>
+                    {[['Ctrl', 'K'], ['⌘', 'Shift', 'P']].map((combo, i) => (
+                      <span key={i} style={{ display: 'inline-flex', gap: '0.2rem', alignItems: 'center' }}>
+                        {combo.map(k => (
+                          <kbd key={k} style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', padding: '0.25rem 0.5rem', background: 'var(--vs3)', border: '1px solid var(--vborder)', borderBottomWidth: '2px', borderRadius: '0.3rem', fontSize: '0.72rem', fontFamily: 'Cascadia Code, Consolas, monospace', color: 'var(--vt2)', lineHeight: 1, minWidth: '22px' }}>{k}</kbd>
+                        ))}
+                      </span>
+                    ))}
+                    <kbd style={{ display: 'inline-flex', alignItems: 'center', padding: '0.25rem 0.75rem', background: 'var(--vs3)', border: '1px solid var(--vborder)', borderBottomWidth: '2px', borderRadius: '0.3rem', fontSize: '0.78rem', fontFamily: 'Cascadia Code, Consolas, monospace', color: 'var(--vt2)' }}>Enter</kbd>
                   </div>
-                  <div className="vel-divider">OR</div>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+                    <div style={{ flex: 1, height: '1px', background: 'var(--vborder)' }} />
+                    <span style={{ fontSize: '0.7rem', fontWeight: 700, color: 'var(--vt3)', textTransform: 'uppercase' as const, letterSpacing: '0.07em' }}>OR</span>
+                    <div style={{ flex: 1, height: '1px', background: 'var(--vborder)' }} />
+                  </div>
                 </div>
               </div>
             </div>
