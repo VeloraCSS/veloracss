@@ -175,64 +175,53 @@ const DNA_CSS = `
     font-size: 0.72rem; color: var(--vt3); margin-top: 0.25rem;
   }
 
-  /* ─ WIN11 TERMINAL ─ */
+  /* ─ MAC TERMINAL ─ */
   .vhome-terminal {
-    background: #0C0C0C; border-radius: 0.625rem; overflow: hidden;
-    border: 1px solid #2a2a2a;
-    box-shadow: 0 20px 60px -12px rgba(0,0,0,0.8);
+    background: #1a1a1a; border-radius: 0.625rem; overflow: hidden;
+    border: 1px solid #333;
+    box-shadow: 0 20px 60px -12px rgba(0,0,0,0.7);
     text-align: left;
   }
   .vhome-terminal-titlebar {
-    display: flex; align-items: center;
-    padding: 0 0.75rem; height: 32px;
-    background: #1C1C1C; border-bottom: 1px solid #2a2a2a;
+    display: flex; align-items: center; gap: 0.5rem;
+    padding: 0 0.875rem; height: 36px;
+    background: #252525; border-bottom: 1px solid #333;
   }
+  .vhome-terminal-dots {
+    display: flex; gap: 6px; align-items: center; flex-shrink: 0;
+  }
+  .vhome-terminal-dot {
+    width: 12px; height: 12px; border-radius: 50%;
+  }
+  .vhome-terminal-dot.red    { background: #ff5f57; }
+  .vhome-terminal-dot.yellow { background: #ffbd2e; }
+  .vhome-terminal-dot.green  { background: #28c840; }
   .vhome-terminal-title {
-    font-size: 0.72rem; color: #9a9a9a;
-    font-family: 'Cascadia Code', 'Segoe UI', sans-serif;
-    flex: 1;
-  }
-  .vhome-terminal-controls {
-    display: flex; align-items: center; gap: 0;
-    margin-left: auto;
-  }
-  .vhome-terminal-btn {
-    width: 46px; height: 32px; border: none;
-    background: transparent; cursor: pointer;
-    font-size: 0.75rem; color: #9a9a9a;
-    display: flex; align-items: center; justify-content: center;
-    transition: background 0.15s;
-    font-family: 'Segoe UI', sans-serif;
-  }
-  .vhome-terminal-btn:hover { background: rgba(255,255,255,0.08); }
-  .vhome-terminal-btn.close:hover { background: #E81123; color: #fff; }
-  .vhome-terminal-action-bar {
-    display: flex; align-items: center; justify-content: flex-end; gap: 0.5rem;
-    padding: 0.5rem 0.875rem; background: #111;
-    border-bottom: 1px solid #1e1e1e;
+    font-size: 0.72rem; color: #888;
+    font-family: 'Cascadia Code', Menlo, Monaco, monospace;
+    flex: 1; text-align: center;
   }
   .vhome-terminal-copy {
     font-size: 0.7rem; font-weight: 600; padding: 0.25rem 0.625rem;
     border-radius: 0.25rem; cursor: pointer; border: none;
     font-family: 'Cascadia Code', Consolas, monospace;
-    transition: all 0.15s;
+    transition: all 0.15s; flex-shrink: 0;
   }
   .vhome-terminal-copy.idle {
-    background: #2a2a2a; color: #9a9a9a; border: 1px solid #333;
+    background: #333; color: #888;
   }
   .vhome-terminal-copy.copied {
-    background: rgba(14,203,129,0.15); color: #0ecb81; border: 1px solid rgba(14,203,129,0.3);
+    background: rgba(14,203,129,0.15); color: #0ecb81;
   }
-  .vhome-terminal-copy:hover.idle { background: #333; color: #ccc; }
   .vhome-terminal-code {
     padding: 1.25rem 1.5rem; overflow-x: auto;
-    font-family: 'Cascadia Code', Consolas, 'Courier New', monospace;
+    font-family: 'Cascadia Code', Menlo, Monaco, 'Courier New', monospace;
     font-size: 0.8125rem; line-height: 1.8; color: #CCCCCC;
     max-height: 340px; overflow-y: auto;
   }
   .vhome-terminal-code::-webkit-scrollbar { width: 8px; height: 8px; }
   .vhome-terminal-code::-webkit-scrollbar-track { background: #111; }
-  .vhome-terminal-code::-webkit-scrollbar-thumb { background: #333; border-radius: 4px; }
+  .vhome-terminal-code::-webkit-scrollbar-thumb { background: #444; border-radius: 4px; }
   .tc-comment { color: #6a9955; }
   .tc-prop    { color: #9cdcfe; }
   .tc-value   { color: #ce9178; }
@@ -489,12 +478,11 @@ const DNA_CSS = `
   .vhome-footer-link:hover { color: var(--vt1); }
 `
 
-// ─── Win11 Terminal Component ────────────────────────────────────────────────
-function Win11Terminal({ filename, children }: { filename: string; children: string }) {
+// ─── macOS Terminal Component ─────────────────────────────────────────────────
+function MacTerminal({ filename, children }: { filename: string; children: string }) {
   const [copied, setCopied] = useState(false)
 
   const handleCopy = useCallback(() => {
-    // Strip HTML tags to get plain text
     const plain = children.replace(/<[^>]+>/g, '')
     navigator.clipboard.writeText(plain)
     setCopied(true)
@@ -504,14 +492,12 @@ function Win11Terminal({ filename, children }: { filename: string; children: str
   return (
     <div className="vhome-terminal">
       <div className="vhome-terminal-titlebar">
-        <span className="vhome-terminal-title">{filename}</span>
-        <div className="vhome-terminal-controls">
-          <button className="vhome-terminal-btn">─</button>
-          <button className="vhome-terminal-btn">□</button>
-          <button className="vhome-terminal-btn close">✕</button>
+        <div className="vhome-terminal-dots">
+          <div className="vhome-terminal-dot red" />
+          <div className="vhome-terminal-dot yellow" />
+          <div className="vhome-terminal-dot green" />
         </div>
-      </div>
-      <div className="vhome-terminal-action-bar">
+        <span className="vhome-terminal-title">{filename}</span>
         <button
           className={`vhome-terminal-copy ${copied ? 'copied' : 'idle'}`}
           onClick={handleCopy}
@@ -705,7 +691,7 @@ export default function Home() {
                   <code>--vel-dna-hue</code> using <code>oklch()</code>, the only perceptually
                   uniform color space. Watch the swatches below react as you slide.
                 </p>
-                <Win11Terminal filename="velora.css">
+                <MacTerminal filename="velora.css">
 {`<span class="tc-comment">/* The entire palette from one variable */</span>
 <span class="tc-prop">--vel-dna-hue</span>: <span class="tc-num">258</span>;
 
@@ -718,7 +704,7 @@ export default function Home() {
 <span class="tc-comment">/* Change in JS with one line: */</span>
 <span class="tc-cls">document</span>.documentElement.style
   .setProperty(<span class="tc-str">'--vel-dna-hue'</span>, <span class="tc-num">145</span>);</span>`}
-                </Win11Terminal>
+                </MacTerminal>
               </div>
               <div>
                 <div className="vhome-swatches" style={{ marginBottom: '1rem' }}>
@@ -785,7 +771,7 @@ export default function Home() {
                 </div>
               </div>
               <div>
-                <Win11Terminal filename="velora.css">
+                <MacTerminal filename="velora.css">
 {`<span class="tc-comment">/* Mark the parent as a query context */</span>
 <span class="tc-cls">.vel-cq-wrapper</span> {
   <span class="tc-prop">container-type</span>: <span class="tc-kw">inline-size</span>;
@@ -804,7 +790,7 @@ export default function Home() {
 
 <span class="tc-comment">/* Result: works in any layout — sidebar, grid, full-width */</span>
 <span class="tc-comment">/* No JavaScript. No class toggling. Just CSS. */</span>`}
-                </Win11Terminal>
+                </MacTerminal>
               </div>
             </div>
           </div>
@@ -821,7 +807,7 @@ export default function Home() {
             </p>
             <div className="vhome-split" style={{ alignItems: 'flex-start' }}>
               <ScopeThemeDemo />
-              <Win11Terminal filename="velora.css">
+              <MacTerminal filename="velora.css">
 {`<span class="tc-comment">/* One line per theme — hue shift handles everything */</span>
 [<span class="tc-prop">data-vel-theme</span>="<span class="tc-str">ocean</span>"]  { <span class="tc-prop">--vel-dna-hue</span>: <span class="tc-num">205</span>; }
 [<span class="tc-prop">data-vel-theme</span>="<span class="tc-str">forest</span>"] { <span class="tc-prop">--vel-dna-hue</span>: <span class="tc-num">145</span>; }
@@ -834,7 +820,7 @@ export default function Home() {
 
 <span class="tc-comment">/* The entire theming "logic" in JavaScript: */</span>
 <span class="tc-cls">el</span>.dataset.<span class="tc-fn">velTheme</span> = <span class="tc-str">'ocean'</span>;</span>`}
-              </Win11Terminal>
+              </MacTerminal>
             </div>
           </div>
         </section>
@@ -868,7 +854,7 @@ export default function Home() {
                   </div>
                 </div>
               </div>
-              <Win11Terminal filename="velora.css">
+              <MacTerminal filename="velora.css">
 {`<span class="tc-comment">/* :has() reads browser validity — no JS needed */</span>
 
 <span class="tc-comment">/* Label turns red when input is invalid */</span>
@@ -891,7 +877,7 @@ export default function Home() {
 <span class="tc-cls">.vel-field</span>:<span class="tc-fn">has</span>(<span class="tc-cls">.vel-input</span>:<span class="tc-fn">valid</span>:<span class="tc-fn">not</span>(:<span class="tc-fn">placeholder-shown</span>)) <span class="tc-cls">.vel-input</span> {
   <span class="tc-prop">border-color</span>: <span class="tc-fn">oklch</span>(<span class="tc-num">70% 0.2 162</span>);
 }</span>`}
-              </Win11Terminal>
+              </MacTerminal>
             </div>
           </div>
         </section>

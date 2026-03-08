@@ -3,8 +3,8 @@
 import { useState, useCallback } from 'react'
 import Link from 'next/link'
 
-// ─── Win11 Terminal (same pattern as homepage) ───────────────────────────────
-function Win11Terminal({ filename, code }: { filename: string; code: string }) {
+// ─── macOS Terminal ───────────────────────────────────────────────────────────
+function MacTerminal({ filename, code }: { filename: string; code: string }) {
   const [copied, setCopied] = useState(false)
   const handleCopy = useCallback(() => {
     navigator.clipboard.writeText(code)
@@ -14,17 +14,24 @@ function Win11Terminal({ filename, code }: { filename: string; code: string }) {
 
   return (
     <div style={{
-      background: '#0C0C0C', borderRadius: '0.625rem', overflow: 'hidden',
-      border: '1px solid #2a2a2a',
-      boxShadow: '0 8px 32px -4px rgba(0,0,0,0.6)',
+      background: '#1a1a1a', borderRadius: '0.625rem', overflow: 'hidden',
+      border: '1px solid #333',
+      boxShadow: '0 8px 32px -4px rgba(0,0,0,0.5)',
     }}>
       <div style={{
-        display: 'flex', alignItems: 'center', height: '32px',
-        padding: '0 0.75rem', background: '#1C1C1C', borderBottom: '1px solid #2a2a2a',
+        display: 'flex', alignItems: 'center', height: '36px',
+        padding: '0 0.875rem', background: '#252525', borderBottom: '1px solid #333',
+        gap: '0.5rem',
       }}>
+        {/* Traffic light dots */}
+        <div style={{ display: 'flex', gap: '6px', alignItems: 'center', flexShrink: 0 }}>
+          <div style={{ width: 12, height: 12, borderRadius: '50%', background: '#ff5f57' }} />
+          <div style={{ width: 12, height: 12, borderRadius: '50%', background: '#ffbd2e' }} />
+          <div style={{ width: 12, height: 12, borderRadius: '50%', background: '#28c840' }} />
+        </div>
         <span style={{
-          fontSize: '0.7rem', color: '#9a9a9a', flex: 1,
-          fontFamily: "'Cascadia Code', 'Segoe UI', sans-serif",
+          fontSize: '0.72rem', color: '#888', flex: 1, textAlign: 'center',
+          fontFamily: "'Cascadia Code', Menlo, Monaco, monospace",
         }}>
           {filename}
         </span>
@@ -32,29 +39,21 @@ function Win11Terminal({ filename, code }: { filename: string; code: string }) {
           onClick={handleCopy}
           style={{
             fontSize: '0.68rem', fontWeight: 600, padding: '0.2rem 0.625rem',
-            borderRadius: '0.2rem', cursor: 'pointer', border: 'none',
+            borderRadius: '0.25rem', cursor: 'pointer', border: 'none',
             fontFamily: "'Cascadia Code', Consolas, monospace",
-            background: copied ? 'rgba(14,203,129,0.15)' : '#2a2a2a',
-            color: copied ? '#0ecb81' : '#9a9a9a',
-            marginRight: '0.5rem', transition: 'all 0.15s',
+            background: copied ? 'rgba(14,203,129,0.15)' : '#333',
+            color: copied ? '#0ecb81' : '#888',
+            flexShrink: 0, transition: 'all 0.15s',
           }}
         >
           {copied ? '✓ Copied' : 'Copy'}
         </button>
-        {(['─', '□', '✕'] as const).map((sym, i) => (
-          <div key={i} style={{
-            width: '46px', height: '32px',
-            display: 'flex', alignItems: 'center', justifyContent: 'center',
-            fontSize: '0.75rem', color: '#9a9a9a',
-            fontFamily: "'Segoe UI', sans-serif", cursor: 'default',
-          }}>{sym}</div>
-        ))}
       </div>
       <pre style={{
         margin: 0, padding: '1rem 1.25rem',
         fontSize: '0.8125rem', lineHeight: 1.8, color: '#CCCCCC',
         whiteSpace: 'pre-wrap', wordBreak: 'break-all',
-        fontFamily: "'Cascadia Code', Consolas, 'Courier New', monospace",
+        fontFamily: "'Cascadia Code', Menlo, Monaco, 'Courier New', monospace",
         overflowX: 'auto',
       }}>
         <code>{code}</code>
@@ -121,7 +120,7 @@ export default function GettingStartedPage() {
           Quickest way to start: link <Inline>velora.min.css</Inline> from the GitHub release.
           Drop this in your <Inline>&lt;head&gt;</Inline>:
         </p>
-        <Win11Terminal filename="index.html" code={`<link rel="stylesheet" href="https://raw.githubusercontent.com/VeloraX/veloracss/main/dist/velora.min.css">`} />
+        <MacTerminal filename="index.html" code={`<link rel="stylesheet" href="https://raw.githubusercontent.com/VeloraX/veloracss/main/dist/velora.min.css">`} />
         <p style={{ color: C.dim, fontSize: '0.82rem', marginTop: '0.75rem', lineHeight: 1.6 }}>
           Or download <Inline>velora.css</Inline> / <Inline>velora.min.css</Inline> from the{' '}
           <a href="https://github.com/VeloraX/veloracss/tree/main/dist" target="_blank" rel="noopener noreferrer" style={{ color: C.accent }}>
@@ -136,7 +135,7 @@ export default function GettingStartedPage() {
         <p style={{ color: C.muted, fontSize: '0.9rem', lineHeight: 1.7, marginBottom: '1rem' }}>
           Clone and build locally for full customization:
         </p>
-        <Win11Terminal filename="Windows PowerShell" code={`git clone https://github.com/VeloraX/veloracss.git
+        <MacTerminal filename="Windows PowerShell" code={`git clone https://github.com/VeloraX/veloracss.git
 cd veloracss
 npm install
 npm run build
@@ -159,7 +158,7 @@ npm run build
         <p style={{ color: C.muted, fontSize: '0.9rem', lineHeight: 1.7, marginBottom: '1rem' }}>
           npm packaging is on the roadmap. Once published:
         </p>
-        <Win11Terminal filename="Windows PowerShell" code={`# Not yet available
+        <MacTerminal filename="Windows PowerShell" code={`# Not yet available
 npm install veloracss`} />
       </section>
 
@@ -169,7 +168,7 @@ npm install veloracss`} />
         <p style={{ color: C.muted, fontSize: '0.9rem', lineHeight: 1.7, marginBottom: '1rem' }}>
           Once VeloraCSS is loaded, compose components using <Inline>vel-</Inline> utility classes:
         </p>
-        <Win11Terminal filename="index.html" code={`<div class="vel-card vel-p-6 vel-max-w-sm">
+        <MacTerminal filename="index.html" code={`<div class="vel-card vel-p-6 vel-max-w-sm">
   <h2 class="vel-text-xl vel-font-semibold vel-mb-2">Hello, VeloraCSS</h2>
   <p class="vel-text-sm vel-text-neutral-500 vel-mb-4">
     Utility-first styling, ready out of the box.
@@ -199,7 +198,7 @@ npm install veloracss`} />
           drives your entire color system via <Inline>oklch()</Inline>. Override the DNA hue and everything
           recolors automatically:
         </p>
-        <Win11Terminal filename="your-theme.css" code={`:root {
+        <MacTerminal filename="your-theme.css" code={`:root {
   /* Change this one number — everything updates */
   --vel-dna-hue: 145;  /* was 258 (violet), now 145 (forest green) */
 }
@@ -243,7 +242,7 @@ npm install veloracss`} />
             </div>
           ))}
         </div>
-        <Win11Terminal filename="your-theme.css" code={`:root {
+        <MacTerminal filename="your-theme.css" code={`:root {
   --vel-primary-500: #7c5cfc;       /* override brand color */
   --vel-radius-lg:   0.75rem;       /* override radius */
   --vel-font-sans:   'Inter', system-ui, sans-serif;

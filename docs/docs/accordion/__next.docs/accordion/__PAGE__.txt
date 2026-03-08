@@ -1,5 +1,5 @@
 1:"$Sreact.fragment"
-2:I[46193,["/veloracss/_next/static/chunks/a5d7125d10ab5095.js","/veloracss/_next/static/chunks/f76080ca1d7ead10.js"],"default"]
+2:I[46193,["/veloracss/_next/static/chunks/a5d7125d10ab5095.js","/veloracss/_next/static/chunks/ce9484d5b21a0c2f.js"],"default"]
 7:I[93373,["/veloracss/_next/static/chunks/89d43586d21f2643.js","/veloracss/_next/static/chunks/27e596ffa243fe8c.js"],"OutletBoundary"]
 8:"$Sreact.suspense"
 3:T816,<div style="padding:24px;background:#060b17;font-family:system-ui,sans-serif;border-radius:12px;">
@@ -54,7 +54,7 @@
       </button>
     </div>
   </div>
-</div>0:{"buildId":"PCfLyMj65n8RpyGN4brOt","rsc":["$","$1","c",{"children":[["$","$L2",null,{"title":"Accordion","description":"A collapsible content component for grouping related information into expandable sections. Supports open/close state via the vel-open modifier and a flush borderless variant.","source":"components/accordion.css","table":[{"class":"vel-accordion","properties":"border, border-radius: xl, overflow: hidden, background: surface-1"},{"class":"vel-accordion-item","properties":"border-bottom between items; last-child removes border"},{"class":"vel-accordion-trigger","properties":"full-width button, flex space-between, hover: surface-2 background"},{"class":"vel-accordion-trigger-icon","properties":"1.25rem icon container, transition: transform 200ms; rotates 180deg with .vel-open"},{"class":"vel-accordion-content","properties":"padded content area, color: muted, line-height: relaxed"},{"class":"vel-accordion-flush","properties":"borderless transparent variant; removes outer border and radius"}],"examples":[{"label":"Accordion with one item expanded","html":"$3"},{"label":"Flush variant (borderless)","html":"$4"}]}],["$L5"],"$L6"]}],"loading":null,"isPartial":false}
-5:["$","script","script-0",{"src":"/veloracss/_next/static/chunks/f76080ca1d7ead10.js","async":true}]
+</div>0:{"buildId":"spX3knenDkbV1LRYVkiI8","rsc":["$","$1","c",{"children":[["$","$L2",null,{"title":"Accordion","description":"A collapsible content component for grouping related information into expandable sections. Supports open/close state via the vel-open modifier and a flush borderless variant.","source":"components/accordion.css","table":[{"class":"vel-accordion","properties":"border, border-radius: xl, overflow: hidden, background: surface-1"},{"class":"vel-accordion-item","properties":"border-bottom between items; last-child removes border"},{"class":"vel-accordion-trigger","properties":"full-width button, flex space-between, hover: surface-2 background"},{"class":"vel-accordion-trigger-icon","properties":"1.25rem icon container, transition: transform 200ms; rotates 180deg with .vel-open"},{"class":"vel-accordion-content","properties":"padded content area, color: muted, line-height: relaxed"},{"class":"vel-accordion-flush","properties":"borderless transparent variant; removes outer border and radius"}],"examples":[{"label":"Accordion with one item expanded","html":"$3"},{"label":"Flush variant (borderless)","html":"$4"}]}],["$L5"],"$L6"]}],"loading":null,"isPartial":false}
+5:["$","script","script-0",{"src":"/veloracss/_next/static/chunks/ce9484d5b21a0c2f.js","async":true}]
 6:["$","$L7",null,{"children":["$","$8",null,{"name":"Next.MetadataOutlet","children":"$@9"}]}]
 9:null

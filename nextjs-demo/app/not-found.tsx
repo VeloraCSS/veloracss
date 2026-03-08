@@ -96,27 +96,27 @@ const DNA_CSS = `
   .v404-btn-secondary:hover { border-color: var(--vp); color: var(--vp); }
   .v404-terminal {
     margin-top: 3rem; text-align: left;
-    background: #0C0C0C; border: 1px solid #2a2a2a; border-radius: 0.625rem;
+    background: #1a1a1a; border: 1px solid #333; border-radius: 0.625rem;
     overflow: hidden; max-width: 520px; width: 100%;
-    box-shadow: 0 20px 60px -12px rgba(0,0,0,0.7);
+    box-shadow: 0 20px 60px -12px rgba(0,0,0,0.6);
   }
   .v404-terminal-bar {
-    display: flex; align-items: center; height: 32px;
-    padding: 0 0.75rem; background: #1C1C1C; border-bottom: 1px solid #2a2a2a;
+    display: flex; align-items: center; height: 36px; gap: 0.5rem;
+    padding: 0 0.875rem; background: #252525; border-bottom: 1px solid #333;
+  }
+  .v404-terminal-dots {
+    display: flex; gap: 6px; align-items: center; flex-shrink: 0;
+  }
+  .v404-terminal-dot {
+    width: 12px; height: 12px; border-radius: 50%;
   }
   .v404-terminal-title {
-    font-size: 0.7rem; color: #9a9a9a; flex: 1;
-    font-family: 'Cascadia Code', 'Segoe UI', sans-serif;
-  }
-  .v404-terminal-ctrl {
-    width: 46px; height: 32px; display: flex;
-    align-items: center; justify-content: center;
-    font-size: 0.75rem; color: #9a9a9a; cursor: default;
-    font-family: 'Segoe UI', sans-serif;
+    font-size: 0.72rem; color: #888; flex: 1; text-align: center;
+    font-family: 'Cascadia Code', Menlo, Monaco, monospace;
   }
   .v404-terminal-body {
     padding: 1rem 1.25rem;
-    font-family: 'Cascadia Code', Consolas, monospace;
+    font-family: 'Cascadia Code', Menlo, Monaco, Consolas, monospace;
     font-size: 0.8125rem; line-height: 1.8; color: #CCCCCC;
   }
   .v404-prompt { color: #0ecb81; }
@@ -181,23 +181,23 @@ export default function NotFound() {
             {/* Win11 terminal */}
             <div className="v404-terminal">
               <div className="v404-terminal-bar">
-                <span className="v404-terminal-title">Windows PowerShell</span>
-                {(['─', '□', '✕'] as const).map((s, i) => (
-                  <div key={i} className="v404-terminal-ctrl">{s}</div>
-                ))}
+                <div className="v404-terminal-dots">
+                  <div className="v404-terminal-dot" style={{ background: '#ff5f57' }} />
+                  <div className="v404-terminal-dot" style={{ background: '#ffbd2e' }} />
+                  <div className="v404-terminal-dot" style={{ background: '#28c840' }} />
+                </div>
+                <span className="v404-terminal-title">velora — zsh</span>
               </div>
               <div className="v404-terminal-body">
-                <span className="v404-prompt">PS</span>
-                <span style={{ color: '#4ec9b0' }}> VeloraCSS</span>
-                <span className="v404-prompt"> &gt;</span>
-                <span className="v404-cmd"> GET /this-page</span>
+                <span className="v404-prompt">~</span>
+                <span style={{ color: '#888' }}> $ </span>
+                <span className="v404-cmd">curl https://velorax.github.io/this-page</span>
                 <br />
-                <span className="v404-error">404 Not Found — the requested resource does not exist</span>
+                <span className="v404-error">curl: (404) Not Found — the requested resource does not exist</span>
                 <br /><br />
-                <span className="v404-prompt">PS</span>
-                <span style={{ color: '#4ec9b0' }}> VeloraCSS</span>
-                <span className="v404-prompt"> &gt;</span>
-                <span className="v404-cmd"> navigate /</span>
+                <span className="v404-prompt">~</span>
+                <span style={{ color: '#888' }}> $ </span>
+                <span className="v404-cmd">open https://velorax.github.io/veloracss</span>
                 <br />
                 <span style={{ color: '#0ecb81' }}>200 OK — redirecting to homepage...</span>
               </div>

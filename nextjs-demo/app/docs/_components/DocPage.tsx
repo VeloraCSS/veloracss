@@ -20,8 +20,8 @@ interface DocPageProps {
   examples?: Example[]
 }
 
-// ─── Win11 Terminal Code Block ────────────────────────────────────────────────
-function Win11Block({ filename, code }: { filename: string; code: string }) {
+// ─── macOS Terminal Code Block ────────────────────────────────────────────────
+function MacBlock({ filename, code }: { filename: string; code: string }) {
   const [copied, setCopied] = useState(false)
 
   const handleCopy = useCallback(() => {
@@ -32,21 +32,28 @@ function Win11Block({ filename, code }: { filename: string; code: string }) {
 
   return (
     <div style={{
-      background: '#0C0C0C',
+      background: '#1a1a1a',
       borderRadius: '0 0 0.625rem 0.625rem',
       overflow: 'hidden',
-      border: '1px solid #2a2a2a',
+      border: '1px solid #333',
       borderTop: 'none',
     }}>
-      {/* Windows 11 title bar */}
+      {/* macOS title bar */}
       <div style={{
         display: 'flex', alignItems: 'center',
-        height: '32px', padding: '0 0.75rem',
-        background: '#1C1C1C', borderBottom: '1px solid #2a2a2a',
+        height: '36px', padding: '0 0.875rem',
+        background: '#252525', borderBottom: '1px solid #333',
+        gap: '0.5rem',
       }}>
+        {/* Traffic light dots */}
+        <div style={{ display: 'flex', gap: '6px', alignItems: 'center', flexShrink: 0 }}>
+          <div style={{ width: 12, height: 12, borderRadius: '50%', background: '#ff5f57' }} />
+          <div style={{ width: 12, height: 12, borderRadius: '50%', background: '#ffbd2e' }} />
+          <div style={{ width: 12, height: 12, borderRadius: '50%', background: '#28c840' }} />
+        </div>
         <span style={{
-          fontSize: '0.7rem', color: '#9a9a9a', flex: 1,
-          fontFamily: "'Cascadia Code', 'Segoe UI', sans-serif",
+          fontSize: '0.72rem', color: '#888', flex: 1, textAlign: 'center',
+          fontFamily: "'Cascadia Code', Menlo, Monaco, monospace",
         }}>
           {filename}
         </span>
@@ -55,28 +62,16 @@ function Win11Block({ filename, code }: { filename: string; code: string }) {
           onClick={handleCopy}
           style={{
             fontSize: '0.68rem', fontWeight: 600, padding: '0.2rem 0.625rem',
-            borderRadius: '0.2rem', cursor: 'pointer', border: 'none',
+            borderRadius: '0.25rem', cursor: 'pointer', border: 'none',
             fontFamily: "'Cascadia Code', Consolas, monospace",
             transition: 'all 0.15s',
-            background: copied ? 'rgba(14,203,129,0.15)' : '#2a2a2a',
-            color: copied ? '#0ecb81' : '#9a9a9a',
-            marginRight: '0.5rem',
+            background: copied ? 'rgba(14,203,129,0.15)' : '#333',
+            color: copied ? '#0ecb81' : '#888',
+            flexShrink: 0,
           }}
         >
           {copied ? '✓ Copied' : 'Copy'}
         </button>
-        {/* Win11 window controls — right side */}
-        {(['─', '□', '✕'] as const).map((sym, i) => (
-          <div key={i} style={{
-            width: '46px', height: '32px',
-            display: 'flex', alignItems: 'center', justifyContent: 'center',
-            fontSize: '0.75rem', color: '#9a9a9a',
-            fontFamily: "'Segoe UI', sans-serif",
-            cursor: 'default',
-          }}>
-            {sym}
-          </div>
-        ))}
       </div>
       {/* Code */}
       <pre style={{
@@ -84,7 +79,7 @@ function Win11Block({ filename, code }: { filename: string; code: string }) {
         fontSize: '0.775rem', lineHeight: 1.75,
         color: '#CCCCCC',
         whiteSpace: 'pre-wrap', wordBreak: 'break-all',
-        fontFamily: "'Cascadia Code', Consolas, 'Courier New', monospace",
+        fontFamily: "'Cascadia Code', Menlo, Monaco, 'Courier New', monospace",
         overflowX: 'auto', maxHeight: '320px', overflowY: 'auto',
       }}>
         <code>{code}</code>
@@ -215,8 +210,8 @@ export default function DocPage({ title, description, source, table, examples }:
                 }}
                   dangerouslySetInnerHTML={{ __html: example.html }}
                 />
-                {/* Win11 Terminal code block */}
-                <Win11Block filename="example.html" code={example.html} />
+                {/* macOS Terminal code block */}
+                <MacBlock filename="example.html" code={example.html} />
               </div>
             ))}
           </div>
