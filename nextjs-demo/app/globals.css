@@ -12,7 +12,17 @@ html {
 }
 body { background: #060b17; min-height: 100dvh; }
 
-/* Themed scrollbars */
+/* ─── Syntax highlighting — shared across all code blocks ────────────────── */
+.tc-comment { color: #6a9955; }   /* green  — comments */
+.tc-prop    { color: #9cdcfe; }   /* sky   — property names, attr names */
+.tc-value   { color: #ce9178; }   /* coral — values */
+.tc-fn      { color: #dcdcaa; }   /* gold  — functions & vel- class names */
+.tc-kw      { color: #c586c0; }   /* lilac — keywords, brackets */
+.tc-cls     { color: #4ec9b0; }   /* teal  — tag names, selectors */
+.tc-num     { color: #b5cea8; }   /* sage  — numbers */
+.tc-str     { color: #ce9178; }   /* coral — strings */
+
+/* ─── Themed scrollbars ────────────────────────────────────────────────────── */
 ::-webkit-scrollbar              { width: 8px; height: 8px; }
 ::-webkit-scrollbar-track        { background: #060b17; }
 ::-webkit-scrollbar-thumb        { background: #1e2d45; border-radius: 4px; }

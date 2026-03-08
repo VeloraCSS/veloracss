@@ -20,6 +20,100 @@ interface DocPageProps {
   examples?: Example[]
 }
 
+// ─── Syntax Highlighting ─────────────────────────────────────────────────────
+
+function escH(s: string) {
+  return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;')
+}
+function tc(cls: string, text: string) {
+  return `<span class="${cls}">${text}</span>`
+}
+
+function highlightTag(tag: string): string {
+  let r = ''
+  let i = 0
+  r += tc('tc-kw', '&lt;')
+  i++ // skip <
+  if (tag[i] === '/') { r += tc('tc-kw', '/'); i++ }
+  // tag name
+  const nm = tag.slice(i).match(/^[\w-]+/)
+  if (nm) { r += tc('tc-cls', escH(nm[0])); i += nm[0].length }
+  // attributes
+  while (i < tag.length) {
+    const ch = tag[i]
+    if (/\s/.test(ch)) { r += ch; i++; continue }
+    if (ch === '/' || ch === '>') break
+    const an = tag.slice(i).match(/^[\w-]+/)
+    if (!an) { r += escH(ch); i++; continue }
+    const attrName = an[0]; i += attrName.length
+    if (tag[i] === '=') {
+      r += tc('tc-prop', escH(attrName)) + tc('tc-kw', '=')
+      i++
+      if (tag[i] === '"') {
+        const ve = tag.indexOf('"', i + 1)
+        const val = tag.slice(i + 1, ve)
+        // vel- class names get gold highlight, rest is coral string
+        const vhl = escH(val).replace(/(vel-[\w:.-]+)/g, (_, c) => tc('tc-fn', c))
+        r += tc('tc-kw', '&quot;') + tc('tc-str', vhl) + tc('tc-kw', '&quot;')
+        i = ve + 1
+      }
+    } else {
+      r += tc('tc-prop', escH(attrName))
+    }
+  }
+  if (i < tag.length && tag[i] === '/') { r += tc('tc-kw', '/'); i++ }
+  if (i < tag.length && tag[i] === '>') r += tc('tc-kw', '&gt;')
+  return r
+}
+
+function highlightHTML(code: string): string {
+  const out: string[] = []
+  let i = 0
+  while (i < code.length) {
+    if (code.startsWith('<!--', i)) {
+      const end = code.indexOf('-->', i)
+      if (end === -1) { out.push(escH(code.slice(i))); break }
+      out.push(tc('tc-comment', escH(code.slice(i, end + 3))))
+      i = end + 3
+    } else if (code[i] === '<') {
+      const end = code.indexOf('>', i)
+      if (end === -1) { out.push(escH(code[i])); i++; continue }
+      out.push(highlightTag(code.slice(i, end + 1)))
+      i = end + 1
+    } else {
+      const next = code.indexOf('<', i)
+      const text = next === -1 ? code.slice(i) : code.slice(i, next)
+      out.push(escH(text))
+      i = next === -1 ? code.length : next
+    }
+  }
+  return out.join('')
+}
+
+function highlightCSS(code: string): string {
+  let s = escH(code)
+  // block comments
+  s = s.replace(/(\/\*[\s\S]*?\*\/)/g, m => tc('tc-comment', m))
+  // css functions
+  s = s.replace(/\b(oklch|var|clamp|calc|min|max|rgb|hsl|linear-gradient)\b(?=\()/g,
+    m => tc('tc-fn', m))
+  // property names (--vel-* and regular) at start of line
+  s = s.replace(/(^|[\n\r])(\s*)(--?[\w-]+)(\s*:)/g,
+    (_, nl, ws, prop, col) => nl + ws + tc('tc-prop', prop) + col)
+  // numbers with units
+  s = s.replace(/(?<![#\w])(\d+\.?\d*)(px|rem|em|%|deg|ms|s|vh|vw)?\b/g,
+    (_, n, u) => tc('tc-num', n + (u ?? '')))
+  // hex colors
+  s = s.replace(/#([0-9a-fA-F]{3,8})\b/g, m => tc('tc-num', m))
+  // quoted strings
+  s = s.replace(/'([^']*)'/g, (_, v) => tc('tc-str', `'${v}'`))
+  return s
+}
+
+function highlightCode(code: string): string {
+  return code.trimStart().startsWith('<') ? highlightHTML(code) : highlightCSS(code)
+}
+
 // ─── Win11 Terminal Code Block ────────────────────────────────────────────────
 function Win11Block({ filename, code }: { filename: string; code: string }) {
   const [copied, setCopied] = useState(false)
@@ -93,7 +187,7 @@ function Win11Block({ filename, code }: { filename: string; code: string }) {
         overflowX: 'auto', maxHeight: '320px', overflowY: 'auto',
         background: '#0C0C0C',
       }}>
-        <code>{code}</code>
+        <code dangerouslySetInnerHTML={{ __html: highlightCode(code) }} />
       </pre>
     </div>
   )
