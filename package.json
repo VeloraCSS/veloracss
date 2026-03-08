@@ -1,7 +1,25 @@
 {
   "name": "veloracss",
-  "version": "0.1.0",
-  "description": "A modern utility-first CSS framework",
+  "version": "1.0.0",
+  "description": "AI-designed utility-first CSS framework with Color Genetics, Container Intelligence, and zero-JS State Machines",
+  "keywords": ["css", "framework", "utility-first", "css-framework", "design-system", "oklch", "container-queries"],
+  "license": "MIT",
+  "author": "VeloraX",
+  "homepage": "https://velorax.github.io/veloracss/",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/VeloraX/veloracss.git"
+  },
+  "bugs": {
+    "url": "https://github.com/VeloraX/veloracss/issues"
+  },
+  "files": ["dist/", "src/"],
+  "main": "dist/velora.css",
+  "exports": {
+    ".": "./dist/velora.css",
+    "./min": "./dist/velora.min.css",
+    "./src": "./src/velora.css"
+  },
   "type": "module",
   "scripts": {
     "build": "node build.mjs",

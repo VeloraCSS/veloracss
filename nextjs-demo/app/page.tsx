@@ -845,7 +845,7 @@ export default function Home() {
         <nav className="vhome-nav">
           <div className="vel-flex vel-items-center vel-gap-4">
             <img src={`${BASE_PATH}/velora_actual.png`} alt="VeloraCSS" style={{ height: '26px', width: 'auto' }} />
-            <span className="vel-badge vel-badge-primary">v0.3.0</span>
+            <span className="vel-badge vel-badge-primary">v1.0.0</span>
           </div>
           <div className="vel-flex vel-items-center vel-gap-6">
             <Link href={DOCS_URL} className="vhome-nav-link">Docs</Link>
@@ -1666,7 +1666,7 @@ onClick={() => setTab(0)}`}</pre>
               Color Genetics · Container Intelligence · CSS State Machine · Scope Theming · Smart Forms · Fluid Scale
             </span>
             <div className="vel-flex vel-items-center vel-justify-between vel-flex-wrap vel-gap-4" style={{ width: '100%' }}>
-              <span style={{ fontSize: '0.8125rem', color: 'var(--vt3)' }}>VeloraCSS v0.3.0 — AI-designed. Human-shipped.</span>
+              <span style={{ fontSize: '0.8125rem', color: 'var(--vt3)' }}>VeloraCSS v1.0.0 — AI-designed. Human-shipped.</span>
               <div className="vel-flex vel-gap-6">
                 <Link href={DOCS_URL} className="vhome-footer-link">Docs</Link>
                 <a href={PLAYGROUND_URL} target="_blank" rel="noopener noreferrer" className="vhome-footer-link">Playground</a>

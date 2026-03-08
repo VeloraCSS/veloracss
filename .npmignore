@@ -1,0 +1,11 @@
+nextjs-demo/
+playground/
+playground-dist/
+docs/
+node_modules/
+.claude/
+*.mjs
+vite.config.ts
+tsconfig.json
+innovation-demo.html
+ARCHITECT_REPORT.md
