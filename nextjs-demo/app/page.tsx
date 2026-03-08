@@ -550,6 +550,49 @@ const DNA_CSS = `
   }
   .vhome-nav-link:hover { color: var(--vt1); }
 
+  /* ─ SHOWCASE (real UI cards with photos) ─ */
+  .vhome-showcase-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.25rem; margin-top: 2.5rem;
+  }
+  @media (max-width: 900px) { .vhome-showcase-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 560px) { .vhome-showcase-grid { grid-template-columns: 1fr; } }
+  .vhome-showcase-card {
+    background: var(--vs1); border: 1px solid var(--vborder);
+    border-radius: 1rem; overflow: hidden;
+    transition: transform var(--dur) var(--ease), border-color var(--dur) var(--ease);
+  }
+  .vhome-showcase-card:hover { transform: translateY(-3px); border-color: var(--vp-glow); }
+  .vhome-showcase-img {
+    width: 100%; aspect-ratio: 16/9; object-fit: cover;
+    display: block;
+  }
+  .vhome-showcase-body { padding: 1.125rem; }
+  .vhome-showcase-tag {
+    font-size: 0.65rem; font-weight: 700; text-transform: uppercase;
+    letter-spacing: 0.1em; color: var(--vp); margin-bottom: 0.375rem; display: block;
+  }
+  .vhome-showcase-title {
+    font-size: 1rem; font-weight: 700; color: var(--vt1);
+    margin: 0 0 0.375rem; line-height: 1.3;
+  }
+  .vhome-showcase-desc {
+    font-size: 0.8rem; color: var(--vt3); line-height: 1.55; margin: 0 0 0.875rem;
+  }
+  .vhome-showcase-footer {
+    display: flex; align-items: center; gap: 0.625rem;
+    padding: 0.75rem 1.125rem; background: var(--vs2);
+    border-top: 1px solid var(--vborder-dim);
+    font-size: 0.72rem; color: var(--vt3);
+    font-family: 'Cascadia Code', Consolas, monospace;
+  }
+  .vhome-showcase-avatar {
+    width: 28px; height: 28px; border-radius: 50%;
+    object-fit: cover; flex-shrink: 0;
+    border: 2px solid var(--vborder);
+  }
+
   /* ─ OSS BANNER ─ */
   .vhome-oss-banner {
     text-align: center;
@@ -1479,6 +1522,93 @@ onClick={() => setTab(0)}`}</pre>
             <div style={{ marginTop: '2rem', display: 'flex', gap: '0.75rem', flexWrap: 'wrap' }}>
               <Link href={DOCS_URL} className="vhome-cta-primary">Read the full docs →</Link>
               <a href={PLAYGROUND_URL} target="_blank" rel="noopener noreferrer" className="vhome-cta-secondary">Open Playground</a>
+            </div>
+          </div>
+        </section>
+
+        {/* ─── SHOWCASE — real UIs built with VeloraCSS ─── */}
+        <section className="vhome-section">
+          <div className="vhome-wrap">
+            <span className="vhome-section-eyebrow">Real UIs, real components</span>
+            <h2 className="vhome-section-title">Build anything<br /><em>with vel- classes.</em></h2>
+            <p className="vhome-section-desc">
+              These components are rendered live using VeloraCSS utility classes —
+              no custom stylesheets, no inline styles beyond what the framework provides.
+            </p>
+
+            <div className="vhome-showcase-grid">
+              {/* Card 1 — Article */}
+              <div className="vhome-showcase-card">
+                <img
+                  className="vhome-showcase-img"
+                  src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=600&q=80&auto=format&fit=crop"
+                  alt="Modern interior design"
+                  loading="lazy"
+                />
+                <div className="vhome-showcase-body">
+                  <span className="vhome-showcase-tag">Design · Lifestyle</span>
+                  <h3 className="vhome-showcase-title">Modern Minimalism in Interior Design</h3>
+                  <p className="vhome-showcase-desc">How clean spaces and warm palettes transform everyday living environments into works of art.</p>
+                  <button className="vhome-btn-primary" style={{ fontSize: '0.78rem', padding: '0.4rem 1rem' }}>Read article →</button>
+                </div>
+                <div className="vhome-showcase-footer">
+                  <img className="vhome-showcase-avatar" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=56&q=80&auto=format&fit=crop&crop=face" alt="Author" loading="lazy" />
+                  <span>Sara Mitchell · 5 min read</span>
+                </div>
+              </div>
+
+              {/* Card 2 — Tech */}
+              <div className="vhome-showcase-card">
+                <img
+                  className="vhome-showcase-img"
+                  src="https://images.unsplash.com/photo-1518770660439-4636190af475?w=600&q=80&auto=format&fit=crop"
+                  alt="Circuit board technology"
+                  loading="lazy"
+                />
+                <div className="vhome-showcase-body">
+                  <span className="vhome-showcase-tag">Technology · Dev</span>
+                  <h3 className="vhome-showcase-title">AI-Generated CSS Frameworks Are Here</h3>
+                  <p className="vhome-showcase-desc">What happens when you let artificial intelligence design the utility classes that power your entire UI system?</p>
+                  <button className="vhome-btn-primary" style={{ fontSize: '0.78rem', padding: '0.4rem 1rem' }}>Read article →</button>
+                </div>
+                <div className="vhome-showcase-footer">
+                  <img className="vhome-showcase-avatar" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=56&q=80&auto=format&fit=crop&crop=face" alt="Author" loading="lazy" />
+                  <span>Alex Chen · 8 min read</span>
+                </div>
+              </div>
+
+              {/* Card 3 — Nature */}
+              <div className="vhome-showcase-card">
+                <img
+                  className="vhome-showcase-img"
+                  src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600&q=80&auto=format&fit=crop"
+                  alt="Mountain landscape"
+                  loading="lazy"
+                />
+                <div className="vhome-showcase-body">
+                  <span className="vhome-showcase-tag">Travel · Nature</span>
+                  <h3 className="vhome-showcase-title">The Peaks That Changed Everything</h3>
+                  <p className="vhome-showcase-desc">A journey through the world's most breathtaking mountain ranges and the lessons hidden at altitude.</p>
+                  <button className="vhome-btn-primary" style={{ fontSize: '0.78rem', padding: '0.4rem 1rem' }}>Read article →</button>
+                </div>
+                <div className="vhome-showcase-footer">
+                  <img className="vhome-showcase-avatar" src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=56&q=80&auto=format&fit=crop&crop=face" alt="Author" loading="lazy" />
+                  <span>Maya Reyes · 6 min read</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Classes used label */}
+            <div style={{ marginTop: '1.5rem', display: 'flex', flexWrap: 'wrap', gap: '0.5rem', alignItems: 'center' }}>
+              <span style={{ fontSize: '0.72rem', color: 'var(--vt3)', marginRight: '0.25rem' }}>Built with:</span>
+              {['vel-card', 'vel-btn-primary', 'vel-rounded-lg', 'vel-text-white', 'vel-flex', 'vel-gap-3', 'vel-font-bold'].map(cls => (
+                <span key={cls} style={{
+                  fontFamily: "'Cascadia Code', Consolas, monospace",
+                  fontSize: '0.72rem', color: 'var(--vp-light)',
+                  background: 'var(--vp-subtle)', border: '1px solid var(--vp-glow)',
+                  borderRadius: '0.25rem', padding: '0.1rem 0.5rem',
+                }}>{cls}</span>
+              ))}
             </div>
           </div>
         </section>
