@@ -20,22 +20,22 @@ export default function AlignItemsPage() {
   <div>
     <p style="color:#64748b;font-size:11px;margin-bottom:4px">vel-items-start</p>
     <div class="vel-flex vel-items-start vel-gap-2" style="background:#1a2236;padding:8px;border-radius:6px;height:80px">
-      <div style="background:#7c5cfc;color:#fff;padding:6px 12px;border-radius:4px;font-size:12px">A</div>
-      <div style="background:#7c5cfc;color:#fff;padding:16px 12px;border-radius:4px;font-size:12px">B</div>
+      <div class="vel-bg-primary vel-text-white vel-rounded-sm" style="padding:6px 12px;font-size:12px">A</div>
+      <div class="vel-bg-primary vel-text-white vel-rounded-sm" style="padding:16px 12px;font-size:12px">B</div>
     </div>
   </div>
   <div>
     <p style="color:#64748b;font-size:11px;margin-bottom:4px">vel-items-center</p>
     <div class="vel-flex vel-items-center vel-gap-2" style="background:#1a2236;padding:8px;border-radius:6px;height:80px">
-      <div style="background:#0ecb81;color:#fff;padding:6px 12px;border-radius:4px;font-size:12px">A</div>
-      <div style="background:#0ecb81;color:#fff;padding:16px 12px;border-radius:4px;font-size:12px">B</div>
+      <div class="vel-bg-success vel-text-white vel-rounded-sm" style="padding:6px 12px;font-size:12px">A</div>
+      <div class="vel-bg-success vel-text-white vel-rounded-sm" style="padding:16px 12px;font-size:12px">B</div>
     </div>
   </div>
   <div>
     <p style="color:#64748b;font-size:11px;margin-bottom:4px">vel-items-end</p>
     <div class="vel-flex vel-items-end vel-gap-2" style="background:#1a2236;padding:8px;border-radius:6px;height:80px">
-      <div style="background:#f0416c;color:#fff;padding:6px 12px;border-radius:4px;font-size:12px">A</div>
-      <div style="background:#f0416c;color:#fff;padding:16px 12px;border-radius:4px;font-size:12px">B</div>
+      <div class="vel-bg-danger vel-text-white vel-rounded-sm" style="padding:6px 12px;font-size:12px">A</div>
+      <div class="vel-bg-danger vel-text-white vel-rounded-sm" style="padding:16px 12px;font-size:12px">B</div>
     </div>
   </div>
 </div>`,

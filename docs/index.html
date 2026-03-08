@@ -1,4 +1,4 @@
-<!DOCTYPE html><!--15pMC_Fku9lo_9RF6_NIJ--><html lang="en"><head><meta charSet="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/><link rel="preload" as="image" href="/veloracss/velora_actual.png"/><link rel="stylesheet" href="/veloracss/_next/static/chunks/8f0a2f621737ef53.css" data-precedence="next"/><link rel="stylesheet" href="/veloracss/_next/static/chunks/f666607d0a3988e8.css" data-precedence="next"/><link rel="preload" as="script" fetchPriority="low" href="/veloracss/_next/static/chunks/37690ebe0e4652d2.js"/><script src="/veloracss/_next/static/chunks/0c15dd5ee0edaca9.js" async=""></script><script src="/veloracss/_next/static/chunks/86d729c474e9afa1.js" async=""></script><script src="/veloracss/_next/static/chunks/8de3a352c7772385.js" async=""></script><script src="/veloracss/_next/static/chunks/turbopack-271ab5c3c58dcc42.js" async=""></script><script src="/veloracss/_next/static/chunks/89d43586d21f2643.js" async=""></script><script src="/veloracss/_next/static/chunks/27e596ffa243fe8c.js" async=""></script><script src="/veloracss/_next/static/chunks/21679378a9d5730e.js" async=""></script><script src="/veloracss/_next/static/chunks/1137ce70b1c78520.js" async=""></script><script src="/veloracss/_next/static/chunks/74560f5a058a5774.js" async=""></script><meta name="color-scheme" content="dark"/><title>VeloraCSS — Next.js Demo</title><meta name="description" content="VeloraCSS utility-first CSS framework working with Next.js App Router"/><link rel="icon" href="/veloracss/favicon.ico?favicon.0b3bf435.ico" sizes="256x256" type="image/x-icon"/><script src="/veloracss/_next/static/chunks/a6dad97d9634a72d.js" noModule=""></script></head><body><div hidden=""><!--$--><!--/$--></div><style>
+<!DOCTYPE html><!--Yiz1lyP76e7plBlwkCWWf--><html lang="en"><head><meta charSet="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/><link rel="preload" as="image" href="/veloracss/velora_actual.png"/><link rel="stylesheet" href="/veloracss/_next/static/chunks/1830086f80d9b1a4.css" data-precedence="next"/><link rel="stylesheet" href="/veloracss/_next/static/chunks/f666607d0a3988e8.css" data-precedence="next"/><link rel="preload" as="script" fetchPriority="low" href="/veloracss/_next/static/chunks/37690ebe0e4652d2.js"/><script src="/veloracss/_next/static/chunks/0c15dd5ee0edaca9.js" async=""></script><script src="/veloracss/_next/static/chunks/86d729c474e9afa1.js" async=""></script><script src="/veloracss/_next/static/chunks/8de3a352c7772385.js" async=""></script><script src="/veloracss/_next/static/chunks/turbopack-271ab5c3c58dcc42.js" async=""></script><script src="/veloracss/_next/static/chunks/89d43586d21f2643.js" async=""></script><script src="/veloracss/_next/static/chunks/27e596ffa243fe8c.js" async=""></script><script src="/veloracss/_next/static/chunks/21679378a9d5730e.js" async=""></script><script src="/veloracss/_next/static/chunks/1137ce70b1c78520.js" async=""></script><script src="/veloracss/_next/static/chunks/44802cfebb0ff1cc.js" async=""></script><meta name="color-scheme" content="dark"/><title>VeloraCSS — Next.js Demo</title><meta name="description" content="VeloraCSS utility-first CSS framework working with Next.js App Router"/><link rel="icon" href="/veloracss/favicon.ico?favicon.0b3bf435.ico" sizes="256x256" type="image/x-icon"/><script src="/veloracss/_next/static/chunks/a6dad97d9634a72d.js" noModule=""></script></head><body><div hidden=""><!--$--><!--/$--></div><style>
   #vel-home {
     --vel-dna-hue: 258;
     --vp: oklch(65% 0.21 var(--vel-dna-hue));
@@ -33,99 +33,6 @@
   #vel-home [data-vel-theme="ember"]  { --vel-dna-hue: 22;  }
   #vel-home [data-vel-theme="aurora"] { --vel-dna-hue: 300; }
   #vel-home [data-vel-theme="gold"]   { --vel-dna-hue: 55;  }
-
-  /* ─ NAV ─ */
-  .vhome-nav {
-    position: sticky; top: 0; z-index: 100;
-    height: 56px;
-    display: flex; align-items: center; justify-content: space-between;
-    padding: 0 clamp(1rem, 4vw, 3rem);
-    background: var(--vs0);
-    border-bottom: 1px solid var(--vborder);
-    backdrop-filter: blur(12px);
-  }
-  .vhome-nav-links { display: flex; align-items: center; gap: 1.5rem; }
-  .vhome-nav-link {
-    font-size: 0.875rem; font-weight: 500; color: var(--vt2);
-    text-decoration: none;
-    transition: color var(--dur) var(--ease);
-  }
-  .vhome-nav-link:hover { color: var(--vt1); }
-  .vhome-nav-cta {
-    font-size: 0.875rem; font-weight: 600; padding: 0.4rem 1rem;
-    border-radius: 0.5rem;
-    background: var(--vp); color: oklch(12% 0.02 var(--vel-dna-hue));
-    text-decoration: none;
-    transition: all var(--dur) var(--ease);
-  }
-  .vhome-nav-cta:hover { background: var(--vp-light); }
-  .vhome-nav-badge {
-    font-size: 0.7rem; font-weight: 600; letter-spacing: 0.06em;
-    padding: 0.2rem 0.5rem; border-radius: 9999px;
-    background: var(--vp-subtle); color: var(--vp-light);
-    border: 1px solid var(--vp-glow);
-  }
-
-  /* ─ HERO ─ */
-  .vhome-hero {
-    text-align: center;
-    padding: clamp(4rem, 10vw, 8rem) clamp(1rem, 4vw, 3rem) clamp(3rem, 6vw, 5rem);
-    border-bottom: 1px solid var(--vborder-dim);
-    position: relative; overflow: hidden;
-  }
-  .vhome-hero::before {
-    content: '';
-    position: absolute; inset: 0;
-    background: radial-gradient(ellipse 70% 50% at 50% -10%, var(--vp-glow), transparent 65%);
-    pointer-events: none;
-  }
-  .vhome-hero-eyebrow {
-    display: inline-flex; align-items: center; gap: 0.5rem;
-    font-size: 0.7rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase;
-    color: var(--vp); background: var(--vp-subtle);
-    border: 1px solid var(--vp-glow); border-radius: 9999px;
-    padding: 0.35rem 1rem; margin-bottom: 1.5rem;
-  }
-  .vhome-hero-eyebrow::before {
-    content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--vp);
-  }
-  .vhome-hero h1 {
-    font-size: clamp(2.5rem, 6vw, 4.5rem); font-weight: 900;
-    letter-spacing: -0.03em; line-height: 1.05;
-    margin: 0 0 1.25rem;
-    color: var(--vt1);
-  }
-  .vhome-hero h1 em { font-style: normal; color: var(--vp); }
-  .vhome-hero-sub {
-    font-size: clamp(1rem, 2vw, 1.25rem); color: var(--vt2);
-    max-width: 580px; margin: 0 auto 2.5rem; line-height: 1.7;
-  }
-  .vhome-hero-ctas {
-    display: flex; gap: 0.75rem; justify-content: center; flex-wrap: wrap;
-    margin-bottom: 3rem;
-  }
-  .vhome-cta-primary {
-    font-size: 0.9375rem; font-weight: 700; padding: 0.75rem 1.75rem;
-    border-radius: 0.625rem; background: var(--vp);
-    color: oklch(12% 0.02 var(--vel-dna-hue));
-    text-decoration: none; border: none; cursor: pointer;
-    transition: all var(--dur) var(--ease);
-  }
-  .vhome-cta-primary:hover { background: var(--vp-light); transform: translateY(-1px); }
-  .vhome-cta-secondary {
-    font-size: 0.9375rem; font-weight: 600; padding: 0.75rem 1.75rem;
-    border-radius: 0.625rem; background: var(--vs2); color: var(--vt1);
-    text-decoration: none; border: 1px solid var(--vborder); cursor: pointer;
-    transition: all var(--dur) var(--ease);
-  }
-  .vhome-cta-secondary:hover { border-color: var(--vp); color: var(--vp); }
-  .vhome-cta-ghost {
-    font-size: 0.9375rem; font-weight: 500; padding: 0.75rem 1.25rem;
-    border-radius: 0.625rem; background: transparent; color: var(--vt2);
-    text-decoration: none; border: 1px solid var(--vborder); cursor: pointer;
-    transition: all var(--dur) var(--ease);
-  }
-  .vhome-cta-ghost:hover { color: var(--vt1); border-color: var(--vborder); }
 
   /* ─ DNA SLIDER ─ */
   .vhome-dna-strip {
@@ -164,44 +71,47 @@
     font-size: 0.72rem; color: var(--vt3); margin-top: 0.25rem;
   }
 
-  /* ─ MAC TERMINAL ─ */
+  /* ─ WIN11 TERMINAL ─ */
   .vhome-terminal {
-    background: #1a1a1a; border-radius: 0.625rem; overflow: hidden;
-    border: 1px solid #333;
+    background: #0C0C0C; border-radius: 0.5rem; overflow: hidden;
+    border: 1px solid #2d2d2d;
     box-shadow: 0 20px 60px -12px rgba(0,0,0,0.7);
     text-align: left;
   }
   .vhome-terminal-titlebar {
-    display: flex; align-items: center; gap: 0.5rem;
-    padding: 0 0.875rem; height: 36px;
-    background: #252525; border-bottom: 1px solid #333;
+    display: flex; align-items: center;
+    padding: 0 0; height: 32px;
+    background: #1C1C1C; border-bottom: 1px solid #2d2d2d;
   }
-  .vhome-terminal-dots {
-    display: flex; gap: 6px; align-items: center; flex-shrink: 0;
-  }
-  .vhome-terminal-dot {
-    width: 12px; height: 12px; border-radius: 50%;
-  }
-  .vhome-terminal-dot.red    { background: #ff5f57; }
-  .vhome-terminal-dot.yellow { background: #ffbd2e; }
-  .vhome-terminal-dot.green  { background: #28c840; }
   .vhome-terminal-title {
     font-size: 0.72rem; color: #888;
     font-family: 'Cascadia Code', Menlo, Monaco, monospace;
-    flex: 1; text-align: center;
+    flex: 1; padding-left: 0.875rem;
+  }
+  .vhome-terminal-controls {
+    display: flex; align-items: stretch; height: 32px; flex-shrink: 0;
+  }
+  .vhome-terminal-ctrl {
+    display: flex; align-items: center; justify-content: center;
+    width: 46px; font-size: 0.7rem; color: #888;
+    cursor: pointer; transition: background 0.15s; border: none;
+    background: transparent; font-family: inherit;
+  }
+  .vhome-terminal-ctrl:hover { background: rgba(255,255,255,0.08); color: #ccc; }
+  .vhome-terminal-ctrl.close:hover { background: #e81123; color: #fff; }
+  .vhome-terminal-action-bar {
+    display: flex; align-items: center; justify-content: flex-end;
+    background: #141414; border-bottom: 1px solid #1e1e1e;
+    padding: 0 0.75rem; height: 28px;
   }
   .vhome-terminal-copy {
-    font-size: 0.7rem; font-weight: 600; padding: 0.25rem 0.625rem;
-    border-radius: 0.25rem; cursor: pointer; border: none;
+    font-size: 0.7rem; font-weight: 600; padding: 0.2rem 0.5rem;
+    border-radius: 0.2rem; cursor: pointer; border: none;
     font-family: 'Cascadia Code', Consolas, monospace;
     transition: all 0.15s; flex-shrink: 0;
   }
-  .vhome-terminal-copy.idle {
-    background: #333; color: #888;
-  }
-  .vhome-terminal-copy.copied {
-    background: rgba(14,203,129,0.15); color: #0ecb81;
-  }
+  .vhome-terminal-copy.idle { background: #333; color: #888; }
+  .vhome-terminal-copy.copied { background: rgba(14,203,129,0.15); color: #0ecb81; }
   .vhome-terminal-code {
     padding: 1.25rem 1.5rem; overflow-x: hidden; overflow-y: auto;
     white-space: pre-wrap; word-break: break-word;
@@ -220,30 +130,6 @@
   .tc-cls     { color: #4ec9b0; }
   .tc-num     { color: #b5cea8; }
   .tc-str     { color: #ce9178; }
-
-  /* ─ SECTION LAYOUT ─ */
-  .vhome-section {
-    padding: clamp(3rem, 6vw, 5rem) clamp(1rem, 4vw, 3rem);
-    border-bottom: 1px solid var(--vborder-dim);
-  }
-  .vhome-wrap { max-width: 1100px; margin: 0 auto; }
-  .vhome-section-eyebrow {
-    font-size: 0.7rem; font-weight: 800; letter-spacing: 0.15em;
-    text-transform: uppercase; color: var(--vp); margin-bottom: 0.75rem; display: block;
-  }
-  .vhome-section-title {
-    font-size: clamp(1.875rem, 3vw, 2.5rem); font-weight: 800;
-    letter-spacing: -0.025em; line-height: 1.15; margin-bottom: 1rem;
-  }
-  .vhome-section-desc {
-    font-size: 1.0625rem; color: var(--vt2); max-width: 580px; line-height: 1.75;
-    margin-bottom: 2.5rem;
-  }
-  .vhome-section-desc code {
-    font-family: 'Cascadia Code', Consolas, monospace;
-    font-size: 0.875em; color: var(--vp-light);
-    background: var(--vp-subtle); padding: 0.1em 0.4em; border-radius: 0.25rem;
-  }
 
   /* ─ INNOVATIONS GRID ─ */
   .vhome-innovations {
@@ -269,6 +155,7 @@
   }
   .vhome-innovation h3 {
     font-size: 1.0625rem; font-weight: 700; margin-bottom: 0.5rem; line-height: 1.3;
+    color: var(--vt1);
   }
   .vhome-innovation p {
     font-size: 0.875rem; color: var(--vt2); line-height: 1.65;
@@ -293,16 +180,12 @@
     border-radius: 1rem; overflow: hidden;
   }
   @media (max-width: 640px) { .vhome-stats { grid-template-columns: repeat(2, 1fr); } }
-  .vhome-stat {
-    background: var(--vs1); padding: 2rem; text-align: center;
-  }
+  .vhome-stat { background: var(--vs1); padding: 2rem; text-align: center; }
   .vhome-stat-num {
     display: block; font-size: clamp(2rem, 4vw, 3rem); font-weight: 900;
     color: var(--vp); line-height: 1; margin-bottom: 0.5rem;
   }
-  .vhome-stat-label {
-    font-size: 0.8125rem; color: var(--vt3); line-height: 1.4;
-  }
+  .vhome-stat-label { font-size: 0.8125rem; color: var(--vt3); line-height: 1.4; }
 
   /* ─ CQ CARD (live demo) ─ */
   .vhome-cq-outer {
@@ -327,7 +210,7 @@
     font-size: 0.65rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
     color: var(--vp); display: block; margin-bottom: 0.375rem;
   }
-  .vhome-cq-title { font-size: 1rem; font-weight: 700; margin-bottom: 0.5rem; line-height: 1.3; }
+  .vhome-cq-title { font-size: 1rem; font-weight: 700; margin-bottom: 0.5rem; line-height: 1.3; color: var(--vt1); }
   .vhome-cq-desc { font-size: 0.8125rem; color: var(--vt2); line-height: 1.6; }
   .vhome-cq-footer {
     background: var(--vs3); border-top: 1px solid var(--vborder);
@@ -346,11 +229,6 @@
   @media (max-width: 640px) { .vhome-swatches { grid-template-columns: repeat(2, 1fr); } }
   .vhome-swatch { border-radius: 0.5rem; overflow: hidden; border: 1px solid var(--vborder-dim); }
   .vhome-swatch-color { height: 56px; transition: all var(--dur) var(--ease); }
-  .vhome-swatch-label {
-    padding: 0.375rem 0.5rem; background: var(--vs2);
-    font-size: 0.65rem; color: var(--vt3);
-    font-family: 'Cascadia Code', Consolas, monospace;
-  }
   .vhome-swatch-info { padding: 0.375rem 0.5rem; background: var(--vs2); }
   .vhome-swatch-name { font-size: 0.7rem; font-weight: 600; color: var(--vt2); display: block; }
   .vhome-swatch-var { font-size: 0.62rem; color: var(--vt3); font-family: 'Cascadia Code', Consolas, monospace; }
@@ -382,22 +260,6 @@
   .vhome-field:has(.vhome-input:valid:not(:placeholder-shown)) .vhome-input { border-color: oklch(70% 0.2 162); box-shadow: 0 0 0 3px oklch(70% 0.2 162 / 0.12); }
   .vhome-field:has(.vhome-input:valid:not(:placeholder-shown)) .vhome-field-ok   { display: block; }
   .vhome-field:has(.vhome-input:valid:not(:placeholder-shown)) .vhome-field-hint { display: none; }
-
-  /* ─ COMPONENTS PREVIEW ─ */
-  .vhome-component-grid {
-    display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 1.5rem;
-  }
-  .vhome-component-preview {
-    background: var(--vs1); border: 1px solid var(--vborder);
-    border-radius: 0.875rem; overflow: hidden;
-  }
-  .vhome-component-preview-header {
-    background: var(--vs2); border-bottom: 1px solid var(--vborder);
-    padding: 0.625rem 1rem;
-    font-size: 0.7rem; font-weight: 700; text-transform: uppercase;
-    letter-spacing: 0.08em; color: var(--vt3);
-  }
-  .vhome-component-preview-body { padding: 1.25rem; }
 
   /* ─ SCOPE THEME DEMO ─ */
   .vhome-theme-btns { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1.5rem; }
@@ -440,10 +302,10 @@
     font-size: 1.125rem; margin-bottom: 0.625rem;
     color: var(--vp); transition: all var(--dur) var(--ease);
   }
-  .vhome-scope-card-title { font-size: 0.875rem; font-weight: 600; margin-bottom: 0.25rem; }
+  .vhome-scope-card-title { font-size: 0.875rem; font-weight: 600; margin-bottom: 0.25rem; color: var(--vt1); }
   .vhome-scope-card-desc { font-size: 0.75rem; color: var(--vt3); line-height: 1.4; }
 
-  /* ─ DNA-TOKEN BUTTONS (used in scope demo so they respond to theme changes) ─ */
+  /* ─ DNA-TOKEN BUTTONS (scope demo — must react to theme changes) ─ */
   .vhome-btn-primary {
     background: var(--vp); color: oklch(12% 0.02 var(--vel-dna-hue));
     border: none; border-radius: 0.5rem; padding: 0.625rem 1.25rem;
@@ -458,6 +320,49 @@
     transition: all var(--dur) var(--ease);
   }
   .vhome-btn-outline:hover { border-color: var(--vp); background: var(--vp-subtle); }
+
+  /* ─ CTA BUTTONS (hero area — DNA-reactive) ─ */
+  .vhome-cta-primary {
+    font-size: 0.9375rem; font-weight: 700; padding: 0.75rem 1.75rem;
+    border-radius: 0.625rem; background: var(--vp);
+    color: oklch(12% 0.02 var(--vel-dna-hue));
+    text-decoration: none; border: none; cursor: pointer;
+    transition: all var(--dur) var(--ease); display: inline-block;
+  }
+  .vhome-cta-primary:hover { background: var(--vp-light); transform: translateY(-1px); }
+  .vhome-cta-secondary {
+    font-size: 0.9375rem; font-weight: 600; padding: 0.75rem 1.75rem;
+    border-radius: 0.625rem; background: var(--vs2); color: var(--vt1);
+    text-decoration: none; border: 1px solid var(--vborder); cursor: pointer;
+    transition: all var(--dur) var(--ease); display: inline-block;
+  }
+  .vhome-cta-secondary:hover { border-color: var(--vp); color: var(--vp); }
+  .vhome-cta-ghost {
+    font-size: 0.9375rem; font-weight: 500; padding: 0.75rem 1.25rem;
+    border-radius: 0.625rem; background: transparent; color: var(--vt2);
+    text-decoration: none; border: 1px solid var(--vborder); cursor: pointer;
+    transition: all var(--dur) var(--ease); display: inline-block;
+  }
+  .vhome-cta-ghost:hover { color: var(--vt1); }
+
+  /* ─ DNA LIVE PREVIEW STRIP ─ */
+  .vhome-dna-live {
+    display: flex; align-items: center; gap: 0.75rem; flex-wrap: wrap;
+    justify-content: center; margin-top: 1rem;
+  }
+  .vhome-dna-live-badge {
+    font-size: 0.7rem; font-weight: 700; letter-spacing: 0.06em;
+    padding: 0.25rem 0.7rem; border-radius: 9999px;
+    background: var(--vp-subtle); color: var(--vp); border: 1px solid var(--vp-glow);
+  }
+
+  /* ─ SKELETON SHIMMER (components demo) ─ */
+  .vhome-skeleton-demo {
+    background: linear-gradient(90deg, var(--vs3) 25%, var(--vs4) 50%, var(--vs3) 75%);
+    background-size: 200% 100%;
+    animation: vhome-shimmer 1.6s ease-in-out infinite;
+  }
+  @keyframes vhome-shimmer { 0% { background-position: 200% 0 } 100% { background-position: -200% 0 } }
 
   /* ─ CSS STATE MACHINE TABS ─ */
   .vhome-tabs-demo {
@@ -482,7 +387,6 @@
   .vhome-tab-panel > p { color: var(--vt2); font-size: 0.875rem; line-height: 1.7; margin-bottom: 1rem; }
   .vhome-tab-panel code { font-family: 'Cascadia Code', Consolas, monospace; font-size: 0.875em; color: var(--vp-light); background: var(--vp-subtle); padding: 0.1em 0.4em; border-radius: 0.25rem; }
   @keyframes vhome-fade-up { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
-  /* :has() selectors — show active tab panel + highlight active label */
   #vel-home .vhome-tabs-demo:has(#h-tab-1:checked) label[for="h-tab-1"],
   #vel-home .vhome-tabs-demo:has(#h-tab-2:checked) label[for="h-tab-2"],
   #vel-home .vhome-tabs-demo:has(#h-tab-3:checked) label[for="h-tab-3"] {
@@ -491,13 +395,11 @@
   #vel-home .vhome-tabs-demo:has(#h-tab-1:checked) #h-panel-1,
   #vel-home .vhome-tabs-demo:has(#h-tab-2:checked) #h-panel-2,
   #vel-home .vhome-tabs-demo:has(#h-tab-3:checked) #h-panel-3 { display: block; }
-  /* Mini-feature grid inside tabs */
   .vhome-mini-features { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 0.75rem; margin-top: 1rem; }
   .vhome-mini-feature { display: flex; align-items: flex-start; gap: 0.625rem; padding: 0.75rem; background: var(--vs3); border: 1px solid var(--vborder); border-radius: 0.625rem; }
   .vhome-mini-feature-icon { width: 28px; height: 28px; border-radius: 0.375rem; background: var(--vp-subtle); border: 1px solid var(--vp-glow); display: flex; align-items: center; justify-content: center; font-size: 0.875rem; flex-shrink: 0; }
   .vhome-mini-feature-title { font-size: 0.875rem; font-weight: 600; color: var(--vt1); margin-bottom: 0.125rem; }
   .vhome-mini-feature-desc { font-size: 0.72rem; color: var(--vt3); line-height: 1.4; }
-  /* Compare grid */
   .vhome-compare-row { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; margin-bottom: 0.75rem; }
   @media (max-width: 640px) { .vhome-compare-row { grid-template-columns: 1fr; } }
   .vhome-compare-cell { border-radius: 0.5rem; overflow: hidden; border: 1px solid var(--vborder); }
@@ -506,32 +408,81 @@
   .vhome-compare-good { background: var(--vp-subtle); color: var(--vp); border-bottom: 1px solid var(--vp-glow); }
   .vhome-compare-cell pre { padding: 0.75rem; font-size: 0.72rem; line-height: 1.6; color: var(--vt2); background: var(--vs2); font-family: 'Cascadia Code', Consolas, monospace; white-space: pre-wrap; margin: 0; }
 
-  /* ─ DNA LIVE PREVIEW STRIP ─ */
-  .vhome-dna-live {
-    display: flex; align-items: center; gap: 0.75rem; flex-wrap: wrap;
-    justify-content: center; margin-top: 1rem;
+  /* ─ SECTION LAYOUT ─ */
+  .vhome-section {
+    padding: clamp(3rem, 6vw, 5rem) clamp(1rem, 4vw, 3rem);
+    border-bottom: 1px solid var(--vborder-dim);
   }
-  .vhome-dna-live-badge {
-    font-size: 0.7rem; font-weight: 700; letter-spacing: 0.06em;
-    padding: 0.25rem 0.7rem; border-radius: 9999px;
-    background: var(--vp-subtle); color: var(--vp); border: 1px solid var(--vp-glow);
+  .vhome-wrap { max-width: 1100px; margin: 0 auto; }
+  .vhome-section-eyebrow {
+    font-size: 0.7rem; font-weight: 800; letter-spacing: 0.15em;
+    text-transform: uppercase; color: var(--vp); margin-bottom: 0.75rem; display: block;
+  }
+  .vhome-section-desc {
+    font-size: 1.0625rem; color: var(--vt2); max-width: 580px; line-height: 1.75;
+    margin-bottom: 2.5rem;
+  }
+  .vhome-section-desc code {
+    font-family: 'Cascadia Code', Consolas, monospace;
+    font-size: 0.875em; color: var(--vp-light);
+    background: var(--vp-subtle); padding: 0.1em 0.4em; border-radius: 0.25rem;
   }
 
-  /* ─ SKELETON SHIMMER (components demo) ─ */
-  .vhome-skeleton-demo {
-    background: linear-gradient(90deg, var(--vs3) 25%, var(--vs4) 50%, var(--vs3) 75%);
-    background-size: 200% 100%;
-    animation: vhome-shimmer 1.6s ease-in-out infinite;
+  /* ─ HERO ─ */
+  .vhome-hero {
+    text-align: center;
+    padding: clamp(4rem, 10vw, 8rem) clamp(1rem, 4vw, 3rem) clamp(3rem, 6vw, 5rem);
+    border-bottom: 1px solid var(--vborder-dim);
+    position: relative; overflow: hidden;
   }
-  @keyframes vhome-shimmer { 0% { background-position: 200% 0 } 100% { background-position: -200% 0 } }
+  .vhome-hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse 70% 50% at 50% -10%, var(--vp-glow), transparent 65%);
+    pointer-events: none;
+  }
+  .vhome-hero-eyebrow {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    font-size: 0.7rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--vp); background: var(--vp-subtle);
+    border: 1px solid var(--vp-glow); border-radius: 9999px;
+    padding: 0.35rem 1rem; margin-bottom: 1.5rem;
+  }
+  .vhome-hero-eyebrow::before {
+    content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--vp);
+  }
+  .vhome-hero h1 {
+    font-size: clamp(2.5rem, 6vw, 4.5rem); font-weight: 900;
+    letter-spacing: -0.03em; line-height: 1.05;
+    margin: 0 0 1.25rem;
+    color: var(--vt1);
+  }
+  .vhome-hero h1 em { font-style: normal; color: var(--vp); }
+  .vhome-hero-sub {
+    font-size: clamp(1rem, 2vw, 1.25rem); color: var(--vt2);
+    max-width: 580px; margin: 0 auto 2.5rem; line-height: 1.7;
+  }
+  .vhome-hero-ctas {
+    display: flex; gap: 0.75rem; justify-content: center; flex-wrap: wrap;
+    margin-bottom: 3rem;
+  }
 
-  /* ─ FOOTER BADGE ─ */
-  .vhome-footer-badge {
-    display: inline-flex; align-items: center;
-    font-size: 0.7rem; font-weight: 500; letter-spacing: 0.03em;
-    color: var(--vp); border: 1px solid var(--vp-glow);
-    background: var(--vp-subtle); border-radius: 9999px; padding: 0.35rem 1rem;
+  /* ─ NAV ─ */
+  .vhome-nav {
+    position: sticky; top: 0; z-index: 100;
+    height: 56px;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 clamp(1rem, 4vw, 3rem);
+    background: var(--vs0);
+    border-bottom: 1px solid var(--vborder);
+    backdrop-filter: blur(12px);
   }
+  .vhome-nav-link {
+    font-size: 0.875rem; font-weight: 500; color: var(--vt2);
+    text-decoration: none;
+    transition: color var(--dur) var(--ease);
+  }
+  .vhome-nav-link:hover { color: var(--vt1); }
 
   /* ─ CTA SECTION ─ */
   .vhome-cta-section {
@@ -545,25 +496,31 @@
     background: radial-gradient(ellipse 60% 80% at 50% 100%, var(--vp-glow), transparent 70%);
     pointer-events: none;
   }
-  .vhome-cta-section h2 {
-    font-size: clamp(2rem, 4vw, 3rem); font-weight: 900;
-    letter-spacing: -0.025em; margin-bottom: 1rem;
-  }
-  .vhome-cta-section p {
-    font-size: 1.0625rem; color: var(--vt2); max-width: 480px; margin: 0 auto 2.5rem; line-height: 1.7;
+
+  /* ─ FOOTER BADGE ─ */
+  .vhome-footer-badge {
+    display: inline-flex; align-items: center;
+    font-size: 0.7rem; font-weight: 500; letter-spacing: 0.03em;
+    color: var(--vp); border: 1px solid var(--vp-glow);
+    background: var(--vp-subtle); border-radius: 9999px; padding: 0.35rem 1rem;
   }
 
   /* ─ FOOTER ─ */
   .vhome-footer {
     padding: 2rem clamp(1rem, 4vw, 3rem);
     border-top: 1px solid var(--vborder-dim);
-    display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem;
   }
-  .vhome-footer-copy { font-size: 0.8125rem; color: var(--vt3); }
-  .vhome-footer-links { display: flex; gap: 1.5rem; }
   .vhome-footer-link { font-size: 0.8125rem; color: var(--vt3); text-decoration: none; transition: color var(--dur) var(--ease); }
   .vhome-footer-link:hover { color: var(--vt1); }
-</style><main id="vel-home" style="--vel-dna-hue:258"><nav class="vhome-nav"><div style="display:flex;align-items:center;gap:1rem"><img src="/veloracss/velora_actual.png" alt="VeloraCSS" style="height:26px;width:auto"/><span class="vhome-nav-badge">v0.3.0</span></div><div class="vhome-nav-links"><a class="vhome-nav-link" href="/veloracss/docs/">Docs</a><a href="https://velorax.github.io/veloracss/playground" target="_blank" rel="noopener noreferrer" class="vhome-nav-link">Playground</a><a href="https://github.com/VeloraX/veloracss" target="_blank" rel="noopener noreferrer" class="vhome-nav-link">GitHub</a><a href="https://velorax.github.io/veloracss/playground" target="_blank" rel="noopener noreferrer" class="vhome-nav-cta">Try it live →</a></div></nav><section class="vhome-hero"><div class="vhome-hero-eyebrow">AI-designed · Human-shipped · Built for the future</div><h1>CSS that <em>thinks</em><br/>in context.</h1><p class="vhome-hero-sub">VeloraCSS delivers six capabilities no other utility framework attempts — from a color system driven by a single number, to components that adapt to their container without a single media query.</p><div class="vhome-hero-ctas"><a class="vhome-cta-primary" href="/veloracss/docs/">Read the Docs</a><a href="https://velorax.github.io/veloracss/playground" target="_blank" rel="noopener noreferrer" class="vhome-cta-secondary">Open Playground →</a><a href="https://github.com/VeloraX/veloracss" target="_blank" rel="noopener noreferrer" class="vhome-cta-ghost">GitHub</a></div><div style="display:flex;flex-direction:column;align-items:center"><div class="vhome-dna-strip"><span class="vhome-dna-label">Color DNA</span><div class="vhome-dna-swatch"></div><input type="range" min="0" max="360" class="vhome-dna-slider" value="258"/><span class="vhome-dna-val">258<!-- -->°</span></div><p class="vhome-dna-note">One number. Every color on this page derives from it via <code style="font-family:Cascadia Code, Consolas, monospace;color:inherit">oklch()</code>.</p><div class="vhome-dna-live"><div style="width:26px;height:26px;border-radius:50%;background:var(--vp);flex-shrink:0;transition:background 0.2s"></div><button class="vhome-btn-primary" style="padding:0.3rem 0.875rem;font-size:0.78rem">Button</button><span class="vhome-dna-live-badge">Badge</span><div style="width:72px;height:3px;border-radius:2px;background:var(--vp);flex-shrink:0;transition:background 0.2s"></div><div style="width:26px;height:26px;border-radius:0.375rem;background:var(--vp-subtle);border:1.5px solid var(--vp);flex-shrink:0;transition:all 0.2s"></div><span style="font-size:0.65rem;color:var(--vt3);white-space:nowrap">← all react to the hue</span></div></div></section><section class="vhome-section"><div class="vhome-wrap"><span class="vhome-section-eyebrow">What makes Velora different</span><h2 class="vhome-section-title">Six things no other<br/>framework does.</h2><div class="vhome-innovations"><div class="vhome-innovation"><span class="vhome-innovation-num">01</span><div class="vhome-innovation-icon">◈</div><h3>Color Genetics</h3><p>One hue drives 50+ derived colors via oklch(). Perceptually uniform, mathematically coherent. Change a single number — the entire UI recolors.</p><span class="vhome-innovation-tag">--vel-dna-hue: 258</span></div><div class="vhome-innovation"><span class="vhome-innovation-num">02</span><div class="vhome-innovation-icon">⬡</div><h3>Container Intelligence</h3><p>Components respond to their container, not the viewport. A card in a sidebar stacks; the same card in a wide area goes horizontal. Zero media queries.</p><span class="vhome-innovation-tag">@container (min-width: 460px)</span></div><div class="vhome-innovation"><span class="vhome-innovation-num">03</span><div class="vhome-innovation-icon">⟁</div><h3>CSS State Machine</h3><p>Tabs, toggles, and accordions powered by :has() + radio inputs. State is tracked by the browser. No event listeners. No DOM manipulation.</p><span class="vhome-innovation-tag">.tabs:has(#t1:checked) #panel-1</span></div><div class="vhome-innovation"><span class="vhome-innovation-num">04</span><div class="vhome-innovation-icon">↬</div><h3>Scope Theming</h3><p>Set data-vel-theme on any element and every child instantly inherits a new color universe. Themes can nest. One attribute, full cascade.</p><span class="vhome-innovation-tag">data-vel-theme=&quot;ocean&quot;</span></div><div class="vhome-innovation"><span class="vhome-innovation-num">05</span><div class="vhome-innovation-icon">◉</div><h3>Smart Forms</h3><p>CSS reads browser validity state via :has(:invalid). Labels change color, errors appear, borders react — all without JavaScript.</p><span class="vhome-innovation-tag">.field:has(input:invalid)</span></div><div class="vhome-innovation"><span class="vhome-innovation-num">06</span><div class="vhome-innovation-icon">⧖</div><h3>Fluid Scale</h3><p>Every spacing and type token uses clamp(). Values interpolate continuously across all viewport widths. No breakpoints. No jumps.</p><span class="vhome-innovation-tag">clamp(1rem, 0.8rem + 1vw, 1.5rem)</span></div></div></div></section><section class="vhome-section"><div class="vhome-wrap"><div class="vhome-split"><div><span class="vhome-section-eyebrow">Innovation 01</span><h2 class="vhome-section-title">One number.<br/>An entire universe.</h2><p class="vhome-section-desc">Tailwind ships 22 color palettes — 1,540 hardcoded swatches you can&#x27;t change without config. VeloraCSS generates every color mathematically from<code>--vel-dna-hue</code> using <code>oklch()</code>, the only perceptually uniform color space. Watch the swatches below react as you slide.</p><div class="vhome-terminal"><div class="vhome-terminal-titlebar"><div class="vhome-terminal-dots"><div class="vhome-terminal-dot red"></div><div class="vhome-terminal-dot yellow"></div><div class="vhome-terminal-dot green"></div></div><span class="vhome-terminal-title">velora.css</span><button class="vhome-terminal-copy idle">Copy</button></div><pre class="vhome-terminal-code"><code><span class="tc-comment">/* The entire palette from one variable */</span>
+
+  /* ─ COMPONENT SHOWCASE WRAPPERS ─ */
+  .vhome-showcase-header {
+    background: var(--vs2); border-bottom: 1px solid var(--vborder);
+    padding: 0.625rem 1rem;
+    font-size: 0.7rem; font-weight: 700; text-transform: uppercase;
+    letter-spacing: 0.08em; color: var(--vt3);
+  }
+</style><main id="vel-home" style="--vel-dna-hue:258"><nav class="vhome-nav"><div class="vel-flex vel-items-center vel-gap-4"><img src="/veloracss/velora_actual.png" alt="VeloraCSS" style="height:26px;width:auto"/><span class="vel-badge vel-badge-primary">v0.3.0</span></div><div class="vel-flex vel-items-center vel-gap-6"><a class="vhome-nav-link" href="/veloracss/docs/">Docs</a><a href="https://velorax.github.io/veloracss/playground" target="_blank" rel="noopener noreferrer" class="vhome-nav-link">Playground</a><a href="https://github.com/VeloraX/veloracss" target="_blank" rel="noopener noreferrer" class="vhome-nav-link">GitHub</a><a href="https://velorax.github.io/veloracss/playground" target="_blank" rel="noopener noreferrer" class="vel-btn vel-btn-primary vel-btn-sm">Try it live →</a></div></nav><section class="vhome-hero"><div class="vhome-hero-eyebrow">AI-designed · Human-shipped · Built for the future</div><h1>CSS that <em>thinks</em><br/>in context.</h1><p class="vhome-hero-sub">VeloraCSS delivers six capabilities no other utility framework attempts — from a color system driven by a single number, to components that adapt to their container without a single media query.</p><div class="vhome-hero-ctas"><a class="vhome-cta-primary" href="/veloracss/docs/">Read the Docs</a><a href="https://velorax.github.io/veloracss/playground" target="_blank" rel="noopener noreferrer" class="vhome-cta-secondary">Open Playground →</a><a href="https://github.com/VeloraX/veloracss" target="_blank" rel="noopener noreferrer" class="vhome-cta-ghost">GitHub</a></div><div style="display:flex;flex-direction:column;align-items:center"><div class="vhome-dna-strip"><span class="vhome-dna-label">Color DNA</span><div class="vhome-dna-swatch"></div><input type="range" min="0" max="360" class="vhome-dna-slider" value="258"/><span class="vhome-dna-val">258<!-- -->°</span></div><p class="vhome-dna-note">One number. Every color on this page derives from it via <code style="font-family:Cascadia Code, Consolas, monospace;color:inherit">oklch()</code>.</p><div class="vhome-dna-live"><div style="width:26px;height:26px;border-radius:50%;background:var(--vp);flex-shrink:0;transition:background 0.2s"></div><button class="vhome-btn-primary" style="padding:0.3rem 0.875rem;font-size:0.78rem">Button</button><span class="vhome-dna-live-badge">Badge</span><div style="width:72px;height:3px;border-radius:2px;background:var(--vp);flex-shrink:0;transition:background 0.2s"></div><div style="width:26px;height:26px;border-radius:0.375rem;background:var(--vp-subtle);border:1.5px solid var(--vp);flex-shrink:0;transition:all 0.2s"></div><span style="font-size:0.65rem;color:var(--vt3);white-space:nowrap">← all react to the hue</span></div></div></section><section class="vhome-section"><div class="vhome-wrap"><span class="vhome-section-eyebrow">What makes Velora different</span><h2 class="vel-text-4xl vel-font-extrabold vel-tracking-tight" style="margin-bottom:1rem;line-height:1.15">Six things no other<br/>framework does.</h2><div class="vhome-innovations"><div class="vhome-innovation"><span class="vhome-innovation-num">01</span><div class="vhome-innovation-icon">◈</div><h3>Color Genetics</h3><p>One hue drives 50+ derived colors via oklch(). Perceptually uniform, mathematically coherent. Change a single number — the entire UI recolors.</p><span class="vhome-innovation-tag">--vel-dna-hue: 258</span></div><div class="vhome-innovation"><span class="vhome-innovation-num">02</span><div class="vhome-innovation-icon">⬡</div><h3>Container Intelligence</h3><p>Components respond to their container, not the viewport. A card in a sidebar stacks; the same card in a wide area goes horizontal. Zero media queries.</p><span class="vhome-innovation-tag">@container (min-width: 460px)</span></div><div class="vhome-innovation"><span class="vhome-innovation-num">03</span><div class="vhome-innovation-icon">⟁</div><h3>CSS State Machine</h3><p>Tabs, toggles, and accordions powered by :has() + radio inputs. State is tracked by the browser. No event listeners. No DOM manipulation.</p><span class="vhome-innovation-tag">.tabs:has(#t1:checked) #panel-1</span></div><div class="vhome-innovation"><span class="vhome-innovation-num">04</span><div class="vhome-innovation-icon">↬</div><h3>Scope Theming</h3><p>Set data-vel-theme on any element and every child instantly inherits a new color universe. Themes can nest. One attribute, full cascade.</p><span class="vhome-innovation-tag">data-vel-theme=&quot;ocean&quot;</span></div><div class="vhome-innovation"><span class="vhome-innovation-num">05</span><div class="vhome-innovation-icon">◉</div><h3>Smart Forms</h3><p>CSS reads browser validity state via :has(:invalid). Labels change color, errors appear, borders react — all without JavaScript.</p><span class="vhome-innovation-tag">.field:has(input:invalid)</span></div><div class="vhome-innovation"><span class="vhome-innovation-num">06</span><div class="vhome-innovation-icon">⧖</div><h3>Fluid Scale</h3><p>Every spacing and type token uses clamp(). Values interpolate continuously across all viewport widths. No breakpoints. No jumps.</p><span class="vhome-innovation-tag">clamp(1rem, 0.8rem + 1vw, 1.5rem)</span></div></div></div></section><section class="vhome-section"><div class="vhome-wrap"><span class="vhome-section-eyebrow">Rich component library</span><h2 class="vel-text-4xl vel-font-extrabold vel-tracking-tight" style="margin-bottom:1rem;line-height:1.15">29 components.<br/>Real <code style="font-family:Cascadia Code, Consolas, monospace;font-size:0.85em;color:var(--vp-light);background:var(--vp-subtle);padding:0.1em 0.4em;border-radius:0.25rem">vel-</code> classes.</h2><p class="vhome-section-desc">Every component ships as a framework class — not custom CSS, not inline styles. Open DevTools and inspect any element below.</p><div class="vel-card vel-mb-6"><div class="vhome-showcase-header">vel-btn — Button variants</div><div class="vel-card-body vel-flex vel-flex-wrap vel-gap-3"><button class="vel-btn vel-btn-primary">Primary</button><button class="vel-btn vel-btn-secondary">Secondary</button><button class="vel-btn vel-btn-success">Success</button><button class="vel-btn vel-btn-danger">Danger</button><button class="vel-btn vel-btn-warning">Warning</button><button class="vel-btn vel-btn-ghost">Ghost</button></div><div class="vel-card-footer vel-flex vel-flex-wrap vel-gap-3"><button class="vel-btn vel-btn-outline-primary">Outline Primary</button><button class="vel-btn vel-btn-outline-success">Outline Success</button><button class="vel-btn vel-btn-outline-danger">Outline Danger</button><button class="vel-btn vel-btn-xs vel-btn-primary">xs</button><button class="vel-btn vel-btn-sm vel-btn-primary">sm</button><button class="vel-btn vel-btn-lg vel-btn-primary">lg</button><button class="vel-btn vel-btn-primary" disabled="">Disabled</button></div></div><div class="vel-grid vel-grid-cols-2 vel-gap-6 vel-mb-6" style="grid-template-columns:repeat(auto-fit, minmax(300px, 1fr))"><div class="vel-card"><div class="vhome-showcase-header">vel-badge — Badge variants</div><div class="vel-card-body vel-flex vel-flex-wrap vel-gap-2"><span class="vel-badge vel-badge-primary vel-badge-dot">Primary</span><span class="vel-badge vel-badge-success vel-badge-dot">Success</span><span class="vel-badge vel-badge-danger vel-badge-dot">Danger</span><span class="vel-badge vel-badge-warning vel-badge-dot">Warning</span><span class="vel-badge vel-badge-info vel-badge-dot">Info</span><span class="vel-badge vel-badge-neutral">Neutral</span><span class="vel-badge vel-badge-solid-primary">Solid</span><span class="vel-badge vel-badge-sm vel-badge-primary">Small</span><span class="vel-badge vel-badge-lg vel-badge-primary">Large</span></div></div><div class="vel-card"><div class="vhome-showcase-header">vel-alert — Alert variants</div><div class="vel-card-body" style="display:grid;gap:0.625rem"><div class="vel-alert vel-alert-primary"><span class="vel-alert-title">Info</span>Something worth knowing about your project.</div><div class="vel-alert vel-alert-success"><span class="vel-alert-title">Success</span>Your changes were saved successfully.</div><div class="vel-alert vel-alert-danger"><span class="vel-alert-title">Error</span>Something went wrong. Please try again.</div></div></div></div><div class="vel-grid vel-gap-6 vel-mb-6" style="grid-template-columns:repeat(auto-fit, minmax(260px, 1fr))"><div class="vel-card vel-card-hover"><div class="vel-card-header">vel-card</div><div class="vel-card-body"><p class="vel-text-sm" style="color:var(--vel-color-muted);line-height:1.6;margin-bottom:1rem">Default card with hover lift. Uses framework border, shadow, and surface tokens.</p><button class="vel-btn vel-btn-primary vel-btn-sm">Action</button></div></div><div class="vel-card vel-card-elevated vel-card-hover"><div class="vel-card-header">vel-card-elevated</div><div class="vel-card-body"><p class="vel-text-sm" style="color:var(--vel-color-muted);line-height:1.6;margin-bottom:1rem">Elevated shadow variant. Borderless, deeper drop shadow for prominent content.</p><button class="vel-btn vel-btn-outline-primary vel-btn-sm">Learn more</button></div></div><div class="vel-card vel-card-primary vel-card-hover"><div class="vel-card-header">vel-card-primary</div><div class="vel-card-body"><p class="vel-text-sm" style="color:var(--vel-color-muted);line-height:1.6;margin-bottom:1rem">Brand-tinted surface with primary glow. Perfect for featured or highlighted items.</p><button class="vel-btn vel-btn-primary vel-btn-sm">Get started</button></div></div></div><div class="vel-card vel-mb-6"><div class="vhome-showcase-header">vel-skeleton — Loading states</div><div class="vel-card-body vel-flex vel-gap-4 vel-items-center"><div class="vhome-skeleton-demo" style="width:48px;height:48px;border-radius:50%;flex-shrink:0"></div><div class="vel-flex vel-flex-col vel-gap-2 vel-flex-1"><div class="vhome-skeleton-demo" style="height:12px;border-radius:6px;width:60%"></div><div class="vhome-skeleton-demo" style="height:11px;border-radius:5px;width:40%"></div></div><div class="vhome-skeleton-demo" style="height:36px;border-radius:0.5rem;width:100px;flex-shrink:0"></div></div></div></div></section><section class="vhome-section"><div class="vhome-wrap"><div class="vhome-split"><div><span class="vhome-section-eyebrow">Innovation 01</span><h2 class="vel-text-4xl vel-font-extrabold vel-tracking-tight" style="margin-bottom:1rem;line-height:1.15">One number.<br/>An entire universe.</h2><p class="vhome-section-desc">Other frameworks ship 1,540 hardcoded swatches you can&#x27;t change without config. VeloraCSS generates every color mathematically from<code>--vel-dna-hue</code> using <code>oklch()</code>, the only perceptually uniform color space. Watch the swatches below react as you slide.</p><div class="vhome-terminal"><div class="vhome-terminal-titlebar"><span class="vhome-terminal-title">tokens.css</span><div class="vhome-terminal-controls"><button class="vhome-terminal-ctrl">─</button><button class="vhome-terminal-ctrl">□</button><button class="vhome-terminal-ctrl close">✕</button></div></div><div class="vhome-terminal-action-bar"><button class="vhome-terminal-copy idle">Copy</button></div><pre class="vhome-terminal-code"><code><span class="tc-comment">/* The entire palette from one variable */</span>
 <span class="tc-prop">--vel-dna-hue</span>: <span class="tc-num">258</span>;
 
 <span class="tc-comment">/* All colors are derived — nothing hardcoded */</span>
@@ -574,7 +531,7 @@
 
 <span class="tc-comment">/* Change in JS with one line: */</span>
 <span class="tc-cls">document</span>.documentElement.style
-  .setProperty(<span class="tc-str">'--vel-dna-hue'</span>, <span class="tc-num">145</span>);</span></code></pre></div></div><div><div class="vhome-swatches" style="margin-bottom:1rem"><div class="vhome-swatch"><div class="vhome-swatch-color" style="background:var(--vp)"></div><div class="vhome-swatch-info"><span class="vhome-swatch-name">Primary</span><span class="vhome-swatch-var">oklch(65% 0.21 hue)</span></div></div><div class="vhome-swatch"><div class="vhome-swatch-color" style="background:var(--vp-light)"></div><div class="vhome-swatch-info"><span class="vhome-swatch-name">Primary Light</span><span class="vhome-swatch-var">oklch(80% 0.14 hue)</span></div></div><div class="vhome-swatch"><div class="vhome-swatch-color" style="background:var(--vp-dim)"></div><div class="vhome-swatch-info"><span class="vhome-swatch-name">Primary Dim</span><span class="vhome-swatch-var">oklch(50% 0.22 hue)</span></div></div><div class="vhome-swatch"><div class="vhome-swatch-color" style="background:var(--vs0)"></div><div class="vhome-swatch-info"><span class="vhome-swatch-name">Surface 0</span><span class="vhome-swatch-var">oklch(7% 0.02 hue)</span></div></div><div class="vhome-swatch"><div class="vhome-swatch-color" style="background:var(--vs3)"></div><div class="vhome-swatch-info"><span class="vhome-swatch-name">Surface 3</span><span class="vhome-swatch-var">oklch(17% 0.035 hue)</span></div></div><div class="vhome-swatch"><div class="vhome-swatch-color" style="background:var(--vborder)"></div><div class="vhome-swatch-info"><span class="vhome-swatch-name">Border</span><span class="vhome-swatch-var">oklch(26% 0.045 hue)</span></div></div><div class="vhome-swatch"><div class="vhome-swatch-color" style="background:var(--vt1)"></div><div class="vhome-swatch-info"><span class="vhome-swatch-name">Text Primary</span><span class="vhome-swatch-var">oklch(92% 0.015 hue)</span></div></div><div class="vhome-swatch"><div class="vhome-swatch-color" style="background:var(--vt3)"></div><div class="vhome-swatch-info"><span class="vhome-swatch-name">Text Muted</span><span class="vhome-swatch-var">oklch(50% 0.04 hue)</span></div></div></div><div style="background:var(--vs2);border:1px solid var(--vborder);border-radius:0.75rem;overflow:hidden"><div style="background:var(--vp-subtle);border-bottom:1px solid var(--vp-glow);padding:0.875rem 1.25rem;display:flex;align-items:center;justify-content:space-between"><span style="font-size:0.8125rem;font-weight:600;color:var(--vp-light)">Auto-themed card</span><span style="font-size:0.65rem;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:var(--vp);background:var(--vp-subtle);border:1px solid var(--vp-glow);border-radius:9999px;padding:0.15rem 0.5rem">live</span></div><div style="padding:1.25rem"><p style="font-size:0.875rem;color:var(--vt2);margin-bottom:1rem;line-height:1.6">Every color in this card derives from the DNA hue. Drag the slider above to see it react.</p><div style="display:flex;gap:0.75rem"><button class="vhome-btn-primary">Action</button><button class="vhome-btn-outline">Cancel</button></div></div></div></div></div></div></section><section class="vhome-section"><div class="vhome-wrap"><div class="vhome-split"><div><span class="vhome-section-eyebrow">Innovation 02</span><h2 class="vhome-section-title">Components that<br/>know their space.</h2><p class="vhome-section-desc">Tailwind&#x27;s responsive system watches the viewport. VeloraCSS components watch <em>themselves</em>. Drag the box handle — the card reflows based on its own container width, not the screen size.</p><div style="margin-bottom:1rem;font-size:0.75rem;color:var(--vt3)">↙ Drag the bottom-right corner to resize</div><div class="vhome-cq-outer"><div class="vhome-cq-card"><div class="vhome-cq-inner"><div class="vhome-cq-img">◈</div><div class="vhome-cq-body"><span class="vhome-cq-tag">Container Query</span><div class="vhome-cq-title">Adapts to its space</div><div class="vhome-cq-desc">Stacks in tight containers, reflows when there&#x27;s room. No media queries.</div></div></div><div class="vhome-cq-footer">@container — watching width</div></div></div></div><div><div class="vhome-terminal"><div class="vhome-terminal-titlebar"><div class="vhome-terminal-dots"><div class="vhome-terminal-dot red"></div><div class="vhome-terminal-dot yellow"></div><div class="vhome-terminal-dot green"></div></div><span class="vhome-terminal-title">velora.css</span><button class="vhome-terminal-copy idle">Copy</button></div><pre class="vhome-terminal-code"><code><span class="tc-comment">/* Mark the parent as a query context */</span>
+  .setProperty(<span class="tc-str">'--vel-dna-hue'</span>, <span class="tc-num">145</span>);</span></code></pre></div></div><div><div class="vhome-swatches" style="margin-bottom:1rem"><div class="vhome-swatch"><div class="vhome-swatch-color" style="background:var(--vp)"></div><div class="vhome-swatch-info"><span class="vhome-swatch-name">Primary</span><span class="vhome-swatch-var">oklch(65% 0.21 hue)</span></div></div><div class="vhome-swatch"><div class="vhome-swatch-color" style="background:var(--vp-light)"></div><div class="vhome-swatch-info"><span class="vhome-swatch-name">Primary Light</span><span class="vhome-swatch-var">oklch(80% 0.14 hue)</span></div></div><div class="vhome-swatch"><div class="vhome-swatch-color" style="background:var(--vp-dim)"></div><div class="vhome-swatch-info"><span class="vhome-swatch-name">Primary Dim</span><span class="vhome-swatch-var">oklch(50% 0.22 hue)</span></div></div><div class="vhome-swatch"><div class="vhome-swatch-color" style="background:var(--vs0)"></div><div class="vhome-swatch-info"><span class="vhome-swatch-name">Surface 0</span><span class="vhome-swatch-var">oklch(7% 0.02 hue)</span></div></div><div class="vhome-swatch"><div class="vhome-swatch-color" style="background:var(--vs3)"></div><div class="vhome-swatch-info"><span class="vhome-swatch-name">Surface 3</span><span class="vhome-swatch-var">oklch(17% 0.035 hue)</span></div></div><div class="vhome-swatch"><div class="vhome-swatch-color" style="background:var(--vborder)"></div><div class="vhome-swatch-info"><span class="vhome-swatch-name">Border</span><span class="vhome-swatch-var">oklch(26% 0.045 hue)</span></div></div><div class="vhome-swatch"><div class="vhome-swatch-color" style="background:var(--vt1)"></div><div class="vhome-swatch-info"><span class="vhome-swatch-name">Text Primary</span><span class="vhome-swatch-var">oklch(92% 0.015 hue)</span></div></div><div class="vhome-swatch"><div class="vhome-swatch-color" style="background:var(--vt3)"></div><div class="vhome-swatch-info"><span class="vhome-swatch-name">Text Muted</span><span class="vhome-swatch-var">oklch(50% 0.04 hue)</span></div></div></div><div style="background:var(--vs2);border:1px solid var(--vborder);border-radius:0.75rem;overflow:hidden"><div style="background:var(--vp-subtle);border-bottom:1px solid var(--vp-glow);padding:0.875rem 1.25rem;display:flex;align-items:center;justify-content:space-between"><span style="font-size:0.8125rem;font-weight:600;color:var(--vp-light)">Auto-themed card</span><span style="font-size:0.65rem;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:var(--vp);background:var(--vp-subtle);border:1px solid var(--vp-glow);border-radius:9999px;padding:0.15rem 0.5rem">live</span></div><div style="padding:1.25rem"><p style="font-size:0.875rem;color:var(--vt2);margin-bottom:1rem;line-height:1.6">Every color in this card derives from the DNA hue. Drag the slider above to see it react.</p><div style="display:flex;gap:0.75rem"><button class="vhome-btn-primary">Action</button><button class="vhome-btn-outline">Cancel</button></div></div></div></div></div></div></section><section class="vhome-section"><div class="vhome-wrap"><div class="vhome-split"><div><span class="vhome-section-eyebrow">Innovation 02</span><h2 class="vel-text-4xl vel-font-extrabold vel-tracking-tight" style="margin-bottom:1rem;line-height:1.15">Components that<br/>know their space.</h2><p class="vhome-section-desc">VeloraCSS components watch <em>themselves</em>. Drag the box handle — the card reflows based on its own container width, not the screen size.</p><div style="margin-bottom:1rem;font-size:0.75rem;color:var(--vt3)">↙ Drag the bottom-right corner to resize</div><div class="vhome-cq-outer"><div class="vhome-cq-card"><div class="vhome-cq-inner"><div class="vhome-cq-img">◈</div><div class="vhome-cq-body"><span class="vhome-cq-tag">Container Query</span><div class="vhome-cq-title">Adapts to its space</div><div class="vhome-cq-desc">Stacks in tight containers, reflows when there&#x27;s room. No media queries.</div></div></div><div class="vhome-cq-footer">@container — watching width</div></div></div></div><div><div class="vhome-terminal"><div class="vhome-terminal-titlebar"><span class="vhome-terminal-title">velora.css</span><div class="vhome-terminal-controls"><button class="vhome-terminal-ctrl">─</button><button class="vhome-terminal-ctrl">□</button><button class="vhome-terminal-ctrl close">✕</button></div></div><div class="vhome-terminal-action-bar"><button class="vhome-terminal-copy idle">Copy</button></div><pre class="vhome-terminal-code"><code><span class="tc-comment">/* Mark the parent as a query context */</span>
 <span class="tc-cls">.vel-cq-wrapper</span> {
   <span class="tc-prop">container-type</span>: <span class="tc-kw">inline-size</span>;
 }
@@ -591,7 +548,7 @@
 }
 
 <span class="tc-comment">/* Result: works in any layout — sidebar, grid, full-width */</span>
-<span class="tc-comment">/* No JavaScript. No class toggling. Just CSS. */</span></code></pre></div></div></div></div></section><section class="vhome-section"><div class="vhome-wrap"><span class="vhome-section-eyebrow">Innovation 03</span><h2 class="vhome-section-title">Tabs, toggles, state.<br/>Zero JavaScript.</h2><p class="vhome-section-desc">VeloraCSS uses <code>:has()</code> — the &quot;parent selector&quot; — to make containers aware of their children&#x27;s state. Radio inputs drive the state machine. CSS reads which one is checked and updates the entire UI. No event listeners. No DOM manipulation.</p><div class="vhome-tabs-demo"><input type="radio" id="h-tab-1" name="hometab" checked=""/><input type="radio" id="h-tab-2" name="hometab"/><input type="radio" id="h-tab-3" name="hometab"/><div class="vhome-tabs-nav"><label for="h-tab-1">Overview</label><label for="h-tab-2">How it works</label><label for="h-tab-3">vs. Tailwind</label></div><div class="vhome-tab-panels"><div class="vhome-tab-panel" id="h-panel-1"><h3>:has() makes parents aware of their children</h3><p>The CSS <code>:has()</code> pseudo-class is the first true parent selector. It lets a container change its own styles based on what&#x27;s happening inside it — without JavaScript reading the DOM.</p><div class="vhome-mini-features"><div class="vhome-mini-feature"><div class="vhome-mini-feature-icon">⚡</div><div><div class="vhome-mini-feature-title">Zero JS</div><div class="vhome-mini-feature-desc">State machine runs entirely in CSS</div></div></div><div class="vhome-mini-feature"><div class="vhome-mini-feature-icon">🎯</div><div><div class="vhome-mini-feature-title">Cascades</div><div class="vhome-mini-feature-desc">Child state propagates to parent and siblings</div></div></div><div class="vhome-mini-feature"><div class="vhome-mini-feature-icon">♿</div><div><div class="vhome-mini-feature-title">Accessible</div><div class="vhome-mini-feature-desc">Native radio semantics, keyboard navigable</div></div></div><div class="vhome-mini-feature"><div class="vhome-mini-feature-icon">🔋</div><div><div class="vhome-mini-feature-title">Performant</div><div class="vhome-mini-feature-desc">No JS parsing, no event listeners, no re-renders</div></div></div></div></div><div class="vhome-tab-panel" id="h-panel-2"><h3>The entire tab system is ~8 lines of CSS</h3><p>These tabs are powered by a radio group + <code>:has()</code>. The browser tracks which radio is checked. CSS reads that state and updates the UI. Click between tabs — you&#x27;re executing a state machine with zero JavaScript.</p><div class="vhome-terminal"><div class="vhome-terminal-titlebar"><div class="vhome-terminal-dots"><div class="vhome-terminal-dot red"></div><div class="vhome-terminal-dot yellow"></div><div class="vhome-terminal-dot green"></div></div><span class="vhome-terminal-title">velora.css</span><button class="vhome-terminal-copy idle">Copy</button></div><pre class="vhome-terminal-code"><code><span class="tc-comment">/* Panel visibility — :has() reads radio state */</span>
+<span class="tc-comment">/* No JavaScript. No class toggling. Just CSS. */</span></code></pre></div></div></div></div></section><section class="vhome-section"><div class="vhome-wrap"><span class="vhome-section-eyebrow">Innovation 03</span><h2 class="vel-text-4xl vel-font-extrabold vel-tracking-tight" style="margin-bottom:1rem;line-height:1.15">Tabs, toggles, state.<br/>Zero JavaScript.</h2><p class="vhome-section-desc">VeloraCSS uses <code>:has()</code> — the “parent selector” — to make containers aware of their children&#x27;s state. Radio inputs drive the state machine. CSS reads which one is checked and updates the entire UI. No event listeners. No DOM manipulation.</p><div class="vhome-tabs-demo"><input type="radio" id="h-tab-1" name="hometab" checked=""/><input type="radio" id="h-tab-2" name="hometab"/><input type="radio" id="h-tab-3" name="hometab"/><div class="vhome-tabs-nav"><label for="h-tab-1">Overview</label><label for="h-tab-2">How it works</label><label for="h-tab-3">vs. other frameworks</label></div><div class="vhome-tab-panels"><div class="vhome-tab-panel" id="h-panel-1"><h3>:has() makes parents aware of their children</h3><p>The CSS <code>:has()</code> pseudo-class is the first true parent selector. It lets a container change its own styles based on what&#x27;s happening inside it — without JavaScript reading the DOM.</p><div class="vhome-mini-features"><div class="vhome-mini-feature"><div class="vhome-mini-feature-icon">⚡</div><div><div class="vhome-mini-feature-title">Zero JS</div><div class="vhome-mini-feature-desc">State machine runs entirely in CSS</div></div></div><div class="vhome-mini-feature"><div class="vhome-mini-feature-icon">🎯</div><div><div class="vhome-mini-feature-title">Cascades</div><div class="vhome-mini-feature-desc">Child state propagates to parent and siblings</div></div></div><div class="vhome-mini-feature"><div class="vhome-mini-feature-icon">♿</div><div><div class="vhome-mini-feature-title">Accessible</div><div class="vhome-mini-feature-desc">Native radio semantics, keyboard navigable</div></div></div><div class="vhome-mini-feature"><div class="vhome-mini-feature-icon">🔋</div><div><div class="vhome-mini-feature-title">Performant</div><div class="vhome-mini-feature-desc">No JS parsing, no event listeners, no re-renders</div></div></div></div></div><div class="vhome-tab-panel" id="h-panel-2"><h3>The entire tab system is ~8 lines of CSS</h3><p>These tabs are powered by a radio group + <code>:has()</code>. The browser tracks which radio is checked. CSS reads that state and updates the UI. Click between tabs — you&#x27;re executing a state machine with zero JavaScript.</p><div class="vhome-terminal"><div class="vhome-terminal-titlebar"><span class="vhome-terminal-title">velora.css</span><div class="vhome-terminal-controls"><button class="vhome-terminal-ctrl">─</button><button class="vhome-terminal-ctrl">□</button><button class="vhome-terminal-ctrl close">✕</button></div></div><div class="vhome-terminal-action-bar"><button class="vhome-terminal-copy idle">Copy</button></div><pre class="vhome-terminal-code"><code><span class="tc-comment">/* Panel visibility — :has() reads radio state */</span>
 <span class="tc-cls">.vel-tabs</span>:<span class="tc-fn">has</span>(#tab-1:<span class="tc-fn">checked</span>) #panel-1 { <span class="tc-prop">display</span>: <span class="tc-kw">block</span>; }
 <span class="tc-cls">.vel-tabs</span>:<span class="tc-fn">has</span>(#tab-2:<span class="tc-fn">checked</span>) #panel-2 { <span class="tc-prop">display</span>: <span class="tc-kw">block</span>; }
 
@@ -601,7 +558,7 @@
   <span class="tc-prop">border-bottom-color</span>: <span class="tc-fn">var</span>(<span class="tc-prop">--vel-color-primary</span>);
 }
 
-<span class="tc-comment">/* Zero JavaScript. Browser tracks state natively. */</span></code></pre></div></div><div class="vhome-tab-panel" id="h-panel-3"><h3>What you&#x27;d write in Tailwind vs. VeloraCSS</h3><div class="vhome-compare-row"><div class="vhome-compare-cell"><div class="vhome-compare-header vhome-compare-bad">Tailwind approach</div><pre>// JavaScript required
+<span class="tc-comment">/* Zero JavaScript. Browser tracks state natively. */</span></code></pre></div></div><div class="vhome-tab-panel" id="h-panel-3"><h3>What you&#x27;d write in another framework vs. VeloraCSS</h3><div class="vhome-compare-row"><div class="vhome-compare-cell"><div class="vhome-compare-header vhome-compare-bad">JS framework approach</div><pre>// JavaScript required
 const [tab, setTab] = useState(0)
 
 // Class toggling in JSX
@@ -615,9 +572,9 @@ onClick={() =&gt; setTab(0)}</pre></div><div class="vhome-compare-cell"><div cla
 &lt;label for=&quot;t1&quot;&gt;Tab 1&lt;/label&gt;
 
 /* In CSS */
-.tabs:has(#t1:checked) #panel-1 {
+.vel-tabs:has(#t1:checked) #panel-1 {
   display: block;
-}</pre></div></div><p style="color:var(--vt3);font-size:0.8rem;margin:0">The Tailwind pattern requires a JavaScript framework, component state, and event listeners. VeloraCSS requires none of that — it works in plain HTML.</p></div></div></div></div></section><section class="vhome-section"><div class="vhome-wrap"><span class="vhome-section-eyebrow">Innovation 04</span><h2 class="vhome-section-title">One attribute.<br/>Entire theme cascade.</h2><p class="vhome-section-desc">Set <code>data-vel-theme</code> on any element and every child automatically inherits a new color world. Click the themes below to see it live.</p><div class="vhome-split" style="align-items:flex-start"><div class="vhome-theme-btns"><button class="vhome-theme-btn" data-active="true">Default</button><button class="vhome-theme-btn" data-active="false">Ocean</button><button class="vhome-theme-btn" data-active="false">Forest</button><button class="vhome-theme-btn" data-active="false">Ember</button><button class="vhome-theme-btn" data-active="false">Aurora</button><button class="vhome-theme-btn" data-active="false">Gold</button></div><div class="vhome-scope-zone"><div class="vhome-scope-label">data-vel-theme — default</div><div class="vhome-scope-cards"><div class="vhome-scope-card"><div class="vhome-scope-card-icon">◈</div><div class="vhome-scope-card-title">Token Cascade</div><div class="vhome-scope-card-desc">All colors inherit from theme</div></div><div class="vhome-scope-card"><div class="vhome-scope-card-icon">⬡</div><div class="vhome-scope-card-title">Zero JS Logic</div><div class="vhome-scope-card-desc">One attribute, full retheme</div></div><div class="vhome-scope-card"><div class="vhome-scope-card-icon">↬</div><div class="vhome-scope-card-title">Nestable</div><div class="vhome-scope-card-desc">Themes can nest inside themes</div></div><div class="vhome-scope-card"><div class="vhome-scope-card-icon">⟁</div><div class="vhome-scope-card-title">Instant</div><div class="vhome-scope-card-desc">CSS transitions handle everything</div></div></div><div style="display:flex;gap:0.75rem"><button class="vhome-btn-primary">Themed Button</button><button class="vhome-btn-outline">Secondary</button></div></div><div class="vhome-terminal"><div class="vhome-terminal-titlebar"><div class="vhome-terminal-dots"><div class="vhome-terminal-dot red"></div><div class="vhome-terminal-dot yellow"></div><div class="vhome-terminal-dot green"></div></div><span class="vhome-terminal-title">velora.css</span><button class="vhome-terminal-copy idle">Copy</button></div><pre class="vhome-terminal-code"><code><span class="tc-comment">/* One line per theme — hue shift handles everything */</span>
+}</pre></div></div><p style="color:var(--vt3);font-size:0.8rem;margin:0">The JS pattern requires a framework, component state, and event listeners. VeloraCSS requires none of that — it works in plain HTML.</p></div></div></div></div></section><section class="vhome-section"><div class="vhome-wrap"><span class="vhome-section-eyebrow">Innovation 04</span><h2 class="vel-text-4xl vel-font-extrabold vel-tracking-tight" style="margin-bottom:1rem;line-height:1.15">One attribute.<br/>Entire theme cascade.</h2><p class="vhome-section-desc">Set <code>data-vel-theme</code> on any element and every child automatically inherits a new color world. Click the themes below to see it live.</p><div class="vhome-split" style="align-items:flex-start"><div class="vhome-theme-btns"><button class="vhome-theme-btn" data-active="true">Default</button><button class="vhome-theme-btn" data-active="false">Ocean</button><button class="vhome-theme-btn" data-active="false">Forest</button><button class="vhome-theme-btn" data-active="false">Ember</button><button class="vhome-theme-btn" data-active="false">Aurora</button><button class="vhome-theme-btn" data-active="false">Gold</button></div><div class="vhome-scope-zone"><div class="vhome-scope-label">data-vel-theme — default</div><div class="vhome-scope-cards"><div class="vhome-scope-card"><div class="vhome-scope-card-icon">◈</div><div class="vhome-scope-card-title">Token Cascade</div><div class="vhome-scope-card-desc">All colors inherit from theme</div></div><div class="vhome-scope-card"><div class="vhome-scope-card-icon">⬡</div><div class="vhome-scope-card-title">Zero JS Logic</div><div class="vhome-scope-card-desc">One attribute, full retheme</div></div><div class="vhome-scope-card"><div class="vhome-scope-card-icon">↬</div><div class="vhome-scope-card-title">Nestable</div><div class="vhome-scope-card-desc">Themes can nest inside themes</div></div><div class="vhome-scope-card"><div class="vhome-scope-card-icon">⟁</div><div class="vhome-scope-card-title">Instant</div><div class="vhome-scope-card-desc">CSS transitions handle everything</div></div></div><div style="display:flex;gap:0.75rem"><button class="vhome-btn-primary">Themed Button</button><button class="vhome-btn-outline">Secondary</button></div></div><div class="vhome-terminal"><div class="vhome-terminal-titlebar"><span class="vhome-terminal-title">velora.css</span><div class="vhome-terminal-controls"><button class="vhome-terminal-ctrl">─</button><button class="vhome-terminal-ctrl">□</button><button class="vhome-terminal-ctrl close">✕</button></div></div><div class="vhome-terminal-action-bar"><button class="vhome-terminal-copy idle">Copy</button></div><pre class="vhome-terminal-code"><code><span class="tc-comment">/* One line per theme — hue shift handles everything */</span>
 [<span class="tc-prop">data-vel-theme</span>="<span class="tc-str">ocean</span>"]  { <span class="tc-prop">--vel-dna-hue</span>: <span class="tc-num">205</span>; }
 [<span class="tc-prop">data-vel-theme</span>="<span class="tc-str">forest</span>"] { <span class="tc-prop">--vel-dna-hue</span>: <span class="tc-num">145</span>; }
 [<span class="tc-prop">data-vel-theme</span>="<span class="tc-str">ember</span>"]  { <span class="tc-prop">--vel-dna-hue</span>: <span class="tc-num">22</span>;  }
@@ -628,7 +585,7 @@ onClick={() =&gt; setTab(0)}</pre></div><div class="vhome-compare-cell"><div cla
 <span class="tc-prop">--vel-surface-1</span>:     <span class="tc-fn">oklch</span>(<span class="tc-num">10% 0.025</span> <span class="tc-fn">var</span>(<span class="tc-prop">--vel-dna-hue</span>));
 
 <span class="tc-comment">/* The entire theming "logic" in JavaScript: */</span>
-<span class="tc-cls">el</span>.dataset.<span class="tc-fn">velTheme</span> = <span class="tc-str">'ocean'</span>;</span></code></pre></div></div></div></section><section class="vhome-section"><div class="vhome-wrap"><div class="vhome-split"><div><span class="vhome-section-eyebrow">Innovation 05</span><h2 class="vhome-section-title">Form validation.<br/>Zero JavaScript.</h2><p class="vhome-section-desc">VeloraCSS uses <code>:has()</code> with <code>:valid</code> and <code>:invalid</code>to build a complete validation UI in pure CSS. Type in the fields below — labels change color, error messages appear, borders react. No JS needed.</p><div style="display:grid;gap:1.25rem;max-width:380px"><div class="vhome-field"><label for="h-name">Full name</label><input type="text" id="h-name" class="vhome-input" placeholder="Jane Smith" minLength="2" required=""/><span class="vhome-field-hint">At least 2 characters</span><span class="vhome-field-error">Name must be at least 2 characters</span><span class="vhome-field-ok">Looks good!</span></div><div class="vhome-field"><label for="h-email">Email address</label><input type="email" id="h-email" class="vhome-input" placeholder="jane@example.com" required=""/><span class="vhome-field-hint">We&#x27;ll never share your email</span><span class="vhome-field-error">Enter a valid email address</span><span class="vhome-field-ok">Valid email address</span></div></div></div><div class="vhome-terminal"><div class="vhome-terminal-titlebar"><div class="vhome-terminal-dots"><div class="vhome-terminal-dot red"></div><div class="vhome-terminal-dot yellow"></div><div class="vhome-terminal-dot green"></div></div><span class="vhome-terminal-title">velora.css</span><button class="vhome-terminal-copy idle">Copy</button></div><pre class="vhome-terminal-code"><code><span class="tc-comment">/* :has() reads browser validity — no JS needed */</span>
+<span class="tc-cls">el</span>.dataset.<span class="tc-fn">velTheme</span> = <span class="tc-str">'ocean'</span>;</span></code></pre></div></div></div></section><section class="vhome-section"><div class="vhome-wrap"><div class="vhome-split"><div><span class="vhome-section-eyebrow">Innovation 05</span><h2 class="vel-text-4xl vel-font-extrabold vel-tracking-tight" style="margin-bottom:1rem;line-height:1.15">Form validation.<br/>Zero JavaScript.</h2><p class="vhome-section-desc">VeloraCSS uses <code>:has()</code> with <code>:valid</code> and <code>:invalid</code>to build a complete validation UI in pure CSS. Type in the fields below — labels change color, error messages appear, borders react. No JS needed.</p><div style="display:grid;gap:1.25rem;max-width:380px"><div class="vhome-field"><label for="h-name">Full name</label><input type="text" id="h-name" class="vhome-input" placeholder="Jane Smith" minLength="2" required=""/><span class="vhome-field-hint">At least 2 characters</span><span class="vhome-field-error">Name must be at least 2 characters</span><span class="vhome-field-ok">Looks good!</span></div><div class="vhome-field"><label for="h-email">Email address</label><input type="email" id="h-email" class="vhome-input" placeholder="jane@example.com" required=""/><span class="vhome-field-hint">We&#x27;ll never share your email</span><span class="vhome-field-error">Enter a valid email address</span><span class="vhome-field-ok">Valid email address</span></div></div></div><div class="vhome-terminal"><div class="vhome-terminal-titlebar"><span class="vhome-terminal-title">velora.css</span><div class="vhome-terminal-controls"><button class="vhome-terminal-ctrl">─</button><button class="vhome-terminal-ctrl">□</button><button class="vhome-terminal-ctrl close">✕</button></div></div><div class="vhome-terminal-action-bar"><button class="vhome-terminal-copy idle">Copy</button></div><pre class="vhome-terminal-code"><code><span class="tc-comment">/* :has() reads browser validity — no JS needed */</span>
 
 <span class="tc-comment">/* Label turns red when input is invalid */</span>
 <span class="tc-cls">.vel-field</span>:<span class="tc-fn">has</span>(<span class="tc-cls">.vel-input</span>:<span class="tc-fn">invalid</span>:<span class="tc-fn">not</span>(:<span class="tc-fn">placeholder-shown</span>)) <span class="tc-cls">label</span> {
@@ -649,4 +606,4 @@ onClick={() =&gt; setTab(0)}</pre></div><div class="vhome-compare-cell"><div cla
 <span class="tc-comment">/* Valid state — green automatically */</span>
 <span class="tc-cls">.vel-field</span>:<span class="tc-fn">has</span>(<span class="tc-cls">.vel-input</span>:<span class="tc-fn">valid</span>:<span class="tc-fn">not</span>(:<span class="tc-fn">placeholder-shown</span>)) <span class="tc-cls">.vel-input</span> {
   <span class="tc-prop">border-color</span>: <span class="tc-fn">oklch</span>(<span class="tc-num">70% 0.2 162</span>);
-}</span></code></pre></div></div></div></section><section class="vhome-section"><div class="vhome-wrap"><span class="vhome-section-eyebrow">Rich component library</span><h2 class="vhome-section-title">29 components,<br/>all using the DNA system.</h2><p class="vhome-section-desc" style="margin-bottom:2rem">Every component is built with the same token cascade. Change the DNA hue above and watch every button, badge, and card adapt instantly.</p><div class="vhome-component-grid"><div class="vhome-component-preview"><div class="vhome-component-preview-header">Buttons</div><div class="vhome-component-preview-body"><div style="display:flex;flex-wrap:wrap;gap:0.5rem;margin-bottom:0.625rem"><button class="vhome-btn-primary">Primary</button><button class="vhome-btn-outline">Outline</button><button style="background:var(--vs3);color:var(--vt2);border:1px solid var(--vborder);border-radius:0.5rem;padding:0.625rem 1.25rem;font-size:0.875rem;font-weight:500;cursor:pointer;font-family:inherit;transition:all 0.2s">Ghost</button></div><div style="display:flex;flex-wrap:wrap;gap:0.5rem"><button style="background:oklch(28% 0.12 162);color:oklch(75% 0.18 162);border:none;border-radius:0.5rem;padding:0.5rem 1rem;font-size:0.8rem;font-weight:600;cursor:pointer;font-family:inherit">Success</button><button style="background:oklch(28% 0.13 25);color:oklch(72% 0.2 25);border:none;border-radius:0.5rem;padding:0.5rem 1rem;font-size:0.8rem;font-weight:600;cursor:pointer;font-family:inherit">Danger</button><button style="background:var(--vs2);color:var(--vt3);border:1px solid var(--vborder-dim);border-radius:0.5rem;padding:0.5rem 1rem;font-size:0.8rem;font-weight:500;cursor:not-allowed;font-family:inherit;opacity:0.45" disabled="">Disabled</button></div></div></div><div class="vhome-component-preview"><div class="vhome-component-preview-header">Badges &amp; Alerts</div><div class="vhome-component-preview-body"><div style="display:flex;flex-wrap:wrap;gap:0.375rem;margin-bottom:0.75rem"><span style="background:var(--vp-subtle);color:var(--vp);border:1px solid var(--vp-glow);border-radius:9999px;padding:0.2rem 0.65rem;font-size:0.7rem;font-weight:700;letter-spacing:0.04em">Primary</span><span style="background:oklch(22% 0.08 162 / 0.6);color:oklch(72% 0.18 162);border:1px solid oklch(72% 0.18 162 / 0.35);border-radius:9999px;padding:0.2rem 0.65rem;font-size:0.7rem;font-weight:700;letter-spacing:0.04em">Success</span><span style="background:oklch(22% 0.09 25 / 0.6);color:oklch(68% 0.2 25);border:1px solid oklch(68% 0.2 25 / 0.35);border-radius:9999px;padding:0.2rem 0.65rem;font-size:0.7rem;font-weight:700;letter-spacing:0.04em">Danger</span><span style="background:oklch(25% 0.09 55 / 0.6);color:oklch(78% 0.18 55);border:1px solid oklch(78% 0.18 55 / 0.35);border-radius:9999px;padding:0.2rem 0.65rem;font-size:0.7rem;font-weight:700;letter-spacing:0.04em">Warning</span></div><div style="background:var(--vp-subtle);border:1px solid var(--vp-glow);border-radius:0.5rem;padding:0.625rem 0.875rem;font-size:0.8125rem;color:var(--vp);line-height:1.5">Info — Something worth knowing.</div></div></div><div class="vhome-component-preview"><div class="vhome-component-preview-header">Cards</div><div class="vhome-component-preview-body" style="padding:0.75rem"><div style="background:var(--vs2);border:1px solid var(--vborder);border-radius:0.75rem;overflow:hidden;transition:box-shadow 0.22s, border-color 0.22s"><div style="background:var(--vp-subtle);border-bottom:1px solid var(--vborder);padding:0.625rem 1rem;font-size:0.7rem;font-weight:700;color:var(--vp);text-transform:uppercase;letter-spacing:0.07em">Feature Card</div><div style="padding:0.875rem"><p style="font-size:0.8125rem;color:var(--vt2);margin-bottom:0.75rem;line-height:1.55">Hover to see DNA-token elevation.</p><button class="vhome-btn-primary" style="padding:0.4rem 0.875rem;font-size:0.8rem">Action</button></div></div></div></div><div class="vhome-component-preview"><div class="vhome-component-preview-header">Steps</div><div class="vhome-component-preview-body"><div style="display:flex;align-items:center;gap:0.75rem;margin-bottom:0.75rem"><div style="width:28px;height:28px;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:0.8rem;font-weight:700;background:var(--vp);color:oklch(12% 0.02 var(--vel-dna-hue));border:none;transition:all 0.2s">✓</div><span style="font-size:0.875rem;font-weight:400;color:var(--vt2)">Account</span></div><div style="display:flex;align-items:center;gap:0.75rem;margin-bottom:0.75rem"><div style="width:28px;height:28px;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:0.8rem;font-weight:700;background:var(--vp-subtle);color:var(--vp);border:2px solid var(--vp);transition:all 0.2s">2</div><span style="font-size:0.875rem;font-weight:600;color:var(--vt1)">Profile</span></div><div style="display:flex;align-items:center;gap:0.75rem;margin-bottom:0"><div style="width:28px;height:28px;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:0.8rem;font-weight:700;background:var(--vs3);color:var(--vt3);border:1px solid var(--vborder);transition:all 0.2s">3</div><span style="font-size:0.875rem;font-weight:400;color:var(--vt3)">Billing</span></div></div></div><div class="vhome-component-preview"><div class="vhome-component-preview-header">Skeleton Loaders</div><div class="vhome-component-preview-body"><div style="display:flex;gap:0.75rem;margin-bottom:0.75rem;align-items:center"><div class="vhome-skeleton-demo" style="width:44px;height:44px;border-radius:50%;flex-shrink:0"></div><div style="flex:1;display:grid;gap:0.375rem"><div class="vhome-skeleton-demo" style="height:11px;border-radius:6px;width:68%"></div><div class="vhome-skeleton-demo" style="height:10px;border-radius:5px;width:42%"></div></div></div><div class="vhome-skeleton-demo" style="height:48px;border-radius:0.5rem;width:100%"></div></div></div><div class="vhome-component-preview"><div class="vhome-component-preview-header">Keyboard &amp; Dividers</div><div class="vhome-component-preview-body"><div style="display:flex;flex-wrap:wrap;gap:0.5rem;margin-bottom:1rem;align-items:center"><span style="display:inline-flex;gap:0.2rem;align-items:center"><kbd style="display:inline-flex;align-items:center;justify-content:center;padding:0.25rem 0.5rem;background:var(--vs3);border:1px solid var(--vborder);border-bottom-width:2px;border-radius:0.3rem;font-size:0.72rem;font-family:Cascadia Code, Consolas, monospace;color:var(--vt2);line-height:1;min-width:22px">Ctrl</kbd><kbd style="display:inline-flex;align-items:center;justify-content:center;padding:0.25rem 0.5rem;background:var(--vs3);border:1px solid var(--vborder);border-bottom-width:2px;border-radius:0.3rem;font-size:0.72rem;font-family:Cascadia Code, Consolas, monospace;color:var(--vt2);line-height:1;min-width:22px">K</kbd></span><span style="display:inline-flex;gap:0.2rem;align-items:center"><kbd style="display:inline-flex;align-items:center;justify-content:center;padding:0.25rem 0.5rem;background:var(--vs3);border:1px solid var(--vborder);border-bottom-width:2px;border-radius:0.3rem;font-size:0.72rem;font-family:Cascadia Code, Consolas, monospace;color:var(--vt2);line-height:1;min-width:22px">⌘</kbd><kbd style="display:inline-flex;align-items:center;justify-content:center;padding:0.25rem 0.5rem;background:var(--vs3);border:1px solid var(--vborder);border-bottom-width:2px;border-radius:0.3rem;font-size:0.72rem;font-family:Cascadia Code, Consolas, monospace;color:var(--vt2);line-height:1;min-width:22px">Shift</kbd><kbd style="display:inline-flex;align-items:center;justify-content:center;padding:0.25rem 0.5rem;background:var(--vs3);border:1px solid var(--vborder);border-bottom-width:2px;border-radius:0.3rem;font-size:0.72rem;font-family:Cascadia Code, Consolas, monospace;color:var(--vt2);line-height:1;min-width:22px">P</kbd></span><kbd style="display:inline-flex;align-items:center;padding:0.25rem 0.75rem;background:var(--vs3);border:1px solid var(--vborder);border-bottom-width:2px;border-radius:0.3rem;font-size:0.78rem;font-family:Cascadia Code, Consolas, monospace;color:var(--vt2)">Enter</kbd></div><div style="display:flex;align-items:center;gap:0.75rem"><div style="flex:1;height:1px;background:var(--vborder)"></div><span style="font-size:0.7rem;font-weight:700;color:var(--vt3);text-transform:uppercase;letter-spacing:0.07em">OR</span><div style="flex:1;height:1px;background:var(--vborder)"></div></div></div></div></div></div></section><section class="vhome-section" style="border-bottom:none"><div class="vhome-wrap"><div class="vhome-stats"><div class="vhome-stat"><span class="vhome-stat-num">300+</span><span class="vhome-stat-label">utility classes</span></div><div class="vhome-stat"><span class="vhome-stat-num">29</span><span class="vhome-stat-label">components</span></div><div class="vhome-stat"><span class="vhome-stat-num">6</span><span class="vhome-stat-label">CSS innovations</span></div><div class="vhome-stat"><span class="vhome-stat-num">0</span><span class="vhome-stat-label">dependencies</span></div></div></div></section><section class="vhome-cta-section"><div class="vhome-wrap"><h2>Ready to build<br/>something <em style="font-style:normal;color:var(--vp)">extraordinary?</em></h2><p>Start with the docs, explore the playground, or dive into the source. VeloraCSS is open source and ready to use today.</p><div class="vhome-hero-ctas"><a class="vhome-cta-primary" href="/veloracss/docs/">Get Started →</a><a href="https://velorax.github.io/veloracss/playground" target="_blank" rel="noopener noreferrer" class="vhome-cta-secondary">Open Playground</a><a href="https://github.com/VeloraX/veloracss" target="_blank" rel="noopener noreferrer" class="vhome-cta-ghost">View Source</a></div></div></section><footer class="vhome-footer"><div class="vhome-wrap" style="display:flex;flex-direction:column;align-items:center;gap:1rem;width:100%"><span class="vhome-footer-badge">Color Genetics · Container Intelligence · CSS State Machine · Scope Theming · Smart Forms · Fluid Scale</span><div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;width:100%"><span class="vhome-footer-copy">VeloraCSS v0.3.0 — AI-designed. Human-shipped.</span><div class="vhome-footer-links"><a class="vhome-footer-link" href="/veloracss/docs/">Docs</a><a href="https://velorax.github.io/veloracss/playground" target="_blank" rel="noopener noreferrer" class="vhome-footer-link">Playground</a><a href="https://github.com/VeloraX/veloracss" target="_blank" rel="noopener noreferrer" class="vhome-footer-link">GitHub</a></div></div></div></footer></main><!--$--><!--/$--><script src="/veloracss/_next/static/chunks/37690ebe0e4652d2.js" id="_R_" async=""></script><script>(self.__next_f=self.__next_f||[]).push([0])</script><script>self.__next_f.push([1,"1:\"$Sreact.fragment\"\n2:I[79876,[\"/veloracss/_next/static/chunks/89d43586d21f2643.js\",\"/veloracss/_next/static/chunks/27e596ffa243fe8c.js\"],\"default\"]\n3:I[31722,[\"/veloracss/_next/static/chunks/89d43586d21f2643.js\",\"/veloracss/_next/static/chunks/27e596ffa243fe8c.js\"],\"default\"]\n4:I[79360,[\"/veloracss/_next/static/chunks/21679378a9d5730e.js\"],\"default\"]\n5:I[87839,[\"/veloracss/_next/static/chunks/89d43586d21f2643.js\",\"/veloracss/_next/static/chunks/27e596ffa243fe8c.js\"],\"ClientPageRoot\"]\n6:I[49308,[\"/veloracss/_next/static/chunks/1137ce70b1c78520.js\",\"/veloracss/_next/static/chunks/74560f5a058a5774.js\"],\"default\"]\n9:I[93373,[\"/veloracss/_next/static/chunks/89d43586d21f2643.js\",\"/veloracss/_next/static/chunks/27e596ffa243fe8c.js\"],\"OutletBoundary\"]\na:\"$Sreact.suspense\"\nc:I[93373,[\"/veloracss/_next/static/chunks/89d43586d21f2643.js\",\"/veloracss/_next/static/chunks/27e596ffa243fe8c.js\"],\"ViewportBoundary\"]\ne:I[93373,[\"/veloracss/_next/static/chunks/89d43586d21f2643.js\",\"/veloracss/_next/static/chunks/27e596ffa243fe8c.js\"],\"MetadataBoundary\"]\n10:I[20654,[],\"default\"]\n:HL[\"/veloracss/_next/static/chunks/8f0a2f621737ef53.css\",\"style\"]\n:HL[\"/veloracss/_next/static/chunks/f666607d0a3988e8.css\",\"style\"]\n"])</script><script>self.__next_f.push([1,"0:{\"P\":null,\"b\":\"15pMC-Fku9lo_9RF6_NIJ\",\"c\":[\"\",\"\"],\"q\":\"\",\"i\":false,\"f\":[[[\"\",{\"children\":[\"__PAGE__\",{}]},\"$undefined\",\"$undefined\",true],[[\"$\",\"$1\",\"c\",{\"children\":[[[\"$\",\"link\",\"0\",{\"rel\":\"stylesheet\",\"href\":\"/veloracss/_next/static/chunks/8f0a2f621737ef53.css\",\"precedence\":\"next\",\"crossOrigin\":\"$undefined\",\"nonce\":\"$undefined\"}],[\"$\",\"link\",\"1\",{\"rel\":\"stylesheet\",\"href\":\"/veloracss/_next/static/chunks/f666607d0a3988e8.css\",\"precedence\":\"next\",\"crossOrigin\":\"$undefined\",\"nonce\":\"$undefined\"}]],[\"$\",\"html\",null,{\"lang\":\"en\",\"children\":[\"$\",\"body\",null,{\"children\":[\"$\",\"$L2\",null,{\"parallelRouterKey\":\"children\",\"error\":\"$undefined\",\"errorStyles\":\"$undefined\",\"errorScripts\":\"$undefined\",\"template\":[\"$\",\"$L3\",null,{}],\"templateStyles\":\"$undefined\",\"templateScripts\":\"$undefined\",\"notFound\":[[\"$\",\"$L4\",null,{}],[]],\"forbidden\":\"$undefined\",\"unauthorized\":\"$undefined\"}]}]}]]}],{\"children\":[[\"$\",\"$1\",\"c\",{\"children\":[[\"$\",\"$L5\",null,{\"Component\":\"$6\",\"serverProvidedParams\":{\"searchParams\":{},\"params\":{},\"promises\":[\"$@7\",\"$@8\"]}}],[[\"$\",\"script\",\"script-0\",{\"src\":\"/veloracss/_next/static/chunks/1137ce70b1c78520.js\",\"async\":true,\"nonce\":\"$undefined\"}],[\"$\",\"script\",\"script-1\",{\"src\":\"/veloracss/_next/static/chunks/74560f5a058a5774.js\",\"async\":true,\"nonce\":\"$undefined\"}]],[\"$\",\"$L9\",null,{\"children\":[\"$\",\"$a\",null,{\"name\":\"Next.MetadataOutlet\",\"children\":\"$@b\"}]}]]}],{},null,false,false]},null,false,false],[\"$\",\"$1\",\"h\",{\"children\":[null,[\"$\",\"$Lc\",null,{\"children\":\"$Ld\"}],[\"$\",\"div\",null,{\"hidden\":true,\"children\":[\"$\",\"$Le\",null,{\"children\":[\"$\",\"$a\",null,{\"name\":\"Next.Metadata\",\"children\":\"$Lf\"}]}]}],null]}],false]],\"m\":\"$undefined\",\"G\":[\"$10\",[]],\"S\":true}\n"])</script><script>self.__next_f.push([1,"7:{}\n8:\"$0:f:0:1:1:children:0:props:children:0:props:serverProvidedParams:params\"\n"])</script><script>self.__next_f.push([1,"d:[[\"$\",\"meta\",\"0\",{\"charSet\":\"utf-8\"}],[\"$\",\"meta\",\"1\",{\"name\":\"viewport\",\"content\":\"width=device-width, initial-scale=1\"}],[\"$\",\"meta\",\"2\",{\"name\":\"color-scheme\",\"content\":\"dark\"}]]\n"])</script><script>self.__next_f.push([1,"11:I[25251,[\"/veloracss/_next/static/chunks/89d43586d21f2643.js\",\"/veloracss/_next/static/chunks/27e596ffa243fe8c.js\"],\"IconMark\"]\nb:null\nf:[[\"$\",\"title\",\"0\",{\"children\":\"VeloraCSS — Next.js Demo\"}],[\"$\",\"meta\",\"1\",{\"name\":\"description\",\"content\":\"VeloraCSS utility-first CSS framework working with Next.js App Router\"}],[\"$\",\"link\",\"2\",{\"rel\":\"icon\",\"href\":\"/veloracss/favicon.ico?favicon.0b3bf435.ico\",\"sizes\":\"256x256\",\"type\":\"image/x-icon\"}],[\"$\",\"$L11\",\"3\",{}]]\n"])</script></body></html>
+}</span></code></pre></div></div></div></section><section class="vhome-section" style="border-bottom:none"><div class="vhome-wrap"><div class="vhome-stats"><div class="vhome-stat"><span class="vhome-stat-num">300+</span><span class="vhome-stat-label">utility classes</span></div><div class="vhome-stat"><span class="vhome-stat-num">29</span><span class="vhome-stat-label">components</span></div><div class="vhome-stat"><span class="vhome-stat-num">6</span><span class="vhome-stat-label">CSS innovations</span></div><div class="vhome-stat"><span class="vhome-stat-num">0</span><span class="vhome-stat-label">dependencies</span></div></div></div></section><section class="vhome-cta-section"><div class="vhome-wrap"><h2 class="vel-text-5xl vel-font-black vel-tracking-tight" style="margin-bottom:1rem;line-height:1.1">Ready to build<br/>something <em style="font-style:normal;color:var(--vp)">extraordinary?</em></h2><p style="font-size:1.0625rem;color:var(--vt2);max-width:480px;margin:0 auto 2.5rem;line-height:1.7">Start with the docs, explore the playground, or dive into the source. VeloraCSS is open source and ready to use today.</p><div class="vhome-hero-ctas"><a class="vhome-cta-primary" href="/veloracss/docs/">Get Started →</a><a href="https://velorax.github.io/veloracss/playground" target="_blank" rel="noopener noreferrer" class="vhome-cta-secondary">Open Playground</a><a href="https://github.com/VeloraX/veloracss" target="_blank" rel="noopener noreferrer" class="vhome-cta-ghost">View Source</a></div></div></section><footer class="vhome-footer"><div class="vhome-wrap vel-flex vel-flex-col vel-items-center vel-gap-4" style="width:100%"><span class="vhome-footer-badge">Color Genetics · Container Intelligence · CSS State Machine · Scope Theming · Smart Forms · Fluid Scale</span><div class="vel-flex vel-items-center vel-justify-between vel-flex-wrap vel-gap-4" style="width:100%"><span style="font-size:0.8125rem;color:var(--vt3)">VeloraCSS v0.3.0 — AI-designed. Human-shipped.</span><div class="vel-flex vel-gap-6"><a class="vhome-footer-link" href="/veloracss/docs/">Docs</a><a href="https://velorax.github.io/veloracss/playground" target="_blank" rel="noopener noreferrer" class="vhome-footer-link">Playground</a><a href="https://github.com/VeloraX/veloracss" target="_blank" rel="noopener noreferrer" class="vhome-footer-link">GitHub</a></div></div></div></footer></main><!--$--><!--/$--><script src="/veloracss/_next/static/chunks/37690ebe0e4652d2.js" id="_R_" async=""></script><script>(self.__next_f=self.__next_f||[]).push([0])</script><script>self.__next_f.push([1,"1:\"$Sreact.fragment\"\n2:I[79876,[\"/veloracss/_next/static/chunks/89d43586d21f2643.js\",\"/veloracss/_next/static/chunks/27e596ffa243fe8c.js\"],\"default\"]\n3:I[31722,[\"/veloracss/_next/static/chunks/89d43586d21f2643.js\",\"/veloracss/_next/static/chunks/27e596ffa243fe8c.js\"],\"default\"]\n4:I[79360,[\"/veloracss/_next/static/chunks/21679378a9d5730e.js\"],\"default\"]\n5:I[87839,[\"/veloracss/_next/static/chunks/89d43586d21f2643.js\",\"/veloracss/_next/static/chunks/27e596ffa243fe8c.js\"],\"ClientPageRoot\"]\n6:I[49308,[\"/veloracss/_next/static/chunks/1137ce70b1c78520.js\",\"/veloracss/_next/static/chunks/44802cfebb0ff1cc.js\"],\"default\"]\n9:I[93373,[\"/veloracss/_next/static/chunks/89d43586d21f2643.js\",\"/veloracss/_next/static/chunks/27e596ffa243fe8c.js\"],\"OutletBoundary\"]\na:\"$Sreact.suspense\"\nc:I[93373,[\"/veloracss/_next/static/chunks/89d43586d21f2643.js\",\"/veloracss/_next/static/chunks/27e596ffa243fe8c.js\"],\"ViewportBoundary\"]\ne:I[93373,[\"/veloracss/_next/static/chunks/89d43586d21f2643.js\",\"/veloracss/_next/static/chunks/27e596ffa243fe8c.js\"],\"MetadataBoundary\"]\n10:I[20654,[],\"default\"]\n:HL[\"/veloracss/_next/static/chunks/1830086f80d9b1a4.css\",\"style\"]\n:HL[\"/veloracss/_next/static/chunks/f666607d0a3988e8.css\",\"style\"]\n"])</script><script>self.__next_f.push([1,"0:{\"P\":null,\"b\":\"Yiz1lyP76e7plBlwkCWWf\",\"c\":[\"\",\"\"],\"q\":\"\",\"i\":false,\"f\":[[[\"\",{\"children\":[\"__PAGE__\",{}]},\"$undefined\",\"$undefined\",true],[[\"$\",\"$1\",\"c\",{\"children\":[[[\"$\",\"link\",\"0\",{\"rel\":\"stylesheet\",\"href\":\"/veloracss/_next/static/chunks/1830086f80d9b1a4.css\",\"precedence\":\"next\",\"crossOrigin\":\"$undefined\",\"nonce\":\"$undefined\"}],[\"$\",\"link\",\"1\",{\"rel\":\"stylesheet\",\"href\":\"/veloracss/_next/static/chunks/f666607d0a3988e8.css\",\"precedence\":\"next\",\"crossOrigin\":\"$undefined\",\"nonce\":\"$undefined\"}]],[\"$\",\"html\",null,{\"lang\":\"en\",\"children\":[\"$\",\"body\",null,{\"children\":[\"$\",\"$L2\",null,{\"parallelRouterKey\":\"children\",\"error\":\"$undefined\",\"errorStyles\":\"$undefined\",\"errorScripts\":\"$undefined\",\"template\":[\"$\",\"$L3\",null,{}],\"templateStyles\":\"$undefined\",\"templateScripts\":\"$undefined\",\"notFound\":[[\"$\",\"$L4\",null,{}],[]],\"forbidden\":\"$undefined\",\"unauthorized\":\"$undefined\"}]}]}]]}],{\"children\":[[\"$\",\"$1\",\"c\",{\"children\":[[\"$\",\"$L5\",null,{\"Component\":\"$6\",\"serverProvidedParams\":{\"searchParams\":{},\"params\":{},\"promises\":[\"$@7\",\"$@8\"]}}],[[\"$\",\"script\",\"script-0\",{\"src\":\"/veloracss/_next/static/chunks/1137ce70b1c78520.js\",\"async\":true,\"nonce\":\"$undefined\"}],[\"$\",\"script\",\"script-1\",{\"src\":\"/veloracss/_next/static/chunks/44802cfebb0ff1cc.js\",\"async\":true,\"nonce\":\"$undefined\"}]],[\"$\",\"$L9\",null,{\"children\":[\"$\",\"$a\",null,{\"name\":\"Next.MetadataOutlet\",\"children\":\"$@b\"}]}]]}],{},null,false,false]},null,false,false],[\"$\",\"$1\",\"h\",{\"children\":[null,[\"$\",\"$Lc\",null,{\"children\":\"$Ld\"}],[\"$\",\"div\",null,{\"hidden\":true,\"children\":[\"$\",\"$Le\",null,{\"children\":[\"$\",\"$a\",null,{\"name\":\"Next.Metadata\",\"children\":\"$Lf\"}]}]}],null]}],false]],\"m\":\"$undefined\",\"G\":[\"$10\",[]],\"S\":true}\n"])</script><script>self.__next_f.push([1,"7:{}\n8:\"$0:f:0:1:1:children:0:props:children:0:props:serverProvidedParams:params\"\n"])</script><script>self.__next_f.push([1,"d:[[\"$\",\"meta\",\"0\",{\"charSet\":\"utf-8\"}],[\"$\",\"meta\",\"1\",{\"name\":\"viewport\",\"content\":\"width=device-width, initial-scale=1\"}],[\"$\",\"meta\",\"2\",{\"name\":\"color-scheme\",\"content\":\"dark\"}]]\n"])</script><script>self.__next_f.push([1,"11:I[25251,[\"/veloracss/_next/static/chunks/89d43586d21f2643.js\",\"/veloracss/_next/static/chunks/27e596ffa243fe8c.js\"],\"IconMark\"]\nb:null\nf:[[\"$\",\"title\",\"0\",{\"children\":\"VeloraCSS — Next.js Demo\"}],[\"$\",\"meta\",\"1\",{\"name\":\"description\",\"content\":\"VeloraCSS utility-first CSS framework working with Next.js App Router\"}],[\"$\",\"link\",\"2\",{\"rel\":\"icon\",\"href\":\"/veloracss/favicon.ico?favicon.0b3bf435.ico\",\"sizes\":\"256x256\",\"type\":\"image/x-icon\"}],[\"$\",\"$L11\",\"3\",{}]]\n"])</script></body></html>

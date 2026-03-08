@@ -28,13 +28,13 @@ export default function TransformRotatePage() {
       examples={[
         {
           label: 'Rotate 45 degrees',
-          html: `<div class="vel-rotate-45" style="display:inline-block;padding:1rem;background:#7c5cfc;color:#fff;border-radius:0.25rem">
+          html: `<div class="vel-rotate-45 vel-bg-primary vel-text-white vel-rounded-sm vel-inline-block" style="padding:1rem">
   45°
 </div>`,
         },
         {
           label: 'Animated rotate on hover',
-          html: `<div class="vel-transition-transform vel-duration-300 vel-hover:rotate-180" style="display:inline-flex;align-items:center;justify-content:center;width:2.5rem;height:2.5rem;background:#0d1422;border:1px solid #1e2d45;border-radius:0.5rem;cursor:pointer;color:#a87fff">
+          html: `<div class="vel-transition-transform vel-duration-300 vel-hover:rotate-180 vel-bg-surface-1 vel-text-primary vel-rounded-lg vel-inline-flex vel-items-center vel-justify-center vel-cursor-pointer" style="width:2.5rem;height:2.5rem;border:1px solid #1e2d45">
   &#8593;
 </div>`,
         },

@@ -20,19 +20,19 @@ export default function GridAutoFlowPage() {
   <div>
     <p style="color:#64748b;font-size:11px;margin-bottom:4px">vel-grid-flow-row</p>
     <div class="vel-grid vel-grid-cols-2 vel-grid-flow-row vel-gap-2" style="width:120px">
-      <div style="background:#7c5cfc;color:#fff;padding:8px;border-radius:4px;text-align:center;font-size:12px">1</div>
-      <div style="background:#7c5cfc;color:#fff;padding:8px;border-radius:4px;text-align:center;font-size:12px">2</div>
-      <div style="background:#7c5cfc80;color:#fff;padding:8px;border-radius:4px;text-align:center;font-size:12px">3</div>
-      <div style="background:#7c5cfc80;color:#fff;padding:8px;border-radius:4px;text-align:center;font-size:12px">4</div>
+      <div class="vel-bg-primary vel-text-white vel-rounded-sm vel-text-center" style="padding:8px;font-size:12px">1</div>
+      <div class="vel-bg-primary vel-text-white vel-rounded-sm vel-text-center" style="padding:8px;font-size:12px">2</div>
+      <div class="vel-bg-primary vel-text-white vel-rounded-sm vel-text-center vel-opacity-50" style="padding:8px;font-size:12px">3</div>
+      <div class="vel-bg-primary vel-text-white vel-rounded-sm vel-text-center vel-opacity-50" style="padding:8px;font-size:12px">4</div>
     </div>
   </div>
   <div>
     <p style="color:#64748b;font-size:11px;margin-bottom:4px">vel-grid-flow-col</p>
     <div class="vel-grid vel-grid-rows-2 vel-grid-flow-col vel-gap-2" style="width:fit-content">
-      <div style="background:#0ecb81;color:#fff;padding:8px 16px;border-radius:4px;text-align:center;font-size:12px">1</div>
-      <div style="background:#0ecb81;color:#fff;padding:8px 16px;border-radius:4px;text-align:center;font-size:12px">2</div>
-      <div style="background:#0ecb8180;color:#fff;padding:8px 16px;border-radius:4px;text-align:center;font-size:12px">3</div>
-      <div style="background:#0ecb8180;color:#fff;padding:8px 16px;border-radius:4px;text-align:center;font-size:12px">4</div>
+      <div class="vel-bg-success vel-text-white vel-rounded-sm vel-text-center" style="padding:8px 16px;font-size:12px">1</div>
+      <div class="vel-bg-success vel-text-white vel-rounded-sm vel-text-center" style="padding:8px 16px;font-size:12px">2</div>
+      <div class="vel-bg-success vel-text-white vel-rounded-sm vel-text-center vel-opacity-50" style="padding:8px 16px;font-size:12px">3</div>
+      <div class="vel-bg-success vel-text-white vel-rounded-sm vel-text-center vel-opacity-50" style="padding:8px 16px;font-size:12px">4</div>
     </div>
   </div>
 </div>`,

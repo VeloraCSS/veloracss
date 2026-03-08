@@ -1,0 +1,122 @@
+/* VeloraCSS — CSS State Machine
+   Zero-JS state management using :has() + radio/checkbox inputs.
+   No JavaScript required for tabs, toggles, or form validation.
+*/
+
+/* ─── Tab state machine ───────────────────────────────
+   Usage:
+     <div class="vel-sm-tabs">
+       <input type="radio" name="tabs" id="vel-tab-1" checked>
+       <input type="radio" name="tabs" id="vel-tab-2">
+       <label class="vel-sm-tab-label" for="vel-tab-1">Tab 1</label>
+       <label class="vel-sm-tab-label" for="vel-tab-2">Tab 2</label>
+       <div class="vel-sm-panel" data-vel-panel="1">...</div>
+       <div class="vel-sm-panel" data-vel-panel="2">...</div>
+     </div>
+*/
+.vel-sm-tabs {
+  container-type: inline-size;
+}
+
+.vel-sm-tabs input[type="radio"] {
+  display: none;
+}
+
+.vel-sm-tab-label {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  border-bottom: 2px solid transparent;
+  color: var(--vel-color-muted);
+  font-size: 0.875rem;
+  font-weight: 500;
+  transition: color 0.15s, border-color 0.15s;
+}
+
+.vel-sm-tab-label:hover {
+  color: var(--vel-color-text);
+}
+
+.vel-sm-tabs:has(#vel-tab-1:checked) .vel-sm-tab-label[for="vel-tab-1"],
+.vel-sm-tabs:has(#vel-tab-2:checked) .vel-sm-tab-label[for="vel-tab-2"],
+.vel-sm-tabs:has(#vel-tab-3:checked) .vel-sm-tab-label[for="vel-tab-3"],
+.vel-sm-tabs:has(#vel-tab-4:checked) .vel-sm-tab-label[for="vel-tab-4"] {
+  color: var(--vel-color-primary);
+  border-bottom-color: var(--vel-color-primary);
+}
+
+.vel-sm-panel {
+  display: none;
+}
+
+.vel-sm-tabs:has(#vel-tab-1:checked) [data-vel-panel="1"],
+.vel-sm-tabs:has(#vel-tab-2:checked) [data-vel-panel="2"],
+.vel-sm-tabs:has(#vel-tab-3:checked) [data-vel-panel="3"],
+.vel-sm-tabs:has(#vel-tab-4:checked) [data-vel-panel="4"] {
+  display: block;
+}
+
+/* ─── Toggle / disclosure state machine ──────────────
+   Usage:
+     <div class="vel-sm-toggle">
+       <label>
+         <input type="checkbox">
+         <span class="vel-sm-toggle-icon"></span>
+         Toggle label
+       </label>
+       <div class="vel-sm-toggle-content">...</div>
+     </div>
+*/
+.vel-sm-toggle input[type="checkbox"] {
+  display: none;
+}
+
+.vel-sm-toggle-content {
+  display: none;
+}
+
+.vel-sm-toggle:has(input:checked) .vel-sm-toggle-content {
+  display: block;
+}
+
+.vel-sm-toggle-icon::after {
+  content: '\25B6';
+  display: inline-block;
+  transition: transform 0.2s var(--vel-ease-in-out, cubic-bezier(0.4, 0, 0.2, 1));
+  margin-right: 0.375rem;
+}
+
+.vel-sm-toggle:has(input:checked) .vel-sm-toggle-icon::after {
+  transform: rotate(90deg);
+}
+
+/* ─── Smart form validation ───────────────────────────
+   Usage:
+     <form class="vel-smart-form">
+       <input class="vel-input" type="email" required placeholder=" ">
+       <button class="vel-btn vel-form-submit" type="submit">Submit</button>
+     </form>
+   The submit button disables itself while any input is invalid.
+   Inputs show red/green borders after the user starts typing.
+*/
+.vel-smart-form .vel-input:not(:placeholder-shown):invalid {
+  border-color: var(--vel-color-danger);
+  box-shadow: 0 0 0 3px oklch(60% 0.22 25 / 0.15);
+}
+
+.vel-smart-form .vel-input:not(:placeholder-shown):valid {
+  border-color: var(--vel-color-success);
+}
+
+.vel-smart-form:has(.vel-input:invalid) .vel-form-submit {
+  opacity: 0.5;
+  pointer-events: none;
+  cursor: not-allowed;
+}
+
+.vel-smart-form:has(.vel-input:valid) .vel-form-submit {
+  opacity: 1;
+  pointer-events: auto;
+  cursor: pointer;
+}

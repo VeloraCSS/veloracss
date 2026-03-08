@@ -18,10 +18,10 @@ export default function AlignSelfPage() {
         {
           label: 'Per-item cross-axis alignment',
           html: `<div class="vel-flex vel-gap-3" style="background:#1a2236;padding:12px;border-radius:6px;height:120px">
-  <div class="vel-self-start" style="background:#7c5cfc;color:#fff;padding:8px 14px;border-radius:6px;font-size:12px">self-start</div>
-  <div class="vel-self-center" style="background:#0ecb81;color:#fff;padding:8px 14px;border-radius:6px;font-size:12px">self-center</div>
-  <div class="vel-self-end" style="background:#f0416c;color:#fff;padding:8px 14px;border-radius:6px;font-size:12px">self-end</div>
-  <div class="vel-self-stretch" style="background:#2ebde5;color:#fff;padding:8px 14px;border-radius:6px;font-size:12px;display:flex;align-items:center">self-stretch</div>
+  <div class="vel-self-start vel-bg-primary vel-text-white vel-rounded-md" style="padding:8px 14px;font-size:12px">self-start</div>
+  <div class="vel-self-center vel-bg-success vel-text-white vel-rounded-md" style="padding:8px 14px;font-size:12px">self-center</div>
+  <div class="vel-self-end vel-bg-danger vel-text-white vel-rounded-md" style="padding:8px 14px;font-size:12px">self-end</div>
+  <div class="vel-self-stretch vel-bg-info vel-text-white vel-rounded-md vel-flex vel-items-center" style="padding:8px 14px;font-size:12px">self-stretch</div>
 </div>`,
         },
       ]}

@@ -1,5 +1,5 @@
 /* ============================================
-   VeloraCSS v0.2.0
+   VeloraCSS v0.3.0
    A premium utility-first CSS framework
    ============================================ */
 
@@ -23,6 +23,8 @@
 @import './utilities/divide.css';
 @import './utilities/ring.css';
 @import './utilities/svg.css';
+@import './utilities/container-queries.css';
+@import './utilities/state-machine.css';
 
 /* Components */
 @import './components/button.css';

@@ -27,15 +27,15 @@ export default function HeightPage() {
           label: 'Height variants',
           html: `<div class="vel-flex vel-items-end vel-gap-4">
   <div style="background:#1a2236;border:1px solid #1e2d45;border-radius:6px;display:flex;flex-direction:column;justify-content:flex-end">
-    <div class="vel-h-8" style="background:#7c5cfc;border-radius:4px;width:60px"></div>
+    <div class="vel-h-8 vel-bg-primary vel-rounded-sm" style="width:60px"></div>
     <p style="color:#64748b;font-size:11px;text-align:center;margin-top:4px">h-8</p>
   </div>
   <div style="background:#1a2236;border:1px solid #1e2d45;border-radius:6px;display:flex;flex-direction:column;justify-content:flex-end">
-    <div class="vel-h-16" style="background:#0ecb81;border-radius:4px;width:60px"></div>
+    <div class="vel-h-16 vel-bg-success vel-rounded-sm" style="width:60px"></div>
     <p style="color:#64748b;font-size:11px;text-align:center;margin-top:4px">h-16</p>
   </div>
   <div style="background:#1a2236;border:1px solid #1e2d45;border-radius:6px;display:flex;flex-direction:column;justify-content:flex-end">
-    <div class="vel-h-24" style="background:#f0416c;border-radius:4px;width:60px"></div>
+    <div class="vel-h-24 vel-bg-danger vel-rounded-sm" style="width:60px"></div>
     <p style="color:#64748b;font-size:11px;text-align:center;margin-top:4px">h-24</p>
   </div>
 </div>`,

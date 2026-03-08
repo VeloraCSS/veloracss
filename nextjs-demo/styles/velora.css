@@ -1,5 +1,5 @@
 /* ============================================
-   VeloraCSS v0.2.0
+   VeloraCSS v0.3.0
    A premium utility-first CSS framework
    ============================================ */
 
@@ -7,184 +7,196 @@
 
 :root {
 
-  /* ─── Velora Violet (Primary) ───────────── */
-  --vel-primary-50:  #f3eeff;
-  --vel-primary-100: #e5d8ff;
-  --vel-primary-200: #ccb3ff;
-  --vel-primary-300: #aa84ff;
-  --vel-primary-400: #8f5eff;
-  --vel-primary-500: #7c5cfc;
-  --vel-primary-600: #6941e8;
-  --vel-primary-700: #5730cc;
-  --vel-primary-800: #4422aa;
-  --vel-primary-900: #2e1580;
-  --vel-primary-950: #180a50;
+  /* ─── DNA Color System ───────────────────────
+     Change --vel-dna-hue to shift the entire primary
+     palette. All surface, border, and text tokens
+     follow this single variable via oklch().
+     ─────────────────────────────────────────── */
+  --vel-dna-hue: 258;
 
-  --vel-color-primary:       var(--vel-primary-500);
-  --vel-color-primary-hover: var(--vel-primary-600);
-  --vel-color-primary-light: var(--vel-primary-100);
-  --vel-color-primary-fg:    #ffffff;
+  /* ─── Primary — driven by DNA hue ───────────── */
+  --vel-primary-50:  oklch(97% 0.02  var(--vel-dna-hue));
+  --vel-primary-100: oklch(93% 0.05  var(--vel-dna-hue));
+  --vel-primary-200: oklch(86% 0.09  var(--vel-dna-hue));
+  --vel-primary-300: oklch(78% 0.14  var(--vel-dna-hue));
+  --vel-primary-400: oklch(71% 0.18  var(--vel-dna-hue));
+  --vel-primary-500: oklch(65% 0.21  var(--vel-dna-hue));
+  --vel-primary-600: oklch(58% 0.21  var(--vel-dna-hue));
+  --vel-primary-700: oklch(50% 0.19  var(--vel-dna-hue));
+  --vel-primary-800: oklch(40% 0.16  var(--vel-dna-hue));
+  --vel-primary-900: oklch(30% 0.12  var(--vel-dna-hue));
+  --vel-primary-950: oklch(20% 0.08  var(--vel-dna-hue));
 
-  /* ─── Velora Slate (Secondary) ──────────── */
-  --vel-secondary-50:  #f0f4fa;
-  --vel-secondary-100: #d9e2f0;
-  --vel-secondary-200: #b3c5e0;
-  --vel-secondary-300: #8fa8cc;
-  --vel-secondary-400: #6b8ab5;
-  --vel-secondary-500: #4f6e9c;
-  --vel-secondary-600: #3d5680;
-  --vel-secondary-700: #2e4066;
-  --vel-secondary-800: #1f2c4a;
-  --vel-secondary-900: #121b30;
-  --vel-secondary-950: #080e1c;
+  --vel-color-primary:       oklch(65% 0.21 var(--vel-dna-hue));
+  --vel-color-primary-hover: oklch(58% 0.21 var(--vel-dna-hue));
+  --vel-color-primary-light: oklch(65% 0.21 var(--vel-dna-hue) / 0.15);
+  --vel-color-primary-fg:    oklch(98% 0.01 var(--vel-dna-hue));
 
-  --vel-color-secondary:       var(--vel-secondary-500);
-  --vel-color-secondary-hover: var(--vel-secondary-600);
-  --vel-color-secondary-light: var(--vel-secondary-100);
-  --vel-color-secondary-fg:    #ffffff;
+  /* ─── Secondary — fixed purple-ish hue ───────── */
+  --vel-secondary-50:  oklch(97% 0.02  290);
+  --vel-secondary-100: oklch(92% 0.04  290);
+  --vel-secondary-200: oklch(84% 0.07  290);
+  --vel-secondary-300: oklch(75% 0.10  290);
+  --vel-secondary-400: oklch(68% 0.13  290);
+  --vel-secondary-500: oklch(65% 0.15  290);
+  --vel-secondary-600: oklch(57% 0.15  290);
+  --vel-secondary-700: oklch(48% 0.13  290);
+  --vel-secondary-800: oklch(38% 0.10  290);
+  --vel-secondary-900: oklch(28% 0.07  290);
+  --vel-secondary-950: oklch(18% 0.05  290);
 
-  /* ─── Velora Emerald (Success) ──────────── */
-  --vel-success-50:  #eafff5;
-  --vel-success-100: #c8ffe4;
-  --vel-success-200: #92fdc8;
-  --vel-success-300: #4ef8a4;
-  --vel-success-400: #0ecb81;
-  --vel-success-500: #06b36e;
-  --vel-success-600: #058f58;
-  --vel-success-700: #076e47;
-  --vel-success-800: #085739;
-  --vel-success-900: #074830;
-  --vel-success-950: #02281a;
+  --vel-color-secondary:       oklch(65% 0.15 290);
+  --vel-color-secondary-hover: oklch(57% 0.15 290);
+  --vel-color-secondary-light: oklch(92% 0.04 290);
+  --vel-color-secondary-fg:    oklch(98% 0.01 290);
 
-  --vel-color-success:       var(--vel-success-400);
-  --vel-color-success-hover: var(--vel-success-500);
-  --vel-color-success-light: var(--vel-success-100);
-  --vel-color-success-fg:    #ffffff;
+  /* ─── Success — fixed green hue ─────────────── */
+  --vel-success-50:  oklch(97% 0.03  160);
+  --vel-success-100: oklch(92% 0.06  160);
+  --vel-success-200: oklch(84% 0.10  160);
+  --vel-success-300: oklch(76% 0.14  160);
+  --vel-success-400: oklch(69% 0.17  160);
+  --vel-success-500: oklch(65% 0.18  160);
+  --vel-success-600: oklch(57% 0.18  160);
+  --vel-success-700: oklch(48% 0.16  160);
+  --vel-success-800: oklch(38% 0.13  160);
+  --vel-success-900: oklch(28% 0.09  160);
+  --vel-success-950: oklch(18% 0.06  160);
 
-  /* ─── Velora Rose (Danger) ──────────────── */
-  --vel-danger-50:  #fff0f4;
-  --vel-danger-100: #ffe0e9;
-  --vel-danger-200: #ffbdd0;
-  --vel-danger-300: #ff8aad;
-  --vel-danger-400: #ff5085;
-  --vel-danger-500: #f0416c;
-  --vel-danger-600: #d42e58;
-  --vel-danger-700: #b01e46;
-  --vel-danger-800: #8c1236;
-  --vel-danger-900: #5e0b24;
-  --vel-danger-950: #380515;
+  --vel-color-success:       oklch(65% 0.18 160);
+  --vel-color-success-hover: oklch(57% 0.18 160);
+  --vel-color-success-light: oklch(92% 0.06 160);
+  --vel-color-success-fg:    oklch(98% 0.01 160);
 
-  --vel-color-danger:       var(--vel-danger-500);
-  --vel-color-danger-hover: var(--vel-danger-600);
-  --vel-color-danger-light: var(--vel-danger-100);
-  --vel-color-danger-fg:    #ffffff;
+  /* ─── Danger — fixed red hue ─────────────────── */
+  --vel-danger-50:  oklch(97% 0.02  25);
+  --vel-danger-100: oklch(92% 0.06  25);
+  --vel-danger-200: oklch(84% 0.11  25);
+  --vel-danger-300: oklch(76% 0.16  25);
+  --vel-danger-400: oklch(68% 0.20  25);
+  --vel-danger-500: oklch(60% 0.22  25);
+  --vel-danger-600: oklch(53% 0.22  25);
+  --vel-danger-700: oklch(44% 0.20  25);
+  --vel-danger-800: oklch(35% 0.16  25);
+  --vel-danger-900: oklch(25% 0.11  25);
+  --vel-danger-950: oklch(16% 0.07  25);
 
-  /* ─── Velora Amber (Warning) ────────────── */
-  --vel-warning-50:  #fffbeb;
-  --vel-warning-100: #fff3c4;
-  --vel-warning-200: #ffe082;
-  --vel-warning-300: #ffc93e;
-  --vel-warning-400: #ffb300;
-  --vel-warning-500: #ff9d00;
-  --vel-warning-600: #e08000;
-  --vel-warning-700: #b86200;
-  --vel-warning-800: #8a4800;
-  --vel-warning-900: #5c3000;
-  --vel-warning-950: #2e1600;
+  --vel-color-danger:       oklch(60% 0.22 25);
+  --vel-color-danger-hover: oklch(53% 0.22 25);
+  --vel-color-danger-light: oklch(92% 0.06 25);
+  --vel-color-danger-fg:    oklch(98% 0.01 25);
 
-  --vel-color-warning:       var(--vel-warning-500);
-  --vel-color-warning-hover: var(--vel-warning-600);
-  --vel-color-warning-light: var(--vel-warning-100);
-  --vel-color-warning-fg:    #1c1200;
+  /* ─── Warning — fixed amber hue ─────────────── */
+  --vel-warning-50:  oklch(98% 0.03  75);
+  --vel-warning-100: oklch(95% 0.07  75);
+  --vel-warning-200: oklch(89% 0.12  75);
+  --vel-warning-300: oklch(83% 0.16  75);
+  --vel-warning-400: oklch(77% 0.18  75);
+  --vel-warning-500: oklch(72% 0.19  75);
+  --vel-warning-600: oklch(64% 0.19  75);
+  --vel-warning-700: oklch(54% 0.17  75);
+  --vel-warning-800: oklch(43% 0.14  75);
+  --vel-warning-900: oklch(32% 0.10  75);
+  --vel-warning-950: oklch(21% 0.06  75);
 
-  /* ─── Velora Sky (Info) ─────────────────── */
-  --vel-info-50:  #e0f8ff;
-  --vel-info-100: #b8eeff;
-  --vel-info-200: #76deff;
-  --vel-info-300: #2ec9ff;
-  --vel-info-400: #2ebde5;
-  --vel-info-500: #1aa5cc;
-  --vel-info-600: #0d88aa;
-  --vel-info-700: #0a6c88;
-  --vel-info-800: #085266;
-  --vel-info-900: #043644;
-  --vel-info-950: #021c24;
+  --vel-color-warning:       oklch(72% 0.19 75);
+  --vel-color-warning-hover: oklch(64% 0.19 75);
+  --vel-color-warning-light: oklch(95% 0.07 75);
+  --vel-color-warning-fg:    oklch(15% 0.04 75);
 
-  --vel-color-info:       var(--vel-info-400);
-  --vel-color-info-hover: var(--vel-info-500);
-  --vel-color-info-light: var(--vel-info-100);
-  --vel-color-info-fg:    #ffffff;
+  /* ─── Info — fixed blue hue ──────────────────── */
+  --vel-info-50:  oklch(97% 0.02  220);
+  --vel-info-100: oklch(92% 0.05  220);
+  --vel-info-200: oklch(84% 0.09  220);
+  --vel-info-300: oklch(76% 0.13  220);
+  --vel-info-400: oklch(69% 0.16  220);
+  --vel-info-500: oklch(65% 0.18  220);
+  --vel-info-600: oklch(57% 0.18  220);
+  --vel-info-700: oklch(48% 0.16  220);
+  --vel-info-800: oklch(38% 0.12  220);
+  --vel-info-900: oklch(28% 0.08  220);
+  --vel-info-950: oklch(18% 0.05  220);
 
-  /* ─── Surface / UI ───────────────────────── */
-  --vel-surface-bg:      #060b17;
-  --vel-surface-0:       #060b17;
-  --vel-surface-1:       #0d1422;
-  --vel-surface-2:       #111827;
-  --vel-surface-3:       #1a2236;
-  --vel-surface-4:       #1e293b;
-  --vel-border-base:     #1e2d45;
-  --vel-border-subtle:   rgba(255, 255, 255, 0.06);
-  --vel-color-text:      #e2e8f0;
-  --vel-color-muted:     #64748b;
+  --vel-color-info:       oklch(65% 0.18 220);
+  --vel-color-info-hover: oklch(57% 0.18 220);
+  --vel-color-info-light: oklch(92% 0.05 220);
+  --vel-color-info-fg:    oklch(98% 0.01 220);
 
-  /* ─── Neutral Palette ───────────────────── */
-  --vel-neutral-50:  #f8fafc;
-  --vel-neutral-100: #f1f5f9;
-  --vel-neutral-200: #e2e8f0;
-  --vel-neutral-300: #cbd5e1;
-  --vel-neutral-400: #94a3b8;
-  --vel-neutral-500: #64748b;
-  --vel-neutral-600: #475569;
-  --vel-neutral-700: #334155;
-  --vel-neutral-800: #1e293b;
-  --vel-neutral-900: #0f172a;
-  --vel-neutral-950: #020617;
+  /* ─── Surface / UI — driven by DNA hue ──────── */
+  --vel-surface-bg:    oklch(7%  0.02  var(--vel-dna-hue));
+  --vel-surface-0:     oklch(7%  0.02  var(--vel-dna-hue));
+  --vel-surface-1:     oklch(10% 0.025 var(--vel-dna-hue));
+  --vel-surface-2:     oklch(13% 0.03  var(--vel-dna-hue));
+  --vel-surface-3:     oklch(17% 0.035 var(--vel-dna-hue));
+  --vel-surface-4:     oklch(21% 0.035 var(--vel-dna-hue));
+  --vel-border-base:   oklch(26% 0.045 var(--vel-dna-hue));
+  --vel-border-subtle: oklch(22% 0.035 var(--vel-dna-hue));
+  --vel-color-text:    oklch(92% 0.01  var(--vel-dna-hue));
+  --vel-color-muted:   oklch(55% 0.03  var(--vel-dna-hue));
 
-  /* ─── Gradient Tokens ───────────────────── */
-  --vel-gradient-primary:  linear-gradient(135deg, #8f5eff 0%, #6941e8 100%);
-  --vel-gradient-secondary:linear-gradient(135deg, #6b8ab5 0%, #3d5680 100%);
-  --vel-gradient-success:  linear-gradient(135deg, #2ef8a4 0%, #06b36e 100%);
-  --vel-gradient-danger:   linear-gradient(135deg, #ff5085 0%, #d42e58 100%);
-  --vel-gradient-warning:  linear-gradient(135deg, #ffe082 0%, #ff9d00 100%);
-  --vel-gradient-info:     linear-gradient(135deg, #2ec9ff 0%, #1aa5cc 100%);
-  --vel-gradient-dark:     linear-gradient(135deg, #1a2236 0%, #0d1422 100%);
-  --vel-gradient-aurora:   linear-gradient(135deg, #7c5cfc 0%, #2ebde5 50%, #0ecb81 100%);
-  --vel-gradient-sunset:   linear-gradient(135deg, #f0416c 0%, #ff9d00 100%);
-  --vel-gradient-ocean:    linear-gradient(135deg, #2ebde5 0%, #0ecb81 100%);
-  --vel-gradient-cosmos:   linear-gradient(135deg, #7c5cfc 0%, #f0416c 100%);
-  --vel-gradient-midnight: linear-gradient(180deg, #060b17 0%, #1a2236 100%);
-  --vel-gradient-surface:  linear-gradient(135deg, #111827 0%, #0d1422 100%);
+  /* ─── Neutral Palette ───────────────────────── */
+  --vel-neutral-50:  oklch(98% 0.004 255);
+  --vel-neutral-100: oklch(95% 0.007 255);
+  --vel-neutral-200: oklch(90% 0.010 255);
+  --vel-neutral-300: oklch(83% 0.014 255);
+  --vel-neutral-400: oklch(70% 0.018 255);
+  --vel-neutral-500: oklch(56% 0.018 255);
+  --vel-neutral-600: oklch(45% 0.015 255);
+  --vel-neutral-700: oklch(35% 0.012 255);
+  --vel-neutral-800: oklch(25% 0.009 255);
+  --vel-neutral-900: oklch(16% 0.006 255);
+  --vel-neutral-950: oklch(9%  0.004 255);
 
-  /* ─── Glow Tokens ────────────────────────── */
-  --vel-glow-primary: 0 0 20px rgba(124, 92, 252, 0.5), 0 0 60px rgba(124, 92, 252, 0.15);
-  --vel-glow-success: 0 0 20px rgba(14, 203, 129, 0.5), 0 0 60px rgba(14, 203, 129, 0.15);
-  --vel-glow-danger:  0 0 20px rgba(240, 65, 108, 0.5), 0 0 60px rgba(240, 65, 108, 0.15);
-  --vel-glow-warning: 0 0 20px rgba(255, 157, 0, 0.5),  0 0 60px rgba(255, 157, 0, 0.15);
-  --vel-glow-info:    0 0 20px rgba(46, 189, 229, 0.5),  0 0 60px rgba(46, 189, 229, 0.15);
-  --vel-glow-white:   0 0 20px rgba(255, 255, 255, 0.2), 0 0 60px rgba(255, 255, 255, 0.05);
-  --vel-glow-sm-primary: 0 0 12px rgba(124, 92, 252, 0.35);
-  --vel-glow-sm-success: 0 0 12px rgba(14, 203, 129, 0.35);
-  --vel-glow-sm-danger:  0 0 12px rgba(240, 65, 108, 0.35);
-  --vel-glow-sm-warning: 0 0 12px rgba(255, 157, 0, 0.35);
-  --vel-glow-sm-info:    0 0 12px rgba(46, 189, 229, 0.35);
+  /* ─── Scope Theming ──────────────────────────
+     Apply data-vel-theme to any element to cascade
+     an entire color universe to that subtree.
+     ─────────────────────────────────────────── */
 
-  /* ─── Spacing Scale ──────────────────────── */
+  /* ─── Gradient Tokens ───────────────────────── */
+  --vel-gradient-primary:   linear-gradient(135deg, oklch(71% 0.18 var(--vel-dna-hue)) 0%, oklch(58% 0.21 var(--vel-dna-hue)) 100%);
+  --vel-gradient-secondary: linear-gradient(135deg, oklch(68% 0.13 290) 0%, oklch(57% 0.15 290) 100%);
+  --vel-gradient-success:   linear-gradient(135deg, oklch(76% 0.14 160) 0%, oklch(57% 0.18 160) 100%);
+  --vel-gradient-danger:    linear-gradient(135deg, oklch(68% 0.20 25)  0%, oklch(53% 0.22 25)  100%);
+  --vel-gradient-warning:   linear-gradient(135deg, oklch(89% 0.12 75)  0%, oklch(64% 0.19 75)  100%);
+  --vel-gradient-info:      linear-gradient(135deg, oklch(76% 0.13 220) 0%, oklch(57% 0.18 220) 100%);
+  --vel-gradient-dark:      linear-gradient(135deg, oklch(17% 0.035 var(--vel-dna-hue)) 0%, oklch(10% 0.025 var(--vel-dna-hue)) 100%);
+  --vel-gradient-aurora:    linear-gradient(135deg, oklch(65% 0.21 var(--vel-dna-hue)) 0%, oklch(65% 0.18 220) 50%, oklch(65% 0.18 160) 100%);
+  --vel-gradient-sunset:    linear-gradient(135deg, oklch(60% 0.22 25) 0%, oklch(72% 0.19 75) 100%);
+  --vel-gradient-ocean:     linear-gradient(135deg, oklch(65% 0.18 220) 0%, oklch(65% 0.18 160) 100%);
+  --vel-gradient-cosmos:    linear-gradient(135deg, oklch(65% 0.21 var(--vel-dna-hue)) 0%, oklch(60% 0.22 25) 100%);
+  --vel-gradient-midnight:  linear-gradient(180deg, oklch(7% 0.02 var(--vel-dna-hue)) 0%, oklch(17% 0.035 var(--vel-dna-hue)) 100%);
+  --vel-gradient-surface:   linear-gradient(135deg, oklch(13% 0.03 var(--vel-dna-hue)) 0%, oklch(10% 0.025 var(--vel-dna-hue)) 100%);
+
+  /* ─── Glow Tokens ────────────────────────────── */
+  --vel-glow-primary: 0 0 20px oklch(65% 0.21 var(--vel-dna-hue) / 0.5), 0 0 60px oklch(65% 0.21 var(--vel-dna-hue) / 0.15);
+  --vel-glow-success: 0 0 20px oklch(65% 0.18 160 / 0.5), 0 0 60px oklch(65% 0.18 160 / 0.15);
+  --vel-glow-danger:  0 0 20px oklch(60% 0.22 25  / 0.5), 0 0 60px oklch(60% 0.22 25  / 0.15);
+  --vel-glow-warning: 0 0 20px oklch(72% 0.19 75  / 0.5), 0 0 60px oklch(72% 0.19 75  / 0.15);
+  --vel-glow-info:    0 0 20px oklch(65% 0.18 220 / 0.5), 0 0 60px oklch(65% 0.18 220 / 0.15);
+  --vel-glow-white:   0 0 20px oklch(100% 0 0 / 0.2),     0 0 60px oklch(100% 0 0 / 0.05);
+  --vel-glow-sm-primary: 0 0 12px oklch(65% 0.21 var(--vel-dna-hue) / 0.35);
+  --vel-glow-sm-success: 0 0 12px oklch(65% 0.18 160 / 0.35);
+  --vel-glow-sm-danger:  0 0 12px oklch(60% 0.22 25  / 0.35);
+  --vel-glow-sm-warning: 0 0 12px oklch(72% 0.19 75  / 0.35);
+  --vel-glow-sm-info:    0 0 12px oklch(65% 0.18 220 / 0.35);
+
+  /* ─── Spacing Scale (fluid with clamp) ───────── */
   --vel-space-px:  1px;
   --vel-space-0:   0rem;
-  --vel-space-1:   0.25rem;
-  --vel-space-2:   0.5rem;
+  --vel-space-1:   clamp(0.2rem,   0.5vw,  0.25rem);
+  --vel-space-2:   clamp(0.4rem,   1vw,    0.5rem);
   --vel-space-3:   0.75rem;
-  --vel-space-4:   1rem;
+  --vel-space-4:   clamp(0.75rem,  2vw,    1rem);
   --vel-space-5:   1.25rem;
   --vel-space-6:   1.5rem;
   --vel-space-7:   1.75rem;
-  --vel-space-8:   2rem;
+  --vel-space-8:   clamp(1.5rem,   4vw,    2rem);
   --vel-space-9:   2.25rem;
   --vel-space-10:  2.5rem;
   --vel-space-11:  2.75rem;
   --vel-space-12:  3rem;
   --vel-space-14:  3.5rem;
-  --vel-space-16:  4rem;
+  --vel-space-16:  clamp(3rem,     6vw,    4rem);
   --vel-space-20:  5rem;
   --vel-space-24:  6rem;
   --vel-space-28:  7rem;
@@ -199,16 +211,16 @@
   --vel-space-80:  20rem;
   --vel-space-96:  24rem;
 
-  /* ─── Font Sizes ─────────────────────────── */
+  /* ─── Font Sizes (fluid with clamp) ─────────── */
   --vel-size-xs:   0.75rem;
-  --vel-size-sm:   0.875rem;
-  --vel-size-base: 1rem;
-  --vel-size-lg:   1.125rem;
-  --vel-size-xl:   1.25rem;
-  --vel-size-2xl:  1.5rem;
-  --vel-size-3xl:  1.875rem;
-  --vel-size-4xl:  2.25rem;
-  --vel-size-5xl:  3rem;
+  --vel-size-sm:   clamp(0.8rem,   1.5vw,  0.875rem);
+  --vel-size-base: clamp(0.9rem,   2vw,    1rem);
+  --vel-size-lg:   clamp(1rem,     2.5vw,  1.125rem);
+  --vel-size-xl:   clamp(1.1rem,   3vw,    1.25rem);
+  --vel-size-2xl:  clamp(1.25rem,  4vw,    1.5rem);
+  --vel-size-3xl:  clamp(1.5rem,   5vw,    1.875rem);
+  --vel-size-4xl:  clamp(1.75rem,  6vw,    2.25rem);
+  --vel-size-5xl:  clamp(2rem,     7vw,    3rem);
   --vel-size-6xl:  3.75rem;
   --vel-size-7xl:  4.5rem;
   --vel-size-8xl:  6rem;
@@ -216,20 +228,20 @@
 
   /* Keep legacy aliases for compatibility */
   --vel-text-xs:   0.75rem;
-  --vel-text-sm:   0.875rem;
-  --vel-text-base: 1rem;
-  --vel-text-lg:   1.125rem;
-  --vel-text-xl:   1.25rem;
-  --vel-text-2xl:  1.5rem;
-  --vel-text-3xl:  1.875rem;
-  --vel-text-4xl:  2.25rem;
-  --vel-text-5xl:  3rem;
+  --vel-text-sm:   clamp(0.8rem,   1.5vw,  0.875rem);
+  --vel-text-base: clamp(0.9rem,   2vw,    1rem);
+  --vel-text-lg:   clamp(1rem,     2.5vw,  1.125rem);
+  --vel-text-xl:   clamp(1.1rem,   3vw,    1.25rem);
+  --vel-text-2xl:  clamp(1.25rem,  4vw,    1.5rem);
+  --vel-text-3xl:  clamp(1.5rem,   5vw,    1.875rem);
+  --vel-text-4xl:  clamp(1.75rem,  6vw,    2.25rem);
+  --vel-text-5xl:  clamp(2rem,     7vw,    3rem);
   --vel-text-6xl:  3.75rem;
   --vel-text-7xl:  4.5rem;
   --vel-text-8xl:  6rem;
   --vel-text-9xl:  8rem;
 
-  /* ─── Line Heights ───────────────────────── */
+  /* ─── Line Heights ───────────────────────────── */
   --vel-leading-none:    1;
   --vel-leading-tight:   1.25;
   --vel-leading-snug:    1.375;
@@ -237,12 +249,12 @@
   --vel-leading-relaxed: 1.625;
   --vel-leading-loose:   2;
 
-  /* ─── Font Families ──────────────────────── */
+  /* ─── Font Families ──────────────────────────── */
   --vel-font-sans:  ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   --vel-font-serif: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
   --vel-font-mono:  ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
 
-  /* ─── Font Weights ───────────────────────── */
+  /* ─── Font Weights ───────────────────────────── */
   --vel-font-thin:       100;
   --vel-font-extralight: 200;
   --vel-font-light:      300;
@@ -253,7 +265,7 @@
   --vel-font-extrabold:  800;
   --vel-font-black:      900;
 
-  /* ─── Letter Spacing ─────────────────────── */
+  /* ─── Letter Spacing ─────────────────────────── */
   --vel-tracking-tighter: -0.05em;
   --vel-tracking-tight:   -0.025em;
   --vel-tracking-normal:  0em;
@@ -261,7 +273,7 @@
   --vel-tracking-wider:   0.05em;
   --vel-tracking-widest:  0.1em;
 
-  /* ─── Border Radius ──────────────────────── */
+  /* ─── Border Radius ──────────────────────────── */
   --vel-radius-none: 0px;
   --vel-radius-sm:   0.125rem;
   --vel-radius:      0.25rem;
@@ -272,7 +284,7 @@
   --vel-radius-3xl:  1.5rem;
   --vel-radius-full: 9999px;
 
-  /* ─── Shadows ────────────────────────────── */
+  /* ─── Shadows ─────────────────────────────────── */
   --vel-shadow-sm:    0 1px 2px 0 rgb(0 0 0 / 0.2);
   --vel-shadow:       0 1px 3px 0 rgb(0 0 0 / 0.3), 0 1px 2px -1px rgb(0 0 0 / 0.3);
   --vel-shadow-md:    0 4px 6px -1px rgb(0 0 0 / 0.3), 0 2px 4px -2px rgb(0 0 0 / 0.2);
@@ -282,15 +294,14 @@
   --vel-shadow-inner: inset 0 2px 4px 0 rgb(0 0 0 / 0.2);
   --vel-shadow-none:  0 0 #0000;
 
-  /* ─── Ring (focus/outline) ───────────────── */
-  --vel-ring-primary: 0 0 0 3px rgba(124, 92, 252, 0.4);
-  --vel-ring-success: 0 0 0 3px rgba(14, 203, 129, 0.4);
-  --vel-ring-danger:  0 0 0 3px rgba(240, 65, 108, 0.4);
-  --vel-ring-warning: 0 0 0 3px rgba(255, 157, 0, 0.4);
-  --vel-ring-info:    0 0 0 3px rgba(46, 189, 229, 0.4);
+  /* ─── Ring (focus/outline) ───────────────────── */
+  --vel-ring-primary: 0 0 0 3px oklch(65% 0.21 var(--vel-dna-hue) / 0.4);
+  --vel-ring-success: 0 0 0 3px oklch(65% 0.18 160 / 0.4);
+  --vel-ring-danger:  0 0 0 3px oklch(60% 0.22 25  / 0.4);
+  --vel-ring-warning: 0 0 0 3px oklch(72% 0.19 75  / 0.4);
+  --vel-ring-info:    0 0 0 3px oklch(65% 0.18 220 / 0.4);
 
-  /* ─── Transform composition ─────────────────────────────────── */
-  /* Applied by .vel-transform; each utility overrides only its own variable */
+  /* ─── Transform composition ──────────────────── */
   --vel-transform-translate-x: translateX(0);
   --vel-transform-translate-y: translateY(0);
   --vel-transform-rotate:      rotate(0deg);
@@ -299,7 +310,7 @@
   --vel-transform-skew-x:      skewX(0deg);
   --vel-transform-skew-y:      skewY(0deg);
 
-  /* ─── Transitions ────────────────────────── */
+  /* ─── Transitions ────────────────────────────── */
   --vel-duration-75:   75ms;
   --vel-duration-100:  100ms;
   --vel-duration-150:  150ms;
@@ -315,7 +326,7 @@
   --vel-ease-spring:   cubic-bezier(0.34, 1.56, 0.64, 1);
   --vel-ease-bounce:   cubic-bezier(0.68, -0.55, 0.265, 1.55);
 
-  /* ─── Z-Index ─────────────────────────────── */
+  /* ─── Z-Index ──────────────────────────────────── */
   --vel-z-0:    0;
   --vel-z-10:   10;
   --vel-z-20:   20;
@@ -324,6 +335,28 @@
   --vel-z-50:   50;
   --vel-z-auto: auto;
 }
+
+/* ─── Scope Theming ───────────────────────────────
+   Apply data-vel-theme="ocean" (or any name below)
+   to any element. All primary, surface, border, and
+   text tokens inside that subtree shift automatically.
+   ─────────────────────────────────────────────────── */
+
+[data-vel-theme="ocean"]   { --vel-dna-hue: 205; }
+
+[data-vel-theme="forest"]  { --vel-dna-hue: 145; }
+
+[data-vel-theme="rose"]    { --vel-dna-hue: 10;  }
+
+[data-vel-theme="amber"]   { --vel-dna-hue: 65;  }
+
+[data-vel-theme="violet"]  { --vel-dna-hue: 280; }
+
+[data-vel-theme="cyan"]    { --vel-dna-hue: 195; }
+
+[data-vel-theme="slate"]   { --vel-dna-hue: 220; }
+
+[data-vel-theme="crimson"] { --vel-dna-hue: 350; }
 
 /* VeloraCSS — Base Reset */
 
@@ -4607,6 +4640,205 @@ img, video {
 .vel-stroke-2 { stroke-width: 2; }
 
 .vel-stroke-3 { stroke-width: 3; }
+
+/* VeloraCSS — Container Query Utilities
+   Components adapt to their own container size, not the viewport.
+   Wrap elements with vel-container-type-* to establish a container,
+   then use vel-@sm:, vel-@md:, vel-@lg: classes on children.
+*/
+
+/* ─── Container type setup ───────────────────────── */
+
+.vel-container-type-inline { container-type: inline-size; }
+
+.vel-container-type-size   { container-type: size; }
+
+.vel-container-type-normal { container-type: normal; }
+
+/* ─── Named containers ───────────────────────────── */
+
+.vel-container-name-card    { container-name: card; }
+
+.vel-container-name-sidebar { container-name: sidebar; }
+
+.vel-container-name-main    { container-name: main; }
+
+/* ─── @container sm — 320px ──────────────────────── */
+
+@container (min-width: 320px) {
+  .vel-\@sm\:flex    { display: flex; }
+  .vel-\@sm\:hidden  { display: none; }
+  .vel-\@sm\:block   { display: block; }
+  .vel-\@sm\:grid    { display: grid; }
+  .vel-\@sm\:flex-col { flex-direction: column; }
+  .vel-\@sm\:flex-row { flex-direction: row; }
+  .vel-\@sm\:grid-cols-1 { grid-template-columns: repeat(1, minmax(0, 1fr)); }
+  .vel-\@sm\:grid-cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .vel-\@sm\:grid-cols-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+
+/* ─── @container md — 480px ──────────────────────── */
+
+@container (min-width: 480px) {
+  .vel-\@md\:flex    { display: flex; }
+  .vel-\@md\:hidden  { display: none; }
+  .vel-\@md\:block   { display: block; }
+  .vel-\@md\:grid    { display: grid; }
+  .vel-\@md\:flex-col { flex-direction: column; }
+  .vel-\@md\:flex-row { flex-direction: row; }
+  .vel-\@md\:grid-cols-1 { grid-template-columns: repeat(1, minmax(0, 1fr)); }
+  .vel-\@md\:grid-cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .vel-\@md\:grid-cols-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+
+/* ─── @container lg — 640px ──────────────────────── */
+
+@container (min-width: 640px) {
+  .vel-\@lg\:flex    { display: flex; }
+  .vel-\@lg\:hidden  { display: none; }
+  .vel-\@lg\:block   { display: block; }
+  .vel-\@lg\:grid    { display: grid; }
+  .vel-\@lg\:flex-col { flex-direction: column; }
+  .vel-\@lg\:flex-row { flex-direction: row; }
+  .vel-\@lg\:grid-cols-1 { grid-template-columns: repeat(1, minmax(0, 1fr)); }
+  .vel-\@lg\:grid-cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .vel-\@lg\:grid-cols-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+
+/* VeloraCSS — CSS State Machine
+   Zero-JS state management using :has() + radio/checkbox inputs.
+   No JavaScript required for tabs, toggles, or form validation.
+*/
+
+/* ─── Tab state machine ───────────────────────────────
+   Usage:
+     <div class="vel-sm-tabs">
+       <input type="radio" name="tabs" id="vel-tab-1" checked>
+       <input type="radio" name="tabs" id="vel-tab-2">
+       <label class="vel-sm-tab-label" for="vel-tab-1">Tab 1</label>
+       <label class="vel-sm-tab-label" for="vel-tab-2">Tab 2</label>
+       <div class="vel-sm-panel" data-vel-panel="1">...</div>
+       <div class="vel-sm-panel" data-vel-panel="2">...</div>
+     </div>
+*/
+
+.vel-sm-tabs {
+  container-type: inline-size;
+}
+
+.vel-sm-tabs input[type="radio"] {
+  display: none;
+}
+
+.vel-sm-tab-label {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  border-bottom: 2px solid transparent;
+  color: var(--vel-color-muted);
+  font-size: 0.875rem;
+  font-weight: 500;
+  transition: color 0.15s, border-color 0.15s;
+}
+
+.vel-sm-tab-label:hover {
+  color: var(--vel-color-text);
+}
+
+.vel-sm-tabs:has(#vel-tab-1:checked) .vel-sm-tab-label[for="vel-tab-1"],
+.vel-sm-tabs:has(#vel-tab-2:checked) .vel-sm-tab-label[for="vel-tab-2"],
+.vel-sm-tabs:has(#vel-tab-3:checked) .vel-sm-tab-label[for="vel-tab-3"],
+.vel-sm-tabs:has(#vel-tab-4:checked) .vel-sm-tab-label[for="vel-tab-4"] {
+  color: var(--vel-color-primary);
+  border-bottom-color: var(--vel-color-primary);
+}
+
+.vel-sm-panel {
+  display: none;
+}
+
+.vel-sm-tabs:has(#vel-tab-1:checked) [data-vel-panel="1"],
+.vel-sm-tabs:has(#vel-tab-2:checked) [data-vel-panel="2"],
+.vel-sm-tabs:has(#vel-tab-3:checked) [data-vel-panel="3"],
+.vel-sm-tabs:has(#vel-tab-4:checked) [data-vel-panel="4"] {
+  display: block;
+}
+
+/* ─── Toggle / disclosure state machine ──────────────
+   Usage:
+     <div class="vel-sm-toggle">
+       <label>
+         <input type="checkbox">
+         <span class="vel-sm-toggle-icon"></span>
+         Toggle label
+       </label>
+       <div class="vel-sm-toggle-content">...</div>
+     </div>
+*/
+
+.vel-sm-toggle input[type="checkbox"] {
+  display: none;
+}
+
+.vel-sm-toggle-content {
+  display: none;
+}
+
+.vel-sm-toggle:has(input:checked) .vel-sm-toggle-content {
+  display: block;
+}
+
+.vel-sm-toggle-icon::after {
+  content: '\25B6';
+  display: inline-block;
+  transition: transform 0.2s var(--vel-ease-in-out, cubic-bezier(0.4, 0, 0.2, 1));
+  margin-right: 0.375rem;
+}
+
+.vel-sm-toggle:has(input:checked) .vel-sm-toggle-icon::after {
+  transform: rotate(90deg);
+}
+
+/* ─── Smart form validation ───────────────────────────
+   Usage:
+     <form class="vel-smart-form">
+       <input class="vel-input" type="email" required placeholder=" ">
+       <button class="vel-btn vel-form-submit" type="submit">Submit</button>
+     </form>
+   The submit button disables itself while any input is invalid.
+   Inputs show red/green borders after the user starts typing.
+*/
+
+.vel-smart-form .vel-input:not(:-moz-placeholder):invalid {
+  border-color: var(--vel-color-danger);
+  box-shadow: 0 0 0 3px oklch(60% 0.22 25 / 0.15);
+}
+
+.vel-smart-form .vel-input:not(:placeholder-shown):invalid {
+  border-color: var(--vel-color-danger);
+  box-shadow: 0 0 0 3px oklch(60% 0.22 25 / 0.15);
+}
+
+.vel-smart-form .vel-input:not(:-moz-placeholder):valid {
+  border-color: var(--vel-color-success);
+}
+
+.vel-smart-form .vel-input:not(:placeholder-shown):valid {
+  border-color: var(--vel-color-success);
+}
+
+.vel-smart-form:has(.vel-input:invalid) .vel-form-submit {
+  opacity: 0.5;
+  pointer-events: none;
+  cursor: not-allowed;
+}
+
+.vel-smart-form:has(.vel-input:valid) .vel-form-submit {
+  opacity: 1;
+  pointer-events: auto;
+  cursor: pointer;
+}
 
 /* Components */
 

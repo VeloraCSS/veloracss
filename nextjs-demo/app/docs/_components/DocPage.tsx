@@ -20,47 +20,44 @@ interface DocPageProps {
   examples?: Example[]
 }
 
-// ─── macOS Terminal Code Block ────────────────────────────────────────────────
-function MacBlock({ filename, code }: { filename: string; code: string }) {
+// ─── Win11 Terminal Code Block ────────────────────────────────────────────────
+function Win11Block({ filename, code }: { filename: string; code: string }) {
   const [copied, setCopied] = useState(false)
 
-  const handleCopy = useCallback(() => {
-    const el = document.createElement('textarea')
-    el.value = code
-    el.style.cssText = 'position:fixed;top:-9999px;left:-9999px;opacity:0'
-    document.body.appendChild(el)
-    el.focus()
-    el.select()
-    document.execCommand('copy')
-    document.body.removeChild(el)
+  const handleCopy = useCallback(async () => {
+    try {
+      await navigator.clipboard.writeText(code)
+    } catch {
+      const el = document.createElement('textarea')
+      el.value = code
+      el.style.cssText = 'position:fixed;top:-9999px;left:-9999px;opacity:0'
+      document.body.appendChild(el)
+      el.focus()
+      el.select()
+      document.execCommand('copy')
+      document.body.removeChild(el)
+    }
     setCopied(true)
     setTimeout(() => setCopied(false), 2000)
   }, [code])
 
   return (
     <div style={{
-      background: '#1a1a1a',
+      background: '#0C0C0C',
       borderRadius: '0 0 0.625rem 0.625rem',
       overflow: 'hidden',
-      border: '1px solid #333',
+      border: '1px solid #2a2a2a',
       borderTop: 'none',
     }}>
-      {/* macOS title bar */}
+      {/* Win11 title bar */}
       <div style={{
         display: 'flex', alignItems: 'center',
-        height: '36px', padding: '0 0.875rem',
-        background: '#252525', borderBottom: '1px solid #333',
-        gap: '0.5rem',
+        height: '32px', padding: '0 0 0 0.875rem',
+        background: '#1C1C1C', borderBottom: '1px solid #2a2a2a',
       }}>
-        {/* Traffic light dots */}
-        <div style={{ display: 'flex', gap: '6px', alignItems: 'center', flexShrink: 0 }}>
-          <div style={{ width: 12, height: 12, borderRadius: '50%', background: '#ff5f57' }} />
-          <div style={{ width: 12, height: 12, borderRadius: '50%', background: '#ffbd2e' }} />
-          <div style={{ width: 12, height: 12, borderRadius: '50%', background: '#28c840' }} />
-        </div>
         <span style={{
-          fontSize: '0.72rem', color: '#888', flex: 1, textAlign: 'center',
-          fontFamily: "'Cascadia Code', Menlo, Monaco, monospace",
+          fontSize: '0.72rem', color: '#777', flex: 1,
+          fontFamily: "'Cascadia Code', Consolas, monospace",
         }}>
           {filename}
         </span>
@@ -68,17 +65,23 @@ function MacBlock({ filename, code }: { filename: string; code: string }) {
         <button
           onClick={handleCopy}
           style={{
-            fontSize: '0.68rem', fontWeight: 600, padding: '0.2rem 0.625rem',
-            borderRadius: '0.25rem', cursor: 'pointer', border: 'none',
+            fontSize: '0.68rem', fontWeight: 600, padding: '0 0.75rem',
+            height: '32px', cursor: 'pointer', border: 'none',
             fontFamily: "'Cascadia Code', Consolas, monospace",
             transition: 'all 0.15s',
-            background: copied ? 'rgba(14,203,129,0.15)' : '#333',
-            color: copied ? '#0ecb81' : '#888',
-            flexShrink: 0,
+            background: copied ? 'rgba(14,203,129,0.15)' : 'transparent',
+            color: copied ? '#0ecb81' : '#666',
+            borderLeft: '1px solid #2a2a2a',
           }}
         >
           {copied ? '✓ Copied' : 'Copy'}
         </button>
+        {/* Win11 window controls — right side */}
+        <div style={{ display: 'flex', alignItems: 'center', height: '32px' }}>
+          <button style={{ width: 46, height: 32, background: 'transparent', border: 'none', color: '#888', fontSize: '0.75rem', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>─</button>
+          <button style={{ width: 46, height: 32, background: 'transparent', border: 'none', color: '#888', fontSize: '0.75rem', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>□</button>
+          <button style={{ width: 46, height: 32, background: 'transparent', border: 'none', color: '#888', fontSize: '0.75rem', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>✕</button>
+        </div>
       </div>
       {/* Code */}
       <pre style={{
@@ -86,8 +89,9 @@ function MacBlock({ filename, code }: { filename: string; code: string }) {
         fontSize: '0.775rem', lineHeight: 1.75,
         color: '#CCCCCC',
         whiteSpace: 'pre-wrap', wordBreak: 'break-all',
-        fontFamily: "'Cascadia Code', Menlo, Monaco, 'Courier New', monospace",
+        fontFamily: "'Cascadia Code', Consolas, 'Courier New', monospace",
         overflowX: 'auto', maxHeight: '320px', overflowY: 'auto',
+        background: '#0C0C0C',
       }}>
         <code>{code}</code>
       </pre>
@@ -217,8 +221,8 @@ export default function DocPage({ title, description, source, table, examples }:
                 }}
                   dangerouslySetInnerHTML={{ __html: example.html }}
                 />
-                {/* macOS Terminal code block */}
-                <MacBlock filename="example.html" code={example.html} />
+                {/* Win11 Terminal code block */}
+                <Win11Block filename="example.html" code={example.html} />
               </div>
             ))}
           </div>

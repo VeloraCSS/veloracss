@@ -16,7 +16,7 @@ export default function FloatPage() {
         {
           label: 'Float right',
           html: `<div style="background:#1a2236;border:1px solid #1e2d45;border-radius:8px;padding:16px;overflow:auto">
-  <div class="vel-float-right" style="background:#7c5cfc;color:#fff;padding:8px 16px;border-radius:6px;margin-left:12px">Float Right</div>
+  <div class="vel-float-right vel-bg-primary vel-text-white vel-rounded-md" style="padding:8px 16px;margin-left:12px">Float Right</div>
   <p style="color:#94a3b8;font-size:14px">Text flows around the floated element. Using vel-float-right moves the element to the right edge of its container.</p>
 </div>`,
         },

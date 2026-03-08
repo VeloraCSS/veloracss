@@ -37,11 +37,11 @@ export default function PositionPage() {
           html: `<div style="display:inline-flex;gap:1.5rem;padding:1rem">
   <div class="vel-relative" style="display:inline-block">
     <button class="vel-btn vel-btn-primary">Messages</button>
-    <span class="vel-absolute" style="top:-6px;right:-6px;background:#f0416c;color:#fff;font-size:0.65rem;font-weight:700;width:18px;height:18px;border-radius:50%;display:flex;align-items:center;justify-content:center;border:2px solid #060b17">3</span>
+    <span class="vel-absolute vel-bg-danger vel-text-white vel-text-xs vel-font-bold vel-rounded-full vel-flex vel-items-center vel-justify-center" style="top:-6px;right:-6px;width:18px;height:18px;border:2px solid #060b17">3</span>
   </div>
   <div class="vel-relative" style="display:inline-block">
     <button class="vel-btn vel-btn-secondary">Alerts</button>
-    <span class="vel-absolute" style="top:-6px;right:-6px;background:#ff9d00;color:#000;font-size:0.65rem;font-weight:700;width:18px;height:18px;border-radius:50%;display:flex;align-items:center;justify-content:center;border:2px solid #060b17">!</span>
+    <span class="vel-absolute vel-bg-warning vel-text-white vel-text-xs vel-font-bold vel-rounded-full vel-flex vel-items-center vel-justify-center" style="top:-6px;right:-6px;width:18px;height:18px;border:2px solid #060b17">!</span>
   </div>
 </div>`,
         },

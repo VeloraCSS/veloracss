@@ -1,0 +1,54 @@
+/* VeloraCSS — Container Query Utilities
+   Components adapt to their own container size, not the viewport.
+   Wrap elements with vel-container-type-* to establish a container,
+   then use vel-@sm:, vel-@md:, vel-@lg: classes on children.
+*/
+
+/* ─── Container type setup ───────────────────────── */
+.vel-container-type-inline { container-type: inline-size; }
+.vel-container-type-size   { container-type: size; }
+.vel-container-type-normal { container-type: normal; }
+
+/* ─── Named containers ───────────────────────────── */
+.vel-container-name-card    { container-name: card; }
+.vel-container-name-sidebar { container-name: sidebar; }
+.vel-container-name-main    { container-name: main; }
+
+/* ─── @container sm — 320px ──────────────────────── */
+@container (min-width: 320px) {
+  .vel-\@sm\:flex    { display: flex; }
+  .vel-\@sm\:hidden  { display: none; }
+  .vel-\@sm\:block   { display: block; }
+  .vel-\@sm\:grid    { display: grid; }
+  .vel-\@sm\:flex-col { flex-direction: column; }
+  .vel-\@sm\:flex-row { flex-direction: row; }
+  .vel-\@sm\:grid-cols-1 { grid-template-columns: repeat(1, minmax(0, 1fr)); }
+  .vel-\@sm\:grid-cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .vel-\@sm\:grid-cols-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+
+/* ─── @container md — 480px ──────────────────────── */
+@container (min-width: 480px) {
+  .vel-\@md\:flex    { display: flex; }
+  .vel-\@md\:hidden  { display: none; }
+  .vel-\@md\:block   { display: block; }
+  .vel-\@md\:grid    { display: grid; }
+  .vel-\@md\:flex-col { flex-direction: column; }
+  .vel-\@md\:flex-row { flex-direction: row; }
+  .vel-\@md\:grid-cols-1 { grid-template-columns: repeat(1, minmax(0, 1fr)); }
+  .vel-\@md\:grid-cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .vel-\@md\:grid-cols-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+
+/* ─── @container lg — 640px ──────────────────────── */
+@container (min-width: 640px) {
+  .vel-\@lg\:flex    { display: flex; }
+  .vel-\@lg\:hidden  { display: none; }
+  .vel-\@lg\:block   { display: block; }
+  .vel-\@lg\:grid    { display: grid; }
+  .vel-\@lg\:flex-col { flex-direction: column; }
+  .vel-\@lg\:flex-row { flex-direction: row; }
+  .vel-\@lg\:grid-cols-1 { grid-template-columns: repeat(1, minmax(0, 1fr)); }
+  .vel-\@lg\:grid-cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .vel-\@lg\:grid-cols-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}

@@ -25,19 +25,19 @@ export default function CursorPage() {
       examples={[
         {
           label: 'Pointer cursor on interactive element',
-          html: `<button class="vel-cursor-pointer" style="padding:0.75rem 1.5rem;background:#7c5cfc;color:#fff;border-radius:0.5rem;border:none">
+          html: `<button class="vel-cursor-pointer vel-btn vel-btn-primary">
   Click me
 </button>`,
         },
         {
           label: 'Disabled state with not-allowed cursor',
-          html: `<button class="vel-cursor-not-allowed" style="padding:0.75rem 1.5rem;background:#1a2236;color:#64748b;border-radius:0.5rem;border:1px solid #1e2d45;opacity:0.6" disabled>
+          html: `<button class="vel-cursor-not-allowed vel-btn vel-btn-outline-primary vel-opacity-50" disabled>
   Disabled
 </button>`,
         },
         {
           label: 'Grab cursor for draggable items',
-          html: `<div class="vel-cursor-grab" style="padding:1rem;background:#0d1422;border:1px solid #1e2d45;border-radius:0.5rem;color:#e2e8f0;display:inline-block">
+          html: `<div class="vel-cursor-grab vel-bg-surface-1 vel-text-base vel-rounded-lg vel-inline-block" style="padding:1rem;border:1px solid #1e2d45">
   Drag me
 </div>`,
         },

@@ -19,22 +19,22 @@ export default function PlaceContentPage() {
   <div style="flex:1">
     <p style="color:#64748b;font-size:11px;margin-bottom:4px">vel-place-content-start</p>
     <div class="vel-grid vel-grid-cols-2 vel-place-content-start vel-gap-2" style="background:#1a2236;padding:8px;border-radius:6px;height:120px">
-      <div style="background:#7c5cfc;color:#fff;padding:8px;border-radius:4px;text-align:center;font-size:12px">A</div>
-      <div style="background:#7c5cfc;color:#fff;padding:8px;border-radius:4px;text-align:center;font-size:12px">B</div>
+      <div class="vel-bg-primary vel-text-white vel-rounded-sm vel-text-center" style="padding:8px;font-size:12px">A</div>
+      <div class="vel-bg-primary vel-text-white vel-rounded-sm vel-text-center" style="padding:8px;font-size:12px">B</div>
     </div>
   </div>
   <div style="flex:1">
     <p style="color:#64748b;font-size:11px;margin-bottom:4px">vel-place-content-center</p>
     <div class="vel-grid vel-grid-cols-2 vel-place-content-center vel-gap-2" style="background:#1a2236;padding:8px;border-radius:6px;height:120px">
-      <div style="background:#0ecb81;color:#fff;padding:8px;border-radius:4px;text-align:center;font-size:12px">A</div>
-      <div style="background:#0ecb81;color:#fff;padding:8px;border-radius:4px;text-align:center;font-size:12px">B</div>
+      <div class="vel-bg-success vel-text-white vel-rounded-sm vel-text-center" style="padding:8px;font-size:12px">A</div>
+      <div class="vel-bg-success vel-text-white vel-rounded-sm vel-text-center" style="padding:8px;font-size:12px">B</div>
     </div>
   </div>
   <div style="flex:1">
     <p style="color:#64748b;font-size:11px;margin-bottom:4px">vel-place-content-end</p>
     <div class="vel-grid vel-grid-cols-2 vel-place-content-end vel-gap-2" style="background:#1a2236;padding:8px;border-radius:6px;height:120px">
-      <div style="background:#f0416c;color:#fff;padding:8px;border-radius:4px;text-align:center;font-size:12px">A</div>
-      <div style="background:#f0416c;color:#fff;padding:8px;border-radius:4px;text-align:center;font-size:12px">B</div>
+      <div class="vel-bg-danger vel-text-white vel-rounded-sm vel-text-center" style="padding:8px;font-size:12px">A</div>
+      <div class="vel-bg-danger vel-text-white vel-rounded-sm vel-text-center" style="padding:8px;font-size:12px">B</div>
     </div>
   </div>
 </div>`,

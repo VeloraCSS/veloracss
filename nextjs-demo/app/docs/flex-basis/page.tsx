@@ -20,9 +20,9 @@ export default function FlexBasisPage() {
         {
           label: 'Fixed basis widths',
           html: `<div class="vel-flex vel-gap-3">
-  <div class="vel-basis-1/4" style="background:#7c5cfc;color:#fff;padding:12px;border-radius:6px;text-align:center">basis-1/4</div>
-  <div class="vel-basis-1/2" style="background:#0ecb81;color:#fff;padding:12px;border-radius:6px;text-align:center">basis-1/2</div>
-  <div class="vel-basis-1/4" style="background:#2ebde5;color:#fff;padding:12px;border-radius:6px;text-align:center">basis-1/4</div>
+  <div class="vel-basis-1/4 vel-bg-primary vel-text-white vel-rounded-md vel-text-center" style="padding:12px">basis-1/4</div>
+  <div class="vel-basis-1/2 vel-bg-success vel-text-white vel-rounded-md vel-text-center" style="padding:12px">basis-1/2</div>
+  <div class="vel-basis-1/4 vel-bg-info vel-text-white vel-rounded-md vel-text-center" style="padding:12px">basis-1/4</div>
 </div>`,
         },
       ]}

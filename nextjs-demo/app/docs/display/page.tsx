@@ -24,22 +24,22 @@ export default function DisplayPage() {
         {
           label: 'Block vs inline',
           html: `<div class="vel-flex vel-gap-4 vel-items-center vel-flex-wrap">
-  <span class="vel-block" style="background:#7c5cfc;color:#fff;padding:8px 16px;border-radius:6px;width:120px;text-align:center">vel-block</span>
-  <span class="vel-inline-block" style="background:#0ecb81;color:#fff;padding:8px 16px;border-radius:6px">vel-inline-block</span>
-  <span class="vel-inline" style="background:#2ebde5;color:#fff;padding:4px 12px;border-radius:6px">vel-inline</span>
+  <span class="vel-block vel-bg-primary vel-text-white vel-rounded-md vel-text-center" style="padding:8px 16px;width:120px">vel-block</span>
+  <span class="vel-inline-block vel-bg-success vel-text-white vel-rounded-md" style="padding:8px 16px">vel-inline-block</span>
+  <span class="vel-inline vel-bg-info vel-text-white vel-rounded-md" style="padding:4px 12px">vel-inline</span>
 </div>`,
         },
         {
           label: 'Flex and Grid',
           html: `<div class="vel-flex vel-gap-3 vel-mb-4">
-  <div style="background:#7c5cfc20;border:1px solid #7c5cfc40;color:#a87fff;padding:12px 20px;border-radius:6px">Flex item</div>
-  <div style="background:#7c5cfc20;border:1px solid #7c5cfc40;color:#a87fff;padding:12px 20px;border-radius:6px">Flex item</div>
-  <div style="background:#7c5cfc20;border:1px solid #7c5cfc40;color:#a87fff;padding:12px 20px;border-radius:6px">Flex item</div>
+  <div class="vel-text-center vel-rounded-md" style="background:#7c5cfc20;border:1px solid #7c5cfc40;color:#a87fff;padding:12px 20px">Flex item</div>
+  <div class="vel-text-center vel-rounded-md" style="background:#7c5cfc20;border:1px solid #7c5cfc40;color:#a87fff;padding:12px 20px">Flex item</div>
+  <div class="vel-text-center vel-rounded-md" style="background:#7c5cfc20;border:1px solid #7c5cfc40;color:#a87fff;padding:12px 20px">Flex item</div>
 </div>
 <div class="vel-grid vel-grid-cols-3 vel-gap-3">
-  <div style="background:#0ecb8120;border:1px solid #0ecb8140;color:#0ecb81;padding:12px;border-radius:6px;text-align:center">Grid 1</div>
-  <div style="background:#0ecb8120;border:1px solid #0ecb8140;color:#0ecb81;padding:12px;border-radius:6px;text-align:center">Grid 2</div>
-  <div style="background:#0ecb8120;border:1px solid #0ecb8140;color:#0ecb81;padding:12px;border-radius:6px;text-align:center">Grid 3</div>
+  <div class="vel-text-center vel-rounded-md" style="background:#0ecb8120;border:1px solid #0ecb8140;color:#0ecb81;padding:12px">Grid 1</div>
+  <div class="vel-text-center vel-rounded-md" style="background:#0ecb8120;border:1px solid #0ecb8140;color:#0ecb81;padding:12px">Grid 2</div>
+  <div class="vel-text-center vel-rounded-md" style="background:#0ecb8120;border:1px solid #0ecb8140;color:#0ecb81;padding:12px">Grid 3</div>
 </div>`,
         },
       ]}

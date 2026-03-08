@@ -1,25 +1,25 @@
 1:"$Sreact.fragment"
-2:I[46193,["/veloracss/_next/static/chunks/feb8d0b5a5f2ff0e.js","/veloracss/_next/static/chunks/522c94c6029a5703.js"],"default"]
+2:I[46193,["/veloracss/_next/static/chunks/feb8d0b5a5f2ff0e.js","/veloracss/_next/static/chunks/b23f4c3bee855feb.js"],"default"]
 4:I[93373,["/veloracss/_next/static/chunks/89d43586d21f2643.js","/veloracss/_next/static/chunks/27e596ffa243fe8c.js"],"OutletBoundary"]
 5:"$Sreact.suspense"
-3:T59f,<div class="vel-flex vel-gap-8">
+3:T5eb,<div class="vel-flex vel-gap-8">
   <div>
     <p style="color:#64748b;font-size:11px;margin-bottom:4px">vel-grid-flow-row</p>
     <div class="vel-grid vel-grid-cols-2 vel-grid-flow-row vel-gap-2" style="width:120px">
-      <div style="background:#7c5cfc;color:#fff;padding:8px;border-radius:4px;text-align:center;font-size:12px">1</div>
-      <div style="background:#7c5cfc;color:#fff;padding:8px;border-radius:4px;text-align:center;font-size:12px">2</div>
-      <div style="background:#7c5cfc80;color:#fff;padding:8px;border-radius:4px;text-align:center;font-size:12px">3</div>
-      <div style="background:#7c5cfc80;color:#fff;padding:8px;border-radius:4px;text-align:center;font-size:12px">4</div>
+      <div class="vel-bg-primary vel-text-white vel-rounded-sm vel-text-center" style="padding:8px;font-size:12px">1</div>
+      <div class="vel-bg-primary vel-text-white vel-rounded-sm vel-text-center" style="padding:8px;font-size:12px">2</div>
+      <div class="vel-bg-primary vel-text-white vel-rounded-sm vel-text-center vel-opacity-50" style="padding:8px;font-size:12px">3</div>
+      <div class="vel-bg-primary vel-text-white vel-rounded-sm vel-text-center vel-opacity-50" style="padding:8px;font-size:12px">4</div>
     </div>
   </div>
   <div>
     <p style="color:#64748b;font-size:11px;margin-bottom:4px">vel-grid-flow-col</p>
     <div class="vel-grid vel-grid-rows-2 vel-grid-flow-col vel-gap-2" style="width:fit-content">
-      <div style="background:#0ecb81;color:#fff;padding:8px 16px;border-radius:4px;text-align:center;font-size:12px">1</div>
-      <div style="background:#0ecb81;color:#fff;padding:8px 16px;border-radius:4px;text-align:center;font-size:12px">2</div>
-      <div style="background:#0ecb8180;color:#fff;padding:8px 16px;border-radius:4px;text-align:center;font-size:12px">3</div>
-      <div style="background:#0ecb8180;color:#fff;padding:8px 16px;border-radius:4px;text-align:center;font-size:12px">4</div>
+      <div class="vel-bg-success vel-text-white vel-rounded-sm vel-text-center" style="padding:8px 16px;font-size:12px">1</div>
+      <div class="vel-bg-success vel-text-white vel-rounded-sm vel-text-center" style="padding:8px 16px;font-size:12px">2</div>
+      <div class="vel-bg-success vel-text-white vel-rounded-sm vel-text-center vel-opacity-50" style="padding:8px 16px;font-size:12px">3</div>
+      <div class="vel-bg-success vel-text-white vel-rounded-sm vel-text-center vel-opacity-50" style="padding:8px 16px;font-size:12px">4</div>
     </div>
   </div>
-</div>0:{"buildId":"15pMC-Fku9lo_9RF6_NIJ","rsc":["$","$1","c",{"children":[["$","$L2",null,{"title":"Grid Auto Flow","description":"Utilities for controlling how elements in a grid are auto-placed.","source":"grid.css","table":[{"class":"vel-grid-flow-row","properties":"grid-auto-flow: row"},{"class":"vel-grid-flow-col","properties":"grid-auto-flow: column"},{"class":"vel-grid-flow-dense","properties":"grid-auto-flow: dense"},{"class":"vel-grid-flow-row-dense","properties":"grid-auto-flow: row dense"},{"class":"vel-grid-flow-col-dense","properties":"grid-auto-flow: column dense"}],"examples":[{"label":"Auto flow row vs column","html":"$3"}]}],[["$","script","script-0",{"src":"/veloracss/_next/static/chunks/522c94c6029a5703.js","async":true}]],["$","$L4",null,{"children":["$","$5",null,{"name":"Next.MetadataOutlet","children":"$@6"}]}]]}],"loading":null,"isPartial":false}
+</div>0:{"buildId":"Yiz1lyP76e7plBlwkCWWf","rsc":["$","$1","c",{"children":[["$","$L2",null,{"title":"Grid Auto Flow","description":"Utilities for controlling how elements in a grid are auto-placed.","source":"grid.css","table":[{"class":"vel-grid-flow-row","properties":"grid-auto-flow: row"},{"class":"vel-grid-flow-col","properties":"grid-auto-flow: column"},{"class":"vel-grid-flow-dense","properties":"grid-auto-flow: dense"},{"class":"vel-grid-flow-row-dense","properties":"grid-auto-flow: row dense"},{"class":"vel-grid-flow-col-dense","properties":"grid-auto-flow: column dense"}],"examples":[{"label":"Auto flow row vs column","html":"$3"}]}],[["$","script","script-0",{"src":"/veloracss/_next/static/chunks/b23f4c3bee855feb.js","async":true}]],["$","$L4",null,{"children":["$","$5",null,{"name":"Next.MetadataOutlet","children":"$@6"}]}]]}],"loading":null,"isPartial":false}
 6:null

@@ -18,9 +18,9 @@ export default function GridAutoColumnsPage() {
           html: `<div>
   <p style="color:#64748b;font-size:11px;margin-bottom:4px">vel-grid-flow-col + vel-auto-cols-fr — implicit columns share available space equally</p>
   <div class="vel-grid vel-grid-flow-col vel-auto-cols-fr vel-gap-3">
-    <div style="background:#7c5cfc;color:#fff;padding:12px;border-radius:6px;text-align:center">Auto A</div>
-    <div style="background:#7c5cfc80;color:#fff;padding:12px;border-radius:6px;text-align:center">Auto B</div>
-    <div style="background:#7c5cfc40;color:#fff;padding:12px;border-radius:6px;text-align:center">Auto C</div>
+    <div class="vel-bg-primary vel-text-white vel-rounded-md vel-text-center" style="padding:12px">Auto A</div>
+    <div class="vel-bg-primary vel-text-white vel-rounded-md vel-text-center vel-opacity-60" style="padding:12px">Auto B</div>
+    <div class="vel-bg-primary vel-text-white vel-rounded-md vel-text-center vel-opacity-30" style="padding:12px">Auto C</div>
   </div>
 </div>`,
         },

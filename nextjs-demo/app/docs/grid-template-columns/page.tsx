@@ -20,21 +20,21 @@ export default function GridTemplateColumnsPage() {
         {
           label: '3 equal columns',
           html: `<div class="vel-grid vel-grid-cols-3 vel-gap-4">
-  <div style="background:#7c5cfc;color:#fff;padding:16px;border-radius:8px;text-align:center">1</div>
-  <div style="background:#7c5cfc;color:#fff;padding:16px;border-radius:8px;text-align:center">2</div>
-  <div style="background:#7c5cfc;color:#fff;padding:16px;border-radius:8px;text-align:center">3</div>
-  <div style="background:#7c5cfc80;color:#fff;padding:16px;border-radius:8px;text-align:center">4</div>
-  <div style="background:#7c5cfc80;color:#fff;padding:16px;border-radius:8px;text-align:center">5</div>
-  <div style="background:#7c5cfc80;color:#fff;padding:16px;border-radius:8px;text-align:center">6</div>
+  <div class="vel-bg-primary vel-text-white vel-rounded-lg vel-text-center" style="padding:16px">1</div>
+  <div class="vel-bg-primary vel-text-white vel-rounded-lg vel-text-center" style="padding:16px">2</div>
+  <div class="vel-bg-primary vel-text-white vel-rounded-lg vel-text-center" style="padding:16px">3</div>
+  <div class="vel-bg-primary vel-text-white vel-rounded-lg vel-text-center vel-opacity-50" style="padding:16px">4</div>
+  <div class="vel-bg-primary vel-text-white vel-rounded-lg vel-text-center vel-opacity-50" style="padding:16px">5</div>
+  <div class="vel-bg-primary vel-text-white vel-rounded-lg vel-text-center vel-opacity-50" style="padding:16px">6</div>
 </div>`,
         },
         {
           label: '4 columns',
           html: `<div class="vel-grid vel-grid-cols-4 vel-gap-3">
-  <div style="background:#0ecb81;color:#fff;padding:12px;border-radius:6px;text-align:center">1</div>
-  <div style="background:#0ecb81;color:#fff;padding:12px;border-radius:6px;text-align:center">2</div>
-  <div style="background:#0ecb81;color:#fff;padding:12px;border-radius:6px;text-align:center">3</div>
-  <div style="background:#0ecb81;color:#fff;padding:12px;border-radius:6px;text-align:center">4</div>
+  <div class="vel-bg-success vel-text-white vel-rounded-md vel-text-center" style="padding:12px">1</div>
+  <div class="vel-bg-success vel-text-white vel-rounded-md vel-text-center" style="padding:12px">2</div>
+  <div class="vel-bg-success vel-text-white vel-rounded-md vel-text-center" style="padding:12px">3</div>
+  <div class="vel-bg-success vel-text-white vel-rounded-md vel-text-center" style="padding:12px">4</div>
 </div>`,
         },
       ]}

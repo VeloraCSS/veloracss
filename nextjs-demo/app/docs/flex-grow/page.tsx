@@ -14,8 +14,8 @@ export default function FlexGrowPage() {
         {
           label: 'Grow vs no grow',
           html: `<div class="vel-flex vel-gap-3">
-  <div class="vel-grow" style="background:#7c5cfc;color:#fff;padding:12px;border-radius:6px;text-align:center">vel-grow (takes available space)</div>
-  <div class="vel-grow-0" style="background:#1a2236;border:1px solid #1e2d45;color:#94a3b8;padding:12px 20px;border-radius:6px;white-space:nowrap">vel-grow-0</div>
+  <div class="vel-grow vel-bg-primary vel-text-white vel-rounded-md vel-text-center" style="padding:12px">vel-grow (takes available space)</div>
+  <div class="vel-grow-0 vel-bg-surface-3 vel-text-muted vel-rounded-md" style="padding:12px 20px;border:1px solid #1e2d45;white-space:nowrap">vel-grow-0</div>
 </div>`,
         },
       ]}

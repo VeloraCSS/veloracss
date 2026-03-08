@@ -19,9 +19,9 @@ export default function ZIndexPage() {
         {
           label: 'Z-index stacking',
           html: `<div class="vel-relative" style="height:100px">
-  <div class="vel-absolute vel-z-10" style="left:0;top:0;width:80px;height:80px;background:#7c5cfc;border-radius:8px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:12px">z-10</div>
-  <div class="vel-absolute vel-z-20" style="left:40px;top:10px;width:80px;height:80px;background:#0ecb81;border-radius:8px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:12px">z-20</div>
-  <div class="vel-absolute vel-z-30" style="left:80px;top:20px;width:80px;height:80px;background:#f0416c;border-radius:8px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:12px">z-30</div>
+  <div class="vel-absolute vel-z-10 vel-bg-primary vel-text-white vel-rounded-lg vel-flex vel-items-center vel-justify-center" style="left:0;top:0;width:80px;height:80px;font-size:12px">z-10</div>
+  <div class="vel-absolute vel-z-20 vel-bg-success vel-text-white vel-rounded-lg vel-flex vel-items-center vel-justify-center" style="left:40px;top:10px;width:80px;height:80px;font-size:12px">z-20</div>
+  <div class="vel-absolute vel-z-30 vel-bg-danger vel-text-white vel-rounded-lg vel-flex vel-items-center vel-justify-center" style="left:80px;top:20px;width:80px;height:80px;font-size:12px">z-30</div>
 </div>`,
         },
       ]}

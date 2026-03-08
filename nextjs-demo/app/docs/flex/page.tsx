@@ -16,16 +16,16 @@ export default function FlexPage() {
         {
           label: 'Flex 1 (equal share)',
           html: `<div class="vel-flex vel-gap-3">
-  <div class="vel-flex-1" style="background:#7c5cfc;color:#fff;padding:12px;border-radius:6px;text-align:center">flex-1</div>
-  <div class="vel-flex-1" style="background:#7c5cfc;color:#fff;padding:12px;border-radius:6px;text-align:center">flex-1</div>
-  <div class="vel-flex-1" style="background:#7c5cfc;color:#fff;padding:12px;border-radius:6px;text-align:center">flex-1</div>
+  <div class="vel-flex-1 vel-bg-primary vel-text-white vel-rounded-md vel-text-center" style="padding:12px">flex-1</div>
+  <div class="vel-flex-1 vel-bg-primary vel-text-white vel-rounded-md vel-text-center" style="padding:12px">flex-1</div>
+  <div class="vel-flex-1 vel-bg-primary vel-text-white vel-rounded-md vel-text-center" style="padding:12px">flex-1</div>
 </div>`,
         },
         {
           label: 'Flex none (don\'t grow/shrink)',
           html: `<div class="vel-flex vel-gap-3">
-  <div class="vel-flex-1" style="background:#1a2236;border:1px dashed #1e2d45;color:#64748b;padding:12px;border-radius:6px;text-align:center">flex-1 (grows)</div>
-  <div class="vel-flex-none" style="background:#0ecb81;color:#fff;padding:12px 24px;border-radius:6px;white-space:nowrap">flex-none (fixed)</div>
+  <div class="vel-flex-1 vel-bg-surface-3 vel-text-muted vel-rounded-md vel-text-center" style="padding:12px;border:1px dashed #1e2d45">flex-1 (grows)</div>
+  <div class="vel-flex-none vel-bg-success vel-text-white vel-rounded-md" style="padding:12px 24px;white-space:nowrap">flex-none (fixed)</div>
 </div>`,
         },
       ]}

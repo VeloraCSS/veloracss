@@ -28,17 +28,17 @@ export default function GapPage() {
   <div>
     <p style="color:#64748b;font-size:11px;margin-bottom:4px">vel-gap-2</p>
     <div class="vel-flex vel-gap-2">
-      <div style="background:#7c5cfc;color:#fff;padding:10px 18px;border-radius:6px">A</div>
-      <div style="background:#7c5cfc;color:#fff;padding:10px 18px;border-radius:6px">B</div>
-      <div style="background:#7c5cfc;color:#fff;padding:10px 18px;border-radius:6px">C</div>
+      <div class="vel-bg-primary vel-text-white vel-rounded-md" style="padding:10px 18px">A</div>
+      <div class="vel-bg-primary vel-text-white vel-rounded-md" style="padding:10px 18px">B</div>
+      <div class="vel-bg-primary vel-text-white vel-rounded-md" style="padding:10px 18px">C</div>
     </div>
   </div>
   <div>
     <p style="color:#64748b;font-size:11px;margin-bottom:4px">vel-gap-8</p>
     <div class="vel-flex vel-gap-8">
-      <div style="background:#0ecb81;color:#fff;padding:10px 18px;border-radius:6px">A</div>
-      <div style="background:#0ecb81;color:#fff;padding:10px 18px;border-radius:6px">B</div>
-      <div style="background:#0ecb81;color:#fff;padding:10px 18px;border-radius:6px">C</div>
+      <div class="vel-bg-success vel-text-white vel-rounded-md" style="padding:10px 18px">A</div>
+      <div class="vel-bg-success vel-text-white vel-rounded-md" style="padding:10px 18px">B</div>
+      <div class="vel-bg-success vel-text-white vel-rounded-md" style="padding:10px 18px">C</div>
     </div>
   </div>
 </div>`,

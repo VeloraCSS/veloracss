@@ -26,13 +26,13 @@ export default function TransformScalePage() {
       examples={[
         {
           label: 'Scale on hover using transition + scale',
-          html: `<div class="vel-transition-transform vel-duration-200 vel-ease-out vel-hover:scale-110" style="display:inline-block;padding:1rem 2rem;background:#7c5cfc;color:#fff;border-radius:0.5rem;cursor:pointer">
+          html: `<div class="vel-transition-transform vel-duration-200 vel-ease-out vel-hover:scale-110 vel-bg-primary vel-text-white vel-rounded-lg vel-inline-block vel-cursor-pointer" style="padding:1rem 2rem">
   Hover to scale up
 </div>`,
         },
         {
           label: 'Press effect with active:scale-95',
-          html: `<button class="vel-transition-transform vel-duration-100 vel-active:scale-95" style="padding:0.75rem 1.5rem;background:#0ecb81;color:#fff;border-radius:0.5rem;border:none;cursor:pointer">
+          html: `<button class="vel-transition-transform vel-duration-100 vel-active:scale-95 vel-btn vel-btn-success">
   Click me
 </button>`,
         },

@@ -13,23 +13,23 @@ export default function HoverFocusStatesPage() {
       examples={[
         {
           label: 'Hover background change',
-          html: `<button class="vel-transition-colors vel-duration-200 vel-bg-surface-2 vel-hover:bg-primary vel-text-white vel-p-3 vel-rounded-lg vel-cursor-pointer" style="padding:0.75rem 1.5rem;background:#111827;color:#fff;border-radius:0.5rem;border:none;transition:background 200ms">
+          html: `<button class="vel-transition-colors vel-duration-200 vel-bg-surface-2 vel-hover:bg-primary vel-text-white vel-py-3 vel-px-6 vel-rounded-lg vel-cursor-pointer" style="border:none">
   Hover to change background
 </button>`,
         },
         {
           label: 'Focus ring on input',
-          html: `<input class="vel-focus:ring vel-focus:ring-primary" type="text" placeholder="Focus me to see ring" style="padding:0.75rem 1rem;background:#0d1422;border:1px solid #1e2d45;border-radius:0.5rem;color:#e2e8f0;outline:none;width:100%;max-width:20rem" />`,
+          html: `<input class="vel-focus:ring vel-focus:ring-primary vel-bg-surface-1 vel-text-base vel-rounded-lg vel-py-3 vel-px-4 vel-w-full" type="text" placeholder="Focus me to see ring" style="border:1px solid #1e2d45;outline:none;max-width:20rem" />`,
         },
         {
           label: 'Active scale press effect',
-          html: `<button class="vel-transition-transform vel-duration-100 vel-active:scale-95" style="padding:0.75rem 1.5rem;background:#7c5cfc;color:#fff;border-radius:0.5rem;border:none;cursor:pointer;transform-origin:center">
+          html: `<button class="vel-transition-transform vel-duration-100 vel-active:scale-95 vel-bg-primary vel-text-white vel-py-3 vel-px-6 vel-rounded-lg vel-cursor-pointer" style="border:none;transform-origin:center">
   Press me
 </button>`,
         },
         {
           label: 'Combining hover and focus states',
-          html: `<a class="vel-transition-colors vel-duration-150 vel-text-muted vel-hover:text-primary vel-focus:text-primary vel-focus:outline-none" href="#" style="color:#64748b;text-decoration:none;display:inline-block;padding:0.25rem 0">
+          html: `<a class="vel-transition-colors vel-duration-150 vel-text-muted vel-hover:text-primary vel-focus:text-primary vel-focus:outline-none vel-inline-block vel-py-1" href="#" style="text-decoration:none">
   Hover or focus this link
 </a>`,
         },

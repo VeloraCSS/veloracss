@@ -21,25 +21,25 @@ export default function AlignContentPage() {
   <div style="flex:1">
     <p style="color:#64748b;font-size:11px;margin-bottom:4px">vel-content-start</p>
     <div class="vel-flex vel-flex-wrap vel-content-start vel-gap-2" style="background:#1a2236;padding:8px;border-radius:6px;height:120px;width:140px">
-      <div style="background:#7c5cfc;color:#fff;padding:6px 10px;border-radius:4px;font-size:12px">A</div>
-      <div style="background:#7c5cfc;color:#fff;padding:6px 10px;border-radius:4px;font-size:12px">B</div>
-      <div style="background:#7c5cfc80;color:#fff;padding:6px 10px;border-radius:4px;font-size:12px">C</div>
+      <div class="vel-bg-primary vel-text-white vel-rounded-sm" style="padding:6px 10px;font-size:12px">A</div>
+      <div class="vel-bg-primary vel-text-white vel-rounded-sm" style="padding:6px 10px;font-size:12px">B</div>
+      <div class="vel-bg-primary vel-text-white vel-rounded-sm vel-opacity-50" style="padding:6px 10px;font-size:12px">C</div>
     </div>
   </div>
   <div style="flex:1">
     <p style="color:#64748b;font-size:11px;margin-bottom:4px">vel-content-between</p>
     <div class="vel-flex vel-flex-wrap vel-content-between vel-gap-2" style="background:#1a2236;padding:8px;border-radius:6px;height:120px;width:140px">
-      <div style="background:#0ecb81;color:#fff;padding:6px 10px;border-radius:4px;font-size:12px">A</div>
-      <div style="background:#0ecb81;color:#fff;padding:6px 10px;border-radius:4px;font-size:12px">B</div>
-      <div style="background:#0ecb8180;color:#fff;padding:6px 10px;border-radius:4px;font-size:12px">C</div>
+      <div class="vel-bg-success vel-text-white vel-rounded-sm" style="padding:6px 10px;font-size:12px">A</div>
+      <div class="vel-bg-success vel-text-white vel-rounded-sm" style="padding:6px 10px;font-size:12px">B</div>
+      <div class="vel-bg-success vel-text-white vel-rounded-sm vel-opacity-50" style="padding:6px 10px;font-size:12px">C</div>
     </div>
   </div>
   <div style="flex:1">
     <p style="color:#64748b;font-size:11px;margin-bottom:4px">vel-content-end</p>
     <div class="vel-flex vel-flex-wrap vel-content-end vel-gap-2" style="background:#1a2236;padding:8px;border-radius:6px;height:120px;width:140px">
-      <div style="background:#f0416c;color:#fff;padding:6px 10px;border-radius:4px;font-size:12px">A</div>
-      <div style="background:#f0416c;color:#fff;padding:6px 10px;border-radius:4px;font-size:12px">B</div>
-      <div style="background:#f0416c80;color:#fff;padding:6px 10px;border-radius:4px;font-size:12px">C</div>
+      <div class="vel-bg-danger vel-text-white vel-rounded-sm" style="padding:6px 10px;font-size:12px">A</div>
+      <div class="vel-bg-danger vel-text-white vel-rounded-sm" style="padding:6px 10px;font-size:12px">B</div>
+      <div class="vel-bg-danger vel-text-white vel-rounded-sm vel-opacity-50" style="padding:6px 10px;font-size:12px">C</div>
     </div>
   </div>
 </div>`,
