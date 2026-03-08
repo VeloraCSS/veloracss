@@ -204,6 +204,8 @@ export const navSections: NavSection[] = [
       { label: 'Chat Bubble', slug: 'chat-bubble' },
       { label: 'File Upload', slug: 'file-upload' },
       { label: 'Carousel', slug: 'carousel' },
+      { label: 'Calendar', slug: 'calendar' },
+      { label: 'Charts', slug: 'charts' },
     ],
   },
   {

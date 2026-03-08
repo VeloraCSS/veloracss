@@ -1,0 +1,193 @@
+import DocPage from '../_components/DocPage'
+
+export default function CalendarPage() {
+  return (
+    <DocPage
+      title="Calendar"
+      description="A fully styled calendar component with day selection, range selection, event indicators, today highlighting, outside-month days, disabled days, and mini/inline variants. Pure HTML and CSS — no JavaScript required for static display."
+      source="calendar.css"
+      table={[
+        { class: 'vel-calendar',                  properties: 'Calendar card container (22rem wide)' },
+        { class: 'vel-calendar-header',           properties: 'Flex row — month/year title + nav buttons' },
+        { class: 'vel-calendar-title',            properties: 'Month and year heading text' },
+        { class: 'vel-calendar-nav',              properties: 'Prev/next button group' },
+        { class: 'vel-calendar-nav-btn',          properties: 'Navigation arrow button' },
+        { class: 'vel-calendar-weekdays',         properties: '7-column grid — day name header row' },
+        { class: 'vel-calendar-weekday',          properties: 'Single day-name cell (Su Mo Tu...)' },
+        { class: 'vel-calendar-grid',             properties: '7-column grid — day cells' },
+        { class: 'vel-calendar-day',              properties: 'Individual day button' },
+        { class: 'vel-calendar-day-today',        properties: 'Today — bold + primary dot indicator' },
+        { class: 'vel-calendar-day-selected',     properties: 'Selected day — filled primary background' },
+        { class: 'vel-calendar-day-range',        properties: 'Day inside a selected range — light fill' },
+        { class: 'vel-calendar-day-range-start',  properties: 'Left cap of range selection' },
+        { class: 'vel-calendar-day-range-end',    properties: 'Right cap of range selection' },
+        { class: 'vel-calendar-day-outside',      properties: 'Day from prev/next month — muted + faded' },
+        { class: 'vel-calendar-day-disabled',     properties: 'Non-selectable day — 30% opacity' },
+        { class: 'vel-calendar-day-event',        properties: 'Day with event — small dot indicator' },
+        { class: 'vel-calendar-mini',             properties: 'Compact size variant (16rem)' },
+        { class: 'vel-calendar-inline',           properties: 'No card chrome — embed in any layout' },
+      ]}
+      examples={[
+        {
+          label: 'Full month calendar',
+          html: `<div style="padding:24px;background:#060b17;border-radius:12px;font-family:system-ui,sans-serif;">
+  <div class="vel-calendar">
+    <div class="vel-calendar-header">
+      <span class="vel-calendar-title">March 2026</span>
+      <div class="vel-calendar-nav">
+        <button class="vel-calendar-nav-btn" aria-label="Previous month">&#8249;</button>
+        <button class="vel-calendar-nav-btn" aria-label="Next month">&#8250;</button>
+      </div>
+    </div>
+    <div class="vel-calendar-weekdays">
+      <span class="vel-calendar-weekday">Su</span>
+      <span class="vel-calendar-weekday">Mo</span>
+      <span class="vel-calendar-weekday">Tu</span>
+      <span class="vel-calendar-weekday">We</span>
+      <span class="vel-calendar-weekday">Th</span>
+      <span class="vel-calendar-weekday">Fr</span>
+      <span class="vel-calendar-weekday">Sa</span>
+    </div>
+    <div class="vel-calendar-grid">
+      <button class="vel-calendar-day">1</button>
+      <button class="vel-calendar-day">2</button>
+      <button class="vel-calendar-day">3</button>
+      <button class="vel-calendar-day vel-calendar-day-event">4</button>
+      <button class="vel-calendar-day">5</button>
+      <button class="vel-calendar-day">6</button>
+      <button class="vel-calendar-day">7</button>
+      <button class="vel-calendar-day vel-calendar-day-today">8</button>
+      <button class="vel-calendar-day">9</button>
+      <button class="vel-calendar-day">10</button>
+      <button class="vel-calendar-day">11</button>
+      <button class="vel-calendar-day">12</button>
+      <button class="vel-calendar-day">13</button>
+      <button class="vel-calendar-day">14</button>
+      <button class="vel-calendar-day vel-calendar-day-selected">15</button>
+      <button class="vel-calendar-day">16</button>
+      <button class="vel-calendar-day vel-calendar-day-disabled">17</button>
+      <button class="vel-calendar-day">18</button>
+      <button class="vel-calendar-day">19</button>
+      <button class="vel-calendar-day">20</button>
+      <button class="vel-calendar-day">21</button>
+      <button class="vel-calendar-day vel-calendar-day-event">22</button>
+      <button class="vel-calendar-day">23</button>
+      <button class="vel-calendar-day">24</button>
+      <button class="vel-calendar-day">25</button>
+      <button class="vel-calendar-day">26</button>
+      <button class="vel-calendar-day">27</button>
+      <button class="vel-calendar-day">28</button>
+      <button class="vel-calendar-day">29</button>
+      <button class="vel-calendar-day">30</button>
+      <button class="vel-calendar-day">31</button>
+      <button class="vel-calendar-day vel-calendar-day-outside">1</button>
+      <button class="vel-calendar-day vel-calendar-day-outside">2</button>
+      <button class="vel-calendar-day vel-calendar-day-outside">3</button>
+      <button class="vel-calendar-day vel-calendar-day-outside">4</button>
+    </div>
+  </div>
+</div>`,
+        },
+        {
+          label: 'Range selection with mini variant',
+          html: `<div style="padding:24px;background:#060b17;border-radius:12px;font-family:system-ui,sans-serif;">
+  <div class="vel-flex vel-gap-4 vel-flex-wrap">
+    <div class="vel-calendar">
+      <div class="vel-calendar-header">
+        <span class="vel-calendar-title">April 2026</span>
+        <div class="vel-calendar-nav">
+          <button class="vel-calendar-nav-btn">&#8249;</button>
+          <button class="vel-calendar-nav-btn">&#8250;</button>
+        </div>
+      </div>
+      <div class="vel-calendar-weekdays">
+        <span class="vel-calendar-weekday">Su</span><span class="vel-calendar-weekday">Mo</span>
+        <span class="vel-calendar-weekday">Tu</span><span class="vel-calendar-weekday">We</span>
+        <span class="vel-calendar-weekday">Th</span><span class="vel-calendar-weekday">Fr</span>
+        <span class="vel-calendar-weekday">Sa</span>
+      </div>
+      <div class="vel-calendar-grid">
+        <button class="vel-calendar-day vel-calendar-day-outside">29</button>
+        <button class="vel-calendar-day vel-calendar-day-outside">30</button>
+        <button class="vel-calendar-day vel-calendar-day-outside">31</button>
+        <button class="vel-calendar-day">1</button>
+        <button class="vel-calendar-day">2</button>
+        <button class="vel-calendar-day">3</button>
+        <button class="vel-calendar-day">4</button>
+        <button class="vel-calendar-day">5</button>
+        <button class="vel-calendar-day">6</button>
+        <button class="vel-calendar-day">7</button>
+        <button class="vel-calendar-day vel-calendar-day-range vel-calendar-day-range-start">8</button>
+        <button class="vel-calendar-day vel-calendar-day-range">9</button>
+        <button class="vel-calendar-day vel-calendar-day-range">10</button>
+        <button class="vel-calendar-day vel-calendar-day-range">11</button>
+        <button class="vel-calendar-day vel-calendar-day-range">12</button>
+        <button class="vel-calendar-day vel-calendar-day-range">13</button>
+        <button class="vel-calendar-day vel-calendar-day-range vel-calendar-day-range-end">14</button>
+        <button class="vel-calendar-day">15</button>
+        <button class="vel-calendar-day">16</button>
+        <button class="vel-calendar-day">17</button>
+        <button class="vel-calendar-day">18</button>
+        <button class="vel-calendar-day">19</button>
+        <button class="vel-calendar-day">20</button>
+        <button class="vel-calendar-day">21</button>
+        <button class="vel-calendar-day">22</button>
+        <button class="vel-calendar-day">23</button>
+        <button class="vel-calendar-day">24</button>
+        <button class="vel-calendar-day">25</button>
+        <button class="vel-calendar-day">26</button>
+        <button class="vel-calendar-day">27</button>
+        <button class="vel-calendar-day">28</button>
+        <button class="vel-calendar-day">29</button>
+        <button class="vel-calendar-day">30</button>
+        <button class="vel-calendar-day vel-calendar-day-outside">1</button>
+        <button class="vel-calendar-day vel-calendar-day-outside">2</button>
+      </div>
+    </div>
+    <div>
+      <div class="vel-text-xs vel-text-muted vel-mb-2">vel-calendar-mini</div>
+      <div class="vel-calendar vel-calendar-mini">
+        <div class="vel-calendar-header">
+          <span class="vel-calendar-title">Apr 2026</span>
+          <div class="vel-calendar-nav">
+            <button class="vel-calendar-nav-btn">&#8249;</button>
+            <button class="vel-calendar-nav-btn">&#8250;</button>
+          </div>
+        </div>
+        <div class="vel-calendar-weekdays">
+          <span class="vel-calendar-weekday">S</span><span class="vel-calendar-weekday">M</span>
+          <span class="vel-calendar-weekday">T</span><span class="vel-calendar-weekday">W</span>
+          <span class="vel-calendar-weekday">T</span><span class="vel-calendar-weekday">F</span>
+          <span class="vel-calendar-weekday">S</span>
+        </div>
+        <div class="vel-calendar-grid">
+          <button class="vel-calendar-day vel-calendar-day-outside">29</button>
+          <button class="vel-calendar-day vel-calendar-day-outside">30</button>
+          <button class="vel-calendar-day vel-calendar-day-outside">31</button>
+          <button class="vel-calendar-day">1</button><button class="vel-calendar-day">2</button>
+          <button class="vel-calendar-day">3</button><button class="vel-calendar-day">4</button>
+          <button class="vel-calendar-day">5</button><button class="vel-calendar-day">6</button>
+          <button class="vel-calendar-day">7</button><button class="vel-calendar-day vel-calendar-day-today">8</button>
+          <button class="vel-calendar-day">9</button><button class="vel-calendar-day">10</button>
+          <button class="vel-calendar-day">11</button><button class="vel-calendar-day vel-calendar-day-selected">12</button>
+          <button class="vel-calendar-day">13</button><button class="vel-calendar-day">14</button>
+          <button class="vel-calendar-day">15</button><button class="vel-calendar-day">16</button>
+          <button class="vel-calendar-day">17</button><button class="vel-calendar-day">18</button>
+          <button class="vel-calendar-day">19</button><button class="vel-calendar-day">20</button>
+          <button class="vel-calendar-day">21</button><button class="vel-calendar-day">22</button>
+          <button class="vel-calendar-day">23</button><button class="vel-calendar-day">24</button>
+          <button class="vel-calendar-day">25</button><button class="vel-calendar-day">26</button>
+          <button class="vel-calendar-day">27</button><button class="vel-calendar-day">28</button>
+          <button class="vel-calendar-day">29</button><button class="vel-calendar-day">30</button>
+          <button class="vel-calendar-day vel-calendar-day-outside">1</button>
+          <button class="vel-calendar-day vel-calendar-day-outside">2</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>`,
+        },
+      ]}
+    />
+  )
+}

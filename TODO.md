@@ -109,11 +109,11 @@ _Last updated: 2026-03-08. Updated at every milestone. Add items here whenever a
 ## 🔵 FUTURE — v2 Ideas
 
 - [ ] JetBrains plugin
-- [ ] Charts — Bar, Line, Pie (SVG + vel-svg-* utilities)
-- [ ] Dark/light mode toggle on docs site
+- [ ] Charts — Bar chart (CSS flex) + Progress Ring (SVG stroke-dasharray) — in progress (architect spec complete)
+- [x] Dark/light mode toggle on docs site — ThemeToggle in sidebar, persists via localStorage, full CSS-var theming
 - [ ] Create the playground other sites wish they had: https://play.tailwindcss.com/ but with live editing of all 22 components + token sliders + config editor and instant preview and copyable code snippets and exportable sandbox link and more
 - [ ] Dark/light mode toggle on playground site
-- [ ] Calendar component
-- [ ] Carousel component
+- [ ] Calendar component — in progress (architect spec complete)
+- [x] Carousel component — zero-JS :has() + radio inputs, up to 6 slides, dots, captions, arrows
 - [ ] Social media presence (@veloracss)
 - [ ] Sponsorship / Open Collective
