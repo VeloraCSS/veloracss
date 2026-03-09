@@ -2,6 +2,7 @@ interface PreviewProps {
   html: string
   customCss: string
   veloraCss: string
+  tokenCss?: string
 }
 
 const SCROLLBAR_CSS = `
@@ -13,7 +14,7 @@ const SCROLLBAR_CSS = `
   * { scrollbar-width: thin; scrollbar-color: #1e2d45 #060b17; }
 `
 
-export default function Preview({ html, customCss, veloraCss }: PreviewProps) {
+export default function Preview({ html, customCss, veloraCss, tokenCss = '' }: PreviewProps) {
   const doc = `<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -21,6 +22,7 @@ export default function Preview({ html, customCss, veloraCss }: PreviewProps) {
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>${veloraCss}</style>
   <style>${SCROLLBAR_CSS}</style>
+  ${tokenCss ? `<style>${tokenCss}</style>` : ''}
   <style>${customCss}</style>
 </head>
 <body>
