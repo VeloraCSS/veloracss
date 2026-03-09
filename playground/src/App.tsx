@@ -41,73 +41,110 @@ const GALLERY: GalleryCategory[] = [
       {
         id: 'badge',
         label: 'Badge',
-        html: `<div class="vel-p-8 vel-flex vel-gap-3 vel-flex-wrap">
+        html: `<div style="padding:2rem;display:flex;gap:0.75rem;flex-wrap:wrap;align-items:center">
   <span class="vel-badge">Default</span>
   <span class="vel-badge vel-badge-primary">Primary</span>
   <span class="vel-badge vel-badge-success">Success</span>
-  <span class="vel-badge vel-badge-warning">Warning</span>
   <span class="vel-badge vel-badge-danger">Danger</span>
-  <span class="vel-badge vel-badge-outline">Outline</span>
+  <span class="vel-badge vel-badge-warning">Warning</span>
+  <span class="vel-badge vel-badge-info">Info</span>
+  <span class="vel-badge vel-badge-solid-primary">Solid</span>
+  <span class="vel-badge vel-badge-dot vel-badge-success">Online</span>
+  <span class="vel-badge vel-badge-sm vel-badge-neutral">Small</span>
+  <span class="vel-badge vel-badge-lg vel-badge-primary">Large</span>
 </div>`,
       },
       {
         id: 'avatar',
         label: 'Avatar',
-        html: `<div class="vel-p-8 vel-flex vel-gap-4 vel-items-center vel-flex-wrap">
-  <div class="vel-avatar vel-avatar-sm">A</div>
-  <div class="vel-avatar">B</div>
-  <div class="vel-avatar vel-avatar-lg">C</div>
-  <div class="vel-avatar vel-avatar-xl vel-avatar-primary">VX</div>
-  <div class="vel-avatar vel-avatar-rounded">D</div>
+        html: `<div style="padding:2rem;display:flex;gap:1rem;align-items:center;flex-wrap:wrap">
+  <div class="vel-avatar vel-avatar-xs vel-avatar-neutral">XS</div>
+  <div class="vel-avatar vel-avatar-sm vel-avatar-neutral">SM</div>
+  <div class="vel-avatar vel-avatar-neutral">MD</div>
+  <div class="vel-avatar vel-avatar-lg vel-avatar-primary">LG</div>
+  <div class="vel-avatar vel-avatar-xl vel-avatar-success">XL</div>
+  <div class="vel-avatar vel-avatar-xl vel-avatar-aurora vel-avatar-rounded">AU</div>
+  <div class="vel-avatar vel-avatar-lg vel-avatar-primary vel-avatar-ring">VX</div>
 </div>`,
       },
       {
         id: 'spinner',
         label: 'Spinner',
-        html: `<div class="vel-p-8 vel-flex vel-gap-6 vel-items-center">
+        html: `<div style="padding:2rem;display:flex;gap:1.5rem;align-items:center;flex-wrap:wrap">
+  <div class="vel-spinner vel-spinner-xs"></div>
   <div class="vel-spinner vel-spinner-sm"></div>
-  <div class="vel-spinner"></div>
-  <div class="vel-spinner vel-spinner-lg"></div>
-  <div class="vel-spinner vel-spinner-primary"></div>
+  <div class="vel-spinner vel-spinner-md vel-spinner-primary"></div>
+  <div class="vel-spinner vel-spinner-lg vel-spinner-success"></div>
+  <div class="vel-spinner vel-spinner-xl vel-spinner-danger"></div>
+  <div class="vel-spinner-dots vel-spinner-primary"><span></span></div>
 </div>`,
       },
       {
         id: 'skeleton',
         label: 'Skeleton',
-        html: `<div class="vel-p-8 vel-max-w-sm vel-flex vel-flex-col vel-gap-3">
-  <div class="vel-skeleton vel-h-6 vel-w-48"></div>
-  <div class="vel-skeleton vel-h-4 vel-w-full"></div>
-  <div class="vel-skeleton vel-h-4 vel-w-4/5"></div>
-  <div class="vel-skeleton vel-h-32 vel-w-full vel-rounded-lg"></div>
+        html: `<div style="padding:2rem;display:flex;flex-direction:column;gap:1rem;max-width:24rem">
+  <div style="display:flex;gap:1rem;align-items:center">
+    <div class="vel-skeleton vel-skeleton-avatar-lg"></div>
+    <div style="flex:1;display:flex;flex-direction:column;gap:0.5rem">
+      <div class="vel-skeleton vel-skeleton-text vel-skeleton-md" style="width:60%"></div>
+      <div class="vel-skeleton vel-skeleton-text vel-skeleton-sm" style="width:40%"></div>
+    </div>
+  </div>
+  <div class="vel-skeleton vel-skeleton-rect vel-skeleton-3xl" style="width:100%;border-radius:0.5rem"></div>
+  <div class="vel-skeleton vel-skeleton-text" style="width:100%"></div>
+  <div class="vel-skeleton vel-skeleton-text" style="width:80%"></div>
+  <div class="vel-skeleton vel-skeleton-text" style="width:50%"></div>
 </div>`,
       },
       {
         id: 'divider',
         label: 'Divider',
-        html: `<div class="vel-p-8 vel-max-w-md vel-flex vel-flex-col vel-gap-4">
-  <p class="vel-text-muted">Section one</p>
+        html: `<div style="padding:2rem;max-width:28rem;display:flex;flex-direction:column;gap:1rem">
+  <p style="color:var(--vel-color-muted)">Above the line</p>
   <div class="vel-divider"></div>
-  <p class="vel-text-muted">Section two</p>
-  <div class="vel-divider vel-divider-primary">OR</div>
-  <p class="vel-text-muted">Section three</p>
+  <p style="color:var(--vel-color-muted)">Simple divider</p>
+  <div class="vel-divider">OR</div>
+  <p style="color:var(--vel-color-muted)">With label</p>
+  <div class="vel-divider vel-divider-primary">Primary</div>
+  <p style="color:var(--vel-color-muted)">Primary colored</p>
+  <div class="vel-divider vel-divider-left">Left label</div>
 </div>`,
       },
       {
         id: 'kbd',
         label: 'Kbd',
-        html: `<div class="vel-p-8 vel-flex vel-flex-col vel-gap-4">
-  <p>Press <kbd class="vel-kbd">Ctrl</kbd> + <kbd class="vel-kbd">C</kbd> to copy</p>
-  <p>Open palette: <kbd class="vel-kbd">⌘</kbd> <kbd class="vel-kbd">K</kbd></p>
+        html: `<div style="padding:2rem;display:flex;flex-direction:column;gap:1rem">
+  <p style="color:var(--vel-color-text)">Save: <kbd class="vel-kbd">Ctrl</kbd> + <kbd class="vel-kbd">S</kbd></p>
+  <p style="color:var(--vel-color-text)">Command palette: <kbd class="vel-kbd">⌘</kbd> <kbd class="vel-kbd">K</kbd></p>
+  <p style="color:var(--vel-color-text)">Small: <kbd class="vel-kbd vel-kbd-sm">Esc</kbd></p>
+  <p style="color:var(--vel-color-text)">Large: <kbd class="vel-kbd vel-kbd-lg">Enter ↵</kbd></p>
 </div>`,
       },
       {
         id: 'progress',
         label: 'Progress',
-        html: `<div class="vel-p-8 vel-flex vel-flex-col vel-gap-4 vel-max-w-md">
-  <div class="vel-progress"><div class="vel-progress-bar" style="width:40%"></div></div>
-  <div class="vel-progress vel-progress-primary"><div class="vel-progress-bar" style="width:70%"></div></div>
-  <div class="vel-progress vel-progress-success"><div class="vel-progress-bar" style="width:90%"></div></div>
-  <div class="vel-progress vel-progress-sm"><div class="vel-progress-bar" style="width:55%"></div></div>
+        html: `<div style="padding:2rem;display:flex;flex-direction:column;gap:1rem;max-width:28rem">
+  <div class="vel-progress vel-progress-lg">
+    <div class="vel-progress-bar" style="width:35%"></div>
+  </div>
+  <div class="vel-progress vel-progress-primary vel-progress-lg">
+    <div class="vel-progress-bar" style="width:65%"></div>
+  </div>
+  <div class="vel-progress vel-progress-success vel-progress-lg">
+    <div class="vel-progress-bar" style="width:80%"></div>
+  </div>
+  <div class="vel-progress vel-progress-danger vel-progress-lg">
+    <div class="vel-progress-bar" style="width:50%"></div>
+  </div>
+  <div class="vel-progress vel-progress-primary vel-progress-lg vel-progress-glow">
+    <div class="vel-progress-bar" style="width:72%"></div>
+  </div>
+  <div class="vel-progress vel-progress-striped vel-progress-primary vel-progress-xl">
+    <div class="vel-progress-bar" style="width:55%"></div>
+  </div>
+  <div class="vel-progress vel-progress-primary vel-progress-md vel-progress-indeterminate">
+    <div class="vel-progress-bar"></div>
+  </div>
 </div>`,
       },
     ],
@@ -119,33 +156,55 @@ const GALLERY: GalleryCategory[] = [
       {
         id: 'input',
         label: 'Input',
-        html: `<div class="vel-p-8 vel-flex vel-flex-col vel-gap-4 vel-max-w-sm">
-  <div class="vel-input-group">
-    <label class="vel-label">Email</label>
+        html: `<div style="padding:2rem;display:flex;flex-direction:column;gap:1.25rem;max-width:26rem">
+  <div style="display:flex;flex-direction:column;gap:0.375rem">
+    <label style="font-size:0.875rem;font-weight:500;color:var(--vel-color-text)">Email address</label>
     <input type="email" class="vel-input" placeholder="you@example.com" />
   </div>
-  <div class="vel-input-group">
-    <label class="vel-label">Password</label>
-    <input type="password" class="vel-input vel-input-error" value="bad" />
-    <span class="vel-input-hint vel-text-danger">Password is too short</span>
-  </div>
-  <div class="vel-input-group">
-    <label class="vel-label">Username</label>
+  <div style="display:flex;flex-direction:column;gap:0.375rem">
+    <label style="font-size:0.875rem;font-weight:500;color:var(--vel-color-text)">Username</label>
     <input type="text" class="vel-input vel-input-success" value="velora_dev" />
-    <span class="vel-input-hint vel-text-success">Username available!</span>
+    <p style="font-size:0.75rem;color:var(--vel-color-success)">✓ Username is available</p>
   </div>
-  <select class="vel-select"><option>Option 1</option><option>Option 2</option></select>
-  <textarea class="vel-textarea" placeholder="Write something..." rows="3"></textarea>
+  <div style="display:flex;flex-direction:column;gap:0.375rem">
+    <label style="font-size:0.875rem;font-weight:500;color:var(--vel-color-text)">Password</label>
+    <input type="password" class="vel-input vel-input-danger" value="abc" />
+    <p style="font-size:0.75rem;color:var(--vel-color-danger)">✗ Password must be 8+ characters</p>
+  </div>
+  <select class="vel-select">
+    <option>Select a framework</option>
+    <option selected>VeloraCSS</option>
+    <option>Other</option>
+  </select>
+  <textarea class="vel-textarea" placeholder="Tell us about your project..." rows="3"></textarea>
+  <div style="display:flex;gap:0.5rem">
+    <input type="text" class="vel-input vel-input-sm" placeholder="Small input" />
+    <input type="text" class="vel-input vel-input-lg" placeholder="Large" />
+  </div>
 </div>`,
       },
       {
         id: 'file-upload',
         label: 'File Upload',
-        html: `<div class="vel-p-8 vel-max-w-md">
-  <div class="vel-file-upload">
-    <div class="vel-file-upload-icon">📁</div>
-    <p class="vel-file-upload-text">Drop files here or <span class="vel-text-primary">browse</span></p>
-    <p class="vel-file-upload-hint">PNG, JPG, PDF up to 10MB</p>
+        html: `<div style="padding:2rem;max-width:26rem;display:flex;flex-direction:column;gap:1rem">
+  <div class="vel-dropzone">
+    <div class="vel-dropzone-icon">
+      <svg width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5m-13.5-9L12 3m0 0l4.5 4.5M12 3v13.5"/></svg>
+    </div>
+    <p class="vel-dropzone-text">Drop files here or <span style="color:var(--vel-color-primary);font-weight:500">browse</span></p>
+    <p class="vel-dropzone-hint">PNG, JPG, PDF · Max 10MB</p>
+  </div>
+  <div class="vel-file-list">
+    <div class="vel-file-item">
+      <span class="vel-file-item-name">design-system.pdf</span>
+      <span class="vel-file-item-size">2.4 MB</span>
+      <button class="vel-file-item-remove">✕</button>
+    </div>
+    <div class="vel-file-item">
+      <span class="vel-file-item-name">logo-final.png</span>
+      <span class="vel-file-item-size">480 KB</span>
+      <button class="vel-file-item-remove">✕</button>
+    </div>
   </div>
 </div>`,
       },
@@ -158,46 +217,41 @@ const GALLERY: GalleryCategory[] = [
       {
         id: 'typography',
         label: 'Typography',
-        html: `<div class="vel-min-h-screen vel-bg-white vel-p-10">
-  <div class="vel-max-w-2xl vel-mx-auto">
+        html: `<div style="padding:2.5rem;max-width:42rem">
+  <h1 style="color:var(--vel-color-text);font-size:clamp(1.75rem,4vw,2.5rem);font-weight:800;margin:0 0 0.5rem;letter-spacing:-0.03em">Typography Scale</h1>
+  <p style="color:var(--vel-color-muted);font-size:1rem;margin:0 0 2rem">Font sizes, weights, and text utilities.</p>
 
-    <h1 class="vel-text-5xl vel-font-black vel-text-neutral-900 vel-tracking-tight vel-mb-2">Typography</h1>
-    <p class="vel-text-xl vel-text-neutral-400 vel-mb-10">Font sizes, weights, and text utilities.</p>
+  <div style="margin-bottom:2rem">
+    <p style="font-size:0.65rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--vel-color-muted);margin:0 0 0.75rem">Sizes</p>
+    <p class="vel-text-xs" style="color:var(--vel-color-text);margin:0 0 0.375rem">vel-text-xs — The quick brown fox</p>
+    <p class="vel-text-sm" style="color:var(--vel-color-text);margin:0 0 0.375rem">vel-text-sm — The quick brown fox</p>
+    <p class="vel-text-base" style="color:var(--vel-color-text);margin:0 0 0.375rem">vel-text-base — The quick brown fox</p>
+    <p class="vel-text-lg" style="color:var(--vel-color-text);margin:0 0 0.375rem">vel-text-lg — The quick brown fox</p>
+    <p class="vel-text-xl" style="color:var(--vel-color-text);margin:0 0 0.375rem">vel-text-xl — The quick brown fox</p>
+    <p class="vel-text-2xl" style="color:var(--vel-color-text);margin:0 0 0.375rem">vel-text-2xl — Brown fox</p>
+    <p class="vel-text-3xl" style="color:var(--vel-color-text);margin:0 0 0.375rem">vel-text-3xl — Fox</p>
+  </div>
 
-    <section class="vel-mb-10">
-      <h2 class="vel-text-xs vel-font-semibold vel-text-neutral-400 vel-uppercase vel-tracking-widest vel-mb-4">Sizes</h2>
-      <p class="vel-text-xs vel-text-neutral-700 vel-mb-1">vel-text-xs — The quick brown fox</p>
-      <p class="vel-text-sm vel-text-neutral-700 vel-mb-1">vel-text-sm — The quick brown fox</p>
-      <p class="vel-text-base vel-text-neutral-700 vel-mb-1">vel-text-base — The quick brown fox</p>
-      <p class="vel-text-lg vel-text-neutral-700 vel-mb-1">vel-text-lg — The quick brown fox</p>
-      <p class="vel-text-xl vel-text-neutral-700 vel-mb-1">vel-text-xl — The quick brown fox</p>
-      <p class="vel-text-2xl vel-text-neutral-700 vel-mb-1">vel-text-2xl — The quick brown fox</p>
-      <p class="vel-text-3xl vel-text-neutral-700 vel-mb-1">vel-text-3xl — The quick brown fox</p>
-      <p class="vel-text-4xl vel-text-neutral-700 vel-mb-1">vel-text-4xl — Fox</p>
-    </section>
+  <div style="margin-bottom:2rem">
+    <p style="font-size:0.65rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--vel-color-muted);margin:0 0 0.75rem">Weights</p>
+    <p class="vel-text-xl vel-font-thin" style="color:var(--vel-color-text);margin:0 0 0.25rem">Thin — 100</p>
+    <p class="vel-text-xl vel-font-light" style="color:var(--vel-color-text);margin:0 0 0.25rem">Light — 300</p>
+    <p class="vel-text-xl vel-font-normal" style="color:var(--vel-color-text);margin:0 0 0.25rem">Normal — 400</p>
+    <p class="vel-text-xl vel-font-medium" style="color:var(--vel-color-text);margin:0 0 0.25rem">Medium — 500</p>
+    <p class="vel-text-xl vel-font-semibold" style="color:var(--vel-color-text);margin:0 0 0.25rem">Semibold — 600</p>
+    <p class="vel-text-xl vel-font-bold" style="color:var(--vel-color-text);margin:0 0 0.25rem">Bold — 700</p>
+    <p class="vel-text-xl vel-font-extrabold" style="color:var(--vel-color-text);margin:0 0 0.25rem">Extrabold — 800</p>
+    <p class="vel-text-xl vel-font-black" style="color:var(--vel-color-text);margin:0">Black — 900</p>
+  </div>
 
-    <section class="vel-mb-10">
-      <h2 class="vel-text-xs vel-font-semibold vel-text-neutral-400 vel-uppercase vel-tracking-widest vel-mb-4">Weights</h2>
-      <p class="vel-text-xl vel-font-thin vel-text-neutral-800 vel-mb-1">Thin — 100</p>
-      <p class="vel-text-xl vel-font-light vel-text-neutral-800 vel-mb-1">Light — 300</p>
-      <p class="vel-text-xl vel-font-normal vel-text-neutral-800 vel-mb-1">Normal — 400</p>
-      <p class="vel-text-xl vel-font-medium vel-text-neutral-800 vel-mb-1">Medium — 500</p>
-      <p class="vel-text-xl vel-font-semibold vel-text-neutral-800 vel-mb-1">Semibold — 600</p>
-      <p class="vel-text-xl vel-font-bold vel-text-neutral-800 vel-mb-1">Bold — 700</p>
-      <p class="vel-text-xl vel-font-extrabold vel-text-neutral-800 vel-mb-1">Extrabold — 800</p>
-      <p class="vel-text-xl vel-font-black vel-text-neutral-800 vel-mb-1">Black — 900</p>
-    </section>
-
-    <section>
-      <h2 class="vel-text-xs vel-font-semibold vel-text-neutral-400 vel-uppercase vel-tracking-widest vel-mb-4">Colors</h2>
-      <p class="vel-text-primary vel-text-lg vel-font-medium vel-mb-1">vel-text-primary</p>
-      <p class="vel-text-success vel-text-lg vel-font-medium vel-mb-1">vel-text-success</p>
-      <p class="vel-text-danger vel-text-lg vel-font-medium vel-mb-1">vel-text-danger</p>
-      <p class="vel-text-warning vel-text-lg vel-font-medium vel-mb-1">vel-text-warning</p>
-      <p class="vel-text-info vel-text-lg vel-font-medium vel-mb-1">vel-text-info</p>
-      <p class="vel-text-neutral-400 vel-text-lg vel-font-medium">vel-text-neutral-400</p>
-    </section>
-
+  <div>
+    <p style="font-size:0.65rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--vel-color-muted);margin:0 0 0.75rem">Colors</p>
+    <p class="vel-text-primary vel-text-lg vel-font-medium" style="margin:0 0 0.25rem">vel-text-primary</p>
+    <p class="vel-text-success vel-text-lg vel-font-medium" style="margin:0 0 0.25rem">vel-text-success</p>
+    <p class="vel-text-danger vel-text-lg vel-font-medium" style="margin:0 0 0.25rem">vel-text-danger</p>
+    <p class="vel-text-warning vel-text-lg vel-font-medium" style="margin:0 0 0.25rem">vel-text-warning</p>
+    <p class="vel-text-info vel-text-lg vel-font-medium" style="margin:0 0 0.25rem">vel-text-info</p>
+    <p class="vel-text-muted vel-text-lg vel-font-medium" style="margin:0">vel-text-muted</p>
   </div>
 </div>`,
       },
@@ -210,87 +264,124 @@ const GALLERY: GalleryCategory[] = [
       {
         id: 'button',
         label: 'Button',
-        html: `<div class="vel-p-8 vel-flex vel-flex-col vel-gap-4">
-  <div class="vel-flex vel-gap-3 vel-flex-wrap">
+        html: `<div style="padding:2rem;display:flex;flex-direction:column;gap:1rem">
+  <div style="display:flex;gap:0.75rem;flex-wrap:wrap">
     <button class="vel-btn vel-btn-primary">Primary</button>
     <button class="vel-btn vel-btn-secondary">Secondary</button>
     <button class="vel-btn vel-btn-success">Success</button>
     <button class="vel-btn vel-btn-danger">Danger</button>
     <button class="vel-btn vel-btn-warning">Warning</button>
+    <button class="vel-btn vel-btn-info">Info</button>
   </div>
-  <div class="vel-flex vel-gap-3 vel-flex-wrap">
+  <div style="display:flex;gap:0.75rem;flex-wrap:wrap">
     <button class="vel-btn vel-btn-outline vel-btn-primary">Outline</button>
     <button class="vel-btn vel-btn-ghost">Ghost</button>
-    <button class="vel-btn vel-btn-link">Link</button>
+    <button class="vel-btn vel-btn-link">Link style</button>
+    <button class="vel-btn vel-btn-primary" disabled>Disabled</button>
   </div>
-  <div class="vel-flex vel-gap-3 vel-items-center vel-flex-wrap">
+  <div style="display:flex;gap:0.75rem;align-items:center;flex-wrap:wrap">
+    <button class="vel-btn vel-btn-primary vel-btn-xs">XS</button>
     <button class="vel-btn vel-btn-primary vel-btn-sm">Small</button>
     <button class="vel-btn vel-btn-primary">Default</button>
     <button class="vel-btn vel-btn-primary vel-btn-lg">Large</button>
-    <button class="vel-btn vel-btn-primary" disabled>Disabled</button>
+    <button class="vel-btn vel-btn-primary vel-btn-xl">X-Large</button>
   </div>
 </div>`,
       },
       {
         id: 'alert',
         label: 'Alert',
-        html: `<div class="vel-p-8 vel-flex vel-flex-col vel-gap-4 vel-max-w-lg">
+        html: `<div style="padding:2rem;display:flex;flex-direction:column;gap:0.75rem;max-width:32rem">
   <div class="vel-alert vel-alert-info">
-    <strong>Info:</strong> Your session expires in 10 minutes.
+    <strong class="vel-alert-title">Info</strong> Your session will expire in 15 minutes.
   </div>
   <div class="vel-alert vel-alert-success">
-    <strong>Success:</strong> Profile updated successfully!
+    <strong class="vel-alert-title">Success</strong> Your profile has been updated.
   </div>
   <div class="vel-alert vel-alert-warning">
-    <strong>Warning:</strong> API rate limit approaching.
+    <strong class="vel-alert-title">Warning</strong> API rate limit at 90%. Slow down requests.
   </div>
   <div class="vel-alert vel-alert-danger">
-    <strong>Error:</strong> Failed to save changes. Try again.
+    <strong class="vel-alert-title">Error</strong> Failed to save. Please try again.
+  </div>
+  <div class="vel-alert vel-alert-filled-primary">
+    <strong class="vel-alert-title">Filled</strong> This is a filled primary alert variant.
   </div>
 </div>`,
       },
       {
         id: 'card',
         label: 'Card',
-        html: `<div class="vel-p-8 vel-grid vel-grid-cols-2 vel-gap-4 vel-max-w-2xl">
+        html: `<div style="padding:2rem;display:grid;grid-template-columns:repeat(2,1fr);gap:1rem;max-width:40rem">
   <div class="vel-card">
     <div class="vel-card-header">Default Card</div>
-    <div class="vel-card-body">Standard card with header and body content.</div>
+    <div class="vel-card-body">Standard surface card with header, body, and footer sections.</div>
     <div class="vel-card-footer"><button class="vel-btn vel-btn-primary vel-btn-sm">Action</button></div>
   </div>
   <div class="vel-card vel-card-elevated">
     <div class="vel-card-header">Elevated</div>
-    <div class="vel-card-body">Elevated card with stronger shadow.</div>
+    <div class="vel-card-body">Elevated card with enhanced shadow depth.</div>
   </div>
   <div class="vel-card vel-card-primary">
-    <div class="vel-card-body">Primary accent card for featured content.</div>
+    <div class="vel-card-body">Primary accent card — great for featured content or callouts.</div>
   </div>
-  <div class="vel-card vel-card-hover">
-    <div class="vel-card-body">Hover me — interactive card.</div>
+  <div class="vel-card vel-card-glass">
+    <div class="vel-card-body">Glass card with backdrop blur and translucent background.</div>
+  </div>
+</div>`,
+      },
+      {
+        id: 'accordion',
+        label: 'Accordion',
+        html: `<div style="padding:2rem;max-width:30rem">
+  <div class="vel-accordion">
+    <div class="vel-accordion-item">
+      <button class="vel-accordion-trigger">
+        What is Color Genetics?
+        <span class="vel-accordion-trigger-icon">▾</span>
+      </button>
+      <div class="vel-accordion-content">
+        Color Genetics derives all 50+ framework colors from a single --vel-dna-hue value using oklch(). Change one number and your entire UI recolors instantly.
+      </div>
+    </div>
+    <div class="vel-accordion-item">
+      <button class="vel-accordion-trigger">
+        Does VeloraCSS require JavaScript?
+        <span class="vel-accordion-trigger-icon">▾</span>
+      </button>
+      <div class="vel-accordion-content">
+        No. Modals, tabs, dropdowns, carousels, and accordions all work via CSS :has() and radio input state machines. Zero JavaScript required.
+      </div>
+    </div>
+    <div class="vel-accordion-item">
+      <button class="vel-accordion-trigger">
+        How do I install VeloraCSS?
+        <span class="vel-accordion-trigger-icon">▾</span>
+      </button>
+      <div class="vel-accordion-content">
+        Run: npm install veloracss — then @import 'veloracss' in your CSS. Or link the CDN directly. That's it.
+      </div>
+    </div>
   </div>
 </div>`,
       },
       {
         id: 'modal',
         label: 'Modal',
-        html: `<div class="vel-p-8">
-  <!-- Trigger -->
-  <label for="demo-modal" class="vel-btn vel-btn-primary">Open Modal</label>
-  <!-- Modal using CSS state machine -->
-  <input type="checkbox" id="demo-modal" class="vel-hidden" />
-  <div class="vel-modal-overlay">
-    <div class="vel-modal">
+        html: `<!-- Modal shown open for demo purposes -->
+<div style="padding:2rem;position:relative;height:26rem;overflow:hidden">
+  <div style="position:absolute;inset:0;background:rgba(0,0,0,0.55);backdrop-filter:blur(4px);display:flex;align-items:center;justify-content:center">
+    <div class="vel-modal" style="position:relative;animation:none">
       <div class="vel-modal-header">
-        <h3>Modal Title</h3>
-        <label for="demo-modal" class="vel-modal-close">✕</label>
+        Confirm Delete
+        <button class="vel-modal-close">✕</button>
       </div>
       <div class="vel-modal-body">
-        <p>This modal uses pure CSS — no JavaScript required.</p>
-        <p class="vel-text-muted vel-mt-2">Built with the VeloraCSS CSS state machine system.</p>
+        <p>Are you sure you want to delete <strong>project-alpha</strong>? This action cannot be undone and all associated data will be permanently removed.</p>
       </div>
       <div class="vel-modal-footer">
-        <label for="demo-modal" class="vel-btn vel-btn-ghost">Cancel</label>
-        <button class="vel-btn vel-btn-primary">Confirm</button>
+        <button class="vel-btn vel-btn-ghost vel-btn-sm">Cancel</button>
+        <button class="vel-btn vel-btn-danger vel-btn-sm">Delete project</button>
       </div>
     </div>
   </div>
@@ -299,14 +390,26 @@ const GALLERY: GalleryCategory[] = [
       {
         id: 'dropdown',
         label: 'Dropdown',
-        html: `<div class="vel-p-8 vel-flex vel-gap-4">
+        html: `<div style="padding:2rem;display:flex;gap:2rem">
   <div class="vel-dropdown">
-    <button class="vel-btn vel-btn-primary vel-dropdown-trigger">Options ▾</button>
+    <button class="vel-btn vel-btn-secondary vel-dropdown-trigger">Options ▾</button>
+    <div class="vel-dropdown-menu">
+      <span class="vel-dropdown-header">Account</span>
+      <a class="vel-dropdown-item">View profile</a>
+      <a class="vel-dropdown-item">Settings</a>
+      <a class="vel-dropdown-item">Billing</a>
+      <div class="vel-dropdown-divider"></div>
+      <a class="vel-dropdown-item vel-dropdown-item-danger">Sign out</a>
+    </div>
+  </div>
+  <div class="vel-dropdown">
+    <button class="vel-btn vel-btn-primary vel-dropdown-trigger">Actions ▾</button>
     <div class="vel-dropdown-menu">
       <a class="vel-dropdown-item">Edit</a>
       <a class="vel-dropdown-item">Duplicate</a>
-      <div class="vel-divider"></div>
-      <a class="vel-dropdown-item vel-text-danger">Delete</a>
+      <a class="vel-dropdown-item">Export</a>
+      <div class="vel-dropdown-divider"></div>
+      <a class="vel-dropdown-item vel-dropdown-item-danger">Delete</a>
     </div>
   </div>
 </div>`,
@@ -314,37 +417,54 @@ const GALLERY: GalleryCategory[] = [
       {
         id: 'tooltip',
         label: 'Tooltip',
-        html: `<div class="vel-p-8 vel-flex vel-gap-6 vel-flex-wrap vel-items-center">
-  <div class="vel-tooltip" data-tip="Top tooltip">
-    <button class="vel-btn vel-btn-secondary">Hover me</button>
+        html: `<div style="padding:3rem;display:flex;gap:2rem;justify-content:center;align-items:center;flex-wrap:wrap">
+  <div class="vel-tooltip">
+    <button class="vel-btn vel-btn-secondary">Default</button>
+    <span class="vel-tooltip-content">This is a tooltip</span>
   </div>
-  <div class="vel-tooltip vel-tooltip-right" data-tip="Right side">
-    <button class="vel-btn vel-btn-secondary">Right</button>
-  </div>
-  <div class="vel-tooltip vel-tooltip-bottom" data-tip="Below the button">
-    <button class="vel-btn vel-btn-secondary">Bottom</button>
+  <div class="vel-tooltip">
+    <button class="vel-btn vel-btn-primary">Hover me</button>
+    <span class="vel-tooltip-content">Built with pure CSS</span>
   </div>
 </div>`,
       },
       {
         id: 'toast',
         label: 'Toast',
-        html: `<div class="vel-p-8 vel-flex vel-flex-col vel-gap-3 vel-max-w-sm">
-  <div class="vel-toast vel-toast-show">
-    <span>Default notification</span>
-    <button class="vel-toast-close">✕</button>
-  </div>
-  <div class="vel-toast vel-toast-success vel-toast-show">
-    <span>✓ Changes saved!</span>
-    <button class="vel-toast-close">✕</button>
-  </div>
-  <div class="vel-toast vel-toast-danger vel-toast-show">
-    <span>✕ Upload failed</span>
-    <button class="vel-toast-close">✕</button>
-  </div>
-  <div class="vel-toast vel-toast-warning vel-toast-show">
-    <span>⚠ Storage almost full</span>
-    <button class="vel-toast-close">✕</button>
+        html: `<div style="padding:2rem;position:relative;height:22rem;overflow:hidden">
+  <div class="vel-toast-container vel-toast-top-right" style="position:absolute">
+    <div class="vel-toast vel-toast-success">
+      <span class="vel-toast-icon">✓</span>
+      <div class="vel-toast-content">
+        <div class="vel-toast-title">Saved successfully</div>
+        Changes have been persisted.
+      </div>
+      <button class="vel-toast-close">✕</button>
+    </div>
+    <div class="vel-toast vel-toast-info">
+      <span class="vel-toast-icon">ℹ</span>
+      <div class="vel-toast-content">
+        <div class="vel-toast-title">Update available</div>
+        VeloraCSS v1.1 is ready.
+      </div>
+      <button class="vel-toast-close">✕</button>
+    </div>
+    <div class="vel-toast vel-toast-danger">
+      <span class="vel-toast-icon">✕</span>
+      <div class="vel-toast-content">
+        <div class="vel-toast-title">Upload failed</div>
+        File exceeds size limit.
+      </div>
+      <button class="vel-toast-close">✕</button>
+    </div>
+    <div class="vel-toast vel-toast-warning">
+      <span class="vel-toast-icon">⚠</span>
+      <div class="vel-toast-content">
+        <div class="vel-toast-title">Rate limit warning</div>
+        90% of API quota used.
+      </div>
+      <button class="vel-toast-close">✕</button>
+    </div>
   </div>
 </div>`,
       },
@@ -359,68 +479,111 @@ const GALLERY: GalleryCategory[] = [
         label: 'Navbar',
         html: `<div>
   <nav class="vel-navbar">
-    <a class="vel-navbar-brand">VeloraCSS</a>
-    <div class="vel-navbar-menu">
-      <a class="vel-navbar-item vel-active">Home</a>
-      <a class="vel-navbar-item">Docs</a>
-      <a class="vel-navbar-item">Components</a>
+    <a class="vel-navbar-brand">⬡ VeloraCSS</a>
+    <div class="vel-navbar-nav">
+      <a class="vel-navbar-link vel-active">Docs</a>
+      <a class="vel-navbar-link">Components</a>
+      <a class="vel-navbar-link">Playground</a>
+      <a class="vel-navbar-link">Community</a>
     </div>
     <div class="vel-navbar-end">
-      <button class="vel-btn vel-btn-primary vel-btn-sm">Get Started</button>
+      <span class="vel-badge vel-badge-solid-primary vel-badge-sm">v1.0</span>
+      <button class="vel-btn vel-btn-primary vel-btn-sm">Get started</button>
     </div>
   </nav>
-  <div class="vel-p-8 vel-text-muted">Page content below the navbar.</div>
+  <nav class="vel-navbar vel-navbar-glass" style="margin-top:1rem">
+    <a class="vel-navbar-brand">⬡ Glass Navbar</a>
+    <div class="vel-navbar-nav">
+      <a class="vel-navbar-link vel-active">Home</a>
+      <a class="vel-navbar-link">About</a>
+    </div>
+  </nav>
 </div>`,
       },
       {
         id: 'breadcrumb',
         label: 'Breadcrumb',
-        html: `<div class="vel-p-8">
+        html: `<div style="padding:2rem;display:flex;flex-direction:column;gap:1.5rem">
   <nav class="vel-breadcrumb">
-    <a class="vel-breadcrumb-item">Home</a>
-    <span class="vel-breadcrumb-sep">/</span>
-    <a class="vel-breadcrumb-item">Docs</a>
-    <span class="vel-breadcrumb-sep">/</span>
-    <span class="vel-breadcrumb-item vel-active">Components</span>
+    <a class="vel-breadcrumb-item vel-breadcrumb-link">Home</a>
+    <a class="vel-breadcrumb-item vel-breadcrumb-link">Docs</a>
+    <a class="vel-breadcrumb-item vel-breadcrumb-link">Components</a>
+    <span class="vel-breadcrumb-item vel-breadcrumb-active">Breadcrumb</span>
+  </nav>
+  <nav class="vel-breadcrumb vel-breadcrumb-chevron">
+    <a class="vel-breadcrumb-item vel-breadcrumb-link">Dashboard</a>
+    <a class="vel-breadcrumb-item vel-breadcrumb-link">Projects</a>
+    <span class="vel-breadcrumb-item vel-breadcrumb-active">velora-ui</span>
+  </nav>
+  <nav class="vel-breadcrumb vel-breadcrumb-dot">
+    <a class="vel-breadcrumb-item vel-breadcrumb-link">Settings</a>
+    <a class="vel-breadcrumb-item vel-breadcrumb-link">Account</a>
+    <span class="vel-breadcrumb-item vel-breadcrumb-active">Security</span>
   </nav>
 </div>`,
       },
       {
         id: 'menu',
         label: 'Menu',
-        html: `<div class="vel-p-8 vel-max-w-xs">
-  <ul class="vel-menu">
-    <li class="vel-menu-title">Navigation</li>
-    <li><a class="vel-menu-item vel-active">Dashboard</a></li>
-    <li><a class="vel-menu-item">Projects</a></li>
-    <li><a class="vel-menu-item">Team</a></li>
-    <li class="vel-menu-title">Account</li>
-    <li><a class="vel-menu-item">Settings</a></li>
-    <li><a class="vel-menu-item vel-text-danger">Sign out</a></li>
-  </ul>
+        html: `<div style="padding:2rem;display:flex;gap:2rem">
+  <div class="vel-menu" style="width:13rem">
+    <div class="vel-menu-label">Main</div>
+    <ul class="vel-menu-list">
+      <li class="vel-menu-item">
+        <a class="vel-menu-link vel-menu-link-active">
+          <span class="vel-menu-link-icon">⊞</span> Dashboard
+        </a>
+      </li>
+      <li class="vel-menu-item">
+        <a class="vel-menu-link">
+          <span class="vel-menu-link-icon">◫</span> Projects
+        </a>
+      </li>
+      <li class="vel-menu-item">
+        <a class="vel-menu-link">
+          <span class="vel-menu-link-icon">◎</span> Analytics
+        </a>
+      </li>
+    </ul>
+    <div class="vel-menu-label">Account</div>
+    <ul class="vel-menu-list">
+      <li class="vel-menu-item"><a class="vel-menu-link">Settings</a></li>
+      <li class="vel-menu-item"><a class="vel-menu-link" style="color:var(--vel-color-danger)">Sign out</a></li>
+    </ul>
+  </div>
 </div>`,
       },
       {
         id: 'tabs',
         label: 'Tabs',
-        html: `<div class="vel-p-8 vel-max-w-lg">
-  <div class="vel-tabs">
-    <input type="radio" name="demo-tabs" id="t1" checked class="vel-hidden"/>
-    <input type="radio" name="demo-tabs" id="t2" class="vel-hidden"/>
-    <input type="radio" name="demo-tabs" id="t3" class="vel-hidden"/>
-    <div class="vel-tabs-list">
-      <label for="t1" class="vel-tab">Overview</label>
-      <label for="t2" class="vel-tab">Details</label>
-      <label for="t3" class="vel-tab">Settings</label>
+        html: `<div style="padding:2rem;display:flex;flex-direction:column;gap:2rem">
+  <!-- Underline tabs (default) -->
+  <div>
+    <div class="vel-tabs">
+      <button class="vel-tab vel-active">Overview</button>
+      <button class="vel-tab">Details</button>
+      <button class="vel-tab">Activity</button>
+      <button class="vel-tab">Settings</button>
     </div>
-    <div class="vel-tab-content" data-tab="t1">
-      <p class="vel-p-4 vel-text-muted">Overview content — no JavaScript required.</p>
+    <div class="vel-tab-panel vel-active">
+      <p style="color:var(--vel-color-muted);padding-top:0.5rem">Overview content — no JavaScript required for styling.</p>
     </div>
-    <div class="vel-tab-content" data-tab="t2">
-      <p class="vel-p-4 vel-text-muted">Detailed information goes here.</p>
+  </div>
+  <!-- Pill tabs -->
+  <div>
+    <div class="vel-tabs-pill">
+      <button class="vel-tab">All</button>
+      <button class="vel-tab vel-active">Published</button>
+      <button class="vel-tab">Drafts</button>
+      <button class="vel-tab">Archived</button>
     </div>
-    <div class="vel-tab-content" data-tab="t3">
-      <p class="vel-p-4 vel-text-muted">Settings and configuration panel.</p>
+  </div>
+  <!-- Boxed tabs -->
+  <div>
+    <div class="vel-tabs-boxed">
+      <button class="vel-tab vel-active">HTML</button>
+      <button class="vel-tab">CSS</button>
+      <button class="vel-tab">Preview</button>
     </div>
   </div>
 </div>`,
@@ -428,29 +591,80 @@ const GALLERY: GalleryCategory[] = [
       {
         id: 'pagination',
         label: 'Pagination',
-        html: `<div class="vel-p-8 vel-flex vel-justify-center">
+        html: `<div style="padding:2rem;display:flex;flex-direction:column;gap:1.5rem;align-items:center">
   <nav class="vel-pagination">
-    <a class="vel-page-item vel-disabled">‹</a>
-    <a class="vel-page-item vel-active">1</a>
-    <a class="vel-page-item">2</a>
-    <a class="vel-page-item">3</a>
-    <span class="vel-page-item">...</span>
-    <a class="vel-page-item">10</a>
-    <a class="vel-page-item">›</a>
+    <li class="vel-page-item"><a class="vel-page-link vel-page-link-disabled">‹ Prev</a></li>
+    <li class="vel-page-item"><a class="vel-page-link vel-page-link-active">1</a></li>
+    <li class="vel-page-item"><a class="vel-page-link">2</a></li>
+    <li class="vel-page-item"><a class="vel-page-link">3</a></li>
+    <li class="vel-page-ellipsis">…</li>
+    <li class="vel-page-item"><a class="vel-page-link">12</a></li>
+    <li class="vel-page-item"><a class="vel-page-link">Next ›</a></li>
+  </nav>
+  <nav class="vel-pagination vel-pagination-sm">
+    <li class="vel-page-item"><a class="vel-page-link">1</a></li>
+    <li class="vel-page-item"><a class="vel-page-link vel-page-link-active">2</a></li>
+    <li class="vel-page-item"><a class="vel-page-link">3</a></li>
+  </nav>
+  <nav class="vel-pagination vel-pagination-lg">
+    <li class="vel-page-item"><a class="vel-page-link">Prev</a></li>
+    <li class="vel-page-item"><a class="vel-page-link vel-page-link-active">1</a></li>
+    <li class="vel-page-item"><a class="vel-page-link">2</a></li>
+    <li class="vel-page-item"><a class="vel-page-link">Next</a></li>
   </nav>
 </div>`,
       },
       {
         id: 'steps',
         label: 'Steps',
-        html: `<div class="vel-p-8 vel-max-w-lg">
-  <ol class="vel-steps">
-    <li class="vel-step vel-step-complete">Account created</li>
-    <li class="vel-step vel-step-complete">Email verified</li>
-    <li class="vel-step vel-step-active">Profile setup</li>
-    <li class="vel-step">Choose plan</li>
-    <li class="vel-step">Launch!</li>
-  </ol>
+        html: `<div style="padding:2rem;display:flex;flex-direction:column;gap:2.5rem">
+  <!-- Horizontal -->
+  <div class="vel-steps">
+    <div class="vel-step vel-step-complete">
+      <div class="vel-step-indicator">✓</div>
+      <div class="vel-step-label">Account</div>
+    </div>
+    <div class="vel-step vel-step-complete">
+      <div class="vel-step-indicator">✓</div>
+      <div class="vel-step-label">Verify</div>
+    </div>
+    <div class="vel-step vel-step-active">
+      <div class="vel-step-indicator">3</div>
+      <div class="vel-step-label">Profile</div>
+    </div>
+    <div class="vel-step">
+      <div class="vel-step-indicator">4</div>
+      <div class="vel-step-label">Plan</div>
+    </div>
+    <div class="vel-step">
+      <div class="vel-step-indicator">5</div>
+      <div class="vel-step-label">Done</div>
+    </div>
+  </div>
+  <!-- Vertical -->
+  <div class="vel-steps vel-steps-vertical" style="max-width:20rem">
+    <div class="vel-step vel-step-complete">
+      <div class="vel-step-indicator">✓</div>
+      <div class="vel-step-content">
+        <div class="vel-step-label">Repository created</div>
+        <div class="vel-step-description">veloracss/veloracss initialized</div>
+      </div>
+    </div>
+    <div class="vel-step vel-step-active">
+      <div class="vel-step-indicator">2</div>
+      <div class="vel-step-content">
+        <div class="vel-step-label">Running CI</div>
+        <div class="vel-step-description">Build and tests in progress…</div>
+      </div>
+    </div>
+    <div class="vel-step">
+      <div class="vel-step-indicator">3</div>
+      <div class="vel-step-content">
+        <div class="vel-step-label">Deploy to production</div>
+        <div class="vel-step-description">GitHub Pages deployment</div>
+      </div>
+    </div>
+  </div>
 </div>`,
       },
     ],
@@ -462,62 +676,118 @@ const GALLERY: GalleryCategory[] = [
       {
         id: 'table',
         label: 'Table',
-        html: `<div class="vel-p-8 vel-overflow-x-auto">
-  <table class="vel-table">
-    <thead>
-      <tr>
-        <th>Name</th><th>Role</th><th>Status</th><th>Joined</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr><td>Alice Chen</td><td>Designer</td><td><span class="vel-badge vel-badge-success">Active</span></td><td>Jan 2024</td></tr>
-      <tr><td>Bob Smith</td><td>Engineer</td><td><span class="vel-badge vel-badge-success">Active</span></td><td>Feb 2024</td></tr>
-      <tr><td>Carol White</td><td>PM</td><td><span class="vel-badge vel-badge-warning">Away</span></td><td>Mar 2024</td></tr>
-    </tbody>
-  </table>
+        html: `<div style="padding:2rem">
+  <div class="vel-table-wrapper">
+    <table class="vel-table vel-table-hover vel-table-striped">
+      <thead>
+        <tr>
+          <th data-sortable>Name</th>
+          <th data-sortable>Role</th>
+          <th data-sortable>Status</th>
+          <th data-sortable>Joined</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Alice Chen</strong></td>
+          <td>Lead Designer</td>
+          <td><span class="vel-badge vel-badge-solid-success">Active</span></td>
+          <td>Jan 2024</td>
+          <td><button class="vel-btn vel-btn-ghost vel-btn-xs">Edit</button></td>
+        </tr>
+        <tr>
+          <td><strong>Bob Smith</strong></td>
+          <td>Senior Engineer</td>
+          <td><span class="vel-badge vel-badge-solid-success">Active</span></td>
+          <td>Feb 2024</td>
+          <td><button class="vel-btn vel-btn-ghost vel-btn-xs">Edit</button></td>
+        </tr>
+        <tr class="vel-tr-warning">
+          <td><strong>Carol White</strong></td>
+          <td>Product Manager</td>
+          <td><span class="vel-badge vel-badge-warning">Away</span></td>
+          <td>Mar 2024</td>
+          <td><button class="vel-btn vel-btn-ghost vel-btn-xs">Edit</button></td>
+        </tr>
+        <tr class="vel-tr-danger">
+          <td><strong>Dan Torres</strong></td>
+          <td>QA Engineer</td>
+          <td><span class="vel-badge vel-badge-danger">Suspended</span></td>
+          <td>Apr 2024</td>
+          <td><button class="vel-btn vel-btn-ghost vel-btn-xs">Edit</button></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </div>`,
       },
       {
         id: 'charts',
         label: 'Charts',
-        html: `<div class="vel-p-8 vel-flex vel-flex-col vel-gap-6">
-  <div class="vel-chart-bar-group">
-    <div class="vel-chart-bar-item">
-      <div class="vel-chart-bar" style="--bar-height: 70%"></div>
-      <span class="vel-chart-label">Jan</span>
+        html: `<div style="padding:2rem;display:flex;flex-direction:column;gap:2rem">
+  <!-- Bar chart -->
+  <div class="vel-chart-bar">
+    <div class="vel-chart-axis-y"></div>
+    <div class="vel-chart-grid">
+      <div class="vel-chart-grid-line"></div>
+      <div class="vel-chart-grid-line"></div>
+      <div class="vel-chart-grid-line"></div>
+      <div class="vel-chart-grid-line"></div>
     </div>
-    <div class="vel-chart-bar-item">
-      <div class="vel-chart-bar" style="--bar-height: 45%"></div>
-      <span class="vel-chart-label">Feb</span>
+    <div class="vel-chart-bar-group vel-chart-bar-primary">
+      <div class="vel-chart-bar-value">42k</div>
+      <div class="vel-chart-bar-fill" style="--vel-bar-h:55%"></div>
+      <div class="vel-chart-bar-label">Jan</div>
     </div>
-    <div class="vel-chart-bar-item">
-      <div class="vel-chart-bar" style="--bar-height: 90%"></div>
-      <span class="vel-chart-label">Mar</span>
+    <div class="vel-chart-bar-group vel-chart-bar-primary">
+      <div class="vel-chart-bar-value">58k</div>
+      <div class="vel-chart-bar-fill" style="--vel-bar-h:70%"></div>
+      <div class="vel-chart-bar-label">Feb</div>
     </div>
-    <div class="vel-chart-bar-item">
-      <div class="vel-chart-bar" style="--bar-height: 60%"></div>
-      <span class="vel-chart-label">Apr</span>
+    <div class="vel-chart-bar-group vel-chart-bar-success">
+      <div class="vel-chart-bar-value">81k</div>
+      <div class="vel-chart-bar-fill" style="--vel-bar-h:90%"></div>
+      <div class="vel-chart-bar-label">Mar</div>
     </div>
-    <div class="vel-chart-bar-item">
-      <div class="vel-chart-bar" style="--bar-height: 80%"></div>
-      <span class="vel-chart-label">May</span>
+    <div class="vel-chart-bar-group vel-chart-bar-primary">
+      <div class="vel-chart-bar-value">63k</div>
+      <div class="vel-chart-bar-fill" style="--vel-bar-h:72%"></div>
+      <div class="vel-chart-bar-label">Apr</div>
+    </div>
+    <div class="vel-chart-bar-group vel-chart-bar-warning">
+      <div class="vel-chart-bar-value">39k</div>
+      <div class="vel-chart-bar-fill" style="--vel-bar-h:45%"></div>
+      <div class="vel-chart-bar-label">May</div>
+    </div>
+    <div class="vel-chart-bar-group vel-chart-bar-primary">
+      <div class="vel-chart-bar-value">74k</div>
+      <div class="vel-chart-bar-fill" style="--vel-bar-h:82%"></div>
+      <div class="vel-chart-bar-label">Jun</div>
     </div>
   </div>
   <!-- Progress rings -->
-  <div class="vel-flex vel-gap-6">
-    <div class="vel-progress-ring" style="--ring-value: 72">
-      <svg viewBox="0 0 36 36" class="vel-ring-svg">
-        <circle class="vel-ring-track" cx="18" cy="18" r="15.9"/>
-        <circle class="vel-ring-fill" cx="18" cy="18" r="15.9"/>
+  <div style="display:flex;gap:2rem;justify-content:center;flex-wrap:wrap">
+    <div class="vel-chart-ring vel-chart-ring-primary">
+      <svg class="vel-chart-ring-svg" viewBox="0 0 100 100">
+        <circle class="vel-chart-ring-track" cx="50" cy="50" r="42"/>
+        <circle class="vel-chart-ring-fill" cx="50" cy="50" r="42" style="--vel-ring-pct:72"/>
       </svg>
-      <span class="vel-ring-label">72%</span>
+      <div class="vel-chart-ring-label">72%<span class="vel-chart-ring-label-sub">Revenue</span></div>
     </div>
-    <div class="vel-progress-ring" style="--ring-value: 48">
-      <svg viewBox="0 0 36 36" class="vel-ring-svg">
-        <circle class="vel-ring-track" cx="18" cy="18" r="15.9"/>
-        <circle class="vel-ring-fill" cx="18" cy="18" r="15.9"/>
+    <div class="vel-chart-ring vel-chart-ring-success">
+      <svg class="vel-chart-ring-svg" viewBox="0 0 100 100">
+        <circle class="vel-chart-ring-track" cx="50" cy="50" r="42"/>
+        <circle class="vel-chart-ring-fill" cx="50" cy="50" r="42" style="--vel-ring-pct:88"/>
       </svg>
-      <span class="vel-ring-label">48%</span>
+      <div class="vel-chart-ring-label">88%<span class="vel-chart-ring-label-sub">Uptime</span></div>
+    </div>
+    <div class="vel-chart-ring vel-chart-ring-danger vel-chart-ring-lg">
+      <svg class="vel-chart-ring-svg" viewBox="0 0 100 100">
+        <circle class="vel-chart-ring-track" cx="50" cy="50" r="42"/>
+        <circle class="vel-chart-ring-fill" cx="50" cy="50" r="42" style="--vel-ring-pct:34"/>
+      </svg>
+      <div class="vel-chart-ring-label">34%<span class="vel-chart-ring-label-sub">Errors</span></div>
     </div>
   </div>
 </div>`,
@@ -525,30 +795,40 @@ const GALLERY: GalleryCategory[] = [
       {
         id: 'calendar',
         label: 'Calendar',
-        html: `<div class="vel-p-8 vel-max-w-sm">
-  <div class="vel-calendar">
+        html: `<div style="padding:2rem;display:flex;justify-content:center">
+  <div class="vel-calendar" style="width:22rem">
     <div class="vel-calendar-header">
-      <button class="vel-calendar-nav">‹</button>
+      <button class="vel-calendar-nav-btn">‹</button>
       <span class="vel-calendar-title">March 2026</span>
-      <button class="vel-calendar-nav">›</button>
+      <button class="vel-calendar-nav-btn">›</button>
+    </div>
+    <div class="vel-calendar-weekdays">
+      <span class="vel-calendar-weekday">Su</span>
+      <span class="vel-calendar-weekday">Mo</span>
+      <span class="vel-calendar-weekday">Tu</span>
+      <span class="vel-calendar-weekday">We</span>
+      <span class="vel-calendar-weekday">Th</span>
+      <span class="vel-calendar-weekday">Fr</span>
+      <span class="vel-calendar-weekday">Sa</span>
     </div>
     <div class="vel-calendar-grid">
-      <span class="vel-calendar-day-label">Su</span>
-      <span class="vel-calendar-day-label">Mo</span>
-      <span class="vel-calendar-day-label">Tu</span>
-      <span class="vel-calendar-day-label">We</span>
-      <span class="vel-calendar-day-label">Th</span>
-      <span class="vel-calendar-day-label">Fr</span>
-      <span class="vel-calendar-day-label">Sa</span>
-      <span></span><span></span><span></span><span></span><span></span><span></span>
-      <button class="vel-calendar-date">1</button>
-      <button class="vel-calendar-date">2</button>
-      <button class="vel-calendar-date vel-calendar-date-today">3</button>
-      <button class="vel-calendar-date">4</button>
-      <button class="vel-calendar-date vel-calendar-date-selected">5</button>
-      <button class="vel-calendar-date">6</button>
-      <button class="vel-calendar-date">7</button>
-      <button class="vel-calendar-date">8</button>
+      <button class="vel-calendar-day vel-calendar-day-disabled" tabindex="-1"></button>
+      <button class="vel-calendar-day">1</button>
+      <button class="vel-calendar-day">2</button>
+      <button class="vel-calendar-day">3</button>
+      <button class="vel-calendar-day">4</button>
+      <button class="vel-calendar-day">5</button>
+      <button class="vel-calendar-day">6</button>
+      <button class="vel-calendar-day">7</button>
+      <button class="vel-calendar-day vel-calendar-day-today">8</button>
+      <button class="vel-calendar-day vel-calendar-day-range">9</button>
+      <button class="vel-calendar-day vel-calendar-day-range">10</button>
+      <button class="vel-calendar-day vel-calendar-day-selected">11</button>
+      <button class="vel-calendar-day">12</button>
+      <button class="vel-calendar-day">13</button>
+      <button class="vel-calendar-day">14</button>
+      <button class="vel-calendar-day">15</button>
+      <button class="vel-calendar-day">16</button>
     </div>
   </div>
 </div>`,
@@ -562,14 +842,14 @@ const GALLERY: GalleryCategory[] = [
       {
         id: 'hero',
         label: 'Hero',
-        html: `<div class="vel-hero">
+        html: `<div class="vel-hero vel-hero-gradient">
   <div class="vel-hero-content">
-    <p class="vel-badge vel-badge-primary vel-mb-4">New — v1.0 Released</p>
-    <h1 class="vel-text-5xl vel-font-bold vel-mb-4">Build faster<br/>with VeloraCSS</h1>
-    <p class="vel-text-muted vel-text-lg vel-mb-8">A utility-first CSS framework with no JavaScript. Pure CSS state machines, container queries, and fluid scaling.</p>
-    <div class="vel-flex vel-gap-4">
-      <button class="vel-btn vel-btn-primary vel-btn-lg">Get Started</button>
-      <button class="vel-btn vel-btn-outline vel-btn-lg">View Docs</button>
+    <p class="vel-hero-eyebrow">New — v1.0 Released</p>
+    <h1 class="vel-hero-title">Build interfaces<br>at the speed of thought</h1>
+    <p class="vel-hero-subtitle">VeloraCSS — utility-first, component-rich, zero JavaScript. One hue value drives your entire color universe.</p>
+    <div class="vel-hero-actions">
+      <button class="vel-btn vel-btn-primary vel-btn-lg">Get started free</button>
+      <button class="vel-btn vel-btn-ghost vel-btn-lg">View on GitHub ↗</button>
     </div>
   </div>
 </div>`,
@@ -577,92 +857,118 @@ const GALLERY: GalleryCategory[] = [
       {
         id: 'feature-list',
         label: 'Feature List',
-        html: `<div class="vel-p-8 vel-max-w-2xl vel-grid vel-grid-cols-2 vel-gap-4">
-  <div class="vel-feature">
-    <div class="vel-feature-icon">⚡</div>
-    <h3 class="vel-feature-title">Zero JS</h3>
-    <p class="vel-feature-desc">Components built with pure CSS state machines.</p>
-  </div>
-  <div class="vel-feature">
-    <div class="vel-feature-icon">🎨</div>
-    <h3 class="vel-feature-title">Color Genetics</h3>
-    <p class="vel-feature-desc">One hue value drives your entire color universe.</p>
-  </div>
-  <div class="vel-feature">
-    <div class="vel-feature-icon">📐</div>
-    <h3 class="vel-feature-title">Fluid Scale</h3>
-    <p class="vel-feature-desc">All spacing and type uses clamp() — no breakpoints.</p>
-  </div>
-  <div class="vel-feature">
-    <div class="vel-feature-icon">📦</div>
-    <h3 class="vel-feature-title">Container Smart</h3>
-    <p class="vel-feature-desc">Components adapt to their container, not viewport.</p>
+        html: `<div class="vel-features">
+  <div class="vel-features-grid">
+    <div class="vel-feature-card">
+      <div class="vel-feature-icon vel-feature-icon-primary">
+        <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+      </div>
+      <div class="vel-feature-title">Zero JavaScript</div>
+      <div class="vel-feature-text">Modals, tabs, dropdowns, carousels — all pure CSS state machines using :has() and radio inputs.</div>
+    </div>
+    <div class="vel-feature-card">
+      <div class="vel-feature-icon vel-feature-icon-success">
+        <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M8 12l3 3 5-5"/></svg>
+      </div>
+      <div class="vel-feature-title">Color Genetics</div>
+      <div class="vel-feature-text">Set --vel-dna-hue once. Fifty+ colors, all surfaces, all states — derived automatically via oklch().</div>
+    </div>
+    <div class="vel-feature-card">
+      <div class="vel-feature-icon vel-feature-icon-info">
+        <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+      </div>
+      <div class="vel-feature-title">Container Intelligence</div>
+      <div class="vel-feature-text">@container queries let components respond to their own size, not the viewport. No breakpoint hell.</div>
+    </div>
+    <div class="vel-feature-card">
+      <div class="vel-feature-icon vel-feature-icon-warning">
+        <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+      </div>
+      <div class="vel-feature-title">Fluid Scale</div>
+      <div class="vel-feature-text">Every spacing and type token uses clamp(). Scale beautifully from mobile to 4K without a single breakpoint.</div>
+    </div>
   </div>
 </div>`,
       },
       {
         id: 'pricing',
         label: 'Pricing',
-        html: `<div class="vel-p-8 vel-grid vel-grid-cols-3 vel-gap-4 vel-max-w-3xl">
+        html: `<div class="vel-pricing-grid" style="padding:2rem">
   <div class="vel-pricing-card">
-    <div class="vel-pricing-tier">Free</div>
+    <div class="vel-pricing-name">Starter</div>
     <div class="vel-pricing-price">$0<span class="vel-pricing-period">/mo</span></div>
+    <p class="vel-pricing-description">Everything you need to get started.</p>
+    <div class="vel-pricing-divider"></div>
     <ul class="vel-pricing-features">
-      <li class="vel-pricing-feature">5 projects</li>
-      <li class="vel-pricing-feature">1GB storage</li>
-      <li class="vel-pricing-feature vel-text-muted">No custom domain</li>
+      <li class="vel-pricing-feature"><span class="vel-pricing-feature-check">✓</span> 5 projects</li>
+      <li class="vel-pricing-feature"><span class="vel-pricing-feature-check">✓</span> 1 GB storage</li>
+      <li class="vel-pricing-feature" style="opacity:.45"><span class="vel-pricing-feature-check">—</span> Custom domain</li>
     </ul>
-    <button class="vel-btn vel-btn-outline vel-btn-sm">Get started</button>
+    <div class="vel-pricing-cta"><button class="vel-btn vel-btn-outline vel-btn-block">Get started</button></div>
   </div>
   <div class="vel-pricing-card vel-pricing-card-featured">
-    <div class="vel-pricing-badge">Popular</div>
-    <div class="vel-pricing-tier">Pro</div>
+    <div class="vel-pricing-badge">Most popular</div>
+    <div class="vel-pricing-name">Pro</div>
     <div class="vel-pricing-price">$12<span class="vel-pricing-period">/mo</span></div>
+    <p class="vel-pricing-description">For teams building serious products.</p>
+    <div class="vel-pricing-divider"></div>
     <ul class="vel-pricing-features">
-      <li class="vel-pricing-feature">Unlimited projects</li>
-      <li class="vel-pricing-feature">50GB storage</li>
-      <li class="vel-pricing-feature">Custom domain</li>
+      <li class="vel-pricing-feature"><span class="vel-pricing-feature-check">✓</span> Unlimited projects</li>
+      <li class="vel-pricing-feature"><span class="vel-pricing-feature-check">✓</span> 50 GB storage</li>
+      <li class="vel-pricing-feature"><span class="vel-pricing-feature-check">✓</span> Custom domain</li>
     </ul>
-    <button class="vel-btn vel-btn-primary vel-btn-sm">Upgrade</button>
+    <div class="vel-pricing-cta"><button class="vel-btn vel-btn-primary vel-btn-block">Upgrade to Pro</button></div>
   </div>
   <div class="vel-pricing-card">
-    <div class="vel-pricing-tier">Team</div>
+    <div class="vel-pricing-name">Team</div>
     <div class="vel-pricing-price">$49<span class="vel-pricing-period">/mo</span></div>
+    <p class="vel-pricing-description">For growing teams and organizations.</p>
+    <div class="vel-pricing-divider"></div>
     <ul class="vel-pricing-features">
-      <li class="vel-pricing-feature">Everything in Pro</li>
-      <li class="vel-pricing-feature">10 team members</li>
-      <li class="vel-pricing-feature">Priority support</li>
+      <li class="vel-pricing-feature"><span class="vel-pricing-feature-check">✓</span> Everything in Pro</li>
+      <li class="vel-pricing-feature"><span class="vel-pricing-feature-check">✓</span> 10 team seats</li>
+      <li class="vel-pricing-feature"><span class="vel-pricing-feature-check">✓</span> Priority support</li>
     </ul>
-    <button class="vel-btn vel-btn-outline vel-btn-sm">Contact sales</button>
+    <div class="vel-pricing-cta"><button class="vel-btn vel-btn-outline vel-btn-block">Contact sales</button></div>
   </div>
 </div>`,
       },
       {
         id: 'carousel',
         label: 'Carousel',
-        html: `<div class="vel-p-8 vel-max-w-lg">
+        html: `<div style="padding:2rem;max-width:36rem">
   <div class="vel-carousel">
-    <input type="radio" name="c1" id="s1" checked class="vel-hidden"/>
-    <input type="radio" name="c1" id="s2" class="vel-hidden"/>
-    <input type="radio" name="c1" id="s3" class="vel-hidden"/>
+    <input type="radio" name="demo-carousel" id="vel-slide-1" checked />
+    <input type="radio" name="demo-carousel" id="vel-slide-2" />
+    <input type="radio" name="demo-carousel" id="vel-slide-3" />
     <div class="vel-carousel-track">
-      <div class="vel-carousel-slide vel-bg-primary vel-p-8 vel-text-center vel-rounded-lg">
-        <h3 class="vel-text-xl vel-font-bold">Slide One</h3>
-        <p class="vel-text-muted vel-mt-2">Pure CSS carousel — no JavaScript.</p>
+      <div class="vel-carousel-slide">
+        <div class="vel-card vel-card-primary" style="margin:0;border-radius:0;min-height:12rem;display:flex;align-items:center;justify-content:center;flex-direction:column;text-align:center;gap:0.5rem;padding:2rem">
+          <h3 style="font-size:1.25rem;font-weight:700;color:var(--vel-color-text)">Color Genetics</h3>
+          <p style="color:var(--vel-color-muted)">One hue. Fifty+ colors. All derived via oklch().</p>
+        </div>
       </div>
-      <div class="vel-carousel-slide vel-bg-surface-2 vel-p-8 vel-text-center vel-rounded-lg">
-        <h3 class="vel-text-xl vel-font-bold">Slide Two</h3>
-        <p class="vel-text-muted vel-mt-2">Driven by radio inputs and sibling selectors.</p>
+      <div class="vel-carousel-slide">
+        <div class="vel-card vel-card-filled" style="margin:0;border-radius:0;min-height:12rem;display:flex;align-items:center;justify-content:center;flex-direction:column;text-align:center;gap:0.5rem;padding:2rem">
+          <h3 style="font-size:1.25rem;font-weight:700;color:var(--vel-color-text)">Zero JS</h3>
+          <p style="color:var(--vel-color-muted)">Modals, tabs, carousels — pure CSS state machines.</p>
+        </div>
       </div>
-      <div class="vel-carousel-slide vel-bg-surface-3 vel-p-8 vel-text-center vel-rounded-lg">
-        <h3 class="vel-text-xl vel-font-bold">Slide Three</h3>
-        <p class="vel-text-muted vel-mt-2">Smooth scroll snap transitions.</p>
+      <div class="vel-carousel-slide">
+        <div class="vel-card vel-card-glass" style="margin:0;border-radius:0;min-height:12rem;display:flex;align-items:center;justify-content:center;flex-direction:column;text-align:center;gap:0.5rem;padding:2rem">
+          <h3 style="font-size:1.25rem;font-weight:700;color:var(--vel-color-text)">Container Smart</h3>
+          <p style="color:var(--vel-color-muted)">Components adapt to their container, not the viewport.</p>
+        </div>
       </div>
     </div>
+    <div class="vel-carousel-arrows">
+      <label for="vel-slide-3" class="vel-carousel-prev">‹</label>
+      <label for="vel-slide-2" class="vel-carousel-next">›</label>
+    </div>
     <div class="vel-carousel-dots">
-      <label for="s1" class="vel-carousel-dot"></label>
-      <label for="s2" class="vel-carousel-dot"></label>
-      <label for="s3" class="vel-carousel-dot"></label>
+      <label for="vel-slide-1" class="vel-carousel-dot">1</label>
+      <label for="vel-slide-2" class="vel-carousel-dot">2</label>
+      <label for="vel-slide-3" class="vel-carousel-dot">3</label>
     </div>
   </div>
 </div>`,
@@ -670,18 +976,22 @@ const GALLERY: GalleryCategory[] = [
       {
         id: 'chat-bubble',
         label: 'Chat Bubble',
-        html: `<div class="vel-p-8 vel-flex vel-flex-col vel-gap-4 vel-max-w-sm">
+        html: `<div style="padding:2rem;max-width:28rem;display:flex;flex-direction:column;gap:0.75rem">
   <div class="vel-chat vel-chat-start">
-    <div class="vel-chat-bubble">Hey! Have you seen the new VeloraCSS?</div>
+    <div class="vel-chat-bubble">Hey, I just installed VeloraCSS — this is wild.</div>
     <div class="vel-chat-meta">Alex · 2:31 PM</div>
   </div>
   <div class="vel-chat vel-chat-end">
-    <div class="vel-chat-bubble vel-chat-bubble-primary">Yes! I love the Color Genetics system 🎨</div>
+    <div class="vel-chat-bubble vel-chat-bubble-primary">Right? Color Genetics is insane. One CSS variable = full theme.</div>
     <div class="vel-chat-meta">You · 2:32 PM</div>
   </div>
   <div class="vel-chat vel-chat-start">
-    <div class="vel-chat-bubble">Pure CSS modals blew my mind honestly</div>
+    <div class="vel-chat-bubble">And all those components with zero JS? How??</div>
     <div class="vel-chat-meta">Alex · 2:33 PM</div>
+  </div>
+  <div class="vel-chat vel-chat-end">
+    <div class="vel-chat-bubble vel-chat-bubble-info">:has() selector + radio inputs. CSS state machines. It's all in the docs.</div>
+    <div class="vel-chat-meta">You · 2:34 PM</div>
   </div>
 </div>`,
       },
@@ -694,15 +1004,31 @@ const GALLERY: GalleryCategory[] = [
       {
         id: 'code-block',
         label: 'Code Block',
-        html: `<div class="vel-p-8 vel-max-w-lg">
+        html: `<div style="padding:2rem;display:flex;flex-direction:column;gap:1.5rem;max-width:36rem">
   <div class="vel-code-block">
-    <div class="vel-code-header">
-      <span class="vel-code-lang">CSS</span>
-      <button class="vel-code-copy">Copy</button>
+    <div class="vel-code-block-header">
+      <span class="vel-code-block-lang">CSS</span>
+      <span class="vel-code-block-filename">tokens.css</span>
+      <button class="vel-code-block-copy">Copy</button>
     </div>
-    <pre class="vel-code"><code><span class="vel-code-comment">/* One hue. 50+ colors. */</span>
-<span class="vel-code-prop">--vel-dna-hue</span>: <span class="vel-code-num">258</span>;
-<span class="vel-code-prop">--vel-color-primary</span>: <span class="vel-code-fn">oklch</span>(<span class="vel-code-num">65%</span> <span class="vel-code-num">0.21</span> <span class="vel-code-kw">var</span>(--vel-dna-hue));</code></pre>
+    <div class="vel-code-block-body">
+      <pre><code>/* Color Genetics — one hue, 50+ colors */
+--vel-dna-hue: 258;
+--vel-color-primary: oklch(65% 0.21 var(--vel-dna-hue));
+--vel-surface-0:     oklch(7%  0.02 var(--vel-dna-hue));
+--vel-surface-1:     oklch(11% 0.025 var(--vel-dna-hue));</code></pre>
+    </div>
+  </div>
+  <div class="vel-code-block vel-code-block-terminal">
+    <div class="vel-code-block-header">
+      <span class="vel-code-block-filename">Terminal</span>
+    </div>
+    <div class="vel-code-block-body">
+      <pre><code>npm install veloracss
+
+# Import in your CSS
+@import 'veloracss';</code></pre>
+    </div>
   </div>
 </div>`,
       },
@@ -712,67 +1038,104 @@ const GALLERY: GalleryCategory[] = [
 
 // ─── Default HTML (Starter) ───────────────────────────────────────────────────
 
-const DEFAULT_HTML = `<!--
-  Welcome to VeloraCSS Playground!
-  Edit this HTML to start building — changes appear live in the preview.
-  Or pick a component from the gallery panel on the left.
--->
-<div style="min-height:100vh;background:#0b1120;background-image:radial-gradient(circle,#1e293b 1px,transparent 1px);background-size:30px 30px;display:flex;align-items:center;justify-content:center;padding:40px 20px;font-family:system-ui,sans-serif">
-  <div style="background:#111827;border:1px solid #1e2d45;border-radius:20px;padding:44px 48px;max-width:540px;width:100%;box-shadow:0 32px 64px rgba(0,0,0,.6)">
+const DEFAULT_HTML = `<!-- VeloraCSS Playground — edit this HTML and see changes live -->
+<div style="min-height:100vh;background:var(--vel-surface-bg,#060b17);padding:0;font-family:system-ui,sans-serif">
 
-    <!-- Heading -->
-    <h1 style="color:#f1f5f9;font-size:1.375rem;font-weight:700;margin:0 0 10px;letter-spacing:-0.02em">
-      Welcome to the VeloraCSS Playground
+  <!-- Navbar -->
+  <nav class="vel-navbar">
+    <span class="vel-navbar-brand">⬡ VeloraCSS</span>
+    <div class="vel-navbar-nav">
+      <a class="vel-navbar-link vel-active">Docs</a>
+      <a class="vel-navbar-link">Components</a>
+      <a class="vel-navbar-link">Community</a>
+    </div>
+    <div class="vel-navbar-end">
+      <span class="vel-badge vel-badge-solid-primary vel-badge-sm">v1.0</span>
+      <button class="vel-btn vel-btn-primary vel-btn-sm">Get started</button>
+    </div>
+  </nav>
+
+  <!-- Hero eyebrow + headline -->
+  <div style="padding:3rem 2rem 1.5rem;max-width:52rem;margin:0 auto">
+    <p class="vel-hero-eyebrow" style="margin-bottom:0.75rem">AI-designed. Human-shipped.</p>
+    <h1 style="color:var(--vel-color-text);font-size:clamp(2rem,5vw,3.25rem);font-weight:800;line-height:1.1;letter-spacing:-0.04em;margin:0 0 1rem">
+      Build interfaces<br>at the speed of thought
     </h1>
-    <p style="color:#64748b;font-size:0.9rem;line-height:1.7;margin:0 0 30px">
-      An online playground for <strong style="color:#c4b5fd">VeloraCSS</strong> — a fully original
-      utility-first CSS framework with rich components and zero dependencies.
-      Edit the HTML on the left and see changes instantly.
+    <p style="color:var(--vel-color-muted);font-size:1.0625rem;line-height:1.7;margin:0 0 2rem;max-width:36rem">
+      VeloraCSS — utility-first, component-rich. One CSS variable drives your entire color universe. Zero JavaScript required.
     </p>
+    <div style="display:flex;gap:0.75rem;flex-wrap:wrap;margin-bottom:2.5rem">
+      <button class="vel-btn vel-btn-primary vel-btn-lg">Get started free</button>
+      <button class="vel-btn vel-btn-ghost vel-btn-lg">View docs ↗</button>
+    </div>
 
-    <!-- Feature list -->
-    <ul style="list-style:none;padding:0;margin:0 0 34px;display:flex;flex-direction:column;gap:14px">
-      <li style="display:flex;align-items:flex-start;gap:14px">
-        <span style="width:22px;height:22px;background:#7c5cfc20;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:12px;flex-shrink:0;margin-top:1px">✦</span>
-        <div>
-          <span style="color:#e2e8f0;font-size:0.875rem;font-weight:600">Utility-first classes</span>
-          <span style="color:#475569;font-size:0.8rem;display:block;margin-top:2px">vel-flex, vel-p-4, vel-text-lg and hundreds more</span>
-        </div>
-      </li>
-      <li style="display:flex;align-items:flex-start;gap:14px">
-        <span style="width:22px;height:22px;background:#0ecb8120;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:12px;flex-shrink:0;margin-top:1px">✦</span>
-        <div>
-          <span style="color:#e2e8f0;font-size:0.875rem;font-weight:600">Rich components</span>
-          <span style="color:#475569;font-size:0.8rem;display:block;margin-top:2px">vel-btn, vel-card, vel-badge, vel-alert, vel-navbar &amp; more</span>
-        </div>
-      </li>
-      <li style="display:flex;align-items:flex-start;gap:14px">
-        <span style="width:22px;height:22px;background:#2ebde520;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:12px;flex-shrink:0;margin-top:1px">✦</span>
-        <div>
-          <span style="color:#e2e8f0;font-size:0.875rem;font-weight:600">Color Genetics</span>
-          <span style="color:#475569;font-size:0.8rem;display:block;margin-top:2px">One --vel-dna-hue value drives 50+ colors — try the Token Controls panel</span>
-        </div>
-      </li>
-      <li style="display:flex;align-items:flex-start;gap:14px">
-        <span style="width:22px;height:22px;background:#ff9d0020;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:12px;flex-shrink:0;margin-top:1px">✦</span>
-        <div>
-          <span style="color:#e2e8f0;font-size:0.875rem;font-weight:600">Animation utilities</span>
-          <span style="color:#475569;font-size:0.8rem;display:block;margin-top:2px">vel-animate-fade-in · vel-animate-slide-up · vel-animate-pulse</span>
-        </div>
-      </li>
-    </ul>
+    <!-- Badge cluster -->
+    <div style="display:flex;gap:0.5rem;flex-wrap:wrap;margin-bottom:2.5rem">
+      <span class="vel-badge vel-badge-solid-primary">Utility-first</span>
+      <span class="vel-badge vel-badge-success">Zero JS</span>
+      <span class="vel-badge vel-badge-info">Container queries</span>
+      <span class="vel-badge vel-badge-warning">Fluid scale</span>
+      <span class="vel-badge vel-badge-neutral">oklch colors</span>
+    </div>
+  </div>
 
-    <!-- Prompt box -->
-    <div style="background:#0b1120;border:1px solid #1e2d45;border-radius:12px;padding:14px 18px;display:flex;align-items:flex-start;gap:12px">
-      <span style="color:#7c5cfc;font-size:20px;margin-top:-2px">←</span>
-      <p style="color:#475569;font-size:0.8rem;line-height:1.6;margin:0">
-        Pick a component from the <strong style="color:#94a3b8">Gallery</strong> panel on the left,
-        or edit the HTML directly. Use <strong style="color:#94a3b8">Token Controls</strong> to
-        restyle everything with a single hue slider.
-      </p>
+  <!-- Card grid -->
+  <div style="padding:0 2rem 3rem;max-width:52rem;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1rem">
+
+    <div class="vel-card vel-card-elevated">
+      <div class="vel-card-header" style="display:flex;justify-content:space-between;align-items:center">
+        Color Genetics
+        <span class="vel-badge vel-badge-primary vel-badge-sm">New</span>
+      </div>
+      <div class="vel-card-body">Set <code style="color:var(--vel-color-primary);background:var(--vel-surface-2);padding:1px 5px;border-radius:4px">--vel-dna-hue</code> once. 50+ colors derived automatically via oklch().</div>
+      <div class="vel-card-footer">
+        <div class="vel-progress vel-progress-primary vel-progress-sm">
+          <div class="vel-progress-bar" style="width:100%"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="vel-card vel-card-elevated">
+      <div class="vel-card-header" style="display:flex;justify-content:space-between;align-items:center">
+        Zero JS
+        <span class="vel-badge vel-badge-success vel-badge-sm">Pure CSS</span>
+      </div>
+      <div class="vel-card-body">Modals, tabs, carousels, and dropdowns all work via CSS :has() and radio input state machines.</div>
+      <div class="vel-card-footer">
+        <button class="vel-btn vel-btn-ghost vel-btn-sm">See examples →</button>
+      </div>
+    </div>
+
+    <div class="vel-card vel-card-elevated">
+      <div class="vel-card-header" style="display:flex;justify-content:space-between;align-items:center">
+        Fluid Scale
+        <span class="vel-badge vel-badge-info vel-badge-sm">clamp()</span>
+      </div>
+      <div class="vel-card-body">Every spacing and type token uses clamp(). Scales from mobile to 4K without a single breakpoint.</div>
+      <div class="vel-card-footer">
+        <div style="display:flex;gap:0.5rem">
+          <div class="vel-avatar vel-avatar-xs vel-avatar-primary">A</div>
+          <div class="vel-avatar vel-avatar-xs vel-avatar-success">B</div>
+          <div class="vel-avatar vel-avatar-xs vel-avatar-neutral">C</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="vel-card vel-card-primary">
+      <div class="vel-card-body">
+        <p style="font-size:0.875rem;font-weight:600;margin:0 0 0.5rem">Try Token Controls</p>
+        <p style="color:var(--vel-color-muted);font-size:0.8125rem;line-height:1.5;margin:0">Click the Tokens button in the header to adjust hue, radius, and spacing live.</p>
+      </div>
     </div>
 
   </div>
+
+  <!-- Alert strip -->
+  <div style="padding:0 2rem 3rem;max-width:52rem;margin:0 auto;display:flex;flex-direction:column;gap:0.625rem">
+    <div class="vel-alert vel-alert-success"><strong class="vel-alert-title">Launched</strong> VeloraCSS v1.0 is now available on npm — zero dependencies.</div>
+    <div class="vel-alert vel-alert-info"><strong class="vel-alert-title">Tip</strong> Pick any component from the Gallery panel on the left to load a live demo.</div>
+  </div>
+
 </div>`
 
 const DEFAULT_CSS = `/* Add your custom CSS here */\n`
@@ -792,7 +1155,7 @@ const DEVICES: { id: Device; label: string; width: number | null }[] = [
   { id: 'mobile',  label: '375',    width: 375  },
 ]
 
-// ─── Colors ───────────────────────────────────────────────────────────────────
+// ─── Surface colors (used only for structural chrome that can't use vel- classes) ──
 
 const C = {
   bg:          '#0a0f1e',
@@ -852,52 +1215,6 @@ function buildTokenCss(tokens: TokenState): string {
   --vel-border-base: oklch(22% 0.04 ${tokens.hue});
   --vel-radius-base: ${tokens.radius}rem;
 }`
-}
-
-// ─── Sub-components ───────────────────────────────────────────────────────────
-
-function HeaderBtn({
-  onClick, children, active, title,
-}: { onClick: () => void; children: React.ReactNode; active?: boolean; title?: string }) {
-  return (
-    <button
-      onClick={onClick}
-      title={title}
-      style={{
-        display: 'flex', alignItems: 'center', gap: '6px',
-        padding: '5px 12px', borderRadius: '6px', fontSize: '12px',
-        fontWeight: 500, cursor: 'pointer',
-        background: active ? C.accent : C.surface2,
-        color: active ? '#fff' : C.muted,
-        border: `1px solid ${active ? C.accent : C.border}`,
-        transition: 'all .15s',
-      }}
-    >
-      {children}
-    </button>
-  )
-}
-
-function DeviceBtn({
-  device, current, onClick,
-}: { device: typeof DEVICES[number]; current: Device; onClick: () => void }) {
-  const active = device.id === current
-  return (
-    <button
-      onClick={onClick}
-      title={device.label === 'Full' ? 'Full width' : `${device.label}px`}
-      style={{
-        padding: '4px 10px', borderRadius: '5px', fontSize: '11px',
-        fontWeight: 500, cursor: 'pointer',
-        background: active ? C.accent : 'transparent',
-        color: active ? '#fff' : C.muted,
-        border: `1px solid ${active ? C.accent : 'transparent'}`,
-        transition: 'all .15s',
-      }}
-    >
-      {device.label === 'Full' ? 'Full' : `${device.label}px`}
-    </button>
-  )
 }
 
 // ─── Gallery Panel ────────────────────────────────────────────────────────────
@@ -1107,19 +1424,16 @@ export default function App() {
   // Load from URL hash on mount
   useEffect(() => {
     const hash = window.location.hash
-    // Legacy single-value code= format
     const legacyMatch = hash.match(/[#&]code=([^&]+)/)
     if (legacyMatch) {
       const decoded = decode(legacyMatch[1])
       if (decoded) {
         try {
-          // Try to parse as JSON (new format)
           const parsed = JSON.parse(decoded)
           if (parsed.html) setHtml(parsed.html)
           if (parsed.css) setCustomCss(parsed.css)
           if (parsed.tokens) setTokens({ ...DEFAULT_TOKENS, ...parsed.tokens })
         } catch {
-          // Plain HTML (legacy)
           setHtml(decoded)
         }
         setActiveItemId(null)
@@ -1153,13 +1467,41 @@ export default function App() {
 
   const currentDevice = DEVICES.find(d => d.id === device)!
 
-  // Build token CSS — always inject (even defaults keep hue coherent)
   const tokenCss = buildTokenCss(tokens)
 
-  // Wrap HTML with spacing scale if not 1x
   const previewHtml = tokens.spacingScale !== 1
     ? `<div style="--vel-space-scale:${tokens.spacingScale}">${html}</div>`
     : html
+
+  // Active / inactive styles for header toggle buttons
+  const toggleBtnStyle = (active: boolean): React.CSSProperties => ({
+    display: 'flex', alignItems: 'center', gap: '5px',
+    padding: '5px 10px', borderRadius: '6px', fontSize: '12px',
+    fontWeight: 500, cursor: 'pointer',
+    background: active ? C.accentDim : 'transparent',
+    color: active ? '#c4b5fd' : C.muted,
+    border: `1px solid ${active ? C.accent + '55' : 'transparent'}`,
+    transition: 'all .15s',
+  })
+
+  const headerBtnStyle = (active?: boolean): React.CSSProperties => ({
+    display: 'flex', alignItems: 'center', gap: '6px',
+    padding: '5px 12px', borderRadius: '6px', fontSize: '12px',
+    fontWeight: 500, cursor: 'pointer',
+    background: active ? C.accent : C.surface2,
+    color: active ? '#fff' : C.muted,
+    border: `1px solid ${active ? C.accent : C.border}`,
+    transition: 'all .15s',
+  })
+
+  const deviceBtnStyle = (isActive: boolean): React.CSSProperties => ({
+    padding: '4px 10px', borderRadius: '5px', fontSize: '11px',
+    fontWeight: 500, cursor: 'pointer',
+    background: isActive ? C.accent : 'transparent',
+    color: isActive ? '#fff' : C.muted,
+    border: `1px solid ${isActive ? C.accent : 'transparent'}`,
+    transition: 'all .15s',
+  })
 
   return (
     <div style={{
@@ -1189,37 +1531,19 @@ export default function App() {
 
           <div style={{ width: '1px', height: '20px', background: C.border }} />
 
-          {/* Gallery toggle */}
           <button
             onClick={() => setShowGallery(v => !v)}
             title="Toggle component gallery"
-            style={{
-              display: 'flex', alignItems: 'center', gap: '5px',
-              padding: '5px 10px', borderRadius: '6px', fontSize: '12px',
-              fontWeight: 500, cursor: 'pointer',
-              background: showGallery ? C.accentDim : 'transparent',
-              color: showGallery ? '#c4b5fd' : C.muted,
-              border: `1px solid ${showGallery ? C.accent + '55' : 'transparent'}`,
-              transition: 'all .15s',
-            }}
+            style={toggleBtnStyle(showGallery)}
           >
             <span style={{ fontSize: '14px', lineHeight: 1 }}>▤</span>
             Gallery
           </button>
 
-          {/* Token controls toggle */}
           <button
             onClick={() => setShowTokens(v => !v)}
             title="Toggle token controls"
-            style={{
-              display: 'flex', alignItems: 'center', gap: '5px',
-              padding: '5px 10px', borderRadius: '6px', fontSize: '12px',
-              fontWeight: 500, cursor: 'pointer',
-              background: showTokens ? C.accentDim : 'transparent',
-              color: showTokens ? '#c4b5fd' : C.muted,
-              border: `1px solid ${showTokens ? C.accent + '55' : 'transparent'}`,
-              transition: 'all .15s',
-            }}
+            style={toggleBtnStyle(showTokens)}
           >
             <span style={{ fontSize: '14px', lineHeight: 1 }}>◈</span>
             Tokens
@@ -1235,26 +1559,31 @@ export default function App() {
             marginRight: '4px',
           }}>
             {DEVICES.map(d => (
-              <DeviceBtn key={d.id} device={d} current={device} onClick={() => setDevice(d.id)} />
+              <button
+                key={d.id}
+                onClick={() => setDevice(d.id)}
+                title={d.label === 'Full' ? 'Full width' : `${d.label}px`}
+                style={deviceBtnStyle(d.id === device)}
+              >
+                {d.label === 'Full' ? 'Full' : `${d.label}px`}
+              </button>
             ))}
           </div>
 
-          <HeaderBtn onClick={handleCopy}>
+          <button onClick={handleCopy} style={headerBtnStyle()}>
             {copied ? '✓ Copied' : 'Copy HTML'}
-          </HeaderBtn>
-          <HeaderBtn onClick={handleShare} active={shared}>
+          </button>
+          <button onClick={handleShare} style={headerBtnStyle(shared)}>
             {shared ? '✓ Link copied!' : '⇱ Share'}
-          </HeaderBtn>
+          </button>
           <a
             href={window.location.hostname === 'localhost' ? 'http://localhost:3000/docs' : `${window.location.origin}/veloracss/docs`}
             target="_blank"
             rel="noopener noreferrer"
             style={{
-              display: 'flex', alignItems: 'center', gap: '6px',
-              padding: '5px 12px', borderRadius: '6px', fontSize: '12px',
-              fontWeight: 500, cursor: 'pointer', textDecoration: 'none',
-              background: C.surface2, color: '#c4b5fd',
-              border: `1px solid ${C.border}`,
+              ...headerBtnStyle(),
+              textDecoration: 'none',
+              color: '#c4b5fd',
             }}
           >
             Docs
@@ -1264,11 +1593,8 @@ export default function App() {
             target="_blank"
             rel="noopener noreferrer"
             style={{
-              display: 'flex', alignItems: 'center', gap: '6px',
-              padding: '5px 12px', borderRadius: '6px', fontSize: '12px',
-              fontWeight: 500, cursor: 'pointer', textDecoration: 'none',
-              background: C.surface2, color: C.muted,
-              border: `1px solid ${C.border}`,
+              ...headerBtnStyle(),
+              textDecoration: 'none',
             }}
           >
             Demo
@@ -1317,7 +1643,7 @@ export default function App() {
             ))}
           </div>
 
-          {/* Monaco editor — takes remaining height */}
+          {/* Monaco editor */}
           <div style={{ flex: 1, overflow: 'hidden', minHeight: 0 }}>
             {activeTab === 'html' ? (
               <CodeEditor key="html" value={html} onChange={v => setHtml(v ?? '')} language="html" />
@@ -1326,7 +1652,7 @@ export default function App() {
             )}
           </div>
 
-          {/* Token controls panel — collapsible */}
+          {/* Token controls panel */}
           {showTokens && (
             <TokenControls tokens={tokens} onChange={setTokens} />
           )}
