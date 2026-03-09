@@ -1,1824 +1,994 @@
 'use client'
 
-import { useState, useCallback, useRef, useEffect } from 'react'
+import { useState } from 'react'
 import Link from 'next/link'
+import DnaSlider from './_components/DnaSlider'
+import Terminal from './_components/Terminal'
 
-// ─── Build-time constants ─────────────────────────────────────────────────────
 const IS_PROD        = process.env.NODE_ENV === 'production'
-const BASE_PATH      = IS_PROD ? '/veloracss' : ''
 const PLAYGROUND_URL = IS_PROD ? 'https://velorax.github.io/veloracss/playground' : 'http://localhost:5173'
-// Next.js Link prepends basePath automatically — never include it in href
-const DOCS_URL       = '/docs'
 
-// ─── DNA Token CSS (scoped to #vel-home) ─────────────────────────────────────
-const DNA_CSS = `
-  #vel-home {
-    --vel-dna-hue: 258;
-    --vp: oklch(65% 0.21 var(--vel-dna-hue));
-    --vp-light: oklch(80% 0.14 var(--vel-dna-hue));
-    --vp-dim: oklch(50% 0.22 var(--vel-dna-hue));
-    --vp-glow: oklch(65% 0.21 var(--vel-dna-hue) / 0.18);
-    --vp-subtle: oklch(65% 0.21 var(--vel-dna-hue) / 0.09);
-    --vs0: oklch(7%  0.02  var(--vel-dna-hue));
-    --vs1: oklch(10% 0.025 var(--vel-dna-hue));
-    --vs2: oklch(13% 0.03  var(--vel-dna-hue));
-    --vs3: oklch(17% 0.035 var(--vel-dna-hue));
-    --vs4: oklch(22% 0.04  var(--vel-dna-hue));
-    --vborder: oklch(26% 0.045 var(--vel-dna-hue));
-    --vborder-dim: oklch(20% 0.035 var(--vel-dna-hue));
-    --vt1: oklch(92% 0.015 var(--vel-dna-hue));
-    --vt2: oklch(70% 0.03  var(--vel-dna-hue));
-    --vt3: oklch(50% 0.04  var(--vel-dna-hue));
-    --ease: cubic-bezier(0.16, 1, 0.3, 1);
-    --dur: 220ms;
-    background: var(--vs0);
-    color: var(--vt1);
-    font-family: system-ui, -apple-system, 'Segoe UI', sans-serif;
-    -webkit-font-smoothing: antialiased;
-    overflow-x: hidden;
-    min-height: 100dvh;
-  }
-  #vel-home * { box-sizing: border-box; }
+// ─── Section wrapper helpers ──────────────────────────────────────────────────
+const sectionStyle = { padding: 'clamp(4rem, 8vw, 7rem) 1.5rem' } as React.CSSProperties
+const innerStyle   = { maxWidth: '1280px', margin: '0 auto' } as React.CSSProperties
 
-  /* Scope themes */
-  #vel-home [data-vel-theme="ocean"]  { --vel-dna-hue: 205; }
-  #vel-home [data-vel-theme="forest"] { --vel-dna-hue: 145; }
-  #vel-home [data-vel-theme="ember"]  { --vel-dna-hue: 22;  }
-  #vel-home [data-vel-theme="aurora"] { --vel-dna-hue: 300; }
-  #vel-home [data-vel-theme="gold"]   { --vel-dna-hue: 55;  }
-
-  /* ─ DNA SLIDER ─ */
-  .vhome-dna-strip {
-    display: inline-flex; align-items: center; gap: 1rem;
-    background: var(--vs2); border: 1px solid var(--vborder);
-    border-radius: 0.75rem; padding: 0.625rem 1.25rem;
-    margin-bottom: 0.75rem;
-  }
-  .vhome-dna-label {
-    font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em;
-    text-transform: uppercase; color: var(--vt3); white-space: nowrap;
-  }
-  .vhome-dna-slider {
-    -webkit-appearance: none; appearance: none;
-    width: 200px; height: 6px; border-radius: 3px; cursor: pointer;
-    background: linear-gradient(to right in oklch,
-      oklch(65% 0.21 0), oklch(65% 0.21 60), oklch(65% 0.21 120),
-      oklch(65% 0.21 180), oklch(65% 0.21 240), oklch(65% 0.21 300), oklch(65% 0.21 360));
-  }
-  .vhome-dna-slider::-webkit-slider-thumb {
-    -webkit-appearance: none; width: 18px; height: 18px; border-radius: 50%;
-    background: var(--vp); border: 3px solid var(--vs0);
-    box-shadow: 0 0 0 2px var(--vp); cursor: pointer;
-    transition: box-shadow var(--dur) var(--ease);
-  }
-  .vhome-dna-slider::-webkit-slider-thumb:hover { box-shadow: 0 0 0 4px var(--vp-glow); }
-  .vhome-dna-swatch {
-    width: 20px; height: 20px; border-radius: 50%;
-    background: var(--vp); border: 2px solid var(--vborder); flex-shrink: 0;
-  }
-  .vhome-dna-val {
-    font-size: 0.8rem; font-weight: 700; color: var(--vp);
-    font-family: 'Cascadia Code', Consolas, monospace; min-width: 2.5rem;
-  }
-  .vhome-dna-note {
-    font-size: 0.72rem; color: var(--vt3); margin-top: 0.25rem;
-  }
-
-  /* ─ macOS TERMINAL ─ */
-  .vhome-terminal {
-    background: #0C0C0C; border-radius: 0.5rem; overflow: hidden;
-    border: 1px solid #2d2d2d;
-    box-shadow: 0 20px 60px -12px rgba(0,0,0,0.7);
-    text-align: left;
-  }
-  .vhome-terminal-titlebar {
-    display: flex; align-items: center;
-    padding: 0 0.875rem; height: 32px; gap: 0;
-    background: #1C1C1C; border-bottom: 1px solid #2d2d2d;
-  }
-  .vhome-terminal-dots {
-    display: flex; align-items: center; gap: 6px; flex-shrink: 0;
-  }
-  .vhome-terminal-dot {
-    width: 12px; height: 12px; border-radius: 50%;
-  }
-  .vhome-terminal-title {
-    font-size: 0.72rem; color: #888;
-    font-family: 'Cascadia Code', Menlo, Monaco, monospace;
-    flex: 1; text-align: center;
-  }
-  .vhome-terminal-copy {
-    font-size: 0.68rem; font-weight: 600; padding: 0.15rem 0.625rem;
-    height: 22px; border-radius: 0.25rem; cursor: pointer; border: none;
-    font-family: 'Cascadia Code', Consolas, monospace;
-    transition: all 0.15s; flex-shrink: 0;
-  }
-  .vhome-terminal-copy.idle { background: rgba(255,255,255,0.08); color: #888; }
-  .vhome-terminal-copy.copied { background: rgba(14,203,129,0.15); color: #0ecb81; }
-  .vhome-terminal-code {
-    padding: 1.25rem 1.5rem; overflow-x: hidden; overflow-y: auto;
-    white-space: pre-wrap; word-break: break-word;
-    font-family: 'Cascadia Code', Menlo, Monaco, 'Courier New', monospace;
-    font-size: 0.8125rem; line-height: 1.8; color: #CCCCCC;
-    max-height: 340px;
-  }
-  .vhome-terminal-code::-webkit-scrollbar { width: 8px; }
-  .vhome-terminal-code::-webkit-scrollbar-track { background: #111; }
-  .vhome-terminal-code::-webkit-scrollbar-thumb { background: #444; border-radius: 4px; }
-  /* tc-* syntax colors now in globals.css */
-
-  /* ─ TWO-COL FEATURE SECTION ─ */
-  .vhome-split { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
-  @media (max-width: 768px) { .vhome-split { grid-template-columns: 1fr; gap: 2rem; } }
-
-  /* ─ HERO STATS STRIP ─ */
-  .vhome-hero-stats {
-    display: flex; gap: 0; flex-wrap: wrap;
-    border: 1px solid var(--vborder-dim); border-radius: 0.75rem;
-    overflow: hidden; margin: 2.5rem auto 0; max-width: 640px;
-  }
-  .vhome-hero-stat {
-    flex: 1; min-width: 120px; padding: 1.25rem 1rem; text-align: center;
-    background: var(--vs1); border-right: 1px solid var(--vborder-dim);
-  }
-  .vhome-hero-stat:last-child { border-right: none; }
-  .vhome-hero-stat-num {
-    display: block; font-size: 1.5rem; font-weight: 900;
-    color: var(--vp); line-height: 1; margin-bottom: 0.25rem;
-    font-family: system-ui, sans-serif;
-  }
-  .vhome-hero-stat-label { font-size: 0.72rem; color: var(--vt3); letter-spacing: 0.04em; }
-
-  /* ─ STATS ─ */
-  .vhome-stats {
-    display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px;
-    background: var(--vborder-dim); border: 1px solid var(--vborder-dim);
-    border-radius: 1rem; overflow: hidden;
-  }
-  @media (max-width: 640px) { .vhome-stats { grid-template-columns: repeat(2, 1fr); } }
-  .vhome-stat { background: var(--vs1); padding: 2rem; text-align: center; }
-  .vhome-stat-num {
-    display: block; font-size: clamp(2rem, 4vw, 3rem); font-weight: 900;
-    color: var(--vp); line-height: 1; margin-bottom: 0.5rem;
-  }
-  .vhome-stat-label { font-size: 0.8125rem; color: var(--vt3); line-height: 1.4; }
-
-  /* ─ CQ CARD (live demo) ─ */
-  .vhome-cq-outer {
-    container-type: inline-size;
-    resize: horizontal; overflow: auto;
-    min-width: 260px; max-width: 100%; width: 400px;
-    border: 1px dashed var(--vborder-dim); border-radius: 1rem;
-    padding: 1px;
-  }
-  .vhome-cq-card {
-    background: var(--vs2); border-radius: 1rem; overflow: hidden;
-    border: 1px solid var(--vborder);
-  }
-  .vhome-cq-inner { display: grid; grid-template-columns: 1fr; }
-  .vhome-cq-img {
-    height: 120px; background: var(--vp-subtle); border-bottom: 1px solid var(--vborder);
-    display: flex; align-items: center; justify-content: center;
-    font-size: 2rem; color: var(--vp);
-  }
-  .vhome-cq-body { padding: 1.25rem; }
-  .vhome-cq-tag {
-    font-size: 0.65rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
-    color: var(--vp); display: block; margin-bottom: 0.375rem;
-  }
-  .vhome-cq-title { font-size: 1rem; font-weight: 700; margin-bottom: 0.5rem; line-height: 1.3; color: var(--vt1); }
-  .vhome-cq-desc { font-size: 0.8125rem; color: var(--vt2); line-height: 1.6; }
-  .vhome-cq-footer {
-    background: var(--vs3); border-top: 1px solid var(--vborder);
-    padding: 0.5rem 0.75rem; font-size: 0.7rem; color: var(--vt3);
-    text-align: center; font-family: 'Cascadia Code', Consolas, monospace;
-    transition: color var(--dur) var(--ease);
-  }
-  @container (min-width: 450px) {
-    .vhome-cq-inner { grid-template-columns: 180px 1fr; }
-    .vhome-cq-img { height: 100%; min-height: 160px; border-bottom: none; border-right: 1px solid var(--vborder); }
-    .vhome-cq-footer { color: oklch(65% 0.2 162); }
-  }
-
-  /* ─ PALETTE SWATCHES ─ */
-  .vhome-swatches { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.5rem; }
-  @media (max-width: 640px) { .vhome-swatches { grid-template-columns: repeat(2, 1fr); } }
-  .vhome-swatch { border-radius: 0.5rem; overflow: hidden; border: 1px solid var(--vborder-dim); }
-  .vhome-swatch-color { height: 56px; transition: all var(--dur) var(--ease); }
-  .vhome-swatch-info { padding: 0.375rem 0.5rem; background: var(--vs2); }
-  .vhome-swatch-name { font-size: 0.7rem; font-weight: 600; color: var(--vt2); display: block; }
-  .vhome-swatch-var { font-size: 0.62rem; color: var(--vt3); font-family: 'Cascadia Code', Consolas, monospace; }
-
-  /* ─ FORM DEMO (CSS-only validation) ─ */
-  .vhome-field { display: grid; gap: 0.375rem; }
-  .vhome-field label { font-size: 0.875rem; font-weight: 500; color: var(--vt2); transition: color var(--dur) var(--ease); }
-  .vhome-input {
-    background: var(--vs2); border: 1.5px solid var(--vborder);
-    border-radius: 0.5rem; padding: 0.625rem 0.875rem;
-    font-size: 0.875rem; color: var(--vt1); width: 100%;
-    transition: border-color var(--dur) var(--ease), box-shadow var(--dur) var(--ease);
-    outline: none; font-family: inherit;
-  }
-  .vhome-input::placeholder { color: var(--vt3); }
-  .vhome-input:focus {
-    border-color: var(--vp);
-    box-shadow: 0 0 0 3px var(--vp-glow);
-    background: var(--vs1);
-  }
-  .vhome-field-hint { font-size: 0.75rem; color: var(--vt3); }
-  .vhome-field-error { font-size: 0.75rem; color: oklch(65% 0.22 25); display: none; }
-  .vhome-field-ok    { font-size: 0.75rem; color: oklch(70% 0.2 162);  display: none; }
-  .vhome-field:has(.vhome-input:invalid:not(:placeholder-shown)) label { color: oklch(65% 0.22 25); }
-  .vhome-field:has(.vhome-input:invalid:not(:placeholder-shown)) .vhome-input { border-color: oklch(65% 0.22 25); box-shadow: 0 0 0 3px oklch(65% 0.22 25 / 0.12); }
-  .vhome-field:has(.vhome-input:invalid:not(:placeholder-shown)) .vhome-field-error { display: block; }
-  .vhome-field:has(.vhome-input:invalid:not(:placeholder-shown)) .vhome-field-hint  { display: none; }
-  .vhome-field:has(.vhome-input:valid:not(:placeholder-shown)) label { color: oklch(70% 0.2 162); }
-  .vhome-field:has(.vhome-input:valid:not(:placeholder-shown)) .vhome-input { border-color: oklch(70% 0.2 162); box-shadow: 0 0 0 3px oklch(70% 0.2 162 / 0.12); }
-  .vhome-field:has(.vhome-input:valid:not(:placeholder-shown)) .vhome-field-ok   { display: block; }
-  .vhome-field:has(.vhome-input:valid:not(:placeholder-shown)) .vhome-field-hint { display: none; }
-
-  /* ─ SCOPE THEME DEMO ─ */
-  .vhome-scope-panels {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 1px; background: var(--vborder-dim);
-    border: 1px solid var(--vborder-dim); border-radius: 1rem; overflow: hidden;
-  }
-  .vhome-scope-panel {
-    background: var(--vs1); padding: 1.5rem;
-  }
-  .vhome-scope-panel-label {
-    font-size: 0.65rem; font-weight: 800; text-transform: uppercase;
-    letter-spacing: 0.12em; color: var(--vp); margin-bottom: 1rem; display: block;
-  }
-  .vhome-scope-panel-title {
-    font-size: 0.9375rem; font-weight: 700; color: var(--vt1);
-    margin-bottom: 0.25rem;
-  }
-  .vhome-scope-panel-desc {
-    font-size: 0.75rem; color: var(--vt2); line-height: 1.5; margin-bottom: 1rem;
-  }
-  .vhome-scope-panel-actions { display: flex; gap: 0.5rem; flex-wrap: wrap; }
-
-  /* ─ THEME BUTTONS in scope demo ─ */
-  .vhome-theme-btns { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1.5rem; }
-  .vhome-theme-btn {
-    padding: 0.375rem 0.875rem; border-radius: 9999px;
-    border: 1px solid var(--vborder); background: var(--vs2);
-    color: var(--vt2); font-size: 0.8125rem; font-weight: 500; cursor: pointer;
-    transition: all var(--dur) var(--ease);
-  }
-  .vhome-theme-btn:hover, .vhome-theme-btn[data-active="true"] {
-    background: var(--vp-subtle); border-color: var(--vp-glow); color: var(--vp);
-  }
-  .vhome-scope-zone {
-    background: var(--vs1); border: 1px solid var(--vborder);
-    border-radius: 1rem; padding: 1.5rem;
-    transition: background var(--dur) var(--ease), border-color var(--dur) var(--ease);
-  }
-  .vhome-scope-label {
-    font-size: 0.7rem; font-weight: 700; text-transform: uppercase;
-    letter-spacing: 0.1em; color: var(--vp); margin-bottom: 1rem;
-    display: flex; align-items: center; gap: 0.5rem;
-  }
-  .vhome-scope-label::before {
-    content: ''; width: 8px; height: 8px; border-radius: 50%; background: var(--vp);
-    transition: background var(--dur) var(--ease);
-  }
-  .vhome-scope-cards {
-    display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 0.75rem;
-    margin-bottom: 1rem;
-  }
-  .vhome-scope-card {
-    background: var(--vs2); border: 1px solid var(--vborder);
-    border-radius: 0.625rem; padding: 1rem;
-    transition: all var(--dur) var(--ease);
-  }
-  .vhome-scope-card-icon {
-    width: 40px; height: 40px; border-radius: 0.5rem;
-    background: var(--vp-subtle); border: 1px solid var(--vp-glow);
-    display: flex; align-items: center; justify-content: center;
-    font-size: 1.125rem; margin-bottom: 0.625rem;
-    color: var(--vp); transition: all var(--dur) var(--ease);
-  }
-  .vhome-scope-card-title { font-size: 0.875rem; font-weight: 600; margin-bottom: 0.25rem; color: var(--vt1); }
-  .vhome-scope-card-desc { font-size: 0.75rem; color: var(--vt3); line-height: 1.4; }
-
-  /* ─ DNA-TOKEN BUTTONS (scope demo — must react to theme changes) ─ */
-  .vhome-btn-primary {
-    background: var(--vp); color: oklch(12% 0.02 var(--vel-dna-hue));
-    border: none; border-radius: 0.5rem; padding: 0.625rem 1.25rem;
-    font-size: 0.875rem; font-weight: 600; cursor: pointer; font-family: inherit;
-    transition: all var(--dur) var(--ease);
-  }
-  .vhome-btn-primary:hover { background: var(--vp-light); transform: translateY(-1px); }
-  .vhome-btn-outline {
-    background: transparent; color: var(--vp);
-    border: 1px solid var(--vp-glow); border-radius: 0.5rem; padding: 0.625rem 1.25rem;
-    font-size: 0.875rem; font-weight: 500; cursor: pointer; font-family: inherit;
-    transition: all var(--dur) var(--ease);
-  }
-  .vhome-btn-outline:hover { border-color: var(--vp); background: var(--vp-subtle); }
-
-  /* ─ CTA BUTTONS (hero area — DNA-reactive) ─ */
-  .vhome-cta-primary {
-    font-size: 0.9375rem; font-weight: 700; padding: 0.75rem 1.75rem;
-    border-radius: 0.625rem; background: var(--vp);
-    color: oklch(12% 0.02 var(--vel-dna-hue));
-    text-decoration: none; border: none; cursor: pointer;
-    transition: all var(--dur) var(--ease); display: inline-block;
-  }
-  .vhome-cta-primary:hover { background: var(--vp-light); transform: translateY(-1px); }
-  .vhome-cta-secondary {
-    font-size: 0.9375rem; font-weight: 600; padding: 0.75rem 1.75rem;
-    border-radius: 0.625rem; background: var(--vs2); color: var(--vt1);
-    text-decoration: none; border: 1px solid var(--vborder); cursor: pointer;
-    transition: all var(--dur) var(--ease); display: inline-block;
-  }
-  .vhome-cta-secondary:hover { border-color: var(--vp); color: var(--vp); }
-  .vhome-cta-ghost {
-    font-size: 0.9375rem; font-weight: 500; padding: 0.75rem 1.25rem;
-    border-radius: 0.625rem; background: transparent; color: var(--vt2);
-    text-decoration: none; border: 1px solid var(--vborder); cursor: pointer;
-    transition: all var(--dur) var(--ease); display: inline-block;
-  }
-  .vhome-cta-ghost:hover { color: var(--vt1); }
-
-  /* ─ DNA LIVE PREVIEW STRIP ─ */
-  .vhome-dna-live {
-    display: flex; align-items: center; gap: 0.75rem; flex-wrap: wrap;
-    justify-content: center; margin-top: 1rem;
-  }
-  .vhome-dna-live-badge {
-    font-size: 0.7rem; font-weight: 700; letter-spacing: 0.06em;
-    padding: 0.25rem 0.7rem; border-radius: 9999px;
-    background: var(--vp-subtle); color: var(--vp); border: 1px solid var(--vp-glow);
-  }
-
-  /* ─ SKELETON SHIMMER (components demo) ─ */
-  .vhome-skeleton-demo {
-    background: linear-gradient(90deg, var(--vs3) 25%, var(--vs4) 50%, var(--vs3) 75%);
-    background-size: 200% 100%;
-    animation: vhome-shimmer 1.6s ease-in-out infinite;
-  }
-  @keyframes vhome-shimmer { 0% { background-position: 200% 0 } 100% { background-position: -200% 0 } }
-
-  /* ─ CSS STATE MACHINE TABS ─ */
-  .vhome-tabs-demo {
-    background: var(--vs2); border: 1px solid var(--vborder);
-    border-radius: 1rem; overflow: hidden;
-  }
-  .vhome-tabs-demo input[type="radio"] {
-    position: absolute; opacity: 0; pointer-events: none; width: 0; height: 0;
-  }
-  .vhome-tabs-nav {
-    display: flex; background: var(--vs3); border-bottom: 1px solid var(--vborder); gap: 0;
-  }
-  .vhome-tabs-nav label {
-    padding: 0.75rem 1.5rem; font-size: 0.875rem; font-weight: 500; color: var(--vt3);
-    cursor: pointer; border-bottom: 2px solid transparent;
-    transition: all var(--dur) var(--ease); user-select: none; position: relative; bottom: -1px;
-  }
-  .vhome-tabs-nav label:hover { color: var(--vt1); }
-  .vhome-tab-panels { padding: 1.5rem; }
-  .vhome-tab-panel { display: none; animation: vhome-fade-up 0.25s var(--ease) both; }
-  .vhome-tab-panel h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: 0.75rem; color: var(--vt1); }
-  .vhome-tab-panel > p { color: var(--vt2); font-size: 0.875rem; line-height: 1.7; margin-bottom: 1rem; }
-  .vhome-tab-panel code { font-family: 'Cascadia Code', Consolas, monospace; font-size: 0.875em; color: var(--vp-light); background: var(--vp-subtle); padding: 0.1em 0.4em; border-radius: 0.25rem; }
-  @keyframes vhome-fade-up { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
-  #vel-home .vhome-tabs-demo:has(#h-tab-1:checked) label[for="h-tab-1"],
-  #vel-home .vhome-tabs-demo:has(#h-tab-2:checked) label[for="h-tab-2"],
-  #vel-home .vhome-tabs-demo:has(#h-tab-3:checked) label[for="h-tab-3"] {
-    color: var(--vp); border-bottom-color: var(--vp);
-  }
-  #vel-home .vhome-tabs-demo:has(#h-tab-1:checked) #h-panel-1,
-  #vel-home .vhome-tabs-demo:has(#h-tab-2:checked) #h-panel-2,
-  #vel-home .vhome-tabs-demo:has(#h-tab-3:checked) #h-panel-3 { display: block; }
-  .vhome-mini-features { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 0.75rem; margin-top: 1rem; }
-  .vhome-mini-feature { display: flex; align-items: flex-start; gap: 0.625rem; padding: 0.75rem; background: var(--vs3); border: 1px solid var(--vborder); border-radius: 0.625rem; }
-  .vhome-mini-feature-icon { width: 28px; height: 28px; border-radius: 0.375rem; background: var(--vp-subtle); border: 1px solid var(--vp-glow); display: flex; align-items: center; justify-content: center; font-size: 0.875rem; flex-shrink: 0; }
-  .vhome-mini-feature-title { font-size: 0.875rem; font-weight: 600; color: var(--vt1); margin-bottom: 0.125rem; }
-  .vhome-mini-feature-desc { font-size: 0.72rem; color: var(--vt3); line-height: 1.4; }
-  .vhome-compare-row { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; margin-bottom: 0.75rem; }
-  @media (max-width: 640px) { .vhome-compare-row { grid-template-columns: 1fr; } }
-  .vhome-compare-cell { border-radius: 0.5rem; overflow: hidden; border: 1px solid var(--vborder); }
-  .vhome-compare-header { padding: 0.5rem 0.75rem; font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; }
-  .vhome-compare-bad { background: oklch(15% 0.05 0); color: oklch(60% 0.2 20); border-bottom: 1px solid oklch(25% 0.08 0); }
-  .vhome-compare-good { background: var(--vp-subtle); color: var(--vp); border-bottom: 1px solid var(--vp-glow); }
-  .vhome-compare-cell pre { padding: 0.75rem; font-size: 0.72rem; line-height: 1.6; color: var(--vt2); background: var(--vs2); font-family: 'Cascadia Code', Consolas, monospace; white-space: pre-wrap; margin: 0; }
-
-  /* ─ INNOVATIONS GRID (3-card row) ─ */
-  .vhome-inno-cards {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 1.5rem; margin-top: 2rem;
-  }
-  .vhome-inno-card {
-    background: var(--vs1); border: 1px solid var(--vborder);
-    border-radius: 1rem; overflow: hidden;
-    transition: border-color var(--dur) var(--ease), transform var(--dur) var(--ease);
-  }
-  .vhome-inno-card:hover { border-color: var(--vp-glow); transform: translateY(-2px); }
-  .vhome-inno-card-header {
-    background: var(--vs2); border-bottom: 1px solid var(--vborder);
-    padding: 1rem 1.25rem; display: flex; align-items: center; gap: 0.75rem;
-  }
-  .vhome-inno-card-icon {
-    width: 36px; height: 36px; border-radius: 0.5rem; flex-shrink: 0;
-    background: var(--vp-subtle); border: 1px solid var(--vp-glow);
-    display: flex; align-items: center; justify-content: center; font-size: 1.1rem;
-  }
-  .vhome-inno-card-num {
-    font-size: 0.65rem; font-weight: 800; letter-spacing: 0.15em;
-    text-transform: uppercase; color: var(--vp);
-  }
-  .vhome-inno-card-title { font-size: 0.9375rem; font-weight: 700; color: var(--vt1); }
-  .vhome-inno-card-body { padding: 1.25rem; }
-  .vhome-inno-card-body p { font-size: 0.875rem; color: var(--vt2); line-height: 1.65; margin-bottom: 1rem; }
-  .vhome-inno-card-tag {
-    display: inline-block; font-size: 0.65rem; font-weight: 700; letter-spacing: 0.08em;
-    text-transform: uppercase; color: var(--vt3);
-    background: var(--vs3); border: 1px solid var(--vborder-dim);
-    border-radius: 9999px; padding: 0.2rem 0.6rem;
-    font-family: 'Cascadia Code', Consolas, monospace;
-  }
-  .vhome-inno-card-demo {
-    margin-top: 1rem; background: var(--vs3); border: 1px solid var(--vborder-dim);
-    border-radius: 0.625rem; padding: 0.875rem; overflow: hidden;
-  }
-
-  /* ─ GETTING STARTED STEPS ─ */
-  .vhome-steps {
-    display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 1.5rem; margin-top: 2rem;
-  }
-  .vhome-step {
-    display: flex; flex-direction: column; gap: 0.75rem;
-  }
-  .vhome-step-num {
-    display: flex; align-items: center; gap: 0.75rem;
-    font-size: 0.72rem; font-weight: 800; letter-spacing: 0.12em;
-    text-transform: uppercase; color: var(--vp);
-  }
-  .vhome-step-num::before {
-    content: attr(data-n);
-    width: 28px; height: 28px; border-radius: 50%;
-    background: var(--vp-subtle); border: 1px solid var(--vp-glow);
-    display: flex; align-items: center; justify-content: center;
-    font-size: 0.75rem; font-weight: 900; color: var(--vp);
-    flex-shrink: 0;
-  }
-
-  /* ─ SECTION LAYOUT ─ */
-  .vhome-section {
-    padding: clamp(3rem, 6vw, 5rem) clamp(1rem, 4vw, 3rem);
-    border-bottom: 1px solid var(--vborder-dim);
-  }
-  .vhome-wrap { max-width: 1100px; margin: 0 auto; }
-  .vhome-section-eyebrow {
-    font-size: 0.7rem; font-weight: 800; letter-spacing: 0.15em;
-    text-transform: uppercase; color: var(--vp); margin-bottom: 0.75rem; display: block;
-  }
-  .vhome-section-title {
-    font-size: clamp(1.75rem, 3.5vw, 2.75rem); font-weight: 900;
-    letter-spacing: -0.025em; line-height: 1.15; margin-bottom: 1rem; color: var(--vt1);
-  }
-  .vhome-section-title em { font-style: normal; color: var(--vp); }
-  .vhome-section-desc {
-    font-size: 1.0625rem; color: var(--vt2); max-width: 580px; line-height: 1.75;
-    margin-bottom: 2.5rem;
-  }
-  .vhome-section-desc code {
-    font-family: 'Cascadia Code', Consolas, monospace;
-    font-size: 0.875em; color: var(--vp-light);
-    background: var(--vp-subtle); padding: 0.1em 0.4em; border-radius: 0.25rem;
-  }
-
-  /* ─ HERO ─ */
-  .vhome-hero {
-    text-align: center;
-    padding: clamp(4rem, 10vw, 8rem) clamp(1rem, 4vw, 3rem) clamp(3rem, 6vw, 5rem);
-    border-bottom: 1px solid var(--vborder-dim);
-    position: relative; overflow: hidden;
-  }
-  .vhome-hero::before {
-    content: '';
-    position: absolute; inset: 0;
-    background: radial-gradient(ellipse 70% 50% at 50% -10%, var(--vp-glow), transparent 65%);
-    pointer-events: none;
-  }
-  .vhome-hero-eyebrow {
-    display: inline-flex; align-items: center; gap: 0.5rem;
-    font-size: 0.7rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase;
-    color: var(--vp); background: var(--vp-subtle);
-    border: 1px solid var(--vp-glow); border-radius: 9999px;
-    padding: 0.35rem 1rem; margin-bottom: 1.5rem;
-  }
-  .vhome-hero-eyebrow::before {
-    content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--vp);
-  }
-  .vhome-hero h1 {
-    font-size: clamp(2.5rem, 6vw, 4.5rem); font-weight: 900;
-    letter-spacing: -0.03em; line-height: 1.05;
-    margin: 0 0 1.25rem;
-    color: var(--vt1);
-  }
-  .vhome-hero h1 em { font-style: normal; color: var(--vp); }
-  .vhome-hero-sub {
-    font-size: clamp(1rem, 2vw, 1.25rem); color: var(--vt2);
-    max-width: 600px; margin: 0 auto 2.5rem; line-height: 1.7;
-  }
-  .vhome-hero-ctas {
-    display: flex; gap: 0.75rem; justify-content: center; flex-wrap: wrap;
-    margin-bottom: 2.5rem;
-  }
-
-  /* ─ NAV ─ */
-  .vhome-nav {
-    position: sticky; top: 0; z-index: 100;
-    height: 56px;
-    display: flex; align-items: center; justify-content: space-between;
-    padding: 0 clamp(1rem, 4vw, 3rem);
-    background: var(--vs0);
-    border-bottom: 1px solid var(--vborder);
-    backdrop-filter: blur(12px);
-  }
-  .vhome-nav-link {
-    font-size: 0.875rem; font-weight: 500; color: var(--vt2);
-    text-decoration: none;
-    transition: color var(--dur) var(--ease);
-  }
-  .vhome-nav-link:hover { color: var(--vt1); }
-
-  /* ─ SHOWCASE (real UI cards with photos) ─ */
-  .vhome-showcase-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1.25rem; margin-top: 2.5rem;
-  }
-  @media (max-width: 900px) { .vhome-showcase-grid { grid-template-columns: repeat(2, 1fr); } }
-  @media (max-width: 560px) { .vhome-showcase-grid { grid-template-columns: 1fr; } }
-  .vhome-showcase-card {
-    background: var(--vs1); border: 1px solid var(--vborder);
-    border-radius: 1rem; overflow: hidden;
-    transition: transform var(--dur) var(--ease), border-color var(--dur) var(--ease);
-  }
-  .vhome-showcase-card:hover { transform: translateY(-3px); border-color: var(--vp-glow); }
-  .vhome-showcase-img {
-    width: 100%; aspect-ratio: 16/9; object-fit: cover;
-    display: block;
-  }
-  .vhome-showcase-body { padding: 1.125rem; }
-  .vhome-showcase-tag {
-    font-size: 0.65rem; font-weight: 700; text-transform: uppercase;
-    letter-spacing: 0.1em; color: var(--vp); margin-bottom: 0.375rem; display: block;
-  }
-  .vhome-showcase-title {
-    font-size: 1rem; font-weight: 700; color: var(--vt1);
-    margin: 0 0 0.375rem; line-height: 1.3;
-  }
-  .vhome-showcase-desc {
-    font-size: 0.8rem; color: var(--vt3); line-height: 1.55; margin: 0 0 0.875rem;
-  }
-  .vhome-showcase-footer {
-    display: flex; align-items: center; gap: 0.625rem;
-    padding: 0.75rem 1.125rem; background: var(--vs2);
-    border-top: 1px solid var(--vborder-dim);
-    font-size: 0.72rem; color: var(--vt3);
-    font-family: 'Cascadia Code', Consolas, monospace;
-  }
-  .vhome-showcase-avatar {
-    width: 28px; height: 28px; border-radius: 50%;
-    object-fit: cover; flex-shrink: 0;
-    border: 2px solid var(--vborder);
-  }
-
-  /* ─ OSS BANNER ─ */
-  .vhome-oss-banner {
-    text-align: center;
-    padding: clamp(3.5rem, 7vw, 6rem) clamp(1rem, 4vw, 3rem);
-    border-bottom: 1px solid var(--vborder-dim);
-    position: relative; overflow: hidden;
-  }
-  .vhome-oss-banner::before {
-    content: '';
-    position: absolute; inset: 0;
-    background: radial-gradient(ellipse 80% 60% at 50% 100%, var(--vp-glow), transparent 70%);
-    pointer-events: none;
-  }
-  .vhome-oss-tagline {
-    font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 900;
-    letter-spacing: -0.03em; line-height: 1.1; color: var(--vt1);
-    margin-bottom: 1rem;
-  }
-  .vhome-oss-tagline em { font-style: normal; color: var(--vp); }
-  .vhome-oss-sub {
-    font-size: 1.0625rem; color: var(--vt2); max-width: 520px;
-    margin: 0 auto 2rem; line-height: 1.7;
-  }
-  .vhome-github-btn {
-    display: inline-flex; align-items: center; gap: 0.5rem;
-    font-size: 0.9375rem; font-weight: 700; padding: 0.75rem 1.75rem;
-    border-radius: 0.625rem; background: var(--vs3); color: var(--vt1);
-    text-decoration: none; border: 1px solid var(--vborder); cursor: pointer;
-    transition: all var(--dur) var(--ease);
-  }
-  .vhome-github-btn:hover { border-color: var(--vp); color: var(--vp); }
-
-  /* ─ CTA SECTION ─ */
-  .vhome-cta-section {
-    text-align: center;
-    padding: clamp(4rem, 8vw, 7rem) clamp(1rem, 4vw, 3rem);
-    position: relative; overflow: hidden;
-  }
-  .vhome-cta-section::before {
-    content: '';
-    position: absolute; inset: 0;
-    background: radial-gradient(ellipse 60% 80% at 50% 100%, var(--vp-glow), transparent 70%);
-    pointer-events: none;
-  }
-
-  /* ─ FOOTER BADGE ─ */
-  .vhome-footer-badge {
-    display: inline-flex; align-items: center;
-    font-size: 0.7rem; font-weight: 500; letter-spacing: 0.03em;
-    color: var(--vp); border: 1px solid var(--vp-glow);
-    background: var(--vp-subtle); border-radius: 9999px; padding: 0.35rem 1rem;
-  }
-
-  /* ─ FOOTER ─ */
-  .vhome-footer {
-    padding: 2rem clamp(1rem, 4vw, 3rem);
-    border-top: 1px solid var(--vborder-dim);
-  }
-  .vhome-footer-link { font-size: 0.8125rem; color: var(--vt3); text-decoration: none; transition: color var(--dur) var(--ease); }
-  .vhome-footer-link:hover { color: var(--vt1); }
-
-  /* ─ DISCORD WIDGET ─ */
-  .vhome-discord-widget {
-    position: fixed; right: 1.25rem; bottom: 1.5rem; z-index: 9000;
-    font-family: inherit;
-  }
-  .vhome-discord-pill {
-    display: flex; align-items: center; gap: 0.5rem;
-    background: var(--vs2); border: 1px solid var(--vborder);
-    border-radius: 9999px; padding: 0.5rem 1rem 0.5rem 0.625rem;
-    cursor: pointer; user-select: none;
-    box-shadow: 0 4px 24px oklch(0% 0 0 / 0.4);
-    transition: background 0.15s, border-color 0.15s, box-shadow 0.15s;
-    color: var(--vt1); font-size: 0.8125rem; font-weight: 500;
-  }
-  .vhome-discord-pill:hover {
-    background: var(--vs3); border-color: var(--vp-glow);
-    box-shadow: 0 4px 32px var(--vp-glow);
-  }
-  .vhome-discord-dot {
-    width: 8px; height: 8px; border-radius: 50%;
-    background: oklch(65% 0.18 160); flex-shrink: 0;
-  }
-  .vhome-discord-panel {
-    position: absolute; right: 0; bottom: calc(100% + 0.75rem);
-    width: 260px;
-    background: var(--vs1); border: 1px solid var(--vborder);
-    border-radius: 0.75rem; overflow: hidden;
-    box-shadow: 0 16px 48px oklch(0% 0 0 / 0.5);
-  }
-  .vhome-discord-header {
-    background: #5865F2; padding: 0.875rem 1rem;
-    display: flex; align-items: center; gap: 0.625rem;
-  }
-  .vhome-discord-header-text { line-height: 1.2; }
-  .vhome-discord-header-name { font-size: 0.875rem; font-weight: 700; color: #fff; }
-  .vhome-discord-header-sub { font-size: 0.7rem; color: rgba(255,255,255,0.7); }
-  .vhome-discord-members {
-    padding: 0.5rem 0; max-height: 180px; overflow-y: auto;
-  }
-  .vhome-discord-member {
-    display: flex; align-items: center; gap: 0.5rem;
-    padding: 0.375rem 1rem;
-  }
-  .vhome-discord-avatar {
-    width: 28px; height: 28px; border-radius: 50%; object-fit: cover; flex-shrink: 0;
-  }
-  .vhome-discord-avatar-fallback {
-    width: 28px; height: 28px; border-radius: 50%; flex-shrink: 0;
-    background: var(--vp-subtle); border: 1px solid var(--vp-glow);
-    display: flex; align-items: center; justify-content: center;
-    font-size: 0.65rem; font-weight: 700; color: var(--vp);
-  }
-  .vhome-discord-member-name { font-size: 0.8rem; color: var(--vt2); flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-  .vhome-discord-status { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
-  .vhome-discord-status-online  { background: oklch(65% 0.18 160); }
-  .vhome-discord-status-idle    { background: oklch(72% 0.19 75); }
-  .vhome-discord-status-dnd     { background: oklch(60% 0.22 25); }
-  .vhome-discord-more {
-    font-size: 0.75rem; color: var(--vt3); padding: 0.25rem 1rem 0.5rem;
-  }
-  .vhome-discord-join {
-    display: block; text-align: center; text-decoration: none;
-    background: #5865F2; color: #fff;
-    font-size: 0.8125rem; font-weight: 600;
-    padding: 0.625rem 1rem; margin: 0.25rem 0.75rem 0.75rem;
-    border-radius: 0.5rem; transition: background 0.15s;
-  }
-  .vhome-discord-join:hover { background: #4752c4; }
-
-  /* ─ COMPONENT SHOWCASE WRAPPERS ─ */
-  .vhome-showcase-header {
-    background: var(--vs2); border-bottom: 1px solid var(--vborder);
-    padding: 0.625rem 1rem;
-    font-size: 0.7rem; font-weight: 700; text-transform: uppercase;
-    letter-spacing: 0.08em; color: var(--vt3);
-  }
-
-  /* ─ PROGRESS BAR DEMO ─ */
-  .vhome-progress-track {
-    height: 8px; background: var(--vs3); border-radius: 4px; overflow: hidden;
-  }
-  .vhome-progress-fill {
-    height: 100%; background: var(--vp); border-radius: 4px;
-    transition: width 0.6s var(--ease);
-  }
-
-  /* ─ AVATAR DEMO ─ */
-  .vhome-avatar {
-    width: 40px; height: 40px; border-radius: 50%;
-    background: var(--vp-subtle); border: 2px solid var(--vp-glow);
-    display: flex; align-items: center; justify-content: center;
-    font-size: 0.875rem; font-weight: 700; color: var(--vp);
-    flex-shrink: 0;
-  }
-  .vhome-avatar-lg {
-    width: 56px; height: 56px; border-radius: 50%;
-    background: var(--vp-subtle); border: 2px solid var(--vp-glow);
-    display: flex; align-items: center; justify-content: center;
-    font-size: 1.125rem; font-weight: 700; color: var(--vp);
-    flex-shrink: 0;
-  }
-
-  /* ─ SPINNER ─ */
-  .vhome-spinner {
-    width: 24px; height: 24px; border-radius: 50%;
-    border: 3px solid var(--vborder);
-    border-top-color: var(--vp);
-    animation: vhome-spin 0.7s linear infinite;
-  }
-  @keyframes vhome-spin { to { transform: rotate(360deg); } }
-`
-
-// ─── Win11 Terminal Component ──────────────────────────────────────────────────
-function Win11Terminal({ filename, children }: { filename: string; children: string }) {
-  const [copied, setCopied] = useState(false)
-  const preRef = useRef<HTMLPreElement>(null)
-
-  const handleCopy = useCallback(() => {
-    const text = preRef.current?.textContent ?? children.replace(/<[^>]+>/g, '')
-    navigator.clipboard.writeText(text).then(() => {
-      setCopied(true)
-      setTimeout(() => setCopied(false), 2000)
-    }).catch(() => {
-      const ta = document.createElement('textarea')
-      ta.value = text
-      ta.style.cssText = 'position:fixed;left:0;top:0;width:1px;height:1px;opacity:0.01'
-      document.body.appendChild(ta)
-      ta.focus()
-      ta.select()
-      document.execCommand('copy')
-      document.body.removeChild(ta)
-      setCopied(true)
-      setTimeout(() => setCopied(false), 2000)
-    })
-  }, [children])
-
+function Eyebrow({ children }: { children: React.ReactNode }) {
   return (
-    <div className="vhome-terminal">
-      <div className="vhome-terminal-titlebar">
-        {/* macOS dots — left */}
-        <div className="vhome-terminal-dots">
-          <div className="vhome-terminal-dot" style={{ background: '#ff5f57' }} />
-          <div className="vhome-terminal-dot" style={{ background: '#ffbd2e' }} />
-          <div className="vhome-terminal-dot" style={{ background: '#28c840' }} />
-        </div>
-        {/* filename — center */}
-        <span className="vhome-terminal-title">{filename}</span>
-        {/* Copy button — right */}
-        <button
-          className={`vhome-terminal-copy ${copied ? 'copied' : 'idle'}`}
-          onClick={handleCopy}
-        >
-          {copied ? '✓ Copied' : 'Copy'}
-        </button>
+    <p style={{
+      fontSize: '0.6875rem',
+      fontWeight: 700,
+      letterSpacing: '0.1em',
+      textTransform: 'uppercase' as const,
+      color: 'var(--vel-color-primary)',
+      marginBottom: '0.75rem',
+    }}>
+      ✦ {children}
+    </p>
+  )
+}
+
+function SectionHeadline({ children }: { children: React.ReactNode }) {
+  return (
+    <h2 style={{
+      fontSize: 'clamp(2rem, 4vw, 3rem)',
+      fontWeight: 800,
+      letterSpacing: '-0.025em',
+      color: 'var(--vel-color-text)',
+      lineHeight: 1.15,
+      margin: '0 0 1rem',
+    }}>
+      {children}
+    </h2>
+  )
+}
+
+function SectionSub({ children }: { children: React.ReactNode }) {
+  return (
+    <p style={{
+      fontSize: 'clamp(1rem, 1.5vw, 1.125rem)',
+      color: 'var(--vel-color-muted)',
+      lineHeight: 1.7,
+      maxWidth: '600px',
+      margin: '0 0 2.5rem',
+    }}>
+      {children}
+    </p>
+  )
+}
+
+// ─── Section 2: Zero-JS State Machine demos ───────────────────────────────────
+function TabsDemo() {
+  const [active, setActive] = useState(0)
+  const tabs = ['Overview', 'Details', 'Settings']
+  const content = [
+    'Overview content: This panel is active via React state — but in production, vel-tabs uses :has() + radio inputs for zero-JS behavior.',
+    'Details content: Component-level state, no global store, no useEffect. Just CSS :has() listening to checked radios.',
+    'Settings content: Each tab is a <label> wrapping a radio input. CSS does the rest.',
+  ]
+  return (
+    <div>
+      <div className="vel-tabs-pill" style={{ marginBottom: '0.75rem' }}>
+        {tabs.map((t, i) => (
+          <button
+            key={t}
+            className={`vel-tab${active === i ? ' vel-active' : ''}`}
+            onClick={() => setActive(i)}
+          >
+            {t}
+          </button>
+        ))}
       </div>
-      <pre ref={preRef} className="vhome-terminal-code">
-        <code dangerouslySetInnerHTML={{ __html: children }} />
-      </pre>
+      <div style={{
+        padding: '1rem',
+        background: 'var(--vel-surface-2)',
+        border: '1px solid var(--vel-border-base)',
+        borderRadius: 'var(--vel-radius-lg)',
+        fontSize: '0.8125rem',
+        color: 'var(--vel-color-muted)',
+        lineHeight: 1.6,
+        minHeight: '3.5rem',
+      }}>
+        {content[active]}
+      </div>
     </div>
   )
 }
 
-// ─── Scope Theme Demo (interactive, single-zone) ──────────────────────────────
-function ScopeThemeDemo() {
-  const [activeTheme, setActiveTheme] = useState('default')
-  const themes = ['default', 'ocean', 'forest', 'ember', 'aurora', 'gold']
-
+function DropdownDemo() {
   return (
-    <>
-      <div className="vhome-theme-btns">
-        {themes.map(t => (
-          <button
-            key={t}
-            className="vhome-theme-btn"
-            data-active={activeTheme === t ? 'true' : 'false'}
-            onClick={() => setActiveTheme(t)}
-          >
-            {t.charAt(0).toUpperCase() + t.slice(1)}
-          </button>
-        ))}
+    <div className="vel-dropdown" style={{ width: '100%' }}>
+      <button className="vel-btn vel-btn-outline" style={{ width: '100%' }}>
+        Options ▾
+      </button>
+      <div className="vel-dropdown-menu" style={{ width: '100%' }}>
+        <div className="vel-dropdown-header">Actions</div>
+        <button className="vel-dropdown-item">Edit item</button>
+        <button className="vel-dropdown-item">Duplicate</button>
+        <div className="vel-dropdown-divider" />
+        <button className="vel-dropdown-item vel-dropdown-item-danger">Delete</button>
       </div>
-      <div
-        className="vhome-scope-zone"
-        data-vel-theme={activeTheme === 'default' ? undefined : activeTheme}
-      >
-        <div className="vhome-scope-label">
-          {activeTheme === 'default' ? 'data-vel-theme — default' : `data-vel-theme="${activeTheme}"`}
-        </div>
-        <div className="vhome-scope-cards">
-          {[
-            { icon: '◈', title: 'Token Cascade', desc: 'All colors inherit from theme' },
-            { icon: '⬡', title: 'Zero JS Logic', desc: 'One attribute, full retheme' },
-            { icon: '↬', title: 'Nestable', desc: 'Themes can nest inside themes' },
-            { icon: '⟁', title: 'Instant', desc: 'CSS transitions handle everything' },
-          ].map(c => (
-            <div key={c.title} className="vhome-scope-card">
-              <div className="vhome-scope-card-icon">{c.icon}</div>
-              <div className="vhome-scope-card-title">{c.title}</div>
-              <div className="vhome-scope-card-desc">{c.desc}</div>
-            </div>
-          ))}
-        </div>
-        <div style={{ display: 'flex', gap: '0.75rem' }}>
-          <button className="vhome-btn-primary">Themed Button</button>
-          <button className="vhome-btn-outline">Secondary</button>
-        </div>
-      </div>
-    </>
+    </div>
   )
 }
 
-// ─── 4-Panel Scope Theming Showcase ───────────────────────────────────────────
-function ScopePanels() {
-  const themes = [
-    { name: 'default', label: 'Default (Violet)', hue: 258 },
-    { name: 'ocean',   label: 'Ocean',            hue: 205 },
-    { name: 'forest',  label: 'Forest',           hue: 145 },
-    { name: 'ember',   label: 'Ember',            hue: 22  },
+function AccordionDemo() {
+  const [open, setOpen] = useState<number | null>(0)
+  const items = [
+    { q: 'What is a CSS State Machine?', a: 'A pattern using :has() + radio inputs to manage component state entirely in CSS — zero JavaScript, zero event listeners.' },
+    { q: 'Which browsers support :has()?', a: 'All modern browsers: Chrome 105+, Firefox 121+, Safari 15.4+. VeloraCSS targets these baselines.' },
   ]
   return (
-    <div className="vhome-scope-panels">
-      {themes.map(t => (
-        <div
-          key={t.name}
-          className="vhome-scope-panel"
-          data-vel-theme={t.name === 'default' ? undefined : t.name}
-        >
-          <span className="vhome-scope-panel-label">{t.label}</span>
-          <div className="vhome-scope-panel-title">VeloraCSS</div>
-          <div className="vhome-scope-panel-desc">Same classes, different hue.</div>
-          <div className="vhome-scope-panel-actions">
-            <button className="vhome-btn-primary" style={{ padding: '0.4rem 0.875rem', fontSize: '0.8125rem' }}>Action</button>
-            <span className="vhome-dna-live-badge">Badge</span>
-          </div>
+    <div className="vel-accordion">
+      {items.map((item, i) => (
+        <div key={i} className="vel-accordion-item">
+          <button
+            className="vel-accordion-trigger"
+            onClick={() => setOpen(open === i ? null : i)}
+          >
+            {item.q}
+            <span className={`vel-accordion-trigger-icon${open === i ? ' vel-open' : ''}`}>▾</span>
+          </button>
+          {open === i && (
+            <div className="vel-accordion-content">{item.a}</div>
+          )}
         </div>
       ))}
     </div>
   )
 }
 
-// ─── Discord Widget ───────────────────────────────────────────────────────────
-interface DiscordMember { username: string; status: string; avatar_url?: string }
-interface DiscordWidget { name: string; presence_count: number; instant_invite: string; members: DiscordMember[] }
-
-function DiscordWidget() {
-  const [open, setOpen] = useState(false)
-  const [data, setData] = useState<DiscordWidget | null>(null)
-
-  useEffect(() => {
-    fetch('https://discord.com/api/guilds/1478942228956057652/widget.json')
-      .then(r => r.json())
-      .then(setData)
-      .catch(() => {})
-  }, [])
-
-  const statusClass = (s: string) =>
-    s === 'idle' ? 'vhome-discord-status-idle' :
-    s === 'dnd'  ? 'vhome-discord-status-dnd'  :
-    'vhome-discord-status-online'
-
-  const invite = data?.instant_invite ?? 'https://discord.gg/RKmSyudqAv'
-  const count  = data?.presence_count ?? 0
-  const shown  = data?.members.slice(0, 5) ?? []
-  const extra  = (data?.presence_count ?? 0) - shown.length
+// ─── Section 4: Container Intelligence demo ───────────────────────────────────
+function ContainerDemo() {
+  const [width, setWidth] = useState(400)
+  const isWide = width >= 450
 
   return (
-    <div className="vhome-discord-widget">
-      {open && (
-        <div className="vhome-discord-panel">
-          <div className="vhome-discord-header">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="#fff" aria-hidden="true">
-              <path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057.101 18.08.118 18.1.138 18.112a19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/>
-            </svg>
-            <div className="vhome-discord-header-text">
-              <div className="vhome-discord-header-name">{data?.name ?? 'VeloraCSS'}</div>
-              <div className="vhome-discord-header-sub">{count} online</div>
+    <div>
+      <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '1.5rem' }}>
+        <label style={{ fontSize: '0.8125rem', color: 'var(--vel-color-muted)', whiteSpace: 'nowrap' }}>
+          Container width: <strong style={{ color: 'var(--vel-color-text)' }}>{width}px</strong>
+        </label>
+        <input
+          type="range"
+          min={260}
+          max={800}
+          value={width}
+          onChange={e => setWidth(Number(e.target.value))}
+          style={{ flex: 1, accentColor: 'var(--vel-color-primary)' }}
+        />
+      </div>
+
+      <div style={{
+        width: width + 'px',
+        maxWidth: '100%',
+        transition: 'width 200ms ease',
+        border: '1px dashed var(--vel-border-base)',
+        borderRadius: 'var(--vel-radius-xl)',
+        padding: '4px',
+        overflow: 'hidden',
+      }}>
+        <div style={{
+          background: 'var(--vel-surface-2)',
+          border: '1px solid var(--vel-border-base)',
+          borderRadius: 'calc(var(--vel-radius-xl) - 2px)',
+          overflow: 'hidden',
+          display: 'grid',
+          gridTemplateColumns: isWide ? '180px 1fr' : '1fr',
+          transition: 'grid-template-columns 200ms ease',
+        }}>
+          <div style={{
+            background: 'oklch(65% 0.21 var(--vel-dna-hue, 258) / 0.12)',
+            borderBottom: isWide ? 'none' : '1px solid var(--vel-border-base)',
+            borderRight: isWide ? '1px solid var(--vel-border-base)' : 'none',
+            minHeight: isWide ? '160px' : '100px',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            fontSize: '2.5rem',
+          }}>
+            🌊
+          </div>
+          <div style={{ padding: '1.25rem' }}>
+            <span style={{
+              fontSize: '0.65rem',
+              fontWeight: 700,
+              letterSpacing: '0.1em',
+              textTransform: 'uppercase',
+              color: 'var(--vel-color-primary)',
+              display: 'block',
+              marginBottom: '0.375rem',
+            }}>
+              Container {isWide ? 'Wide' : 'Narrow'}
+            </span>
+            <div style={{ fontWeight: 700, marginBottom: '0.5rem', color: 'var(--vel-color-text)' }}>
+              Adaptive Card
+            </div>
+            <div style={{ fontSize: '0.8125rem', color: 'var(--vel-color-muted)', lineHeight: 1.6 }}>
+              This card switches from stacked to horizontal at 450px — using <code style={{ fontSize: '0.75em', background: 'var(--vel-surface-3)', padding: '0.1em 0.3em', borderRadius: '0.25rem', color: 'var(--vel-color-primary)' }}>@container</code> queries.
             </div>
           </div>
-          {shown.length > 0 && (
-            <div className="vhome-discord-members">
-              {shown.map((m, i) => (
-                <div key={i} className="vhome-discord-member">
-                  {m.avatar_url
-                    ? <img src={m.avatar_url} alt={m.username} className="vhome-discord-avatar" />
-                    : <div className="vhome-discord-avatar-fallback">{m.username[0].toUpperCase()}</div>
-                  }
-                  <span className="vhome-discord-member-name">{m.username}</span>
-                  <span className={`vhome-discord-status ${statusClass(m.status)}`} />
-                </div>
-              ))}
-              {extra > 0 && <div className="vhome-discord-more">+{extra} more online</div>}
-            </div>
-          )}
-          <a href={invite} target="_blank" rel="noopener noreferrer" className="vhome-discord-join">
-            Join Server
-          </a>
+          <div style={{
+            gridColumn: isWide ? '1 / -1' : undefined,
+            background: 'var(--vel-surface-3)',
+            borderTop: '1px solid var(--vel-border-base)',
+            padding: '0.5rem 0.875rem',
+            fontSize: '0.7rem',
+            color: isWide ? 'oklch(70% 0.18 162)' : 'var(--vel-color-muted)',
+            textAlign: 'center',
+            fontFamily: "'Cascadia Code', Consolas, monospace",
+            transition: 'color 200ms ease',
+          }}>
+            {isWide ? '✓ @container (min-width: 28rem) matched' : 'container width < 28rem — stacked layout'}
+          </div>
         </div>
-      )}
-      <button className="vhome-discord-pill" onClick={() => setOpen(o => !o)} aria-label="Discord community">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-          <path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057.101 18.08.118 18.1.138 18.112a19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/>
-        </svg>
-        <span className="vhome-discord-dot" />
-        {count > 0 ? `${count} online` : 'Discord'}
-      </button>
+      </div>
     </div>
   )
 }
 
-// ─── Main Page ────────────────────────────────────────────────────────────────
-export default function Home() {
-  const [hue, setHue] = useState(258)
+// ─── Section 6: Scope theming panels ─────────────────────────────────────────
+const SCOPE_THEMES = [
+  { name: 'Default',  hue: 258, label: 'theme: default' },
+  { name: 'Ocean',    hue: 205, label: 'data-vel-theme="ocean"' },
+  { name: 'Forest',   hue: 145, label: 'data-vel-theme="forest"' },
+  { name: 'Ember',    hue: 22,  label: 'data-vel-theme="ember"' },
+]
 
-  const onHue = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
-    const v = Number(e.target.value)
-    setHue(v)
-    document.getElementById('vel-home')?.style.setProperty('--vel-dna-hue', String(v))
-  }, [])
-
+function ScopePanel({ name, hue, label }: { name: string; hue: number; label: string }) {
   return (
-    <>
-      <style dangerouslySetInnerHTML={{ __html: DNA_CSS }} />
-
-      <main id="vel-home" style={{ '--vel-dna-hue': '258' } as React.CSSProperties}>
-
-        {/* ─── NAV ─── */}
-        <nav className="vhome-nav">
-          <div className="vel-flex vel-items-center vel-gap-4">
-            <img src={`${BASE_PATH}/velora_actual.png`} alt="VeloraCSS" style={{ height: '26px', width: 'auto' }} />
-            <span className="vel-badge vel-badge-primary">v1.0.0</span>
+    <div style={{
+      '--vel-dna-hue': String(hue),
+      background: 'var(--vel-surface-1)',
+      border: '1px solid var(--vel-border-base)',
+      borderRadius: 'var(--vel-radius-xl)',
+      overflow: 'hidden',
+    } as React.CSSProperties}>
+      <div style={{
+        background: 'var(--vel-color-primary)',
+        height: '4px',
+      }} />
+      <div style={{ padding: '1rem' }}>
+        <div style={{
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+          marginBottom: '0.875rem',
+        }}>
+          <span className="vel-badge vel-badge-primary">{name}</span>
+          <span style={{
+            fontSize: '0.625rem',
+            fontFamily: "'Cascadia Code', Consolas, monospace",
+            color: 'var(--vel-color-muted)',
+          }}>
+            hue: {hue}
+          </span>
+        </div>
+        <div style={{
+          background: 'var(--vel-surface-0)',
+          border: '1px solid var(--vel-border-base)',
+          borderRadius: 'var(--vel-radius-md)',
+          padding: '0.625rem 0.75rem',
+          marginBottom: '0.75rem',
+        }}>
+          <div style={{
+            fontSize: '0.6875rem',
+            fontWeight: 600,
+            color: 'var(--vel-color-muted)',
+            marginBottom: '0.375rem',
+          }}>
+            Nav bar
           </div>
-          <div className="vel-flex vel-items-center vel-gap-6">
-            <Link href={DOCS_URL} className="vhome-nav-link">Docs</Link>
-            <Link href="/community" className="vhome-nav-link">Community</Link>
-            <a href={PLAYGROUND_URL} target="_blank" rel="noopener noreferrer" className="vhome-nav-link">Playground</a>
-            <a href="https://github.com/VeloraX/veloracss" target="_blank" rel="noopener noreferrer" className="vhome-nav-link">GitHub</a>
-            <a href={PLAYGROUND_URL} target="_blank" rel="noopener noreferrer" className="vel-btn vel-btn-primary vel-btn-sm">
-              Try it live →
-            </a>
+          <div style={{ display: 'flex', gap: '0.375rem', alignItems: 'center' }}>
+            <div style={{ width: '6px', height: '6px', borderRadius: '50%', background: 'var(--vel-color-primary)' }} />
+            <div style={{ width: '40px', height: '4px', borderRadius: '2px', background: 'var(--vel-color-primary)', opacity: 0.8 }} />
+            <div style={{ width: '28px', height: '4px', borderRadius: '2px', background: 'var(--vel-border-base)' }} />
+            <div style={{ width: '32px', height: '4px', borderRadius: '2px', background: 'var(--vel-border-base)' }} />
           </div>
-        </nav>
+        </div>
+        <button className="vel-btn vel-btn-primary vel-btn-sm" style={{ width: '100%', marginBottom: '0.625rem' }}>
+          Button
+        </button>
+        <div style={{
+          fontSize: '0.625rem',
+          fontFamily: "'Cascadia Code', Consolas, monospace",
+          color: 'var(--vel-color-muted)',
+          background: 'var(--vel-surface-0)',
+          padding: '0.375rem 0.5rem',
+          borderRadius: 'var(--vel-radius-sm)',
+          border: '1px solid var(--vel-border-base)',
+        }}>
+          {label}
+        </div>
+      </div>
+    </div>
+  )
+}
 
-        {/* ─── HERO ─── */}
-        <section className="vhome-hero">
-          <div className="vhome-hero-eyebrow">
-            AI-designed · Human-shipped · Built for the future
-          </div>
-          <h1>Build anything.<br />Style everything.<br /><em>One hue changes it all.</em></h1>
-          <p className="vhome-hero-sub">
-            VeloraCSS is an AI-designed utility-first CSS framework with Color Genetics,
-            Container Intelligence, and zero-JS State Machines built in.
-          </p>
-          <div className="vhome-hero-ctas">
-            <Link href={DOCS_URL} className="vhome-cta-primary">Get Started →</Link>
-            <Link href={DOCS_URL} className="vhome-cta-secondary">View Docs</Link>
-            <a href="https://github.com/VeloraX/veloracss" target="_blank" rel="noopener noreferrer" className="vhome-cta-ghost">GitHub</a>
-          </div>
+// ─── COLOR GENETICS theme panels ─────────────────────────────────────────────
+const GENETICS_THEMES = [
+  { name: 'Ocean',  hue: 205 },
+  { name: 'Forest', hue: 145 },
+  { name: 'Ember',  hue: 22  },
+  { name: 'Aurora', hue: 300 },
+  { name: 'Gold',   hue: 55  },
+]
 
-          {/* Live DNA Slider */}
-          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-            <div className="vhome-dna-strip">
-              <span className="vhome-dna-label">Color DNA</span>
-              <div className="vhome-dna-swatch" />
-              <input
-                type="range" min="0" max="360" value={hue}
-                className="vhome-dna-slider"
-                onChange={onHue}
-              />
-              <span className="vhome-dna-val">{hue}°</span>
-            </div>
-            <p className="vhome-dna-note">
-              One number. Every color on this page derives from it via <code style={{ fontFamily: 'Cascadia Code, Consolas, monospace', color: 'inherit' }}>oklch()</code>.
-            </p>
-            <div className="vhome-dna-live">
-              <div style={{ width: '26px', height: '26px', borderRadius: '50%', background: 'var(--vp)', flexShrink: 0, transition: 'background 0.2s' }} />
-              <button className="vhome-btn-primary" style={{ padding: '0.3rem 0.875rem', fontSize: '0.78rem' }}>Button</button>
-              <span className="vhome-dna-live-badge">Badge</span>
-              <div style={{ width: '72px', height: '3px', borderRadius: '2px', background: 'var(--vp)', flexShrink: 0, transition: 'background 0.2s' }} />
-              <div style={{ width: '26px', height: '26px', borderRadius: '0.375rem', background: 'var(--vp-subtle)', border: '1.5px solid var(--vp)', flexShrink: 0, transition: 'all 0.2s' }} />
-              <span style={{ fontSize: '0.65rem', color: 'var(--vt3)', whiteSpace: 'nowrap' }}>← all react to the hue</span>
-            </div>
+function GeneticsPanel({ name, hue }: { name: string; hue: number }) {
+  return (
+    <div style={{
+      '--vel-dna-hue': String(hue),
+      background: 'var(--vel-surface-1)',
+      border: '1px solid var(--vel-border-base)',
+      borderRadius: 'var(--vel-radius-xl)',
+      overflow: 'hidden',
+      minWidth: '160px',
+      flex: '1',
+    } as React.CSSProperties}>
+      <div style={{ background: 'var(--vel-color-primary)', height: '4px' }} />
+      <div style={{ padding: '1rem' }}>
+        <span className="vel-badge vel-badge-primary" style={{ marginBottom: '0.75rem', display: 'inline-block' }}>
+          {name}
+        </span>
+        <div style={{ marginBottom: '0.625rem' }}>
+          <div style={{
+            height: '6px',
+            borderRadius: '3px',
+            background: 'var(--vel-surface-3)',
+            overflow: 'hidden',
+            marginBottom: '0.375rem',
+          }}>
+            <div style={{ width: '65%', height: '100%', background: 'var(--vel-color-primary)', borderRadius: '3px' }} />
           </div>
+          <div style={{
+            height: '6px',
+            borderRadius: '3px',
+            background: 'var(--vel-surface-3)',
+            overflow: 'hidden',
+          }}>
+            <div style={{ width: '40%', height: '100%', background: 'oklch(65% 0.21 var(--vel-dna-hue, 258) / 0.5)', borderRadius: '3px' }} />
+          </div>
+        </div>
+        <button className="vel-btn vel-btn-primary vel-btn-sm" style={{ width: '100%' }}>
+          Button
+        </button>
+        <div style={{
+          marginTop: '0.5rem',
+          fontSize: '0.625rem',
+          fontFamily: "'Cascadia Code', Consolas, monospace",
+          color: 'var(--vel-color-muted)',
+          textAlign: 'center',
+        }}>
+          hue: {hue}
+        </div>
+      </div>
+    </div>
+  )
+}
 
-          {/* Stats strip */}
-          <div className="vhome-hero-stats">
-            {[
-              { num: '474KB', label: 'full bundle' },
-              { num: '29', label: 'components' },
-              { num: '300+', label: 'utilities' },
-              { num: '0', label: 'dependencies' },
-            ].map(s => (
-              <div key={s.label} className="vhome-hero-stat">
-                <span className="vhome-hero-stat-num">{s.num}</span>
-                <span className="vhome-hero-stat-label">{s.label}</span>
+// ─── Main page ────────────────────────────────────────────────────────────────
+export default function HomePage() {
+  return (
+    <div
+      id="vel-home"
+      style={{ '--vel-dna-hue': '258' } as React.CSSProperties}
+    >
+
+      {/* ── SECTION 1: HERO ─────────────────────────────────────────────── */}
+      <section style={{
+        ...sectionStyle,
+        padding: 'clamp(5rem, 10vw, 9rem) 1.5rem clamp(4rem, 8vw, 7rem)',
+        position: 'relative',
+        overflow: 'hidden',
+      }}>
+        {/* Dot grid background */}
+        <div style={{
+          position: 'absolute',
+          inset: 0,
+          backgroundImage: 'radial-gradient(circle, oklch(26% 0.045 258 / 0.5) 1px, transparent 1px)',
+          backgroundSize: '24px 24px',
+          pointerEvents: 'none',
+          zIndex: 0,
+        }} />
+
+        <div style={{ ...innerStyle, position: 'relative', zIndex: 1 }}>
+          <div style={{
+            display: 'grid',
+            gridTemplateColumns: 'minmax(0, 1fr) minmax(0, 1fr)',
+            gap: 'clamp(2rem, 5vw, 5rem)',
+            alignItems: 'center',
+          }}>
+            {/* Left: headline + CTAs */}
+            <div>
+              <div style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '0.5rem',
+                background: 'oklch(65% 0.21 var(--vel-dna-hue, 258) / 0.08)',
+                border: '1px solid oklch(65% 0.21 var(--vel-dna-hue, 258) / 0.25)',
+                borderRadius: '9999px',
+                padding: '0.3rem 0.875rem',
+                fontSize: '0.75rem',
+                fontWeight: 600,
+                color: 'var(--vel-color-primary)',
+                letterSpacing: '0.04em',
+                marginBottom: '1.5rem',
+              }}>
+                <span>✦</span>
+                <span>v1.0.0 — AI-designed. Human-shipped.</span>
               </div>
+
+              <h1 style={{
+                fontSize: 'clamp(3rem, 6vw, 5rem)',
+                fontWeight: 800,
+                letterSpacing: '-0.03em',
+                color: 'var(--vel-color-text)',
+                lineHeight: 1.1,
+                margin: '0 0 1.25rem',
+              }}>
+                Build with genetics,<br />not guesswork.
+              </h1>
+
+              <p style={{
+                fontSize: 'clamp(1rem, 1.5vw, 1.1875rem)',
+                color: 'var(--vel-color-muted)',
+                lineHeight: 1.7,
+                maxWidth: '500px',
+                margin: '0 0 2rem',
+              }}>
+                VeloraCSS — utility-first, component-rich, and genuinely zero JavaScript.
+                One hue value drives your entire color universe.
+              </p>
+
+              <div style={{ display: 'flex', gap: '0.875rem', flexWrap: 'wrap', marginBottom: '2.5rem' }}>
+                <Link href="/docs/getting-started" className="vel-btn vel-btn-primary vel-btn-lg">
+                  Get Started →
+                </Link>
+                <a href={PLAYGROUND_URL} className="vel-btn vel-btn-ghost vel-btn-lg" target="_blank" rel="noopener">
+                  Try Playground
+                </a>
+              </div>
+
+              {/* Mini stats */}
+              <div style={{
+                display: 'flex',
+                gap: '0',
+                border: '1px solid var(--vel-border-base)',
+                borderRadius: 'var(--vel-radius-xl)',
+                overflow: 'hidden',
+                maxWidth: '420px',
+              }}>
+                {[
+                  { num: '300+', label: 'Utilities' },
+                  { num: '30',   label: 'Components' },
+                  { num: '6',    label: 'Innovations' },
+                  { num: '0',    label: 'JS Required' },
+                ].map((s, i) => (
+                  <div key={i} style={{
+                    flex: 1,
+                    padding: '0.875rem 0.625rem',
+                    textAlign: 'center',
+                    background: 'var(--vel-surface-1)',
+                    borderRight: i < 3 ? '1px solid var(--vel-border-base)' : 'none',
+                  }}>
+                    <div style={{
+                      fontSize: '1.25rem',
+                      fontWeight: 900,
+                      color: 'var(--vel-color-primary)',
+                      lineHeight: 1,
+                      marginBottom: '0.2rem',
+                    }}>
+                      {s.num}
+                    </div>
+                    <div style={{ fontSize: '0.65rem', color: 'var(--vel-color-muted)', letterSpacing: '0.03em' }}>
+                      {s.label}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Right: DNA demo widget */}
+            <div style={{
+              background: 'var(--vel-surface-1)',
+              border: '1px solid var(--vel-border-base)',
+              borderRadius: 'var(--vel-radius-2xl, 1.25rem)',
+              padding: '1.5rem',
+            }}>
+              <DnaSlider />
+              <p style={{
+                fontSize: '0.6875rem',
+                color: 'var(--vel-color-muted)',
+                marginTop: '0.5rem',
+                marginBottom: '1.25rem',
+              }}>
+                Drag the slider — every vel- class on this page updates.
+              </p>
+
+              {/* Swatches row */}
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '0.5rem', marginBottom: '1rem' }}>
+                {[
+                  { label: 'primary',   style: { background: 'var(--vel-color-primary)', height: '48px', borderRadius: 'var(--vel-radius-md)' } },
+                  { label: 'success',   style: { background: 'oklch(65% 0.2 162)', height: '48px', borderRadius: 'var(--vel-radius-md)' } },
+                  { label: 'surface-2', style: { background: 'var(--vel-surface-2)', height: '48px', borderRadius: 'var(--vel-radius-md)', border: '1px solid var(--vel-border-base)' } },
+                  { label: 'border',    style: { background: 'var(--vel-border-base)', height: '48px', borderRadius: 'var(--vel-radius-md)' } },
+                ].map(s => (
+                  <div key={s.label}>
+                    <div style={s.style as React.CSSProperties} />
+                    <div style={{ fontSize: '0.6rem', color: 'var(--vel-color-muted)', marginTop: '0.25rem', fontFamily: "'Cascadia Code', Consolas, monospace" }}>
+                      {s.label}
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              {/* Live components */}
+              <div style={{ display: 'flex', gap: '0.625rem', alignItems: 'center', flexWrap: 'wrap', marginBottom: '1rem' }}>
+                <button className="vel-btn vel-btn-primary vel-btn-sm">vel-btn-primary</button>
+                <span className="vel-badge vel-badge-primary">vel-badge</span>
+              </div>
+
+              {/* Mini card with spinner */}
+              <div className="vel-card" style={{ padding: '1rem', display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+                <span className="vel-spinner vel-spinner-primary" style={{ width: '1.25rem', height: '1.25rem' }} />
+                <span style={{ fontSize: '0.8125rem', color: 'var(--vel-color-muted)' }}>
+                  Loading component...
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ── SECTION 2: ZERO-JS STATE MACHINES ───────────────────────────── */}
+      <section style={{
+        ...sectionStyle,
+        background: 'var(--vel-surface-1)',
+        borderTop: '1px solid var(--vel-border-base)',
+        borderBottom: '1px solid var(--vel-border-base)',
+      }}>
+        <div style={innerStyle}>
+          <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
+            <Eyebrow>CSS State Machines</Eyebrow>
+            <SectionHeadline>Interactive components.{'\n'}Zero JavaScript.</SectionHeadline>
+            <div style={{ display: 'flex', justifyContent: 'center' }}>
+              <SectionSub>
+                Tabs, modals, dropdowns, accordions, carousels — all powered by CSS :has() and radio inputs.
+                Not a single line of JS.
+              </SectionSub>
+            </div>
+          </div>
+
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '1.5rem' }}>
+            {/* Tabs demo */}
+            <div style={{
+              background: 'var(--vel-surface-2)',
+              border: '1px solid var(--vel-border-base)',
+              borderRadius: 'var(--vel-radius-xl)',
+              padding: '1.25rem',
+            }}>
+              <div style={{
+                fontSize: '0.6875rem',
+                fontWeight: 700,
+                letterSpacing: '0.1em',
+                textTransform: 'uppercase',
+                color: 'var(--vel-color-primary)',
+                marginBottom: '1rem',
+              }}>
+                Tabs
+              </div>
+              <TabsDemo />
+              <div style={{
+                marginTop: '1rem',
+                padding: '0.625rem 0.875rem',
+                background: 'var(--vel-surface-3)',
+                borderRadius: 'var(--vel-radius-md)',
+                fontSize: '0.7rem',
+                fontFamily: "'Cascadia Code', Consolas, monospace",
+                color: 'var(--vel-color-muted)',
+              }}>
+                <span style={{ color: 'var(--vel-color-primary)' }}>:has</span>(<span style={{ color: 'oklch(72% 0.13 145)' }}>input:checked</span>) ~ .vel-tab-panel
+              </div>
+              <div style={{ marginTop: '0.5rem', fontSize: '0.6875rem', color: 'var(--vel-color-muted)', textAlign: 'center' }}>
+                0 lines of JavaScript
+              </div>
+            </div>
+
+            {/* Dropdown demo */}
+            <div style={{
+              background: 'var(--vel-surface-2)',
+              border: '1px solid var(--vel-border-base)',
+              borderRadius: 'var(--vel-radius-xl)',
+              padding: '1.25rem',
+            }}>
+              <div style={{
+                fontSize: '0.6875rem',
+                fontWeight: 700,
+                letterSpacing: '0.1em',
+                textTransform: 'uppercase',
+                color: 'var(--vel-color-primary)',
+                marginBottom: '1rem',
+              }}>
+                Dropdown
+              </div>
+              <DropdownDemo />
+              <div style={{
+                marginTop: '1rem',
+                padding: '0.625rem 0.875rem',
+                background: 'var(--vel-surface-3)',
+                borderRadius: 'var(--vel-radius-md)',
+                fontSize: '0.7rem',
+                fontFamily: "'Cascadia Code', Consolas, monospace",
+                color: 'var(--vel-color-muted)',
+              }}>
+                .vel-dropdown:<span style={{ color: 'oklch(80% 0.16 220)' }}>focus-within</span> .vel-dropdown-menu
+              </div>
+              <div style={{ marginTop: '0.5rem', fontSize: '0.6875rem', color: 'var(--vel-color-muted)', textAlign: 'center' }}>
+                0 lines of JavaScript
+              </div>
+            </div>
+
+            {/* Accordion demo */}
+            <div style={{
+              background: 'var(--vel-surface-2)',
+              border: '1px solid var(--vel-border-base)',
+              borderRadius: 'var(--vel-radius-xl)',
+              padding: '1.25rem',
+            }}>
+              <div style={{
+                fontSize: '0.6875rem',
+                fontWeight: 700,
+                letterSpacing: '0.1em',
+                textTransform: 'uppercase',
+                color: 'var(--vel-color-primary)',
+                marginBottom: '1rem',
+              }}>
+                Accordion
+              </div>
+              <AccordionDemo />
+              <div style={{
+                marginTop: '1rem',
+                padding: '0.625rem 0.875rem',
+                background: 'var(--vel-surface-3)',
+                borderRadius: 'var(--vel-radius-md)',
+                fontSize: '0.7rem',
+                fontFamily: "'Cascadia Code', Consolas, monospace",
+                color: 'var(--vel-color-muted)',
+              }}>
+                <span style={{ color: 'var(--vel-color-primary)' }}>:has</span>(<span style={{ color: 'oklch(72% 0.13 145)' }}>&gt; input:checked</span>) .vel-accordion-content
+              </div>
+              <div style={{ marginTop: '0.5rem', fontSize: '0.6875rem', color: 'var(--vel-color-muted)', textAlign: 'center' }}>
+                0 lines of JavaScript
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ── SECTION 3: COLOR GENETICS ────────────────────────────────────── */}
+      <section style={sectionStyle}>
+        <div style={innerStyle}>
+          <div style={{ textAlign: 'center', marginBottom: '2rem' }}>
+            <Eyebrow>Color Genetics</Eyebrow>
+            <SectionHeadline>One variable. Every color. Everywhere.</SectionHeadline>
+            <div style={{ display: 'flex', justifyContent: 'center' }}>
+              <SectionSub>
+                Set <code style={{ fontSize: '0.875em', background: 'var(--vel-surface-3)', padding: '0.1em 0.4em', borderRadius: '0.25rem', color: 'var(--vel-color-primary)', fontFamily: "'Cascadia Code', Consolas, monospace" }}>--vel-dna-hue</code> once.
+                Your primary, surfaces, borders, and text all cascade from it automatically via oklch().
+              </SectionSub>
+            </div>
+
+            <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '2.5rem' }}>
+              <DnaSlider />
+            </div>
+          </div>
+
+          {/* 5 fixed-theme panels */}
+          <div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap' }}>
+            {GENETICS_THEMES.map(t => (
+              <GeneticsPanel key={t.name} {...t} />
             ))}
           </div>
-        </section>
 
-        {/* ─── FRAMEWORKS DON'T DO THIS ─── */}
-        <section className="vhome-section">
-          <div className="vhome-wrap">
-            <span className="vhome-section-eyebrow">What makes Velora different</span>
-            <h2 className="vhome-section-title">Frameworks don&apos;t<br />do <em>this.</em></h2>
-            <p className="vhome-section-desc">
-              Three capabilities that no other utility framework ships out of the box.
-              Each one replaces a category of JavaScript you no longer need to write.
-            </p>
-
-            <div className="vhome-inno-cards">
-              {/* Card 1: Color Genetics */}
-              <div className="vhome-inno-card">
-                <div className="vhome-inno-card-header">
-                  <div className="vhome-inno-card-icon">◈</div>
-                  <div>
-                    <div className="vhome-inno-card-num">01</div>
-                    <div className="vhome-inno-card-title">Color Genetics</div>
-                  </div>
-                </div>
-                <div className="vhome-inno-card-body">
-                  <p>One hue = 50+ derived colors via <code style={{ fontFamily: 'Cascadia Code, Consolas, monospace', fontSize: '0.875em', color: 'var(--vp-light)', background: 'var(--vp-subtle)', padding: '0.1em 0.3em', borderRadius: '0.25rem' }}>oklch()</code>. Perceptually uniform, mathematically coherent. Change a single number and the entire UI recolors.</p>
-                  <div className="vhome-inno-card-demo">
-                    <div style={{ fontFamily: 'Cascadia Code, Consolas, monospace', fontSize: '0.75rem', lineHeight: 1.7 }}>
-                      <span className="tc-comment">{'/* The entire palette from one number */'}</span>{'\n'}
-                      <span className="tc-prop">{'--vel-dna-hue'}</span>{': '}<span className="tc-num">{'145'}</span>{';'}{'\n'}
-                      <span className="tc-prop">{'--vel-color-primary'}</span>{': '}<span className="tc-fn">{'oklch'}</span>{'('}<span className="tc-num">{'65% 0.21'}</span>{' '}<span className="tc-fn">{'var'}</span>{'('}<span className="tc-prop">{'--vel-dna-hue'}</span>{'));'}
-                    </div>
-                    <div style={{ display: 'flex', gap: '0.375rem', marginTop: '0.75rem' }}>
-                      {[65, 75, 80, 60, 50, 35, 20, 10].map((l, i) => (
-                        <div key={i} style={{ flex: 1, height: '24px', borderRadius: '3px', background: `var(--vp)`, opacity: l / 80 }} />
-                      ))}
-                    </div>
-                  </div>
-                  <span className="vhome-inno-card-tag">--vel-dna-hue: 145</span>
-                </div>
-              </div>
-
-              {/* Card 2: Zero-JS State */}
-              <div className="vhome-inno-card">
-                <div className="vhome-inno-card-header">
-                  <div className="vhome-inno-card-icon">⟁</div>
-                  <div>
-                    <div className="vhome-inno-card-num">02</div>
-                    <div className="vhome-inno-card-title">Zero-JS State Machine</div>
-                  </div>
-                </div>
-                <div className="vhome-inno-card-body">
-                  <p>CSS State Machine tabs and toggles via <code style={{ fontFamily: 'Cascadia Code, Consolas, monospace', fontSize: '0.875em', color: 'var(--vp-light)', background: 'var(--vp-subtle)', padding: '0.1em 0.3em', borderRadius: '0.25rem' }}>:has()</code> and radio inputs. The browser tracks state. No JavaScript at all.</p>
-                  <div className="vhome-inno-card-demo">
-                    <input type="radio" name="inno-tabs" id="inno-t1" defaultChecked style={{ position: 'absolute', opacity: 0, pointerEvents: 'none' }} />
-                    <input type="radio" name="inno-tabs" id="inno-t2" style={{ position: 'absolute', opacity: 0, pointerEvents: 'none' }} />
-                    <style dangerouslySetInnerHTML={{ __html: `
-                      .inno-tab-row { display: flex; gap: 0; border: 1px solid var(--vborder); border-radius: 0.5rem; overflow: hidden; }
-                      .inno-tab-row label { padding: 0.375rem 0.875rem; font-size: 0.75rem; font-weight: 500; color: var(--vt3); cursor: pointer; border-right: 1px solid var(--vborder); transition: all 0.2s; }
-                      .inno-tab-row label:last-child { border-right: none; }
-                      .inno-tabs-wrap:has(#inno-t1:checked) label[for="inno-t1"],
-                      .inno-tabs-wrap:has(#inno-t2:checked) label[for="inno-t2"] { background: var(--vp-subtle); color: var(--vp); }
-                      .inno-panel { display: none; font-size: 0.75rem; color: var(--vt2); margin-top: 0.5rem; line-height: 1.5; }
-                      .inno-tabs-wrap:has(#inno-t1:checked) #inno-p1,
-                      .inno-tabs-wrap:has(#inno-t2:checked) #inno-p2 { display: block; }
-                    `}} />
-                    <div className="inno-tabs-wrap" style={{ position: 'relative' }}>
-                      <div className="inno-tab-row">
-                        <label htmlFor="inno-t1">Overview</label>
-                        <label htmlFor="inno-t2">Details</label>
-                      </div>
-                      <div id="inno-p1" className="inno-panel">State is tracked by native radio input. CSS reads it via <code style={{ fontFamily: 'monospace', fontSize: '0.8em', color: 'var(--vp-light)' }}>:has(:checked)</code>.</div>
-                      <div id="inno-p2" className="inno-panel">No event listeners. No useState. No re-renders. Just CSS selectors.</div>
-                    </div>
-                  </div>
-                  <span className="vhome-inno-card-tag">.tabs:has(#t1:checked) #panel-1</span>
-                </div>
-              </div>
-
-              {/* Card 3: Container Intelligence */}
-              <div className="vhome-inno-card">
-                <div className="vhome-inno-card-header">
-                  <div className="vhome-inno-card-icon">⬡</div>
-                  <div>
-                    <div className="vhome-inno-card-num">03</div>
-                    <div className="vhome-inno-card-title">Container Intelligence</div>
-                  </div>
-                </div>
-                <div className="vhome-inno-card-body">
-                  <p><code style={{ fontFamily: 'Cascadia Code, Consolas, monospace', fontSize: '0.875em', color: 'var(--vp-light)', background: 'var(--vp-subtle)', padding: '0.1em 0.3em', borderRadius: '0.25rem' }}>@container</code> queries — components adapt to their own space, not the viewport. The same card stacks in a sidebar and reflows in a wide area.</p>
-                  <div className="vhome-inno-card-demo">
-                    <div style={{ fontFamily: 'Cascadia Code, Consolas, monospace', fontSize: '0.75rem', lineHeight: 1.7 }}>
-                      <span className="tc-fn">{'@container'}</span>{' ('}<span className="tc-prop">{'min-width'}</span>{': '}<span className="tc-num">{'460px'}</span>{')'}{' {'}{'\n'}
-                      {'  '}<span className="tc-cls">{'.vel-cq-card'}</span>{' { '}<span className="tc-prop">{'grid'}</span>{': '}<span className="tc-num">{'auto / 200px 1fr'}</span>{'; '}{'}'}{'}'}{'\n'}
-                      {'}'}
-                    </div>
-                    <div style={{ marginTop: '0.75rem', display: 'flex', gap: '0.5rem', alignItems: 'center' }}>
-                      <div style={{ flex: '0 0 48px', height: '52px', borderRadius: '0.375rem', background: 'var(--vp-subtle)', border: '1px solid var(--vp-glow)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1.125rem' }}>◈</div>
-                      <div style={{ flex: 1 }}>
-                        <div style={{ height: '9px', borderRadius: '5px', background: 'var(--vs4)', marginBottom: '6px', width: '70%' }} />
-                        <div style={{ height: '7px', borderRadius: '4px', background: 'var(--vs3)', width: '50%' }} />
-                      </div>
-                    </div>
-                  </div>
-                  <span className="vhome-inno-card-tag">@container (min-width: 460px)</span>
-                </div>
-              </div>
-            </div>
+          {/* Terminal showing the CSS */}
+          <div style={{ marginTop: '2.5rem' }}>
+            <Terminal
+              filename="tokens.css"
+              rawText={`/* One hue — fifty tokens */\n--vel-dna-hue: 258;\n--vel-color-primary: oklch(65% 0.21 var(--vel-dna-hue));\n--vel-surface-0:     oklch(7%  0.02  var(--vel-dna-hue));\n--vel-surface-1:     oklch(10% 0.025 var(--vel-dna-hue));\n--vel-surface-2:     oklch(13% 0.03  var(--vel-dna-hue));\n--vel-border-base:   oklch(26% 0.045 var(--vel-dna-hue));\n--vel-color-text:    oklch(92% 0.015 var(--vel-dna-hue));\n--vel-color-muted:   oklch(50% 0.04  var(--vel-dna-hue));`}
+            >
+              <span className="tc-comment">{'/* One hue — fifty tokens */'}</span>{'\n'}
+              <span className="tc-prop">--vel-dna-hue</span>: <span className="tc-num">258</span>;{'\n'}
+              <span className="tc-prop">--vel-color-primary</span>: <span className="tc-fn">oklch</span>(<span className="tc-num">65%</span> <span className="tc-num">0.21</span> <span className="tc-fn">var</span>(<span className="tc-prop">--vel-dna-hue</span>));{'\n'}
+              <span className="tc-prop">--vel-surface-0</span>:     <span className="tc-fn">oklch</span>(<span className="tc-num">7%</span>  <span className="tc-num">0.02</span>  <span className="tc-fn">var</span>(<span className="tc-prop">--vel-dna-hue</span>));{'\n'}
+              <span className="tc-prop">--vel-surface-1</span>:     <span className="tc-fn">oklch</span>(<span className="tc-num">10%</span> <span className="tc-num">0.025</span> <span className="tc-fn">var</span>(<span className="tc-prop">--vel-dna-hue</span>));{'\n'}
+              <span className="tc-prop">--vel-surface-2</span>:     <span className="tc-fn">oklch</span>(<span className="tc-num">13%</span> <span className="tc-num">0.03</span>  <span className="tc-fn">var</span>(<span className="tc-prop">--vel-dna-hue</span>));{'\n'}
+              <span className="tc-prop">--vel-border-base</span>:   <span className="tc-fn">oklch</span>(<span className="tc-num">26%</span> <span className="tc-num">0.045</span> <span className="tc-fn">var</span>(<span className="tc-prop">--vel-dna-hue</span>));{'\n'}
+              <span className="tc-prop">--vel-color-text</span>:    <span className="tc-fn">oklch</span>(<span className="tc-num">92%</span> <span className="tc-num">0.015</span> <span className="tc-fn">var</span>(<span className="tc-prop">--vel-dna-hue</span>));{'\n'}
+              <span className="tc-prop">--vel-color-muted</span>:   <span className="tc-fn">oklch</span>(<span className="tc-num">50%</span> <span className="tc-num">0.04</span>  <span className="tc-fn">var</span>(<span className="tc-prop">--vel-dna-hue</span>));
+            </Terminal>
           </div>
-        </section>
+        </div>
+      </section>
 
-        {/* ─── COMPONENT SHOWCASE ─── */}
-        <section className="vhome-section">
-          <div className="vhome-wrap">
-            <span className="vhome-section-eyebrow">Rich component library</span>
-            <h2 className="vhome-section-title">Every component included.</h2>
-            <p className="vhome-section-desc">
-              29 production-ready components, all as <code>vel-</code> classes. Open DevTools
-              and inspect any element below — real framework classes, no tricks.
-            </p>
+      {/* ── SECTION 4: CONTAINER INTELLIGENCE ───────────────────────────── */}
+      <section style={{
+        ...sectionStyle,
+        background: 'var(--vel-surface-1)',
+        borderTop: '1px solid var(--vel-border-base)',
+        borderBottom: '1px solid var(--vel-border-base)',
+      }}>
+        <div style={innerStyle}>
+          <div style={{
+            display: 'grid',
+            gridTemplateColumns: 'minmax(0, 1fr) minmax(0, 1fr)',
+            gap: 'clamp(2rem, 5vw, 5rem)',
+            alignItems: 'start',
+          }}>
+            <div>
+              <Eyebrow>Container Intelligence</Eyebrow>
+              <SectionHeadline>Components that know their space.</SectionHeadline>
+              <SectionSub>
+                @container queries let every component adapt to its own container — not the viewport.
+                No breakpoint media queries needed.
+              </SectionSub>
 
-            {/* Buttons */}
-            <div className="vel-card vel-mb-6">
-              <div className="vhome-showcase-header">vel-btn — Button variants</div>
-              <div className="vel-card-body vel-flex vel-flex-wrap vel-gap-3">
-                <button className="vel-btn vel-btn-primary">Primary</button>
-                <button className="vel-btn vel-btn-secondary">Secondary</button>
-                <button className="vel-btn vel-btn-success">Success</button>
-                <button className="vel-btn vel-btn-danger">Danger</button>
-                <button className="vel-btn vel-btn-warning">Warning</button>
-                <button className="vel-btn vel-btn-ghost">Ghost</button>
-              </div>
-              <div className="vel-card-footer vel-flex vel-flex-wrap vel-gap-3">
-                <button className="vel-btn vel-btn-outline-primary">Outline Primary</button>
-                <button className="vel-btn vel-btn-outline-success">Outline Success</button>
-                <button className="vel-btn vel-btn-outline-danger">Outline Danger</button>
-                <button className="vel-btn vel-btn-xs vel-btn-primary">xs</button>
-                <button className="vel-btn vel-btn-sm vel-btn-primary">sm</button>
-                <button className="vel-btn vel-btn-lg vel-btn-primary">lg</button>
-                <button className="vel-btn vel-btn-primary" disabled>Disabled</button>
-              </div>
-            </div>
-
-            {/* Badges + Alerts */}
-            <div className="vel-grid vel-gap-6 vel-mb-6" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))' }}>
-              <div className="vel-card">
-                <div className="vhome-showcase-header">vel-badge — Badge variants</div>
-                <div className="vel-card-body vel-flex vel-flex-wrap vel-gap-2">
-                  <span className="vel-badge vel-badge-primary vel-badge-dot">Primary</span>
-                  <span className="vel-badge vel-badge-success vel-badge-dot">Success</span>
-                  <span className="vel-badge vel-badge-danger vel-badge-dot">Danger</span>
-                  <span className="vel-badge vel-badge-warning vel-badge-dot">Warning</span>
-                  <span className="vel-badge vel-badge-info vel-badge-dot">Info</span>
-                  <span className="vel-badge vel-badge-neutral">Neutral</span>
-                  <span className="vel-badge vel-badge-solid-primary">Solid</span>
-                  <span className="vel-badge vel-badge-sm vel-badge-primary">Small</span>
-                  <span className="vel-badge vel-badge-lg vel-badge-primary">Large</span>
-                </div>
-              </div>
-
-              <div className="vel-card">
-                <div className="vhome-showcase-header">vel-alert — Alert variants</div>
-                <div className="vel-card-body" style={{ display: 'grid', gap: '0.625rem' }}>
-                  <div className="vel-alert vel-alert-primary">
-                    <span className="vel-alert-title">Info</span>
-                    Something worth knowing about your project.
-                  </div>
-                  <div className="vel-alert vel-alert-success">
-                    <span className="vel-alert-title">Success</span>
-                    Your changes were saved successfully.
-                  </div>
-                  <div className="vel-alert vel-alert-danger">
-                    <span className="vel-alert-title">Error</span>
-                    Something went wrong. Please try again.
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* Cards */}
-            <div className="vel-grid vel-gap-6 vel-mb-6" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))' }}>
-              <div className="vel-card vel-card-hover">
-                <div className="vel-card-header">vel-card</div>
-                <div className="vel-card-body">
-                  <p className="vel-text-sm" style={{ color: 'var(--vel-color-muted)', lineHeight: 1.6, marginBottom: '1rem' }}>Default card with hover lift. Uses framework border, shadow, and surface tokens.</p>
-                  <button className="vel-btn vel-btn-primary vel-btn-sm">Action</button>
-                </div>
-              </div>
-              <div className="vel-card vel-card-elevated vel-card-hover">
-                <div className="vel-card-header">vel-card-elevated</div>
-                <div className="vel-card-body">
-                  <p className="vel-text-sm" style={{ color: 'var(--vel-color-muted)', lineHeight: 1.6, marginBottom: '1rem' }}>Elevated shadow variant. Borderless, deeper drop shadow for prominent content.</p>
-                  <button className="vel-btn vel-btn-outline-primary vel-btn-sm">Learn more</button>
-                </div>
-              </div>
-              <div className="vel-card vel-card-primary vel-card-hover">
-                <div className="vel-card-header">vel-card-primary</div>
-                <div className="vel-card-body">
-                  <p className="vel-text-sm" style={{ color: 'var(--vel-color-muted)', lineHeight: 1.6, marginBottom: '1rem' }}>Brand-tinted surface with primary glow. Perfect for featured or highlighted items.</p>
-                  <button className="vel-btn vel-btn-primary vel-btn-sm">Get started</button>
-                </div>
-              </div>
-            </div>
-
-            {/* Inputs */}
-            <div className="vel-grid vel-gap-6 vel-mb-6" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))' }}>
-              <div className="vel-card">
-                <div className="vhome-showcase-header">vel-input — Form inputs</div>
-                <div className="vel-card-body" style={{ display: 'grid', gap: '0.75rem' }}>
-                  <input className="vel-input" placeholder="vel-input — text input" />
-                  <input className="vel-input" type="email" placeholder="vel-input — email" />
-                  <select className="vel-select">
-                    <option>vel-select — choose option</option>
-                    <option>Option A</option>
-                    <option>Option B</option>
-                  </select>
-                </div>
-              </div>
-
-              <div className="vel-card">
-                <div className="vhome-showcase-header">Progress · Avatars · Spinners</div>
-                <div className="vel-card-body" style={{ display: 'grid', gap: '1rem' }}>
-                  {/* Progress bars */}
-                  <div style={{ display: 'grid', gap: '0.5rem' }}>
-                    <div className="vel-progress">
-                      <div className="vel-progress-bar" style={{ width: '72%' }} />
-                    </div>
-                    <div className="vel-progress vel-progress-success">
-                      <div className="vel-progress-bar" style={{ width: '48%' }} />
-                    </div>
-                    <div className="vel-progress vel-progress-danger">
-                      <div className="vel-progress-bar" style={{ width: '28%' }} />
-                    </div>
-                  </div>
-                  {/* Avatars */}
-                  <div style={{ display: 'flex', gap: '0.5rem', alignItems: 'center' }}>
-                    <div className="vhome-avatar">JD</div>
-                    <div className="vhome-avatar">AK</div>
-                    <div className="vhome-avatar-lg">MR</div>
-                    <div style={{ marginLeft: 'auto', display: 'flex', gap: '0.5rem', alignItems: 'center' }}>
-                      <div className="vhome-spinner" />
-                      <div className="vel-spinner" />
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* Skeleton loaders */}
-            <div className="vel-card vel-mb-6">
-              <div className="vhome-showcase-header">vel-skeleton — Loading states</div>
-              <div className="vel-card-body vel-flex vel-gap-4 vel-items-center">
-                <div className="vhome-skeleton-demo" style={{ width: '48px', height: '48px', borderRadius: '50%', flexShrink: 0 }} />
-                <div className="vel-flex vel-flex-col vel-gap-2 vel-flex-1">
-                  <div className="vhome-skeleton-demo" style={{ height: '12px', borderRadius: '6px', width: '60%' }} />
-                  <div className="vhome-skeleton-demo" style={{ height: '11px', borderRadius: '5px', width: '40%' }} />
-                </div>
-                <div className="vhome-skeleton-demo" style={{ height: '36px', borderRadius: '0.5rem', width: '100px', flexShrink: 0 }} />
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* ─── SCOPE THEMING DEMO — 4 panels ─── */}
-        <section className="vhome-section">
-          <div className="vhome-wrap">
-            <span className="vhome-section-eyebrow">Innovation 04 · Scope Theming</span>
-            <h2 className="vhome-section-title">One stylesheet.<br /><em>Infinite themes.</em></h2>
-            <p className="vhome-section-desc">
-              Set <code>data-vel-theme</code> on any element — every child instantly inherits
-              a new color world. The same <code>vel-btn</code> and <code>vel-badge</code> classes,
-              four different hues.
-            </p>
-
-            <ScopePanels />
-
-            <div style={{ marginTop: '2rem' }}>
-              <div className="vhome-split" style={{ alignItems: 'flex-start' }}>
-                <ScopeThemeDemo />
-                <Win11Terminal filename="tokens.css">
-{`<span class="tc-comment">/* One line per theme — hue shift handles everything */</span>
-[<span class="tc-prop">data-vel-theme</span>="<span class="tc-str">ocean</span>"]  { <span class="tc-prop">--vel-dna-hue</span>: <span class="tc-num">205</span>; }
-[<span class="tc-prop">data-vel-theme</span>="<span class="tc-str">forest</span>"] { <span class="tc-prop">--vel-dna-hue</span>: <span class="tc-num">145</span>; }
-[<span class="tc-prop">data-vel-theme</span>="<span class="tc-str">ember</span>"]  { <span class="tc-prop">--vel-dna-hue</span>: <span class="tc-num">22</span>;  }
-[<span class="tc-prop">data-vel-theme</span>="<span class="tc-str">aurora</span>"] { <span class="tc-prop">--vel-dna-hue</span>: <span class="tc-num">300</span>; }
-
-<span class="tc-comment">/* All tokens derive from the hue — nothing to override */</span>
-<span class="tc-prop">--vel-color-primary</span>: <span class="tc-fn">oklch</span>(<span class="tc-num">65% 0.21</span> <span class="tc-fn">var</span>(<span class="tc-prop">--vel-dna-hue</span>));
-<span class="tc-prop">--vel-surface-1</span>:     <span class="tc-fn">oklch</span>(<span class="tc-num">10% 0.025</span> <span class="tc-fn">var</span>(<span class="tc-prop">--vel-dna-hue</span>));
-
-<span class="tc-comment">/* The entire theming "logic" in JavaScript: */</span>
-<span class="tc-cls">el</span>.dataset.<span class="tc-fn">velTheme</span> = <span class="tc-str">'ocean'</span>;</span>`}
-                </Win11Terminal>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* ─── COLOR GENETICS DEEP DIVE ─── */}
-        <section className="vhome-section">
-          <div className="vhome-wrap">
-            <div className="vhome-split">
-              <div>
-                <span className="vhome-section-eyebrow">Innovation 01 · Color Genetics</span>
-                <h2 className="vhome-section-title">One number.<br />An entire <em>universe.</em></h2>
-                <p className="vhome-section-desc">
-                  Other frameworks ship 1,540 hardcoded swatches. VeloraCSS generates every
-                  color mathematically from <code>--vel-dna-hue</code> using <code>oklch()</code>,
-                  the only perceptually uniform color space. Drag the hero slider — watch these react.
-                </p>
-                <Win11Terminal filename="tokens.css">
-{`<span class="tc-comment">/* The entire palette from one variable */</span>
-<span class="tc-prop">--vel-dna-hue</span>: <span class="tc-num">258</span>;
-
-<span class="tc-comment">/* All colors are derived — nothing hardcoded */</span>
-<span class="tc-prop">--vel-color-primary</span>:  <span class="tc-fn">oklch</span>(<span class="tc-num">65% 0.21</span> <span class="tc-fn">var</span>(<span class="tc-prop">--vel-dna-hue</span>));
-<span class="tc-prop">--vel-surface-0</span>:      <span class="tc-fn">oklch</span>(<span class="tc-num">7%  0.02</span> <span class="tc-fn">var</span>(<span class="tc-prop">--vel-dna-hue</span>));
-<span class="tc-prop">--vel-text-1</span>:         <span class="tc-fn">oklch</span>(<span class="tc-num">92% 0.015</span> <span class="tc-fn">var</span>(<span class="tc-prop">--vel-dna-hue</span>));
-<span class="tc-prop">--vel-border</span>:         <span class="tc-fn">oklch</span>(<span class="tc-num">26% 0.045</span> <span class="tc-fn">var</span>(<span class="tc-prop">--vel-dna-hue</span>));
-
-<span class="tc-comment">/* Change in JS with one line: */</span>
-<span class="tc-cls">document</span>.documentElement.style
-  .setProperty(<span class="tc-str">'--vel-dna-hue'</span>, <span class="tc-num">145</span>);</span>`}
-                </Win11Terminal>
-              </div>
-              <div>
-                <div className="vhome-swatches" style={{ marginBottom: '1rem' }}>
-                  {[
-                    { label: 'Primary',       sub: 'oklch(65% 0.21 hue)',  bg: 'var(--vp)' },
-                    { label: 'Primary Light', sub: 'oklch(80% 0.14 hue)',  bg: 'var(--vp-light)' },
-                    { label: 'Primary Dim',   sub: 'oklch(50% 0.22 hue)',  bg: 'var(--vp-dim)' },
-                    { label: 'Surface 0',     sub: 'oklch(7% 0.02 hue)',   bg: 'var(--vs0)' },
-                    { label: 'Surface 3',     sub: 'oklch(17% 0.035 hue)', bg: 'var(--vs3)' },
-                    { label: 'Border',        sub: 'oklch(26% 0.045 hue)', bg: 'var(--vborder)' },
-                    { label: 'Text Primary',  sub: 'oklch(92% 0.015 hue)', bg: 'var(--vt1)' },
-                    { label: 'Text Muted',    sub: 'oklch(50% 0.04 hue)',  bg: 'var(--vt3)' },
-                  ].map(s => (
-                    <div key={s.label} className="vhome-swatch">
-                      <div className="vhome-swatch-color" style={{ background: s.bg }} />
-                      <div className="vhome-swatch-info">
-                        <span className="vhome-swatch-name">{s.label}</span>
-                        <span className="vhome-swatch-var">{s.sub}</span>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-                <div style={{ background: 'var(--vs2)', border: '1px solid var(--vborder)', borderRadius: '0.75rem', overflow: 'hidden' }}>
-                  <div style={{ background: 'var(--vp-subtle)', borderBottom: '1px solid var(--vp-glow)', padding: '0.875rem 1.25rem', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-                    <span style={{ fontSize: '0.8125rem', fontWeight: 600, color: 'var(--vp-light)' }}>Auto-themed card</span>
-                    <span style={{ fontSize: '0.65rem', fontWeight: 700, textTransform: 'uppercase' as const, letterSpacing: '0.08em', color: 'var(--vp)', background: 'var(--vp-subtle)', border: '1px solid var(--vp-glow)', borderRadius: '9999px', padding: '0.15rem 0.5rem' }}>live</span>
-                  </div>
-                  <div style={{ padding: '1.25rem' }}>
-                    <p style={{ fontSize: '0.875rem', color: 'var(--vt2)', marginBottom: '1rem', lineHeight: 1.6 }}>Every color in this card derives from the DNA hue. Drag the slider above to see it react.</p>
-                    <div style={{ display: 'flex', gap: '0.75rem' }}>
-                      <button className="vhome-btn-primary">Action</button>
-                      <button className="vhome-btn-outline">Cancel</button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* ─── CONTAINER INTELLIGENCE ─── */}
-        <section className="vhome-section">
-          <div className="vhome-wrap">
-            <div className="vhome-split">
-              <div>
-                <span className="vhome-section-eyebrow">Innovation 02 · Container Intelligence</span>
-                <h2 className="vhome-section-title">Components that<br />know their <em>space.</em></h2>
-                <p className="vhome-section-desc">
-                  VeloraCSS components watch themselves. Drag the box handle — the card
-                  reflows based on its own container width, not the screen size.
-                </p>
-                <div style={{ marginBottom: '1rem', fontSize: '0.75rem', color: 'var(--vt3)' }}>
-                  ↙ Drag the bottom-right corner to resize
-                </div>
-                <div className="vhome-cq-outer">
-                  <div className="vhome-cq-card">
-                    <div className="vhome-cq-inner">
-                      <div className="vhome-cq-img">◈</div>
-                      <div className="vhome-cq-body">
-                        <span className="vhome-cq-tag">Container Query</span>
-                        <div className="vhome-cq-title">Adapts to its space</div>
-                        <div className="vhome-cq-desc">Stacks in tight containers, reflows when there&apos;s room. No media queries.</div>
-                      </div>
-                    </div>
-                    <div className="vhome-cq-footer">@container — watching width</div>
-                  </div>
-                </div>
-              </div>
-              <div>
-                <Win11Terminal filename="velora.css">
-{`<span class="tc-comment">/* Mark the parent as a query context */</span>
-<span class="tc-cls">.vel-cq-wrapper</span> {
-  <span class="tc-prop">container-type</span>: <span class="tc-kw">inline-size</span>;
-}
-
-<span class="tc-comment">/* Component reacts to ITS container, not viewport */</span>
-@<span class="tc-fn">container</span> (<span class="tc-prop">min-width</span>: <span class="tc-num">460px</span>) {
-  <span class="tc-cls">.vel-cq-card</span> {
-    <span class="tc-prop">grid-template-columns</span>: <span class="tc-num">200px 1fr</span>;
-  }
-  <span class="tc-cls">.vel-cq-image</span> {
-    <span class="tc-prop">border-right</span>: <span class="tc-num">1px</span> <span class="tc-kw">solid</span> <span class="tc-fn">var</span>(<span class="tc-prop">--vel-border</span>);
-    <span class="tc-prop">border-bottom</span>: <span class="tc-kw">none</span>;
-  }
-}
-
-<span class="tc-comment">/* Result: works in any layout — sidebar, grid, full-width */</span>
-<span class="tc-comment">/* No JavaScript. No class toggling. Just CSS. */</span>`}
-                </Win11Terminal>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* ─── CSS STATE MACHINE ─── */}
-        <section className="vhome-section">
-          <div className="vhome-wrap">
-            <span className="vhome-section-eyebrow">Innovation 03 · CSS State Machine</span>
-            <h2 className="vhome-section-title">Tabs, toggles, state.<br /><em>Zero JavaScript.</em></h2>
-            <p className="vhome-section-desc">
-              VeloraCSS uses <code>:has()</code> — the parent selector — to make containers
-              aware of their children&apos;s state. Radio inputs drive the state machine. CSS reads
-              which one is checked and updates the entire UI.
-            </p>
-            <div className="vhome-tabs-demo">
-              <input type="radio" name="hometab" id="h-tab-1" defaultChecked />
-              <input type="radio" name="hometab" id="h-tab-2" />
-              <input type="radio" name="hometab" id="h-tab-3" />
-              <div className="vhome-tabs-nav">
-                <label htmlFor="h-tab-1">Overview</label>
-                <label htmlFor="h-tab-2">How it works</label>
-                <label htmlFor="h-tab-3">vs. other frameworks</label>
-              </div>
-              <div className="vhome-tab-panels">
-                <div className="vhome-tab-panel" id="h-panel-1">
-                  <h3>:has() makes parents aware of their children</h3>
-                  <p>The CSS <code>:has()</code> pseudo-class is the first true parent selector. It lets a container change its own styles based on what&apos;s happening inside it — without JavaScript reading the DOM.</p>
-                  <div className="vhome-mini-features">
-                    {[
-                      { icon: '⚡', title: 'Zero JS', desc: 'State machine runs entirely in CSS' },
-                      { icon: '◎', title: 'Cascades', desc: 'Child state propagates to parent and siblings' },
-                      { icon: '◈', title: 'Accessible', desc: 'Native radio semantics, keyboard navigable' },
-                      { icon: '⬡', title: 'Performant', desc: 'No JS parsing, no event listeners, no re-renders' },
-                    ].map(f => (
-                      <div key={f.title} className="vhome-mini-feature">
-                        <div className="vhome-mini-feature-icon">{f.icon}</div>
-                        <div>
-                          <div className="vhome-mini-feature-title">{f.title}</div>
-                          <div className="vhome-mini-feature-desc">{f.desc}</div>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-                <div className="vhome-tab-panel" id="h-panel-2">
-                  <h3>The entire tab system is ~8 lines of CSS</h3>
-                  <p>These tabs are powered by a radio group + <code>:has()</code>. The browser tracks which radio is checked. CSS reads that state and updates the UI. Click between tabs — you&apos;re executing a state machine with zero JavaScript.</p>
-                  <Win11Terminal filename="velora.css">
-{`<span class="tc-comment">/* Panel visibility — :has() reads radio state */</span>
-<span class="tc-cls">.vel-tabs</span>:<span class="tc-fn">has</span>(#tab-1:<span class="tc-fn">checked</span>) #panel-1 { <span class="tc-prop">display</span>: <span class="tc-kw">block</span>; }
-<span class="tc-cls">.vel-tabs</span>:<span class="tc-fn">has</span>(#tab-2:<span class="tc-fn">checked</span>) #panel-2 { <span class="tc-prop">display</span>: <span class="tc-kw">block</span>; }
-
-<span class="tc-comment">/* Active tab highlight — parent reacts to child state */</span>
-<span class="tc-cls">.vel-tabs</span>:<span class="tc-fn">has</span>(#tab-1:<span class="tc-fn">checked</span>) label[for=tab-1] {
-  <span class="tc-prop">color</span>: <span class="tc-fn">var</span>(<span class="tc-prop">--vel-color-primary</span>);
-  <span class="tc-prop">border-bottom-color</span>: <span class="tc-fn">var</span>(<span class="tc-prop">--vel-color-primary</span>);
-}
-
-<span class="tc-comment">/* Zero JavaScript. Browser tracks state natively. */</span>`}
-                  </Win11Terminal>
-                </div>
-                <div className="vhome-tab-panel" id="h-panel-3">
-                  <h3>What you&apos;d write in another framework vs. VeloraCSS</h3>
-                  <div className="vhome-compare-row">
-                    <div className="vhome-compare-cell">
-                      <div className="vhome-compare-header vhome-compare-bad">JS framework approach</div>
-                      <pre>{`// JavaScript required
-const [tab, setTab] = useState(0)
-
-// Class toggling in JSX
-className={tab === 0
-  ? 'border-b-2 border-indigo-500'
-  : 'text-gray-500'}
-
-// Event handler
-onClick={() => setTab(0)}`}</pre>
-                    </div>
-                    <div className="vhome-compare-cell">
-                      <div className="vhome-compare-header vhome-compare-good">VeloraCSS approach</div>
-                      <pre>{`<!-- Just HTML + CSS, no JS -->
-<input type="radio" id="t1" checked>
-<label for="t1">Tab 1</label>
-
-/* In CSS */
-.vel-tabs:has(#t1:checked) #panel-1 {
-  display: block;
-}`}</pre>
-                    </div>
-                  </div>
-                  <p style={{ color: 'var(--vt3)', fontSize: '0.8rem', margin: 0 }}>
-                    The JS pattern requires a framework, component state, and event listeners. VeloraCSS requires none of that — it works in plain HTML.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* ─── SMART FORMS ─── */}
-        <section className="vhome-section">
-          <div className="vhome-wrap">
-            <div className="vhome-split">
-              <div>
-                <span className="vhome-section-eyebrow">Innovation 05 · Smart Forms</span>
-                <h2 className="vhome-section-title">Form validation.<br /><em>Zero JavaScript.</em></h2>
-                <p className="vhome-section-desc">
-                  VeloraCSS uses <code>:has()</code> with <code>:valid</code> and <code>:invalid</code>
-                  to build a complete validation UI in pure CSS. Type in the fields below — labels
-                  change color, error messages appear, borders react. No JS needed.
-                </p>
-                <div style={{ display: 'grid', gap: '1.25rem', maxWidth: '380px' }}>
-                  <div className="vhome-field">
-                    <label htmlFor="h-name">Full name</label>
-                    <input type="text" id="h-name" className="vhome-input" placeholder="Jane Smith" minLength={2} required />
-                    <span className="vhome-field-hint">At least 2 characters</span>
-                    <span className="vhome-field-error">Name must be at least 2 characters</span>
-                    <span className="vhome-field-ok">Looks good!</span>
-                  </div>
-                  <div className="vhome-field">
-                    <label htmlFor="h-email">Email address</label>
-                    <input type="email" id="h-email" className="vhome-input" placeholder="jane@example.com" required />
-                    <span className="vhome-field-hint">We&apos;ll never share your email</span>
-                    <span className="vhome-field-error">Enter a valid email address</span>
-                    <span className="vhome-field-ok">Valid email address</span>
-                  </div>
-                </div>
-              </div>
-              <Win11Terminal filename="velora.css">
-{`<span class="tc-comment">/* :has() reads browser validity — no JS needed */</span>
-
-<span class="tc-comment">/* Label turns red when input is invalid */</span>
-<span class="tc-cls">.vel-field</span>:<span class="tc-fn">has</span>(<span class="tc-cls">.vel-input</span>:<span class="tc-fn">invalid</span>:<span class="tc-fn">not</span>(:<span class="tc-fn">placeholder-shown</span>)) <span class="tc-cls">label</span> {
-  <span class="tc-prop">color</span>: <span class="tc-fn">oklch</span>(<span class="tc-num">65% 0.22 25</span>);
-}
-
-<span class="tc-comment">/* Border + ring on invalid */</span>
-<span class="tc-cls">.vel-field</span>:<span class="tc-fn">has</span>(<span class="tc-cls">.vel-input</span>:<span class="tc-fn">invalid</span>:<span class="tc-fn">not</span>(:<span class="tc-fn">placeholder-shown</span>)) <span class="tc-cls">.vel-input</span> {
-  <span class="tc-prop">border-color</span>: <span class="tc-fn">oklch</span>(<span class="tc-num">65% 0.22 25</span>);
-  <span class="tc-prop">box-shadow</span>: <span class="tc-num">0 0 0 3px</span> <span class="tc-fn">oklch</span>(<span class="tc-num">65% 0.22 25 / 0.12</span>);
-}
-
-<span class="tc-comment">/* Show error message — CSS toggles visibility */</span>
-<span class="tc-cls">.vel-field</span>:<span class="tc-fn">has</span>(<span class="tc-cls">.vel-input</span>:<span class="tc-fn">invalid</span>:<span class="tc-fn">not</span>(:<span class="tc-fn">placeholder-shown</span>)) <span class="tc-cls">.vel-field-error</span> {
-  <span class="tc-prop">display</span>: <span class="tc-kw">block</span>; <span class="tc-comment">/* zero JS */</span>
-}
-
-<span class="tc-comment">/* Valid state — green automatically */</span>
-<span class="tc-cls">.vel-field</span>:<span class="tc-fn">has</span>(<span class="tc-cls">.vel-input</span>:<span class="tc-fn">valid</span>:<span class="tc-fn">not</span>(:<span class="tc-fn">placeholder-shown</span>)) <span class="tc-cls">.vel-input</span> {
-  <span class="tc-prop">border-color</span>: <span class="tc-fn">oklch</span>(<span class="tc-num">70% 0.2 162</span>);
-}</span>`}
-              </Win11Terminal>
-            </div>
-          </div>
-        </section>
-
-        {/* ─── GETTING STARTED ─── */}
-        <section className="vhome-section">
-          <div className="vhome-wrap">
-            <span className="vhome-section-eyebrow">Get started in 60 seconds</span>
-            <h2 className="vhome-section-title">Up and running,<br /><em>three steps.</em></h2>
-            <p className="vhome-section-desc">
-              Install the package, import the stylesheet, use the classes. No configuration file
-              required to get started.
-            </p>
-
-            <div className="vhome-steps">
-              <div className="vhome-step">
-                <div className="vhome-step-num" data-n="1">Install the package</div>
-                <Win11Terminal filename="Terminal">
-{`<span class="tc-fn">npm</span> <span class="tc-kw">install</span> <span class="tc-str">veloracss</span>`}
-                </Win11Terminal>
-              </div>
-
-              <div className="vhome-step">
-                <div className="vhome-step-num" data-n="2">Import the stylesheet</div>
-                <Win11Terminal filename="main.js">
-{`<span class="tc-kw">import</span> <span class="tc-str">'veloracss/dist/velora.css'</span>`}
-                </Win11Terminal>
-              </div>
-
-              <div className="vhome-step">
-                <div className="vhome-step-num" data-n="3">Use vel- classes in HTML</div>
-                <Win11Terminal filename="index.html">
-{`<span class="tc-kw">&lt;</span><span class="tc-cls">button</span> <span class="tc-prop">class</span>=<span class="tc-str">"vel-btn vel-btn-primary"</span><span class="tc-kw">&gt;</span>
-  Get Started
-<span class="tc-kw">&lt;/</span><span class="tc-cls">button</span><span class="tc-kw">&gt;</span>
-
-<span class="tc-kw">&lt;</span><span class="tc-cls">div</span> <span class="tc-prop">class</span>=<span class="tc-str">"vel-card vel-p-6"</span><span class="tc-kw">&gt;</span>
-  <span class="tc-kw">&lt;</span><span class="tc-cls">h2</span> <span class="tc-prop">class</span>=<span class="tc-str">"vel-text-2xl vel-font-bold"</span><span class="tc-kw">&gt;</span>Hello<span class="tc-kw">&lt;/</span><span class="tc-cls">h2</span><span class="tc-kw">&gt;</span>
-  <span class="tc-kw">&lt;</span><span class="tc-cls">p</span> <span class="tc-prop">class</span>=<span class="tc-str">"vel-text-muted vel-mt-2"</span><span class="tc-kw">&gt;</span>It just works.<span class="tc-kw">&lt;/</span><span class="tc-cls">p</span><span class="tc-kw">&gt;</span>
-<span class="tc-kw">&lt;/</span><span class="tc-cls">div</span><span class="tc-kw">&gt;</span>`}
-                </Win11Terminal>
-              </div>
-            </div>
-
-            <div style={{ marginTop: '2rem', display: 'flex', gap: '0.75rem', flexWrap: 'wrap' }}>
-              <Link href={DOCS_URL} className="vhome-cta-primary">Read the full docs →</Link>
-              <a href={PLAYGROUND_URL} target="_blank" rel="noopener noreferrer" className="vhome-cta-secondary">Open Playground</a>
-            </div>
-          </div>
-        </section>
-
-        {/* ─── SHOWCASE — real UIs built with VeloraCSS ─── */}
-        <section className="vhome-section">
-          <div className="vhome-wrap">
-            <span className="vhome-section-eyebrow">Real UIs, real components</span>
-            <h2 className="vhome-section-title">Build anything<br /><em>with vel- classes.</em></h2>
-            <p className="vhome-section-desc">
-              These components are rendered live using VeloraCSS utility classes —
-              no custom stylesheets, no inline styles beyond what the framework provides.
-            </p>
-
-            <div className="vhome-showcase-grid">
-              {/* Card 1 — Article */}
-              <div className="vhome-showcase-card">
-                <img
-                  className="vhome-showcase-img"
-                  src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=600&q=80&auto=format&fit=crop"
-                  alt="Modern interior design"
-                  loading="lazy"
-                />
-                <div className="vhome-showcase-body">
-                  <span className="vhome-showcase-tag">Design · Lifestyle</span>
-                  <h3 className="vhome-showcase-title">Modern Minimalism in Interior Design</h3>
-                  <p className="vhome-showcase-desc">How clean spaces and warm palettes transform everyday living environments into works of art.</p>
-                  <button className="vhome-btn-primary" style={{ fontSize: '0.78rem', padding: '0.4rem 1rem' }}>Read article →</button>
-                </div>
-                <div className="vhome-showcase-footer">
-                  <img className="vhome-showcase-avatar" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=56&q=80&auto=format&fit=crop&crop=face" alt="Author" loading="lazy" />
-                  <span>Sara Mitchell · 5 min read</span>
-                </div>
-              </div>
-
-              {/* Card 2 — Tech */}
-              <div className="vhome-showcase-card">
-                <img
-                  className="vhome-showcase-img"
-                  src="https://images.unsplash.com/photo-1518770660439-4636190af475?w=600&q=80&auto=format&fit=crop"
-                  alt="Circuit board technology"
-                  loading="lazy"
-                />
-                <div className="vhome-showcase-body">
-                  <span className="vhome-showcase-tag">Technology · Dev</span>
-                  <h3 className="vhome-showcase-title">AI-Generated CSS Frameworks Are Here</h3>
-                  <p className="vhome-showcase-desc">What happens when you let artificial intelligence design the utility classes that power your entire UI system?</p>
-                  <button className="vhome-btn-primary" style={{ fontSize: '0.78rem', padding: '0.4rem 1rem' }}>Read article →</button>
-                </div>
-                <div className="vhome-showcase-footer">
-                  <img className="vhome-showcase-avatar" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=56&q=80&auto=format&fit=crop&crop=face" alt="Author" loading="lazy" />
-                  <span>Alex Chen · 8 min read</span>
-                </div>
-              </div>
-
-              {/* Card 3 — Nature */}
-              <div className="vhome-showcase-card">
-                <img
-                  className="vhome-showcase-img"
-                  src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600&q=80&auto=format&fit=crop"
-                  alt="Mountain landscape"
-                  loading="lazy"
-                />
-                <div className="vhome-showcase-body">
-                  <span className="vhome-showcase-tag">Travel · Nature</span>
-                  <h3 className="vhome-showcase-title">The Peaks That Changed Everything</h3>
-                  <p className="vhome-showcase-desc">A journey through the world's most breathtaking mountain ranges and the lessons hidden at altitude.</p>
-                  <button className="vhome-btn-primary" style={{ fontSize: '0.78rem', padding: '0.4rem 1rem' }}>Read article →</button>
-                </div>
-                <div className="vhome-showcase-footer">
-                  <img className="vhome-showcase-avatar" src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=56&q=80&auto=format&fit=crop&crop=face" alt="Author" loading="lazy" />
-                  <span>Maya Reyes · 6 min read</span>
-                </div>
-              </div>
-            </div>
-
-            {/* Classes used label */}
-            <div style={{ marginTop: '1.5rem', display: 'flex', flexWrap: 'wrap', gap: '0.5rem', alignItems: 'center' }}>
-              <span style={{ fontSize: '0.72rem', color: 'var(--vt3)', marginRight: '0.25rem' }}>Built with:</span>
-              {['vel-card', 'vel-btn-primary', 'vel-rounded-lg', 'vel-text-white', 'vel-flex', 'vel-gap-3', 'vel-font-bold'].map(cls => (
-                <span key={cls} style={{
-                  fontFamily: "'Cascadia Code', Consolas, monospace",
-                  fontSize: '0.72rem', color: 'var(--vp-light)',
-                  background: 'var(--vp-subtle)', border: '1px solid var(--vp-glow)',
-                  borderRadius: '0.25rem', padding: '0.1rem 0.5rem',
-                }}>{cls}</span>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* ─── STATS ─── */}
-        <section className="vhome-section" style={{ borderBottom: 'none' }}>
-          <div className="vhome-wrap">
-            <div className="vhome-stats">
-              {[
-                { num: '300+', label: 'utility classes' },
-                { num: '29', label: 'components' },
-                { num: '6', label: 'CSS innovations' },
-                { num: '0', label: 'dependencies' },
-              ].map(s => (
-                <div key={s.label} className="vhome-stat">
-                  <span className="vhome-stat-num">{s.num}</span>
-                  <span className="vhome-stat-label">{s.label}</span>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* ─── OPEN SOURCE BANNER ─── */}
-        <section className="vhome-oss-banner">
-          <div className="vhome-wrap" style={{ position: 'relative', zIndex: 1 }}>
-            <p className="vhome-oss-tagline">
-              AI-designed.<br /><em>Human-shipped.</em>
-            </p>
-            <p className="vhome-oss-sub">
-              VeloraCSS is open source and free to use. Star the repo, open an issue,
-              or submit a pull request — every contribution ships real CSS to real developers.
-            </p>
-            <div style={{ display: 'flex', gap: '0.75rem', justifyContent: 'center', flexWrap: 'wrap' }}>
-              <a
-                href="https://github.com/VeloraX/veloracss"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="vhome-github-btn"
+              <Terminal
+                filename="card.css"
+                rawText={`.vel-card {\n  container-type: inline-size;\n}\n\n@container (min-width: 28rem) {\n  .vel-card-inner {\n    grid-template-columns: 180px 1fr;\n  }\n  .vel-card-media {\n    border-right: 1px solid var(--vel-border-base);\n  }\n}`}
               >
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                  <path d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.008-.866-.013-1.7-2.782.604-3.369-1.34-3.369-1.34-.454-1.156-1.11-1.464-1.11-1.464-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0112 6.836c.85.004 1.705.114 2.504.336 1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.163 22 16.418 22 12c0-5.523-4.477-10-10-10z" />
-                </svg>
-                Star on GitHub
-              </a>
-              <Link href={DOCS_URL} className="vhome-cta-primary">Get Started →</Link>
+                <span className="tc-cls">.vel-card</span> {'{'}{'\n'}
+                {'  '}<span className="tc-prop">container-type</span>: <span className="tc-value">inline-size</span>;{'\n'}
+                {'}'}{'\n\n'}
+                <span className="tc-kw">@container</span> (<span className="tc-prop">min-width</span>: <span className="tc-num">28rem</span>) {'{'}{'\n'}
+                {'  '}<span className="tc-cls">.vel-card-inner</span> {'{'}{'\n'}
+                {'    '}<span className="tc-prop">grid-template-columns</span>: <span className="tc-value">180px 1fr</span>;{'\n'}
+                {'  }'}{'\n'}
+                {'  '}<span className="tc-cls">.vel-card-media</span> {'{'}{'\n'}
+                {'    '}<span className="tc-prop">border-right</span>: <span className="tc-num">1px</span> <span className="tc-value">solid</span> <span className="tc-fn">var</span>(<span className="tc-prop">--vel-border-base</span>);{'\n'}
+                {'  }'}{'\n'}
+                {'}'}
+              </Terminal>
+            </div>
+
+            <div>
+              <ContainerDemo />
             </div>
           </div>
-        </section>
+        </div>
+      </section>
 
-        {/* ─── FOOTER ─── */}
-        <footer className="vhome-footer">
-          <div className="vhome-wrap vel-flex vel-flex-col vel-items-center vel-gap-4" style={{ width: '100%' }}>
-            <span className="vhome-footer-badge">
-              Color Genetics · Container Intelligence · CSS State Machine · Scope Theming · Smart Forms · Fluid Scale
-            </span>
-            <div className="vel-flex vel-items-center vel-justify-between vel-flex-wrap vel-gap-4" style={{ width: '100%' }}>
-              <span style={{ fontSize: '0.8125rem', color: 'var(--vt3)' }}>VeloraCSS v1.0.0 — AI-designed. Human-shipped.</span>
-              <div className="vel-flex vel-gap-6">
-                <Link href={DOCS_URL} className="vhome-footer-link">Docs</Link>
-                <a href={PLAYGROUND_URL} target="_blank" rel="noopener noreferrer" className="vhome-footer-link">Playground</a>
-                <Link href="/community" className="vhome-footer-link">Community</Link>
-                <a href="https://github.com/VeloraX/veloracss" target="_blank" rel="noopener noreferrer" className="vhome-footer-link">GitHub</a>
-                <a href="https://discord.gg/RKmSyudqAv" target="_blank" rel="noopener noreferrer" className="vhome-footer-link">Discord</a>
+      {/* ── SECTION 5: FLUID SCALE ───────────────────────────────────────── */}
+      <section style={sectionStyle}>
+        <div style={innerStyle}>
+          <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
+            <Eyebrow>Fluid Scale</Eyebrow>
+            <SectionHeadline>Every size. No breakpoints.</SectionHeadline>
+            <div style={{ display: 'flex', justifyContent: 'center' }}>
+              <SectionSub>
+                All spacing and type tokens use clamp() — they scale fluidly from mobile to 4K.
+                Never write a media query for spacing again.
+              </SectionSub>
+            </div>
+          </div>
+
+          <div style={{ maxWidth: '720px', margin: '0 auto' }}>
+            {/* Type ramp */}
+            <div style={{
+              background: 'var(--vel-surface-1)',
+              border: '1px solid var(--vel-border-base)',
+              borderRadius: 'var(--vel-radius-xl)',
+              overflow: 'hidden',
+              marginBottom: '1.5rem',
+            }}>
+              {[
+                { name: 'vel-text-xs',   size: 'clamp(0.6875rem, 1vw, 0.75rem)',  label: 'xs' },
+                { name: 'vel-text-sm',   size: 'clamp(0.8125rem, 1.2vw, 0.875rem)', label: 'sm' },
+                { name: 'vel-text-base', size: 'clamp(0.9375rem, 1.5vw, 1rem)',   label: 'base' },
+                { name: 'vel-text-lg',   size: 'clamp(1.0625rem, 2vw, 1.25rem)',  label: 'lg' },
+                { name: 'vel-text-xl',   size: 'clamp(1.25rem, 2.5vw, 1.5rem)',   label: 'xl' },
+              ].map((row, i) => (
+                <div key={row.name} style={{
+                  display: 'grid',
+                  gridTemplateColumns: '6rem 1fr auto',
+                  alignItems: 'center',
+                  gap: '1rem',
+                  padding: '0.875rem 1.25rem',
+                  borderBottom: i < 4 ? '1px solid var(--vel-border-base)' : 'none',
+                }}>
+                  <code style={{
+                    fontSize: '0.7rem',
+                    fontFamily: "'Cascadia Code', Consolas, monospace",
+                    color: 'var(--vel-color-primary)',
+                    background: 'var(--vel-surface-3)',
+                    padding: '0.2em 0.4em',
+                    borderRadius: '0.25rem',
+                  }}>
+                    .{row.name}
+                  </code>
+                  <span style={{ fontSize: row.size, color: 'var(--vel-color-text)', fontWeight: row.label === 'xl' ? 700 : 400, lineHeight: 1.2 }}>
+                    The quick brown fox
+                  </span>
+                  <code style={{
+                    fontSize: '0.6rem',
+                    fontFamily: "'Cascadia Code', Consolas, monospace",
+                    color: 'var(--vel-color-muted)',
+                    whiteSpace: 'nowrap',
+                  }}>
+                    {row.size}
+                  </code>
+                </div>
+              ))}
+            </div>
+
+            <Terminal
+              filename="tokens.css"
+              rawText={`--vel-text-xs:   clamp(0.6875rem, 1vw,   0.75rem);\n--vel-text-sm:   clamp(0.8125rem, 1.2vw, 0.875rem);\n--vel-text-base: clamp(0.9375rem, 1.5vw, 1rem);\n--vel-text-lg:   clamp(1.0625rem, 2vw,   1.25rem);\n--vel-text-xl:   clamp(1.25rem,   2.5vw, 1.5rem);\n\n--vel-space-4:   clamp(0.875rem, 2vw,  1rem);\n--vel-space-8:   clamp(1.75rem,  4vw,  2rem);`}
+            >
+              <span className="tc-prop">--vel-text-xs</span>:   <span className="tc-fn">clamp</span>(<span className="tc-num">0.6875rem</span>, <span className="tc-num">1vw</span>,   <span className="tc-num">0.75rem</span>);{'\n'}
+              <span className="tc-prop">--vel-text-sm</span>:   <span className="tc-fn">clamp</span>(<span className="tc-num">0.8125rem</span>, <span className="tc-num">1.2vw</span>, <span className="tc-num">0.875rem</span>);{'\n'}
+              <span className="tc-prop">--vel-text-base</span>: <span className="tc-fn">clamp</span>(<span className="tc-num">0.9375rem</span>, <span className="tc-num">1.5vw</span>, <span className="tc-num">1rem</span>);{'\n'}
+              <span className="tc-prop">--vel-text-lg</span>:   <span className="tc-fn">clamp</span>(<span className="tc-num">1.0625rem</span>, <span className="tc-num">2vw</span>,   <span className="tc-num">1.25rem</span>);{'\n'}
+              <span className="tc-prop">--vel-text-xl</span>:   <span className="tc-fn">clamp</span>(<span className="tc-num">1.25rem</span>,   <span className="tc-num">2.5vw</span>, <span className="tc-num">1.5rem</span>);{'\n'}
+              {'\n'}
+              <span className="tc-prop">--vel-space-4</span>:   <span className="tc-fn">clamp</span>(<span className="tc-num">0.875rem</span>, <span className="tc-num">2vw</span>,  <span className="tc-num">1rem</span>);{'\n'}
+              <span className="tc-prop">--vel-space-8</span>:   <span className="tc-fn">clamp</span>(<span className="tc-num">1.75rem</span>,  <span className="tc-num">4vw</span>,  <span className="tc-num">2rem</span>);
+            </Terminal>
+          </div>
+        </div>
+      </section>
+
+      {/* ── SECTION 6: SCOPE THEMING ─────────────────────────────────────── */}
+      <section style={{
+        ...sectionStyle,
+        background: 'var(--vel-surface-1)',
+        borderTop: '1px solid var(--vel-border-base)',
+        borderBottom: '1px solid var(--vel-border-base)',
+      }}>
+        <div style={innerStyle}>
+          <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
+            <Eyebrow>Scope Theming</Eyebrow>
+            <SectionHeadline>Theme any subtree. Instantly.</SectionHeadline>
+            <div style={{ display: 'flex', justifyContent: 'center' }}>
+              <SectionSub>
+                Apply <code style={{ fontSize: '0.875em', background: 'var(--vel-surface-3)', padding: '0.1em 0.4em', borderRadius: '0.25rem', color: 'var(--vel-color-primary)', fontFamily: "'Cascadia Code', Consolas, monospace" }}>data-vel-theme</code> to
+                any element. Its entire color universe — surfaces, borders, text, components — shifts independently.
+              </SectionSub>
+            </div>
+          </div>
+
+          <div style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(2, 1fr)',
+            gap: '1rem',
+            marginBottom: '2rem',
+          }}>
+            {SCOPE_THEMES.map(t => (
+              <ScopePanel key={t.name} {...t} />
+            ))}
+          </div>
+
+          <Terminal
+            filename="scope-theme.html"
+            rawText={`<!-- Each subtree has its own independent color universe -->\n<div data-vel-theme="ocean"   style="--vel-dna-hue: 205">\n  <button class="vel-btn vel-btn-primary">Ocean Button</button>\n</div>\n\n<div data-vel-theme="ember"   style="--vel-dna-hue: 22">\n  <button class="vel-btn vel-btn-primary">Ember Button</button>\n</div>`}
+          >
+            <span className="tc-comment">{'<!-- Each subtree has its own independent color universe -->'}</span>{'\n'}
+            {'<'}<span className="tc-cls">div</span> <span className="tc-prop">data-vel-theme</span>=<span className="tc-str">"ocean"</span>   <span className="tc-prop">style</span>=<span className="tc-str">"--vel-dna-hue: 205"</span>{'>'}{'\n'}
+            {'  <'}<span className="tc-cls">button</span> <span className="tc-prop">class</span>=<span className="tc-str">"vel-btn vel-btn-primary"</span>{'>'}Ocean Button{'</'}<span className="tc-cls">button</span>{'>'}{'\n'}
+            {'</'}<span className="tc-cls">div</span>{'>'}{'\n\n'}
+            {'<'}<span className="tc-cls">div</span> <span className="tc-prop">data-vel-theme</span>=<span className="tc-str">"ember"</span>   <span className="tc-prop">style</span>=<span className="tc-str">"--vel-dna-hue: 22"</span>{'>'}{'\n'}
+            {'  <'}<span className="tc-cls">button</span> <span className="tc-prop">class</span>=<span className="tc-str">"vel-btn vel-btn-primary"</span>{'>'}Ember Button{'</'}<span className="tc-cls">button</span>{'>'}{'\n'}
+            {'</'}<span className="tc-cls">div</span>{'>'}
+          </Terminal>
+        </div>
+      </section>
+
+      {/* ── SECTION 7: STATS STRIP ───────────────────────────────────────── */}
+      <section style={{
+        padding: '3rem 1.5rem',
+        background: 'var(--vel-surface-1)',
+        borderTop: '1px solid var(--vel-border-base)',
+        borderBottom: '1px solid var(--vel-border-base)',
+      }}>
+        <div style={{
+          ...innerStyle,
+          display: 'grid',
+          gridTemplateColumns: 'repeat(4, 1fr)',
+          gap: '1px',
+          background: 'var(--vel-border-base)',
+          border: '1px solid var(--vel-border-base)',
+          borderRadius: 'var(--vel-radius-xl)',
+          overflow: 'hidden',
+        }}>
+          {[
+            { num: '300+', label: 'Utility Classes' },
+            { num: '30',   label: 'Components' },
+            { num: '6',    label: 'AI Innovations' },
+            { num: '0',    label: 'JavaScript Required' },
+          ].map(s => (
+            <div key={s.label} style={{
+              background: 'var(--vel-surface-2)',
+              padding: '2rem',
+              textAlign: 'center',
+            }}>
+              <div style={{
+                fontSize: 'clamp(2rem, 4vw, 3rem)',
+                fontWeight: 900,
+                color: 'var(--vel-color-primary)',
+                lineHeight: 1,
+                marginBottom: '0.5rem',
+              }}>
+                {s.num}
+              </div>
+              <div style={{ fontSize: '0.8125rem', color: 'var(--vel-color-muted)', lineHeight: 1.4 }}>
+                {s.label}
               </div>
             </div>
-          </div>
-        </footer>
+          ))}
+        </div>
+      </section>
 
-        <DiscordWidget />
-      </main>
-    </>
+      {/* ── SECTION 8: GET STARTED CTA ───────────────────────────────────── */}
+      <section style={{ padding: 'clamp(4rem, 8vw, 7rem) 1.5rem', background: 'var(--vel-surface-0)' }}>
+        <div style={{ ...innerStyle, textAlign: 'center' }}>
+          <Eyebrow>Ready to ship?</Eyebrow>
+          <h2 style={{
+            fontSize: 'clamp(2.5rem, 5vw, 4rem)',
+            fontWeight: 800,
+            letterSpacing: '-0.03em',
+            color: 'var(--vel-color-text)',
+            lineHeight: 1.1,
+            margin: '0 0 1.25rem',
+          }}>
+            Start building today.
+          </h2>
+          <p style={{
+            fontSize: '1.0625rem',
+            color: 'var(--vel-color-muted)',
+            lineHeight: 1.7,
+            maxWidth: '480px',
+            margin: '0 auto 2.5rem',
+          }}>
+            npm install veloracss — then drop in the CSS. No config required.
+            Swap one token to redesign everything.
+          </p>
+          <div style={{ display: 'flex', gap: '0.875rem', justifyContent: 'center', flexWrap: 'wrap', marginBottom: '2rem' }}>
+            <Link href="/docs/getting-started" className="vel-btn vel-btn-primary vel-btn-lg">
+              Read the Docs
+            </Link>
+            <a href={PLAYGROUND_URL} className="vel-btn vel-btn-ghost vel-btn-lg" target="_blank" rel="noopener">
+              Open Playground ↗
+            </a>
+          </div>
+
+          <div style={{
+            display: 'inline-flex',
+            alignItems: 'center',
+            gap: '0.75rem',
+            background: 'var(--vel-surface-2)',
+            border: '1px solid var(--vel-border-base)',
+            borderRadius: 'var(--vel-radius-xl)',
+            padding: '0.75rem 1.25rem',
+          }}>
+            <code style={{
+              fontFamily: "'Cascadia Code', Consolas, monospace",
+              fontSize: '0.9375rem',
+              color: 'var(--vel-color-text)',
+            }}>
+              npm install veloracss
+            </code>
+            <span style={{
+              fontSize: '0.6875rem',
+              background: 'oklch(65% 0.21 var(--vel-dna-hue, 258) / 0.12)',
+              color: 'var(--vel-color-primary)',
+              padding: '0.2rem 0.5rem',
+              borderRadius: '9999px',
+              fontWeight: 600,
+            }}>
+              v1.0.0
+            </span>
+          </div>
+        </div>
+      </section>
+
+    </div>
   )
 }

@@ -127,7 +127,7 @@
   --vel-border-subtle: oklch(22% 0.035 var(--vel-dna-hue));
   --vel-color-text:    oklch(92% 0.01  var(--vel-dna-hue));
   --vel-color-muted:   oklch(55% 0.03  var(--vel-dna-hue));
-  --vel-scrollbar-thumb-hover: #2d4060;
+  --vel-scrollbar-thumb-hover: oklch(26% 0.06 var(--vel-dna-hue));
 
   /* ─── Neutral Palette ───────────────────────── */
   --vel-neutral-50:  oklch(98% 0.004 255);

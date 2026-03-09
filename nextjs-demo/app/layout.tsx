@@ -1,6 +1,8 @@
 import type { Metadata, Viewport } from 'next'
 import '../styles/velora.css'
+import './_styles/site.css'
 import './globals.css'
+import SiteFooter from './_components/SiteFooter'
 
 export const viewport: Viewport = { colorScheme: 'dark' }
 
@@ -31,7 +33,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body>
+        {children}
+        <SiteFooter />
+      </body>
     </html>
   )
 }

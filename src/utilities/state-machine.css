@@ -164,29 +164,29 @@
 .vel-field-label {
   font-size: 0.875rem;
   font-weight: 500;
-  color: var(--vel-text-base, #e2e8f0);
+  color: var(--vel-color-text);
   transition: color 0.15s;
 }
 
 .vel-field-input {
-  background: var(--vel-surface-2, #111827);
-  border: 1.5px solid var(--vel-border-base, #1e2d45);
+  background: var(--vel-surface-2);
+  border: 1.5px solid var(--vel-border-base);
   border-radius: 0.5rem;
   padding: 0.625rem 0.875rem;
   font-size: 0.875rem;
-  color: var(--vel-text-base, #e2e8f0);
+  color: var(--vel-color-text);
   width: 100%;
   outline: none;
   font-family: inherit;
   transition: border-color 0.15s, box-shadow 0.15s;
 }
-.vel-field-input::placeholder { color: var(--vel-text-muted, #64748b); }
+.vel-field-input::placeholder { color: var(--vel-color-muted); }
 .vel-field-input:focus {
-  border-color: var(--vel-color-primary, #7c5cfc);
-  box-shadow: 0 0 0 3px oklch(65% 0.21 258 / 0.15);
+  border-color: var(--vel-color-primary);
+  box-shadow: 0 0 0 3px oklch(65% 0.21 var(--vel-dna-hue) / 0.15);
 }
 
-.vel-field-hint  { font-size: 0.75rem; color: var(--vel-text-muted, #64748b); }
+.vel-field-hint  { font-size: 0.75rem; color: var(--vel-color-muted); }
 .vel-field-error { font-size: 0.75rem; color: oklch(65% 0.22 25); display: none; }
 .vel-field-ok    { font-size: 0.75rem; color: oklch(70% 0.2 162); display: none; }
 
