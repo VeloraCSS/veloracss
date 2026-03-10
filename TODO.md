@@ -1,6 +1,26 @@
 # VeloraCSS — Project Roadmap & Todo
 
-_Last updated: 2026-03-08 (end of session). Updated at every milestone. Add items here whenever a new task is identified._
+_Last updated: 2026-03-10. Updated at every milestone. Add items here whenever a new task is identified._
+
+---
+
+## 🟣 ACTIVE — Val Migration Setup
+
+- [x] Refresh GitHub CLI scopes with `read:project`, `project`, `repo`, and `read:org`
+- [x] Connect this workspace to GitHub Projects via `gh`
+- [x] Standardize a `Driver` field across VeloraX projects with `Copilot`, `User`, and `Shared`
+- [x] Seed all six VeloraX projects with starter items:
+  - [x] Project 5 — `VeloraCSS Plans`
+  - [x] Project 6 — `VeloraCSS Retrospectives`
+  - [x] Project 7 — `VeloraCSS Iterative Development`
+  - [x] Project 8 — `VeloraCSS Bug Tracker`
+  - [x] Project 9 — `VeloraCSS Future Releases`
+  - [x] Project 10 — `VeloraCSS Team Planning`
+- [ ] Define the standalone repo cleanup scope before the first cleanup commit
+  - Preserve for now: `.claude/`, `.github/`, and the already-dirty source/build areas under `src/`, `nextjs-demo/`, `playground/`, `build.mjs`, and `package.json`
+  - Safe immediate cleanup targets: `CURRENT.md` and `innovation-demo.html`
+  - Defer until replacement exists: committed static export under `docs/`
+- [ ] Create the first cleanup commit and push it separately from Val engine work
 
 ---
 
