@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Val Phase 1 Proof</title>
+  <link rel="stylesheet" href="./dist/val.css">
+</head>
+<body>
+  <main class="val-min-h-screen val-flex val-items-center val-justify-center val-p-8">
+    <section class="val-card val-max-w-stage val-w-full val-p-12">
+      <div class="val-flex val-justify-between val-items-center val-mb-8 val-flex-wrap val-gap-4">
+        <span class="val-eyebrow">Val Phase 1</span>
+        <div class="val-inline-flex val-gap-2 val-flex-wrap">
+          <span class="val-badge val-badge-brand">theme-driven</span>
+          <span class="val-badge val-badge-accent">generated utilities</span>
+        </div>
+      </div>
+
+      <div class="val-proof-grid">
+        <div class="val-grid val-gap-8">
+          <div class="val-grid val-gap-4">
+            <h1 class="val-text-hero val-font-bold">Start small. Build the engine cleanly.</h1>
+            <p class="val-text-lg val-text-muted val-leading-copy val-max-w-copy">
+              This isolated scaffold now generates token-backed color, spacing, layout, sizing, radius, shadow, and component classes from <code>val.config.js</code> without colliding with the current Velora worktree.
+            </p>
+          </div>
+
+          <div class="val-flex val-gap-4 val-flex-wrap">
+            <a class="val-btn val-btn-brand" href="#">Primary action</a>
+            <a class="val-btn val-btn-accent" href="#">Accent action</a>
+            <a class="val-btn val-btn-ghost" href="#">Ghost action</a>
+          </div>
+
+          <div class="val-grid val-gap-4">
+            <div class="val-card val-card-panel val-p-6">
+              <strong class="val-text-brand val-text-xl">Generated now</strong>
+              <p class="val-text-base val-text-muted val-mt-2 val-leading-copy">Colors, spacing, typography, widths, radii, shadows, and starter components are emitted by <code>val/build.mjs</code>.</p>
+            </div>
+
+            <div class="val-grid val-gap-4 val-lg:grid-cols-2">
+              <div class="val-flex val-gap-4 val-flex-wrap">
+                <div class="val-card val-p-4" style="width: min(100%, 22rem);">
+                  <div class="val-text-sm val-text-muted val-mb-2">Colors</div>
+                  <div class="val-flex val-gap-2 val-flex-wrap">
+                    <span class="val-badge val-badge-brand">brand</span>
+                    <span class="val-badge val-badge-accent">accent</span>
+                    <span class="val-badge" style="color: var(--val-color-danger); border-color: rgba(255,107,122,0.25);">danger</span>
+                  </div>
+                </div>
+                <div class="val-card val-p-4" style="width: min(100%, 22rem);">
+                  <div class="val-text-sm val-text-muted val-mb-2">Spacing</div>
+                  <div class="val-grid val-gap-2">
+                    <div class="val-bg-brand val-rounded-pill" style="height: 0.375rem; width: var(--val-space-4);"></div>
+                    <div class="val-bg-brand val-rounded-pill" style="height: 0.375rem; width: var(--val-space-8);"></div>
+                    <div class="val-bg-brand val-rounded-pill" style="height: 0.375rem; width: var(--val-space-12);"></div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="val-card val-p-4">
+                <div class="val-text-sm val-text-muted val-mb-2">Variants</div>
+                <div class="val-grid val-gap-3">
+                  <a class="val-btn val-btn-ghost val-transition val-hover:bg-brand val-hover:text-canvas val-focus:border-brand val-active:bg-accent" href="#">
+                    Hover, focus, or press
+                  </a>
+                  <p class="val-text-sm val-text-muted val-leading-copy">
+                    Responsive classes use the <code>val-lg:grid-cols-2</code> pattern. State classes use <code>val-hover:bg-brand</code>, <code>val-focus:border-brand</code>, and <code>val-active:bg-accent</code>.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <aside class="val-grid val-gap-4">
+          <div class="val-card val-p-6">
+            <div class="val-text-sm val-text-muted val-mb-2">Core config</div>
+            <div class="val-grid val-gap-2">
+              <div class="val-text-base"><strong class="val-text-brand">Prefix</strong> <span class="val-text-muted">val</span></div>
+              <div class="val-text-base"><strong class="val-text-brand">Output</strong> <span class="val-text-muted">dist/val.css</span></div>
+              <div class="val-text-base"><strong class="val-text-brand">Theme source</strong> <span class="val-text-muted">val.config.js</span></div>
+            </div>
+          </div>
+
+          <div class="val-card val-p-6">
+            <div class="val-text-sm val-text-muted val-mb-2">Next expansion targets</div>
+            <div class="val-grid val-gap-2 val-text-base val-text-muted">
+              <div>Responsive variants</div>
+              <div>More sizing utilities</div>
+              <div>Component state variants</div>
+              <div>CLI packaging at repo root</div>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </section>
+  </main>
+</body>
+</html>

@@ -16,11 +16,19 @@ _Last updated: 2026-03-10. Updated at every milestone. Add items here whenever a
   - [x] Project 8 — `VeloraCSS Bug Tracker`
   - [x] Project 9 — `VeloraCSS Future Releases`
   - [x] Project 10 — `VeloraCSS Team Planning`
-- [ ] Define the standalone repo cleanup scope before the first cleanup commit
+- [x] Define the standalone repo cleanup scope before the first cleanup commit
   - Preserve for now: `.claude/`, `.github/`, and the already-dirty source/build areas under `src/`, `nextjs-demo/`, `playground/`, `build.mjs`, and `package.json`
   - Safe immediate cleanup targets: `CURRENT.md` and `innovation-demo.html`
   - Defer until replacement exists: committed static export under `docs/`
-- [ ] Create the first cleanup commit and push it separately from Val engine work
+- [x] Create the first cleanup commit separately from Val engine work
+  - Commit: `5d8c5fa2` — `chore: start val migration cleanup`
+- [x] Start an isolated Val Phase 1 scaffold under `val/` while the legacy tree is still present
+  - Added: `val/package.json`, `val/val.config.js`, `val/build.mjs`, `val/src/val.css`, and `val/proof.html`
+  - Verified: `node .\val\build.mjs` generates `val/dist/val.css`
+  - Expanded: theme-driven color, spacing, sizing, radius, shadow, typography, and starter component generation from `val.config.js`
+- [x] Add responsive and state-prefixed variants to the isolated Val scaffold
+  - Added configurable `breakpoints` and `states` in `val/val.config.js`
+  - Verified generated selectors including `val-lg:grid-cols-2`, `val-hover:bg-brand`, `val-focus:border-brand`, and `val-active:bg-accent`
 
 ---
 

@@ -1,0 +1,63 @@
+export default {
+  prefix: 'val',
+  outDir: 'dist',
+  breakpoints: {
+    sm: '640px',
+    md: '768px',
+    lg: '1024px',
+  },
+  states: ['hover', 'focus', 'active'],
+  theme: {
+    colors: {
+      canvas: '#0b1020',
+      surface: '#141b31',
+      panel: '#1b2542',
+      panelAlt: '#202c4d',
+      brand: '#5b7cff',
+      accent: '#8ef2c2',
+      danger: '#ff6b7a',
+      text: '#f4f7fb',
+      muted: '#93a1bf',
+      border: '#2a355a',
+    },
+    spacing: {
+      0: '0',
+      2: '0.5rem',
+      4: '1rem',
+      6: '1.5rem',
+      8: '2rem',
+      12: '3rem',
+      16: '4rem',
+      20: '5rem',
+    },
+    radius: {
+      sm: '0.5rem',
+      md: '0.75rem',
+      xl: '1.25rem',
+      pill: '999px',
+    },
+    font: {
+      sans: "'Segoe UI', system-ui, sans-serif",
+      display: "'Segoe UI', system-ui, sans-serif",
+      mono: "'Cascadia Code', Consolas, monospace",
+    },
+    shadow: {
+      soft: '0 18px 45px rgba(3, 8, 20, 0.22)',
+      card: '0 24px 60px rgba(3, 8, 20, 0.35)',
+    },
+    width: {
+      stage: 'min(1100px, calc(100% - 3rem))',
+      copy: '62ch',
+      card: '22rem',
+    },
+    text: {
+      xs: '0.75rem',
+      sm: '0.875rem',
+      base: '1rem',
+      lg: '1.125rem',
+      xl: '1.5rem',
+      '2xl': '2rem',
+      hero: 'clamp(2.5rem, 7vw, 5.5rem)',
+    },
+  },
+}
