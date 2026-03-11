@@ -9,6 +9,9 @@
 - [x] Add overlay and action starter components
 - [x] Freeze the public 0.1 API surface
 - [x] Build the public docs and examples site
-- [ ] Harden npm release metadata and publishing flow
+- [x] Harden npm release metadata and publishing flow
+- [x] Publish VeloraCSS 0.1.1 to npm
+- [ ] Migrate the public site shell into the SvelteKit app
+- [ ] Reconcile npm package settings and owner visibility after first publish
 
 

@@ -1,6 +1,6 @@
 {
   "name": "veloracss",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Utility-first CSS framework with polished starter components.",
   "type": "module",
   "license": "MIT",

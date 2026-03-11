@@ -233,6 +233,92 @@ body.site-body {
   gap: var(--vel-space-3);
 }
 
+.site-step-grid,
+.site-callout-grid {
+  display: grid;
+  gap: var(--vel-space-4);
+}
+
+.site-step-card {
+  padding: var(--vel-space-4);
+  border: 1px solid var(--vel-color-border);
+  border-radius: var(--vel-radius-md);
+  background: rgba(11, 22, 39, 0.72);
+}
+
+.site-step-number {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  border: 1px solid rgba(99, 179, 255, 0.3);
+  border-radius: var(--vel-radius-sm);
+  background: rgba(99, 179, 255, 0.12);
+  color: var(--vel-color-primary);
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
+.site-code-block {
+  display: block;
+  width: 100%;
+  margin: 0;
+  padding: var(--vel-space-4);
+  border: 1px solid rgba(148, 163, 184, 0.22);
+  border-radius: var(--vel-radius-md);
+  background: rgba(8, 17, 31, 0.92);
+  color: var(--vel-color-text);
+  font-family: var(--vel-font-mono);
+  font-size: 0.85rem;
+  line-height: 1.65;
+  overflow-x: auto;
+  white-space: pre;
+}
+
+.site-callout {
+  padding: var(--vel-space-4);
+  border: 1px solid rgba(99, 179, 255, 0.18);
+  border-radius: var(--vel-radius-md);
+  background: linear-gradient(180deg, rgba(99, 179, 255, 0.08), transparent 42%), rgba(12, 23, 40, 0.78);
+}
+
+.site-detail-list {
+  margin: 0;
+  padding-left: 1rem;
+  color: var(--vel-color-text-muted);
+}
+
+.site-detail-list li + li {
+  margin-top: 0.45rem;
+}
+
+.site-preview-panel {
+  padding: var(--vel-space-4);
+  border: 1px solid var(--vel-color-border);
+  border-radius: var(--vel-radius-md);
+  background: linear-gradient(180deg, rgba(99, 179, 255, 0.06), transparent 40%), rgba(11, 21, 37, 0.78);
+}
+
+.site-preview-stack {
+  display: grid;
+  gap: var(--vel-space-4);
+}
+
+.site-preview-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--vel-space-3);
+}
+
+.site-preview-toast {
+  position: static;
+}
+
+.site-preview-toast .vel-toast {
+  width: 100%;
+}
+
 @media (min-width: 48rem) {
   .site-hero {
     grid-template-columns: minmax(0, 1.1fr) minmax(18rem, 0.9fr);
@@ -242,7 +328,9 @@ body.site-body {
   .site-feature-grid,
   .site-example-grid,
   .site-doc-grid,
-  .site-stat-grid {
+  .site-stat-grid,
+  .site-step-grid,
+  .site-callout-grid {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 }

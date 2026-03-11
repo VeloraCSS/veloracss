@@ -2,6 +2,10 @@
 
 This document covers the repo-side publish flow and the remaining manual npmjs settings for VeloraCSS.
 
+Current live package:
+
+- `veloracss@0.1.1`
+
 ## Repo-side flow
 
 Release verification:
@@ -42,13 +46,12 @@ Required secret:
 
 ## Remaining manual npmjs settings
 
-Phase 7 is not fully complete until these are confirmed on npmjs.com for `veloracss`:
+The first live publish has succeeded. The remaining manual checks on npmjs.com for `veloracss` are:
 
 1. package access and visibility are correct for public release
 2. trusted publishing or token-based publish path is confirmed
 3. owners/maintainers are correct
-4. package settings page reflects the intended public package identity
-5. first publish verification succeeds against the real npm registry
+4. package settings and org views reflect the intended public package identity
 
 Reference target from the tracker:
 
@@ -62,3 +65,9 @@ Reference target from the tracker:
 4. verify npmjs package settings page is configured correctly
 5. create a GitHub release or trigger the publish workflow manually
 6. verify the published package contents with `npm view veloracss --json`
+
+## First live publish result
+
+- `npm publish --access public` succeeded for `veloracss@0.1.1`
+- `npm view veloracss version` returns `0.1.1`
+- `https://www.npmjs.com/package/veloracss` reflects the public package
