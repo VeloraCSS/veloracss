@@ -1,38 +1,27 @@
 <script>
   import SiteShell from '$lib/SiteShell.svelte';
+  import PageHero from '$lib/components/PageHero.svelte';
+  import SectionHeader from '$lib/components/SectionHeader.svelte';
   import { familyCards } from '$lib/content.js';
 </script>
 
 <SiteShell title="VeloraCSS Docs" footerCopy="The docs route now carries the practical install, usage, runtime, and release guidance for the live VeloraCSS package.">
-  <section class="site-hero">
-    <div class="site-hero-copy">
-      <div class="vel-breadcrumb" aria-label="Breadcrumb">
-        <a class="vel-breadcrumb-link" href="/">Home</a>
-        <span class="vel-breadcrumb-separator">/</span>
-        <span class="vel-breadcrumb-current">Docs</span>
-      </div>
-      <div class="vel-stack-sm">
-        <p class="vel-eyebrow">Documentation</p>
-        <h1 class="vel-headline">Install the package, learn the rules, and stay inside the shipped 0.1 surface.</h1>
-      </div>
-      <p class="vel-body-lg vel-text-muted vel-max-w-copy">
-        VeloraCSS ships as compiled CSS, optional runtime helpers, and a manifest-backed API contract. This route carries the public guidance without coupling the framework build to the site app.
-      </p>
-    </div>
-
-    <aside class="vel-card vel-stack-sm">
+  <PageHero
+    current="Docs"
+    eyebrow="Documentation"
+    title="Install the package, learn the rules, and stay inside the shipped 0.1 surface."
+    description="VeloraCSS ships as compiled CSS, optional runtime helpers, and a manifest-backed API contract. This route carries the public guidance without coupling the framework build to the site app."
+  >
+    <aside slot="aside" class="vel-card vel-stack-sm">
       <p class="vel-card-eyebrow">Install</p>
       <div class="site-command">npm install veloracss</div>
       <div class="site-command">import "veloracss/css";</div>
       <div class="site-command">import &#123; initVelora &#125; from "veloracss/js";</div>
     </aside>
-  </section>
+  </PageHero>
 
   <section class="site-section" id="rules">
-    <div class="site-section-head">
-      <p class="vel-eyebrow">Rules</p>
-      <h2 class="vel-headline">Public rules</h2>
-    </div>
+    <SectionHeader eyebrow="Rules" title="Public rules" />
     <div class="site-doc-grid">
       <article class="site-doc-rule vel-stack-xs">
         <p class="site-card-title">Prefixes are strict</p>
@@ -50,10 +39,7 @@
   </section>
 
   <section class="site-section" id="quick-start">
-    <div class="site-section-head">
-      <p class="vel-eyebrow">Quick start</p>
-      <h2 class="vel-headline">Get a real page on screen in three moves</h2>
-    </div>
+    <SectionHeader eyebrow="Quick start" title="Get a real page on screen in three moves" />
     <div class="site-step-grid">
       <article class="site-step-card vel-stack-sm">
         <span class="site-step-number">1</span>
@@ -89,10 +75,7 @@
   </section>
 
   <section class="site-section" id="first-page">
-    <div class="site-section-head">
-      <p class="vel-eyebrow">First page</p>
-      <h2 class="vel-headline">A minimal Velora page should look like this</h2>
-    </div>
+    <SectionHeader eyebrow="First page" title="A minimal Velora page should look like this" />
     <div class="vel-grid-two">
       <article class="vel-card vel-stack-sm">
         <p class="vel-card-eyebrow">Markup</p>
@@ -131,10 +114,7 @@
   </section>
 
   <section class="site-section" id="families">
-    <div class="site-section-head">
-      <p class="vel-eyebrow">Families</p>
-      <h2 class="vel-headline">Stable 0.1 selector families</h2>
-    </div>
+    <SectionHeader eyebrow="Families" title="Stable 0.1 selector families" />
     <div class="site-feature-grid">
       {#each familyCards as card}
         <article class="vel-card vel-stack-sm">
@@ -153,10 +133,7 @@
   </section>
 
   <section class="site-section" id="forms-patterns">
-    <div class="site-section-head">
-      <p class="vel-eyebrow">Forms</p>
-      <h2 class="vel-headline">Use forms for structured input, not decorative chrome</h2>
-    </div>
+    <SectionHeader eyebrow="Forms" title="Use forms for structured input, not decorative chrome" />
     <div class="vel-grid-two">
       <article class="site-preview-panel vel-stack-md">
         <div class="vel-stack-xs">
@@ -214,10 +191,7 @@
   </section>
 
   <section class="site-section" id="navigation-patterns">
-    <div class="site-section-head">
-      <p class="vel-eyebrow">Navigation</p>
-      <h2 class="vel-headline">Build orientation first, then movement</h2>
-    </div>
+    <SectionHeader eyebrow="Navigation" title="Build orientation first, then movement" />
     <div class="vel-grid-two">
       <article class="site-preview-panel vel-stack-md">
         <div class="vel-stack-xs">
@@ -277,10 +251,7 @@
   </section>
 
   <section class="site-section" id="overlay-patterns">
-    <div class="site-section-head">
-      <p class="vel-eyebrow">Actions and overlay</p>
-      <h2 class="vel-headline">Keep interaction surfaces narrow and explicit</h2>
-    </div>
+    <SectionHeader eyebrow="Actions and overlay" title="Keep interaction surfaces narrow and explicit" />
     <div class="vel-grid-two">
       <article class="site-preview-panel vel-stack-md">
         <div class="vel-stack-xs">
@@ -335,10 +306,7 @@
   </section>
 
   <section class="site-section" id="runtime">
-    <div class="site-section-head">
-      <p class="vel-eyebrow">Runtime</p>
-      <h2 class="vel-headline">When to use the helper layer</h2>
-    </div>
+    <SectionHeader eyebrow="Runtime" title="When to use the helper layer" />
     <div class="site-callout-grid">
       <article class="site-callout vel-stack-sm">
         <p class="vel-card-eyebrow">Use it for</p>
@@ -366,10 +334,7 @@ initVelora();</pre>
   </section>
 
   <section class="site-section" id="artifacts">
-    <div class="site-section-head">
-      <p class="vel-eyebrow">Artifacts</p>
-      <h2 class="vel-headline">Package outputs</h2>
-    </div>
+    <SectionHeader eyebrow="Artifacts" title="Package outputs" />
     <div class="site-doc-grid">
       <article class="vel-card vel-stack-sm">
         <p class="vel-card-eyebrow">CSS</p>
@@ -402,10 +367,7 @@ initVelora();</pre>
   </section>
 
   <section class="site-section" id="release">
-    <div class="site-section-head">
-      <p class="vel-eyebrow">Release</p>
-      <h2 class="vel-headline">The package is live and the release path is repeatable</h2>
-    </div>
+    <SectionHeader eyebrow="Release" title="The package is live and the release path is repeatable" />
     <div class="site-doc-grid">
       <article class="vel-card vel-stack-sm">
         <p class="vel-card-eyebrow">Verify</p>

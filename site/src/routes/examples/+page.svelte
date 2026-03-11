@@ -1,25 +1,17 @@
 <script>
   import SiteShell from '$lib/SiteShell.svelte';
+  import PageHero from '$lib/components/PageHero.svelte';
+  import SectionHeader from '$lib/components/SectionHeader.svelte';
 </script>
 
 <SiteShell title="VeloraCSS Examples" footerCopy="The examples route now exercises real release, form, flow, and overlay patterns inside the Svelte app.">
-  <section class="site-hero">
-    <div class="site-hero-copy">
-      <div class="vel-breadcrumb" aria-label="Breadcrumb">
-        <a class="vel-breadcrumb-link" href="/">Home</a>
-        <span class="vel-breadcrumb-separator">/</span>
-        <span class="vel-breadcrumb-current">Examples</span>
-      </div>
-      <div class="vel-stack-sm">
-        <p class="vel-eyebrow">Examples</p>
-        <h1 class="vel-headline">Assembled screens built from the shipped starter set.</h1>
-      </div>
-      <p class="vel-body-lg vel-text-muted vel-max-w-copy">
-        These examples use the same public vel-* surface that ships in the package. They are meant to show composition, not one-off marketing markup.
-      </p>
-    </div>
-
-    <aside class="vel-card vel-stack-sm">
+  <PageHero
+    current="Examples"
+    eyebrow="Examples"
+    title="Assembled screens built from the shipped starter set."
+    description="These examples use the same public vel-* surface that ships in the package. They are meant to show composition, not one-off marketing markup."
+  >
+    <aside slot="aside" class="vel-card vel-stack-sm">
       <p class="vel-card-eyebrow">Included slices</p>
       <div class="site-chip-row">
         <span class="vel-chip vel-bg-elevated vel-border">Forms</span>
@@ -29,13 +21,10 @@
         <span class="vel-chip vel-bg-elevated vel-border">Overlay</span>
       </div>
     </aside>
-  </section>
+  </PageHero>
 
   <section class="site-section">
-    <div class="site-section-head">
-      <p class="vel-eyebrow">Example 1</p>
-      <h2 class="vel-headline">Release dashboard</h2>
-    </div>
+    <SectionHeader eyebrow="Example 1" title="Release dashboard" />
     <div class="site-example-surface vel-stack-md">
       <div class="vel-action-bar">
         <div class="vel-action-meta">
@@ -69,10 +58,7 @@
   </section>
 
   <section class="site-section">
-    <div class="site-section-head">
-      <p class="vel-eyebrow">Example 2</p>
-      <h2 class="vel-headline">Settings panel</h2>
-    </div>
+    <SectionHeader eyebrow="Example 2" title="Settings panel" />
     <div class="site-example-surface vel-grid-two">
       <article class="vel-card vel-stack-md">
         <div class="vel-stack-xs">
@@ -130,10 +116,7 @@
   </section>
 
   <section class="site-section">
-    <div class="site-section-head">
-      <p class="vel-eyebrow">Example 3</p>
-      <h2 class="vel-headline">Launch queue</h2>
-    </div>
+    <SectionHeader eyebrow="Example 3" title="Launch queue" />
     <div class="site-example-surface vel-grid-two">
       <article class="vel-card vel-stack-md">
         <div class="vel-stack-xs">

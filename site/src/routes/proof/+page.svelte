@@ -1,30 +1,22 @@
 <script>
   import SiteShell from '$lib/SiteShell.svelte';
+  import PageHero from '$lib/components/PageHero.svelte';
 </script>
 
 <SiteShell title="VeloraCSS Proof" footerCopy="The proof route now exercises the framework inside the Svelte app instead of pointing back at a root-level placeholder.">
-  <section class="site-hero">
-    <div class="site-hero-copy">
-      <div class="vel-breadcrumb" aria-label="Breadcrumb">
-        <a class="vel-breadcrumb-link" href="/">Home</a>
-        <span class="vel-breadcrumb-separator">/</span>
-        <span class="vel-breadcrumb-current">Proof</span>
-      </div>
-      <div class="vel-stack-sm">
-        <p class="vel-eyebrow">Proof</p>
-        <h1 class="vel-headline">The validation harness now has a route-level home inside the Svelte app.</h1>
-      </div>
-      <p class="vel-body-lg vel-text-muted vel-max-w-copy">
-        This page keeps exercising forms, navigation, flow, actions, and overlays against the same shipped CSS and helper runtime that power the public package.
-      </p>
-      <div class="vel-cluster">
-        <button class="vel-button vel-button-primary" type="button">Primary action</button>
-        <button class="vel-button vel-button-secondary" type="button">Secondary action</button>
-        <button class="vel-button vel-button-ghost" type="button" data-vel-toggle="proof-panel" aria-expanded="false">Toggle runtime panel</button>
-      </div>
+  <PageHero
+    current="Proof"
+    eyebrow="Proof"
+    title="The validation harness now has a route-level home inside the Svelte app."
+    description="This page keeps exercising forms, navigation, flow, actions, and overlays against the same shipped CSS and helper runtime that power the public package."
+  >
+    <div slot="actions" class="vel-cluster">
+      <button class="vel-button vel-button-primary" type="button">Primary action</button>
+      <button class="vel-button vel-button-secondary" type="button">Secondary action</button>
+      <button class="vel-button vel-button-ghost" type="button" data-vel-toggle="proof-panel" aria-expanded="false">Toggle runtime panel</button>
     </div>
 
-    <aside class="vel-card vel-stack-sm vel-shadow-2">
+    <aside slot="aside" class="vel-card vel-stack-sm vel-shadow-2">
       <p class="vel-card-eyebrow">Snapshot</p>
       <div class="vel-row-between vel-flex-wrap">
         <div class="vel-stack-xs">
@@ -41,7 +33,7 @@
         </div>
       </div>
     </aside>
-  </section>
+  </PageHero>
 
   <section class="site-section">
     <div class="vel-grid-three">

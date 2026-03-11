@@ -1,30 +1,28 @@
 <script>
   import SiteShell from '$lib/SiteShell.svelte';
+  import PageHero from '$lib/components/PageHero.svelte';
+  import SectionHeader from '$lib/components/SectionHeader.svelte';
   import { docsCards } from '$lib/content.js';
 
   const slices = ['Tokens', 'Layout', 'Spacing', 'Typography', 'Forms', 'Feedback', 'Navigation', 'Flow', 'Overlay'];
 </script>
 
 <SiteShell title="VeloraCSS">
-  <section class="site-hero">
-    <div class="site-hero-copy">
-      <span class="site-kicker">Velora 0.1 Surface</span>
-      <div class="vel-stack-sm">
-        <p class="vel-eyebrow">Framework</p>
-        <h1 class="vel-display">Sharper utilities. Polished starters. No bloated chrome.</h1>
-      </div>
-      <p class="vel-body-lg vel-text-muted vel-max-w-copy">
-        VeloraCSS combines utility density with starter components, token-led theming, and a tighter visual language. This Svelte site consumes the package the same way users would.
-      </p>
-      <div class="vel-cluster">
-        <a class="vel-button vel-button-primary" href="/docs">Read the docs</a>
-        <a class="vel-button vel-button-secondary" href="/examples">See examples</a>
-        <a class="vel-button vel-button-ghost" href="/proof">Open proof</a>
-      </div>
-      <div class="site-command">npm install veloracss</div>
+  <PageHero
+    kicker="Velora 0.1 Surface"
+    eyebrow="Framework"
+    title="Sharper utilities. Polished starters. No bloated chrome."
+    description="VeloraCSS combines utility density with starter components, token-led theming, and a tighter visual language. This Svelte site consumes the package the same way users would."
+    titleClass="vel-display"
+  >
+    <div slot="actions" class="vel-cluster">
+      <a class="vel-button vel-button-primary" href="/docs">Read the docs</a>
+      <a class="vel-button vel-button-secondary" href="/examples">See examples</a>
+      <a class="vel-button vel-button-ghost" href="/proof">Open proof</a>
     </div>
+    <div class="site-command">npm install veloracss</div>
 
-    <aside class="site-stat-grid">
+    <aside slot="aside" class="site-stat-grid">
       <article class="site-stat-card vel-stack-xs">
         <p class="vel-text-sm vel-text-primary vel-font-medium">Public API</p>
         <p class="vel-headline">0.1</p>
@@ -41,13 +39,10 @@
         <p class="vel-body vel-text-muted">A clean app layer on top of a framework-agnostic package.</p>
       </article>
     </aside>
-  </section>
+  </PageHero>
 
   <section class="site-section">
-    <div class="site-section-head">
-      <p class="vel-eyebrow">Slices</p>
-      <h2 class="vel-headline">What is already in the framework</h2>
-    </div>
+    <SectionHeader eyebrow="Slices" title="What is already in the framework" />
     <div class="site-chip-row">
       {#each slices as slice}
         <span class="vel-chip vel-bg-elevated vel-border">{slice}</span>
@@ -56,10 +51,7 @@
   </section>
 
   <section class="site-section">
-    <div class="site-section-head">
-      <p class="vel-eyebrow">Start</p>
-      <h2 class="vel-headline">Pick the right next page</h2>
-    </div>
+    <SectionHeader eyebrow="Start" title="Pick the right next page" />
     <div class="site-doc-grid">
       {#each docsCards as card}
         <article class="vel-card site-doc-card vel-stack-sm">
