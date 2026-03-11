@@ -3,6 +3,17 @@
   import PageHero from '$lib/components/PageHero.svelte';
   import SectionHeader from '$lib/components/SectionHeader.svelte';
   import { familyCards } from '$lib/content.js';
+  import {
+    docsArtifacts,
+    docsFirstPagePrinciples,
+    docsFormGuidance,
+    docsNavigationGuidance,
+    docsOverlayGuidance,
+    docsQuickStartSteps,
+    docsReleaseCards,
+    docsRules,
+    docsRuntimeCallouts
+  } from '$lib/docsContent.js';
 </script>
 
 <SiteShell title="VeloraCSS Docs" footerCopy="The docs route now carries the practical install, usage, runtime, and release guidance for the live VeloraCSS package.">
@@ -23,54 +34,39 @@
   <section class="site-section" id="rules">
     <SectionHeader eyebrow="Rules" title="Public rules" />
     <div class="site-doc-grid">
-      <article class="site-doc-rule vel-stack-xs">
-        <p class="site-card-title">Prefixes are strict</p>
-        <p class="vel-body vel-text-muted">Selectors use <span class="site-inline-code">vel-</span>, tokens use <span class="site-inline-code">--vel-</span>, and runtime hooks use explicit <span class="site-inline-code">data-vel-*</span> attributes.</p>
-      </article>
-      <article class="site-doc-rule vel-stack-xs">
-        <p class="site-card-title">Geometry stays sharper</p>
-        <p class="vel-body vel-text-muted">Pill-heavy chrome is not the default. Rounded pills are opt-in rather than the baseline framework look.</p>
-      </article>
-      <article class="site-doc-rule vel-stack-xs">
-        <p class="site-card-title">The manifest is authority</p>
-        <p class="vel-body vel-text-muted">The full public selector and token surface is generated into <span class="site-inline-code">dist/velora.manifest.json</span> during build.</p>
-      </article>
+      {#each docsRules as rule}
+        <article class="site-doc-rule vel-stack-xs">
+          <p class="site-card-title">{rule.title}</p>
+          <p class="vel-body vel-text-muted">{@html rule.copy}</p>
+        </article>
+      {/each}
     </div>
   </section>
 
   <section class="site-section" id="quick-start">
     <SectionHeader eyebrow="Quick start" title="Get a real page on screen in three moves" />
     <div class="site-step-grid">
-      <article class="site-step-card vel-stack-sm">
-        <span class="site-step-number">1</span>
-        <p class="site-card-title">Install the package</p>
-        <p class="site-card-copy">Bring in the compiled CSS first. Add the runtime only if you need overlays or simple open and close behavior.</p>
-        <div class="site-artifact-stack">
-          <div class="site-command">npm install veloracss</div>
-          <div class="site-command">import "veloracss/css";</div>
-        </div>
-      </article>
-      <article class="site-step-card vel-stack-sm">
-        <span class="site-step-number">2</span>
-        <p class="site-card-title">Start with layout, then add components</p>
-        <p class="site-card-copy">Use the shell, stacks, grids, and readable widths to frame the page before dropping in cards, buttons, or forms.</p>
-        <div class="site-chip-row">
-          <span class="site-code-chip">vel-shell</span>
-          <span class="site-code-chip">vel-stack-lg</span>
-          <span class="site-code-chip">vel-grid-two</span>
-          <span class="site-code-chip">vel-max-w-copy</span>
-        </div>
-      </article>
-      <article class="site-step-card vel-stack-sm">
-        <span class="site-step-number">3</span>
-        <p class="site-card-title">Opt into runtime helpers only when needed</p>
-        <p class="site-card-copy">Menus, modal shells, and toast stacks can stay declarative by using the shipped runtime hooks instead of custom glue code.</p>
-        <div class="site-chip-row">
-          <span class="site-code-chip">data-vel-toggle</span>
-          <span class="site-code-chip">data-vel-open</span>
-          <span class="site-code-chip">data-vel-close</span>
-        </div>
-      </article>
+      {#each docsQuickStartSteps as step}
+        <article class="site-step-card vel-stack-sm">
+          <span class="site-step-number">{step.number}</span>
+          <p class="site-card-title">{step.title}</p>
+          <p class="site-card-copy">{step.copy}</p>
+          {#if step.commands}
+            <div class="site-artifact-stack">
+              {#each step.commands as command}
+                <div class="site-command">{command}</div>
+              {/each}
+            </div>
+          {/if}
+          {#if step.chips}
+            <div class="site-chip-row">
+              {#each step.chips as chip}
+                <span class="site-code-chip">{chip}</span>
+              {/each}
+            </div>
+          {/if}
+        </article>
+      {/each}
     </div>
   </section>
 
@@ -103,10 +99,9 @@
         <p class="vel-card-eyebrow">How to think about it</p>
         <p class="site-card-title">Velora is not utility soup</p>
         <ul class="site-detail-list">
-          <li>Use layout primitives first so the page structure is obvious.</li>
-          <li>Use typography roles to establish hierarchy before adding visual effects.</li>
-          <li>Use starter components where they save time, not as mandatory wrappers around everything.</li>
-          <li>Keep custom site chrome outside the framework API if it is product-specific.</li>
+          {#each docsFirstPagePrinciples as principle}
+            <li>{principle}</li>
+          {/each}
         </ul>
         <a class="vel-button vel-button-secondary" href="/examples">See assembled examples</a>
       </article>
@@ -172,19 +167,16 @@
       </article>
       <article class="vel-card vel-stack-sm">
         <p class="vel-card-eyebrow">Guidance</p>
-        <p class="site-card-title">What a good Velora form should do</p>
+        <p class="site-card-title">{docsFormGuidance.title}</p>
         <ul class="site-detail-list">
-          <li>Group related fields with layout helpers before adding visual separators.</li>
-          <li>Use helper text only when it reduces ambiguity or prevents mistakes.</li>
-          <li>Keep validation tone direct by pairing <span class="site-inline-code">vel-input-danger</span> with matching help copy.</li>
-          <li>Use <span class="site-inline-code">vel-control-group</span> for action rows instead of hand-rolled spacing.</li>
+          {#each docsFormGuidance.items as item}
+            <li>{@html item}</li>
+          {/each}
         </ul>
         <div class="site-chip-row">
-          <span class="site-code-chip">vel-form</span>
-          <span class="site-code-chip">vel-field</span>
-          <span class="site-code-chip">vel-input</span>
-          <span class="site-code-chip">vel-select</span>
-          <span class="site-code-chip">vel-help</span>
+          {#each docsFormGuidance.chips as chip}
+            <span class="site-code-chip">{chip}</span>
+          {/each}
         </div>
       </article>
     </div>
@@ -233,18 +225,16 @@
       </article>
       <article class="vel-card vel-stack-sm">
         <p class="vel-card-eyebrow">Guidance</p>
-        <p class="site-card-title">What each pattern is for</p>
+        <p class="site-card-title">{docsNavigationGuidance.title}</p>
         <ul class="site-detail-list">
-          <li>Use <span class="site-inline-code">vel-navbar*</span> for the top-level shell and high-value routes.</li>
-          <li>Use <span class="site-inline-code">vel-breadcrumb*</span> when the user needs location context inside deeper content.</li>
-          <li>Use tabs for peer views, not for primary site architecture.</li>
-          <li>Use pagination when users move through ordered sets rather than jumping between product areas.</li>
+          {#each docsNavigationGuidance.items as item}
+            <li>{@html item}</li>
+          {/each}
         </ul>
         <div class="site-chip-row">
-          <span class="site-code-chip">vel-navbar*</span>
-          <span class="site-code-chip">vel-breadcrumb*</span>
-          <span class="site-code-chip">vel-tabs</span>
-          <span class="site-code-chip">vel-pagination</span>
+          {#each docsNavigationGuidance.chips as chip}
+            <span class="site-code-chip">{chip}</span>
+          {/each}
         </div>
       </article>
     </div>
@@ -288,18 +278,16 @@
       </article>
       <article class="vel-card vel-stack-sm">
         <p class="vel-card-eyebrow">Guidance</p>
-        <p class="site-card-title">Where the helper layer should stop</p>
+        <p class="site-card-title">{docsOverlayGuidance.title}</p>
         <ul class="site-detail-list">
-          <li>Use action bars for clustered task controls and dense page tools.</li>
-          <li>Use dropdowns for short action lists, not deep navigation trees.</li>
-          <li>Use toasts for non-blocking confirmation or status changes.</li>
-          <li>Reach for your app layer when interaction needs outside-click logic, viewport-aware positioning, or complex state.</li>
+          {#each docsOverlayGuidance.items as item}
+            <li>{item}</li>
+          {/each}
         </ul>
         <div class="site-chip-row">
-          <span class="site-code-chip">vel-action-bar</span>
-          <span class="site-code-chip">vel-icon-button</span>
-          <span class="site-code-chip">vel-dropdown*</span>
-          <span class="site-code-chip">vel-toast*</span>
+          {#each docsOverlayGuidance.chips as chip}
+            <span class="site-code-chip">{chip}</span>
+          {/each}
         </div>
       </article>
     </div>
@@ -308,83 +296,63 @@
   <section class="site-section" id="runtime">
     <SectionHeader eyebrow="Runtime" title="When to use the helper layer" />
     <div class="site-callout-grid">
-      <article class="site-callout vel-stack-sm">
-        <p class="vel-card-eyebrow">Use it for</p>
-        <ul class="site-detail-list">
-          <li>Opening and closing dropdown menus.</li>
-          <li>Showing and dismissing modal shells.</li>
-          <li>Toggling toast stacks or lightweight status surfaces.</li>
-        </ul>
-      </article>
-      <article class="site-callout vel-stack-sm">
-        <p class="vel-card-eyebrow">Do not use it for</p>
-        <ul class="site-detail-list">
-          <li>Complex application state or data fetching.</li>
-          <li>Viewport-aware positioning logic beyond the shipped basics.</li>
-          <li>Rebuilding component behavior that should live in your app layer.</li>
-        </ul>
-      </article>
-      <article class="site-callout vel-stack-sm">
-        <p class="vel-card-eyebrow">Import</p>
-        <pre class="site-code-block">import &#123; initVelora &#125; from "veloracss/js";
-
-initVelora();</pre>
-      </article>
+      {#each docsRuntimeCallouts as callout}
+        <article class="site-callout vel-stack-sm">
+          <p class="vel-card-eyebrow">{callout.eyebrow}</p>
+          {#if callout.items}
+            <ul class="site-detail-list">
+              {#each callout.items as item}
+                <li>{item}</li>
+              {/each}
+            </ul>
+          {/if}
+          {#if callout.code}
+            <pre class="site-code-block">{@html callout.code}</pre>
+          {/if}
+        </article>
+      {/each}
     </div>
   </section>
 
   <section class="site-section" id="artifacts">
     <SectionHeader eyebrow="Artifacts" title="Package outputs" />
     <div class="site-doc-grid">
-      <article class="vel-card vel-stack-sm">
-        <p class="vel-card-eyebrow">CSS</p>
-        <p class="site-card-title">Stylesheet bundles</p>
-        <p class="site-card-copy">Ship the readable bundle for development and the minified bundle for distribution.</p>
-        <div class="site-artifact-stack">
-          <div class="site-command">dist/velora.css</div>
-          <div class="site-command">dist/velora.min.css</div>
-        </div>
-      </article>
-      <article class="vel-card vel-stack-sm">
-        <p class="vel-card-eyebrow">Runtime</p>
-        <p class="site-card-title">Optional helper runtime</p>
-        <p class="site-card-copy">Use this only when you need the small progressive-enhancement layer for menus, modals, and toasts.</p>
-        <div class="site-artifact-stack">
-          <div class="site-command">dist/velora.js</div>
-          <div class="site-command">dist/velora.min.js</div>
-        </div>
-      </article>
-      <article class="vel-card vel-stack-sm">
-        <p class="vel-card-eyebrow">Manifest</p>
-        <p class="site-card-title">Machine-readable API contract</p>
-        <p class="site-card-copy">This file is the exact shipped record of public classes, tokens, and runtime attributes.</p>
-        <div class="site-artifact-stack">
-          <div class="site-command">dist/velora.manifest.json</div>
-        </div>
-        <a class="vel-button vel-button-secondary" href="https://github.com/VeloraX/veloracss/blob/main/dist/velora.manifest.json">Open manifest</a>
-      </article>
+      {#each docsArtifacts as artifact}
+        <article class="vel-card vel-stack-sm">
+          <p class="vel-card-eyebrow">{artifact.eyebrow}</p>
+          <p class="site-card-title">{artifact.title}</p>
+          <p class="site-card-copy">{artifact.copy}</p>
+          <div class="site-artifact-stack">
+            {#each artifact.commands as command}
+              <div class="site-command">{command}</div>
+            {/each}
+          </div>
+          {#if artifact.href}
+            <a class="vel-button vel-button-secondary" href={artifact.href}>{artifact.hrefLabel}</a>
+          {/if}
+        </article>
+      {/each}
     </div>
   </section>
 
   <section class="site-section" id="release">
     <SectionHeader eyebrow="Release" title="The package is live and the release path is repeatable" />
     <div class="site-doc-grid">
-      <article class="vel-card vel-stack-sm">
-        <p class="vel-card-eyebrow">Verify</p>
-        <div class="site-command">npm run release:verify</div>
-        <p class="vel-body vel-text-muted">This runs the build, audits public docs references against the manifest, and performs a dry-run package check.</p>
-      </article>
-      <article class="vel-card vel-stack-sm">
-        <p class="vel-card-eyebrow">Publish</p>
-        <p class="site-card-title">veloracss@0.1.1 is live</p>
-        <p class="vel-body vel-text-muted">The first public publish has already succeeded, and the GitHub workflow is wired for verified follow-up releases.</p>
-        <a class="vel-button vel-button-secondary" href="https://www.npmjs.com/package/veloracss">Open npm package</a>
-      </article>
-      <article class="vel-card vel-stack-sm">
-        <p class="vel-card-eyebrow">Access</p>
-        <p class="site-card-title">Org package visibility is resolved</p>
-        <p class="vel-body vel-text-muted">The veloracss developers team now has read-write access, and the npm org package view reflects the live package correctly.</p>
-      </article>
+      {#each docsReleaseCards as card}
+        <article class="vel-card vel-stack-sm">
+          <p class="vel-card-eyebrow">{card.eyebrow}</p>
+          {#if card.command}
+            <div class="site-command">{card.command}</div>
+          {/if}
+          {#if card.title}
+            <p class="site-card-title">{card.title}</p>
+          {/if}
+          <p class="vel-body vel-text-muted">{card.copy}</p>
+          {#if card.href}
+            <a class="vel-button vel-button-secondary" href={card.href}>{card.hrefLabel}</a>
+          {/if}
+        </article>
+      {/each}
     </div>
   </section>
 </SiteShell>
