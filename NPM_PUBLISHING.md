@@ -20,7 +20,7 @@ This performs:
 - `npm run audit:docs`
 - `npm pack --dry-run`
 
-The docs audit checks public docs and example surfaces for `vel-*`, `--vel-*`, and `data-vel-*` references that are not present in `dist/velora.manifest.json`.
+The docs audit checks the root markdown and HTML docs plus the Svelte site content modules and route pages. It verifies `vel-*`, `--vel-*`, and `data-vel-*` references against `dist/velora.manifest.json`, and it also catches stale site route links, package/import claims, exact version strings, and `dist/` artifact references in the site docs content.
 
 The package is configured to publish the compiled surface only:
 

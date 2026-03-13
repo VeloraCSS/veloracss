@@ -1,0 +1,77 @@
+.vel-skeleton,
+.vel-skeleton-line,
+.vel-skeleton-block,
+.vel-skeleton-avatar,
+.vel-skeleton-button {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(
+    90deg,
+    rgba(148, 163, 184, 0.14) 0%,
+    rgba(148, 163, 184, 0.28) 50%,
+    rgba(148, 163, 184, 0.14) 100%
+  );
+  background-size: 200% 100%;
+  animation: vel-skeleton-shimmer 1.25s ease-in-out infinite;
+}
+
+.vel-skeleton-line {
+  display: block;
+  min-height: 0.95rem;
+  width: 100%;
+  border-radius: var(--vel-radius-pill);
+}
+
+.vel-skeleton-line.is-sm {
+  width: 42%;
+}
+
+.vel-skeleton-line.is-md {
+  width: 68%;
+}
+
+.vel-skeleton-block {
+  display: block;
+  width: 100%;
+  min-height: 12rem;
+  border-radius: var(--vel-radius-md);
+}
+
+.vel-skeleton-avatar {
+  display: inline-block;
+  width: 3rem;
+  height: 3rem;
+  border-radius: var(--vel-radius-pill);
+}
+
+.vel-skeleton-button {
+  display: inline-block;
+  width: 8rem;
+  min-height: 2.75rem;
+  border-radius: var(--vel-radius-md);
+}
+
+.vel-skeleton-stack {
+  display: grid;
+  gap: var(--vel-space-3);
+}
+
+@keyframes vel-skeleton-shimmer {
+  0% {
+    background-position: 200% 0;
+  }
+
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .vel-skeleton,
+  .vel-skeleton-line,
+  .vel-skeleton-block,
+  .vel-skeleton-avatar,
+  .vel-skeleton-button {
+    animation: none;
+  }
+}

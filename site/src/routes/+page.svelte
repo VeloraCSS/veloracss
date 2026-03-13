@@ -1,64 +1,103 @@
 <script>
+  import { onDestroy } from 'svelte';
   import SiteShell from '$lib/SiteShell.svelte';
-  import PageHero from '$lib/components/PageHero.svelte';
-  import SectionHeader from '$lib/components/SectionHeader.svelte';
-  import { docsCards } from '$lib/content.js';
+  import {
+    homeCodeLines,
+    homeCodeText,
+    homePreviewCard,
+    homeFeatureCards
+  } from '$lib/homeContent.js';
 
-  const slices = ['Tokens', 'Layout', 'Spacing', 'Typography', 'Forms', 'Feedback', 'Navigation', 'Flow', 'Overlay'];
+  let copyLabel = 'Copy';
+  let copyResetTimer;
+
+  async function handleCopyCode() {
+    try {
+      await navigator.clipboard.writeText(homeCodeText);
+      copyLabel = 'Copied';
+    } catch {
+      copyLabel = 'Failed';
+    }
+
+    clearTimeout(copyResetTimer);
+    copyResetTimer = setTimeout(() => {
+      copyLabel = 'Copy';
+    }, 1600);
+  }
+
+  onDestroy(() => {
+    clearTimeout(copyResetTimer);
+  });
 </script>
 
 <SiteShell title="VeloraCSS">
-  <PageHero
-    kicker="Velora 0.1 Surface"
-    eyebrow="Framework"
-    title="Sharper utilities. Polished starters. No bloated chrome."
-    description="VeloraCSS combines utility density with starter components, token-led theming, and a tighter visual language. This Svelte site consumes the package the same way users would."
-    titleClass="vel-display"
-  >
-    <div slot="actions" class="vel-cluster">
-      <a class="vel-button vel-button-primary" href="/docs">Read the docs</a>
-      <a class="vel-button vel-button-secondary" href="/examples">See examples</a>
-      <a class="vel-button vel-button-ghost" href="/proof">Open proof</a>
+  <section class="site-home-hero">
+    <div class="site-home-hero-section">
+      <p class="site-home-class-hint">vel-stack-md vel-grid-two vel-card vel-button vel-text-primary</p>
+      <h1 class="site-home-display">Rapidly build modern interfaces without ever leaving your HTML.</h1>
+      <p class="site-home-subtitle">Utility-first classes, starter components, and theme tokens that let you build polished UI directly in your markup.</p>
+      <div class="site-home-hero-actions">
+        <a class="vel-button vel-button-primary" href="/docs">Get started</a>
+        <div class="site-home-install-cmd">npm install veloracss</div>
+      </div>
     </div>
-    <div class="site-command">npm install veloracss</div>
 
-    <aside slot="aside" class="site-stat-grid">
-      <article class="site-stat-card vel-stack-xs">
-        <p class="vel-text-sm vel-text-primary vel-font-medium">Public API</p>
-        <p class="vel-headline">0.1</p>
-        <p class="vel-body vel-text-muted">Frozen through the manifest and human-readable API surface.</p>
-      </article>
-      <article class="site-stat-card vel-stack-xs">
-        <p class="vel-text-sm vel-text-primary vel-font-medium">Runtime</p>
-        <p class="vel-headline">3</p>
-        <p class="vel-body vel-text-muted">Focused helper hooks for toggle, open, and close behavior.</p>
-      </article>
-      <article class="site-stat-card vel-stack-xs">
-        <p class="vel-text-sm vel-text-primary vel-font-medium">Site stack</p>
-        <p class="vel-headline">Svelte</p>
-        <p class="vel-body vel-text-muted">A clean app layer on top of a framework-agnostic package.</p>
-      </article>
-    </aside>
-  </PageHero>
+    <div class="site-home-demo">
+      <div class="site-home-code">
+        <div class="site-home-code-bar">
+          <div class="site-home-code-dots">
+            <span></span><span></span><span></span>
+          </div>
+          <button class="site-home-code-copy" type="button" on:click={handleCopyCode}>
+            {copyLabel}
+          </button>
+        </div>
+        <div class="site-home-code-lines">
+          {#each homeCodeLines as line, i}
+            <div class="site-home-code-line">
+              <span class="site-home-code-num">{i + 1}</span>
+              <span class="site-home-code-text">
+                <span>{line.prefix}</span>
+                {#if line.accent}
+                  <span class="site-home-code-accent">{line.accent}</span>
+                {/if}
+                <span>{line.suffix}</span>
+              </span>
+            </div>
+          {/each}
+        </div>
+      </div>
 
-  <section class="site-section">
-    <SectionHeader eyebrow="Slices" title="What is already in the framework" />
-    <div class="site-chip-row">
-      {#each slices as slice}
-        <span class="vel-chip vel-bg-elevated vel-border">{slice}</span>
-      {/each}
+      <div class="site-home-preview-card">
+        <article class={homePreviewCard.articleClass}>
+          <img
+            class={homePreviewCard.imageClass}
+            src={homePreviewCard.imageSrc}
+            alt={homePreviewCard.imageAlt}
+          />
+          <div class={homePreviewCard.bodyClass}>
+            <span class={homePreviewCard.eyebrowClass}>{homePreviewCard.eyebrow}</span>
+            <h3 class={homePreviewCard.titleClass}>{homePreviewCard.title}</h3>
+            <p class={homePreviewCard.copyClass}>{homePreviewCard.copy}</p>
+            <div class={homePreviewCard.metaClass}>
+              <span class={homePreviewCard.metaItemClass}>{homePreviewCard.metaPrimary}</span>
+              <span class={homePreviewCard.dotClass}>•</span>
+              <span class={homePreviewCard.metaItemClass}>{homePreviewCard.metaSecondary}</span>
+            </div>
+            <span class={homePreviewCard.linkClass}>{homePreviewCard.link}</span>
+          </div>
+        </article>
+      </div>
     </div>
   </section>
 
-  <section class="site-section">
-    <SectionHeader eyebrow="Start" title="Pick the right next page" />
-    <div class="site-doc-grid">
-      {#each docsCards as card}
-        <article class="vel-card site-doc-card vel-stack-sm">
-          <p class="vel-card-eyebrow">{card.eyebrow}</p>
-          <p class="site-card-title">{card.title}</p>
-          <p class="vel-body vel-text-muted">{card.copy}</p>
-          <a class="vel-button vel-button-secondary" href={card.href}>Open {card.eyebrow.toLowerCase()}</a>
+  <!-- Features -->
+  <section class="site-section site-home-features-section">
+    <div class="site-home-feature-grid">
+      {#each homeFeatureCards as card}
+        <article class="site-home-feature">
+          <p class="site-home-feature-title">{card.title}</p>
+          <p class="site-home-feature-copy">{card.copy}</p>
         </article>
       {/each}
     </div>

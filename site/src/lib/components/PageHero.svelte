@@ -5,9 +5,10 @@
   export let title = '';
   export let description = '';
   export let titleClass = 'vel-headline';
+  export let heroClass = '';
 </script>
 
-<section class="site-hero">
+<section class={`site-hero ${heroClass}`.trim()}>
   <div class="site-hero-copy">
     {#if kicker}
       <span class="site-kicker">{kicker}</span>

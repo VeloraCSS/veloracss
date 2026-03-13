@@ -1,6 +1,6 @@
 export const proofSnapshot = [
   { value: '0.1.1', label: 'live package' },
-  { value: '3', label: 'runtime hooks', centered: true },
+  { value: '5', label: 'runtime hooks', centered: true },
   { value: '1', label: 'npm package live', centered: true }
 ];
 
@@ -49,7 +49,7 @@ export const proofCompositionPanels = [
   },
   {
     title: 'Overlay',
-    copy: 'Menus, modals, and toasts inherit the same tighter corners and control rhythm.'
+    copy: 'Menus, modals, offcanvas panels, and toasts inherit the same tighter corners and control rhythm.'
   }
 ];
 

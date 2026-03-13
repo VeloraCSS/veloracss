@@ -5,7 +5,7 @@
     linear-gradient(180deg, rgba(99, 179, 255, 0.12), transparent 35%),
     var(--vel-color-surface-elevated);
   border: 1px solid var(--vel-color-border);
-  box-shadow: 0 24px 80px rgba(3, 10, 24, 0.35);
+  box-shadow: var(--vel-shadow-1);
 }
 
 .vel-card > * + * {

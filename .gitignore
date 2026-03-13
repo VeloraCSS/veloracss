@@ -2,3 +2,7 @@ node_modules/
 dist/
 site/.svelte-kit/
 site/build/
+.env
+.env.*
+!.env.example
+.claude/settings.local.json

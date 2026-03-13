@@ -1,55 +1,61 @@
 # CURRENT
 
-VeloraCSS has been reset to a clean slate.
+VeloraCSS is now in a deliberate 1.0 replatform.
 
 ## Immediate target
 
-Build a disciplined core that mixes:
+Build a single framework that combines:
 
-- Tailwind-style utility density and composability
-- Bootstrap-style starter components and product discipline
+- Tailwind-style utility breadth and variant chaining
+- Bootstrap-style component depth and runtime behavior
 - Velora-native naming, tokens, and visual language
 
-## Phase 1
+The product goal is feature and structure parity implemented as Velora-owned surface, not a literal source-level clone of Tailwind or Bootstrap.
 
-- Establish package and build pipeline
-- Rebuild core tokens, reset, utilities, and starter components
-- Keep a proof surface for fast iteration
+## Active phase
+
+Phase 10 is now the active implementation slice.
+
+It focuses on the foundation needed for the full framework merge:
+
+- lock the 1.0 public grammar and compatibility policy
+- create a machine-readable coverage map for Tailwind 4.2 and Bootstrap 5.3 scope
+- expand the token and theme system to support light and dark color modes
+- replace one-off utility growth with a generated utility layer that can scale to full coverage
+- keep the proof surface and package build working while the framework surface grows
 
 ## Current slice
 
-- Overlay and action starter components now exist on top of the expanded utility base
-- Proof page now validates menus, modal shells, toasts, action bars, nav bars, breadcrumbs, tabs, pagination, staged steps, forms, feedback, and the optional runtime toggle
-- The build now emits a machine-readable API manifest so the 0.1 public surface can be frozen intentionally
-- Repo-side npm publishing flow is now wired through package metadata, verification scripts, and a GitHub Actions publish workflow
-- VeloraCSS 0.1.1 is now published live on npm after passing the full release verification pipeline
-- The npm organization settings now show the live package after granting the veloracss developers team read-write access
-- The first public product shell now exists with a homepage, docs page, examples page, and shared site-only styling on top of the frozen framework API
-- A root-level docs audit now checks public docs and examples references against dist/velora.manifest.json to reduce docs drift
-- A separate SvelteKit site scaffold now exists under site/ and builds successfully against the existing Velora package outputs
-- The Svelte app now binds the helper runtime across navigation and renders real docs, examples, and proof content instead of placeholder routes
+- The repo still ships VeloraCSS `0.1.1`, but the public contract is being moved to a 1.0 draft surface
+- The new authority file for framework scope is `framework-coverage.json`
+- Generated utility families are being introduced into the build so responsive and chained variants do not require hand-authored CSS per selector
+- Chained variant coverage is now explicit for semantic and interactive generated utilities, while structural layout families remain responsive-first by policy
+- Theme tokens are being expanded so the framework can support explicit light and dark modes without abandoning the existing Velora visual direction
+- Tooltip and offcanvas are now part of the delegated runtime layer and exercised in the site proof/examples surfaces
+- The proof surface, docs app, and package build remain in place as validation layers while docs content is deferred
+
+## Repo state
+
+- Root package: builds the framework, proof surface, manifest, and release verification flow
+- `site/`: SvelteKit docs app with home, docs, examples, and proof routes
+- `tracker/`: Node 20 service scaffold for GitHub Projects <-> Discord sync work, now paused behind the framework replatform priority
 
 ## Next focus
 
-- Polish the Svelte site by extracting shared route components and tightening remaining static-output details without coupling the framework build to the app layer
-- Keep auditing docs and page claims against the shipped manifest
-- Keep package hardening and public API freeze in view as the next release-readiness checkpoints
-- Treat GitHub Projects and the Discord tracker app as a synchronized project surface, not separate planning systems
+- harden the expanded generated utility engine now that semantic and interactive utilities have audited chained variant coverage
+- continue the runtime expansion from disclosure, dropdown, collapse, modal, offcanvas, tabs, toast, and tooltip into the remaining Bootstrap-level interaction plugins
+- start rebuilding component coverage on top of the generated utility layer and delegated plugin runtime
+- continue auditing build output and manifest claims against the actual shipped surface
 
-## Upcoming Queue
+## Upcoming queue
 
-- Next: extract shared Svelte site components and clean up remaining route-output details
-- Next after that: audit docs coverage against the shipped manifest
+- next: extend the runtime from collapse, dropdown, modal, offcanvas, tabs, toast, and tooltip into popover, carousel, and scrollspy
+- next after that: rebuild Bootstrap-scale component coverage on top of the generated utility and plugin layers
+- later: move the tracker sync work forward again once the framework foundation is stable enough not to thrash the roadmap
 
-## Product Requirement
+## Product requirement
 
-- The Discord tracker app must reflect GitHub Project state changes
-- The GitHub Project must also accept intentional writeback from the Discord tracker app
-- Sync needs a clear authority model, durable item mapping, audit visibility, and loop prevention
-- The concrete contract lives in TRACKER_SYNC_SPEC.md
-
-## Phase 2
-
-- Freeze public naming grammar
-- Expand utilities and components intentionally
-- Stand up docs, home, and examples surfaces
+- Velora 1.0 must support Tailwind-style chained variants such as responsive and state prefixes
+- Velora 1.0 must ship Bootstrap-level component coverage and interactive behavior
+- Velora visual standards remain in force: sharper defaults, restrained shadowing, and token-led theming
+- The concrete implementation target is tracked in `framework-coverage.json`

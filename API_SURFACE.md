@@ -1,41 +1,51 @@
-# VeloraCSS 0.1 API Surface
+# VeloraCSS 1.0 Draft API Surface
 
-This document freezes the current public VeloraCSS 0.1 surface.
+This document no longer freezes the 0.1 surface. It defines the draft contract for the 1.0 replatform now underway.
 
-## Public Rules
+## Public rules
 
 - Public classes use the `vel-` prefix.
 - Public design tokens use the `--vel-` prefix.
 - Runtime hooks use explicit `data-vel-*` attributes.
-- Default geometry is sharp-to-moderate, not pill-heavy. Rounded pills are opt-in, not the framework baseline.
-- New public selectors should not be added casually; they should ship intentionally and appear in the generated manifest.
+- Tailwind-style chained variants are part of the public grammar. Example shape: `sm:hover:vel-bg-primary`.
+- Variant order is currently `breakpoint -> theme -> state -> utility`.
+- Current policy: structural layout and sizing families stay responsive-first, while semantic and interactive visual utilities emit chained responsive, dark, and state variants where those combinations are meaningful.
+- Default geometry is sharp-to-moderate, not pill-heavy. Rounded pills remain opt-in.
+- New public selectors should be generated or declared intentionally and appear in the build manifest.
 
-## Stable 0.1 Surface
+## Compatibility direction
 
-Stable selector families currently shipped:
+- Velora 1.0 is allowed to break the 0.1 selector contract.
+- The target is prefix-swapped compatibility with Tailwind and Bootstrap concepts, not source-level compatibility.
+- Utilities should keep familiar structural semantics where practical, while components remain Velora-owned implementations.
 
-- Foundation: `vel-shell`
-- Layout: `vel-stack-*`, `vel-cluster`, `vel-row*`, `vel-grid-*`
-- Flex: `vel-flex*`, `vel-items-*`, `vel-justify-*`
-- Spacing and sizing: `vel-p*`, `vel-px-*`, `vel-py-*`, `vel-gap-*`, `vel-mt-*`, `vel-w-full`, `vel-max-w-*`, `vel-min-h-card`
-- Surface and effects: `vel-bg-*`, `vel-border*`, `vel-radius-*`, `vel-chip`, `vel-panel`, `vel-swatch`, `vel-shadow-*`, `vel-ring-primary`
-- Typography: `vel-display`, `vel-headline`, `vel-title`, `vel-body*`, `vel-text-*`, `vel-font-*`, `vel-eyebrow`, `vel-card-eyebrow`
-- Core components: `vel-button*`, `vel-card`, `vel-form`, `vel-field`, `vel-label`, `vel-input*`, `vel-select`, `vel-textarea`, `vel-help*`, `vel-check*`, `vel-control-group`, `vel-alert*`
-- Navigation and flow: `vel-navbar*`, `vel-breadcrumb*`, `vel-tabs`, `vel-tab*`, `vel-pagination`, `vel-page-link`, `vel-steps`, `vel-step*`
-- Actions and overlays: `vel-action-*`, `vel-toolbar`, `vel-button-group`, `vel-icon-button`, `vel-dropdown*`, `vel-modal*`, `vel-toast*`
+## Draft 1.0 grammar
 
-## Runtime Surface
+- Utility classes: `vel-*`
+- Variant prefixes: `sm:`, `md:`, `lg:`, `xl:`, `2xl:`, `hover:`, `focus:`, `focus-visible:`, `dark:`
+- Combined variant examples: `md:hover:vel-text-primary`, `dark:vel-bg-surface`, `lg:focus:vel-border-primary`
+- Theme selectors: `.vel-theme-light`, `.vel-theme-dark`, `[data-vel-theme="light"]`, `[data-vel-theme="dark"]`
 
-Stable runtime hooks currently shipped:
+## Current 1.0 implementation families
 
-- `data-vel-toggle`
-- `data-vel-open`
-- `data-vel-close`
+Families already in progress during the replatform:
 
-These hooks are intentionally narrow and support progressive enhancement only.
+- Foundation tokens for breakpoints, containers, transitions, and explicit light and dark themes
+- Generated layout, typography, border, effects, transforms, interactivity, SVG, and accessibility utilities with shared token backing
+- Responsive and chained variant generation in the build pipeline, now audited across semantic and interactive utility families
+- Existing 0.1 starter components and an expanded plugin runtime for disclosure, dropdown, collapse, modal, offcanvas, tabs, toast, and tooltip behavior
 
-## Manifest Authority
+## Runtime direction
+
+Current runtime hooks shipped during the transition:
+
+- Legacy disclosure hooks: `data-vel-toggle`, `data-vel-open`, `data-vel-close`
+- Plugin hooks: `data-vel-dropdown`, `data-vel-modal-open`, `data-vel-modal-close`, `data-vel-offcanvas-open`, `data-vel-offcanvas-close`, `data-vel-offcanvas-placement`, `data-vel-collapse`, `data-vel-tab`, `data-vel-toast`, `data-vel-toast-close`, `data-vel-tooltip`, `data-vel-tooltip-placement`
+
+Legacy hooks remain supported while the runtime expands toward the rest of the Bootstrap-level interaction catalog.
+
+## Manifest authority
 
 The complete machine-readable selector list is generated into `dist/velora.manifest.json` during `npm run build`.
 
-For release work, treat the manifest as the exact source for the frozen public surface and treat this document as the human-readable contract.
+For release work, treat the manifest as the exact build output for the current public surface and treat this document as the human-readable draft contract.

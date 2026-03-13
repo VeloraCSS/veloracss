@@ -1,0 +1,21 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "Run site dev server",
+			"type": "shell",
+			"command": "npm",
+			"args": [
+				"--prefix",
+				"site",
+				"run",
+				"dev",
+				"--",
+				"--host"
+			],
+			"isBackground": true,
+			"problemMatcher": [],
+			"group": "build"
+		}
+	]
+}

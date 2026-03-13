@@ -3,6 +3,30 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script>
+      (function () {
+        var storageKey = 'velora-theme-preference';
+        var storedPreference = 'system';
+
+        try {
+          var maybeStoredPreference = window.localStorage.getItem(storageKey);
+
+          if (maybeStoredPreference === 'light' || maybeStoredPreference === 'dark' || maybeStoredPreference === 'system') {
+            storedPreference = maybeStoredPreference;
+          }
+        } catch (error) {
+          storedPreference = 'system';
+        }
+
+        var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        var resolvedTheme = storedPreference === 'system' ? (prefersDark ? 'dark' : 'light') : storedPreference;
+        var root = document.documentElement;
+
+        root.dataset.themePreference = storedPreference;
+        root.dataset.theme = resolvedTheme;
+        root.style.colorScheme = resolvedTheme;
+      })();
+    </script>
     %sveltekit.head%
   </head>
   <body data-sveltekit-preload-data="hover">

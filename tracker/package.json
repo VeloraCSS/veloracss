@@ -1,0 +1,14 @@
+{
+  "name": "@veloracss/tracker",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "dev": "node --watch src/index.js",
+    "start": "node src/index.js",
+    "commands:preview": "node scripts/print-command-registry.mjs"
+  }
+}

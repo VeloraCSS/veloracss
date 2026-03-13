@@ -1,0 +1,182 @@
+{
+  "version": "1.0.0-draft",
+  "status": "in-progress",
+  "sources": {
+    "tailwind": "https://tailwindcss.com/docs",
+    "bootstrap": "https://getbootstrap.com/docs/5.3/"
+  },
+  "policy": {
+    "compatibility": "prefix-swapped-compatibility",
+    "variants": "tailwind-style-chaining",
+    "runtime": "bootstrap-level-js",
+    "docsDeferred": true
+  },
+  "areas": [
+    {
+      "id": "foundation",
+      "status": "in-progress",
+      "families": [
+        { "name": "core-concepts", "status": "planned" },
+        { "name": "dark-mode", "status": "in-progress" },
+        { "name": "theme-variables", "status": "in-progress" },
+        { "name": "adding-custom-styles", "status": "planned" },
+        { "name": "detecting-classes-in-source-files", "status": "planned" },
+        { "name": "functions-and-directives", "status": "planned" },
+        { "name": "preflight-and-reboot", "status": "in-progress" }
+      ]
+    },
+    {
+      "id": "layout",
+      "status": "in-progress",
+      "families": [
+        { "name": "aspect-ratio", "status": "in-progress" },
+        { "name": "columns", "status": "planned" },
+        { "name": "display", "status": "in-progress" },
+        { "name": "overflow", "status": "in-progress" },
+        { "name": "position", "status": "in-progress" },
+        { "name": "inset", "status": "planned" },
+        { "name": "visibility", "status": "planned" },
+        { "name": "z-index", "status": "in-progress" }
+      ]
+    },
+    {
+      "id": "flexbox-grid",
+      "status": "in-progress",
+      "families": [
+        { "name": "flex", "status": "in-progress" },
+        { "name": "justify-align-place", "status": "in-progress" },
+        { "name": "order", "status": "in-progress" },
+        { "name": "grid-template", "status": "in-progress" },
+        { "name": "grid-span", "status": "in-progress" },
+        { "name": "grid-auto", "status": "planned" },
+        { "name": "gap", "status": "in-progress" }
+      ]
+    },
+    {
+      "id": "spacing-sizing",
+      "status": "in-progress",
+      "families": [
+        { "name": "padding", "status": "in-progress" },
+        { "name": "margin", "status": "in-progress" },
+        { "name": "width", "status": "in-progress" },
+        { "name": "height", "status": "in-progress" },
+        { "name": "min-max-size", "status": "in-progress" },
+        { "name": "inline-block-size", "status": "planned" }
+      ]
+    },
+    {
+      "id": "typography",
+      "status": "in-progress",
+      "families": [
+        { "name": "font", "status": "in-progress" },
+        { "name": "text-layout", "status": "in-progress" },
+        { "name": "text-decoration", "status": "in-progress" },
+        { "name": "lists", "status": "in-progress" },
+        { "name": "content", "status": "planned" }
+      ]
+    },
+    {
+      "id": "surfaces-colors",
+      "status": "in-progress",
+      "families": [
+        { "name": "text-color", "status": "in-progress" },
+        { "name": "background-color", "status": "in-progress" },
+        { "name": "border-color", "status": "in-progress" },
+        { "name": "background-image-position-repeat-size", "status": "planned" },
+        { "name": "border-radius-width-style-outline", "status": "in-progress" }
+      ]
+    },
+    {
+      "id": "effects-motion",
+      "status": "in-progress",
+      "families": [
+        { "name": "shadow-opacity-blend", "status": "in-progress" },
+        { "name": "filters", "status": "in-progress" },
+        { "name": "backdrop-filters", "status": "in-progress" },
+        { "name": "transitions-animation", "status": "in-progress" },
+        { "name": "transforms", "status": "in-progress" }
+      ]
+    },
+    {
+      "id": "interactivity",
+      "status": "in-progress",
+      "families": [
+        { "name": "cursor-pointer-events-user-select", "status": "in-progress" },
+        { "name": "scroll-behavior-and-snap", "status": "in-progress" },
+        { "name": "appearance-accent-caret", "status": "in-progress" },
+        { "name": "touch-and-will-change", "status": "in-progress" }
+      ]
+    },
+    {
+      "id": "svg-accessibility",
+      "status": "in-progress",
+      "families": [
+        { "name": "svg-fill-stroke", "status": "in-progress" },
+        { "name": "forced-color-adjust", "status": "in-progress" }
+      ]
+    },
+    {
+      "id": "tables-forms",
+      "status": "planned",
+      "families": [
+        { "name": "tables", "status": "planned" },
+        { "name": "forms-overview", "status": "planned" },
+        { "name": "form-control-select-checks-range-input-group-floating-labels-validation", "status": "planned" }
+      ]
+    },
+    {
+      "id": "components-static",
+      "status": "planned",
+      "families": [
+        { "name": "accordion", "status": "planned" },
+        { "name": "alerts", "status": "planned" },
+        { "name": "badge", "status": "planned" },
+        { "name": "breadcrumb", "status": "planned" },
+        { "name": "buttons-and-button-group", "status": "planned" },
+        { "name": "card", "status": "planned" },
+        { "name": "list-group", "status": "planned" },
+        { "name": "navbar-nav-tabs-pagination-progress-spinners-placeholders", "status": "in-progress" }
+      ]
+    },
+    {
+      "id": "components-interactive",
+      "status": "in-progress",
+      "families": [
+        { "name": "carousel", "status": "planned" },
+        { "name": "collapse", "status": "in-progress" },
+        { "name": "dropdowns", "status": "in-progress" },
+        { "name": "modal", "status": "in-progress" },
+        { "name": "offcanvas", "status": "in-progress" },
+        { "name": "popovers", "status": "planned" },
+        { "name": "scrollspy", "status": "planned" },
+        { "name": "toasts", "status": "in-progress" },
+        { "name": "tooltips", "status": "in-progress" },
+        { "name": "close-button", "status": "planned" }
+      ]
+    },
+    {
+      "id": "helpers-utilities-api",
+      "status": "in-progress",
+      "families": [
+        { "name": "helpers", "status": "in-progress" },
+        { "name": "bootstrap-utilities-api", "status": "in-progress" },
+        { "name": "responsive-variants", "status": "done" },
+        { "name": "state-variants", "status": "done" },
+        { "name": "dark-variants", "status": "in-progress" }
+      ]
+    },
+    {
+      "id": "tooling-guides",
+      "status": "planned",
+      "families": [
+        { "name": "getting-started", "status": "planned" },
+        { "name": "download-contents-browsers-javascript", "status": "planned" },
+        { "name": "webpack-parcel-vite", "status": "planned" },
+        { "name": "accessibility-rfs-rtl-contribute", "status": "planned" },
+        { "name": "customize-sass-options-color-color-modes-components-css-variables-optimize", "status": "planned" },
+        { "name": "layout-breakpoints-containers-grid-columns-gutters-css-grid", "status": "planned" },
+        { "name": "helpers-and-extend-icons-brand-migration", "status": "planned" }
+      ]
+    }
+  ]
+}

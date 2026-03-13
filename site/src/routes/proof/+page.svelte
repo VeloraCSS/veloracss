@@ -26,10 +26,10 @@
     <div slot="actions" class="vel-cluster">
       <button class="vel-button vel-button-primary" type="button">Primary action</button>
       <button class="vel-button vel-button-secondary" type="button">Secondary action</button>
-      <button class="vel-button vel-button-ghost" type="button" data-vel-toggle="proof-panel" aria-expanded="false">Toggle runtime panel</button>
+      <a class="vel-button vel-button-ghost" href="#flow">Jump to flow</a>
     </div>
 
-    <aside slot="aside" class="vel-card vel-stack-sm vel-shadow-2">
+    <aside slot="aside" class="vel-card vel-stack-sm">
       <p class="vel-card-eyebrow">Snapshot</p>
       <div class="vel-row-between vel-flex-wrap">
         {#each proofSnapshot as stat}
@@ -45,7 +45,7 @@
   <section class="site-section">
     <div class="vel-grid-three">
       {#each proofSurfaceCards as card}
-        <article class="vel-card vel-stack-sm vel-shadow-1">
+        <article class="vel-card vel-stack-sm">
           <p class="vel-card-eyebrow">{card.eyebrow}</p>
           <h2 class="vel-title">{card.title}</h2>
           {#if card.chips}
@@ -78,7 +78,7 @@
         <h2 class="vel-title">Utilities are ready to assemble components</h2>
         <div class="vel-grid-auto">
           {#each proofCompositionPanels as panel}
-            <div class="vel-panel vel-stack-xs vel-shadow-1">
+            <div class="vel-panel vel-stack-xs">
               <p class="vel-text-sm vel-text-primary vel-font-medium">{panel.title}</p>
               <p class="vel-body vel-text-muted">{panel.copy}</p>
             </div>
@@ -86,15 +86,27 @@
         </div>
       </article>
 
-      <article class="vel-card vel-stack-sm" id="proof-panel" hidden>
-        <p class="vel-card-eyebrow">Runtime</p>
-        <h2 class="vel-title">Optional helper layer stays narrow</h2>
-        <p class="vel-body vel-text-muted">The JS layer is still limited to progressive enhancement. This toggle proves the pattern without forcing runtime dependence into the CSS core.</p>
-        <div class="vel-panel vel-stack-xs vel-ring-primary">
-          <p class="vel-text-sm vel-font-medium">Current helper</p>
-          <p class="vel-body vel-text-muted">data-vel-toggle binds declarative panel toggles.</p>
-          <p class="vel-text-sm vel-font-mono vel-text-primary">initVelora()</p>
+      <article class="vel-card vel-stack-md site-proof-visual">
+        <div class="site-proof-visual-frame">
+          <img
+            class="site-proof-visual-image"
+            src="https://images.unsplash.com/photo-1500375592092-40eb2168fd21?auto=format&fit=crop&w=1200&q=80"
+            alt="Deep blue ocean swell moving across the water"
+          />
+          <div class="site-proof-visual-brand">
+            <img class="site-proof-visual-mark" src="/brand/velora-sm-logo.png" alt="Velora icon" />
+            <div class="vel-stack-xs">
+              <p class="site-proof-visual-kicker">VeloraCSS</p>
+              <p class="site-proof-visual-caption">Oceanic calm with product-grade control.</p>
+            </div>
+          </div>
         </div>
+        <div class="vel-stack-xs">
+          <p class="vel-card-eyebrow">Velora signal</p>
+          <h2 class="vel-title">A framework with an ocean-born mark and a sharper system feel</h2>
+          <p class="vel-body vel-text-muted">VeloraCSS should read as cool, deep, and intentional. The image carries the ocean energy behind the whale mark, while the copy stays anchored to the framework itself: token-led surfaces, disciplined spacing, and UI that feels calm instead of bloated.</p>
+        </div>
+        <p class="site-note">Photo via Unsplash, paired with the Velora mark so the panel reads as brand support rather than generic filler.</p>
       </article>
     </div>
   </section>
@@ -190,7 +202,7 @@
               <a class="vel-navbar-link" href="/docs">Docs</a>
               <a class="vel-navbar-link" href="/docs#families">Components</a>
               <a class="vel-navbar-link" href="/examples" aria-current="page">Examples</a>
-              <a class="vel-navbar-link" href="/docs#runtime">Themes</a>
+              <a class="vel-navbar-link" href="/docs#optional-runtime">Themes</a>
             </div>
 
             <div class="vel-navbar-actions">
@@ -202,7 +214,7 @@
           <div class="vel-breadcrumb" aria-label="Breadcrumb">
             <a class="vel-breadcrumb-link" href="/docs">Docs</a>
             <span class="vel-breadcrumb-separator">/</span>
-            <a class="vel-breadcrumb-link" href="/docs#navigation-patterns">Patterns</a>
+            <a class="vel-breadcrumb-link" href="/docs#families">Patterns</a>
             <span class="vel-breadcrumb-separator">/</span>
             <span class="vel-breadcrumb-current">Navigation</span>
           </div>
@@ -221,7 +233,7 @@
           </div>
 
           <div class="vel-pagination" aria-label="Pagination">
-            <a class="vel-page-link" href="/docs#navigation-patterns">Prev</a>
+            <a class="vel-page-link" href="/docs#families">Prev</a>
             <a class="vel-page-link" href="/proof">1</a>
             <a class="vel-page-link" href="/proof#flow" aria-current="page">2</a>
             <a class="vel-page-link" href="/proof#release-toast">3</a>
@@ -274,15 +286,24 @@
           </div>
 
           <div class="vel-toolbar">
-            <button class="vel-icon-button" type="button" aria-label="Filter">
+            <button class="vel-icon-button" type="button" aria-label="Filter" data-vel-tooltip="proof-tooltip-filter" data-vel-tooltip-placement="top">
               <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M7 12h10M10 17h4" /></svg>
             </button>
-            <button class="vel-icon-button" type="button" aria-label="Search">
+            <div class="vel-tooltip" id="proof-tooltip-filter" hidden>
+              <div class="vel-tooltip-content">Filter the migration queue without leaving the current slice.</div>
+            </div>
+            <button class="vel-icon-button" type="button" aria-label="Search" data-vel-tooltip="proof-tooltip-search" data-vel-tooltip-placement="bottom">
               <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="5.5" /><path d="m16 16 4 4" /></svg>
             </button>
-            <button class="vel-icon-button" type="button" aria-label="Share">
+            <div class="vel-tooltip" id="proof-tooltip-search" hidden>
+              <div class="vel-tooltip-content">Search shipped utilities and runtime hooks from the proof surface.</div>
+            </div>
+            <button class="vel-icon-button" type="button" aria-label="Share" data-vel-tooltip="proof-tooltip-share" data-vel-tooltip-placement="end">
               <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 12v6h10v-6" /><path d="m12 5 4 4" /><path d="m12 5-4 4" /><path d="M12 5v11" /></svg>
             </button>
+            <div class="vel-tooltip" id="proof-tooltip-share" hidden>
+              <div class="vel-tooltip-content">Share the current proof snapshot with the team review thread.</div>
+            </div>
           </div>
         </div>
 
@@ -301,6 +322,15 @@
         </div>
 
         <div class="vel-stack-md">
+          <div class="vel-toolbar">
+            <button class="vel-icon-button" type="button" aria-label="Overlay help" data-vel-tooltip="proof-tooltip-overlay" data-vel-tooltip-placement="start">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8" /><path d="M12 10v5" /><path d="M12 7h.01" /></svg>
+            </button>
+            <div class="vel-tooltip" id="proof-tooltip-overlay" hidden>
+              <div class="vel-tooltip-content">Tooltips now ship as part of the Velora runtime layer, alongside dropdowns, modals, and toasts.</div>
+            </div>
+          </div>
+
           <div class="vel-dropdown">
             <button class="vel-button vel-button-secondary" type="button" data-vel-toggle="proof-menu" aria-expanded="false">Open menu</button>
 
@@ -314,6 +344,7 @@
 
           <div class="vel-row vel-flex-wrap">
             <button class="vel-button vel-button-primary" type="button" data-vel-open="release-modal" aria-expanded="false">Launch modal</button>
+            <button class="vel-button vel-button-secondary" type="button" data-vel-offcanvas-open="release-offcanvas" data-vel-offcanvas-placement="end" aria-expanded="false">Open offcanvas</button>
             <button class="vel-button vel-button-ghost" type="button" data-vel-toggle="release-toast" aria-expanded="false">Toggle toast</button>
           </div>
         </div>
@@ -341,6 +372,43 @@
       <div class="vel-modal-actions">
         <button class="vel-button vel-button-ghost" type="button" data-vel-close="release-modal">Close</button>
         <button class="vel-button vel-button-primary" type="button" data-vel-close="release-modal">Continue</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="vel-offcanvas vel-offcanvas-end" id="release-offcanvas" hidden>
+    <button class="vel-offcanvas-backdrop" type="button" data-vel-offcanvas-close aria-label="Close side panel"></button>
+
+    <div class="vel-offcanvas-panel vel-stack-md" role="dialog" aria-modal="true" aria-labelledby="release-offcanvas-title">
+      <div class="vel-offcanvas-header">
+        <div class="vel-stack-xs">
+          <p class="vel-card-eyebrow">Offcanvas</p>
+          <h2 class="vel-title" id="release-offcanvas-title">Queue the next runtime slice</h2>
+        </div>
+
+        <button class="vel-icon-button" type="button" data-vel-offcanvas-close aria-label="Close side panel">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6 18 18" /><path d="M18 6 6 18" /></svg>
+        </button>
+      </div>
+
+      <div class="vel-offcanvas-body">
+        <p class="vel-body vel-text-muted">Use the offcanvas layer for compact secondary navigation, runtime work trays, or release-side context that should not interrupt the main surface like a modal.</p>
+
+        <div class="vel-stack-sm">
+          <div class="vel-panel vel-stack-xs">
+            <p class="vel-text-sm vel-text-primary vel-font-medium">Current proof</p>
+            <p class="vel-body vel-text-muted">Tooltip, dropdown, modal, toast, and now offcanvas all run through the same delegated Velora runtime.</p>
+          </div>
+          <div class="vel-panel vel-stack-xs">
+            <p class="vel-text-sm vel-text-primary vel-font-medium">Next targets</p>
+            <p class="vel-body vel-text-muted">Popover, carousel, and scrollspy remain in the next Bootstrap-style interaction queue.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="vel-offcanvas-actions">
+        <button class="vel-button vel-button-ghost" type="button" data-vel-offcanvas-close>Dismiss</button>
+        <button class="vel-button vel-button-primary" type="button" data-vel-offcanvas-close>Continue</button>
       </div>
     </div>
   </div>

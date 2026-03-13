@@ -8,7 +8,9 @@
 
 .vel-dropdown-menu[hidden],
 .vel-modal[hidden],
-.vel-toast-stack[hidden] {
+.vel-offcanvas[hidden],
+.vel-toast-stack[hidden],
+.vel-tooltip[hidden] {
   display: none !important;
 }
 
@@ -94,6 +96,109 @@
   gap: var(--vel-space-3);
 }
 
+.vel-offcanvas {
+  position: fixed;
+  inset: 0;
+  z-index: 40;
+  display: flex;
+}
+
+.vel-offcanvas-backdrop {
+  position: absolute;
+  inset: 0;
+  border: 0;
+  background: rgba(7, 17, 31, 0.76);
+  backdrop-filter: blur(4px);
+}
+
+.vel-offcanvas-panel {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  gap: var(--vel-space-4);
+  border: 1px solid var(--vel-color-border);
+  background: linear-gradient(180deg, rgba(99, 179, 255, 0.1), transparent 42%), var(--vel-color-surface-elevated);
+  box-shadow: var(--vel-shadow-2);
+  overflow-y: auto;
+}
+
+.vel-offcanvas-header {
+  display: flex;
+  align-items: start;
+  justify-content: space-between;
+  gap: var(--vel-space-4);
+}
+
+.vel-offcanvas-header > .vel-icon-button {
+  flex-shrink: 0;
+  margin-top: var(--vel-space-3);
+}
+
+.vel-offcanvas-body {
+  display: grid;
+  gap: var(--vel-space-4);
+}
+
+.vel-offcanvas-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: var(--vel-space-3);
+}
+
+.vel-offcanvas-start {
+  justify-content: flex-start;
+  align-items: stretch;
+}
+
+.vel-offcanvas-end {
+  justify-content: flex-end;
+  align-items: stretch;
+}
+
+.vel-offcanvas-start .vel-offcanvas-panel,
+.vel-offcanvas-end .vel-offcanvas-panel {
+  width: min(26rem, calc(100vw - 1.5rem));
+  height: 100%;
+  padding: var(--vel-space-10) var(--vel-space-5) var(--vel-space-5);
+}
+
+.vel-offcanvas-start .vel-offcanvas-panel {
+  border-radius: 0 var(--vel-radius-md) var(--vel-radius-md) 0;
+}
+
+.vel-offcanvas-end .vel-offcanvas-panel {
+  border-radius: var(--vel-radius-md) 0 0 var(--vel-radius-md);
+}
+
+.vel-offcanvas-top {
+  align-items: flex-start;
+  justify-content: center;
+  padding: var(--vel-space-3);
+}
+
+.vel-offcanvas-bottom {
+  align-items: flex-end;
+  justify-content: center;
+  padding: var(--vel-space-3);
+}
+
+.vel-offcanvas-top .vel-offcanvas-panel,
+.vel-offcanvas-bottom .vel-offcanvas-panel {
+  width: min(48rem, 100%);
+  max-height: min(24rem, calc(100vh - 1.5rem));
+  padding: var(--vel-space-5);
+}
+
+.vel-offcanvas-top .vel-offcanvas-panel {
+  border-radius: 0 0 var(--vel-radius-md) var(--vel-radius-md);
+}
+
+.vel-offcanvas-bottom .vel-offcanvas-panel {
+  border-radius: var(--vel-radius-md) var(--vel-radius-md) 0 0;
+}
+
 .vel-toast-stack {
   position: fixed;
   right: 1.25rem;
@@ -122,4 +227,58 @@
   font-size: 0.84rem;
   line-height: 1.55;
   color: var(--vel-color-text-muted);
+}
+
+.vel-tooltip {
+  position: fixed;
+  z-index: 32;
+  width: max-content;
+  max-width: min(18rem, calc(100vw - 1rem));
+  pointer-events: none;
+}
+
+.vel-tooltip-content {
+  position: relative;
+  padding: 0.55rem 0.75rem;
+  border: 1px solid rgba(134, 200, 255, 0.18);
+  border-radius: var(--vel-radius-sm);
+  background: linear-gradient(180deg, rgba(99, 179, 255, 0.12), transparent 48%), var(--vel-color-surface-elevated);
+  box-shadow: var(--vel-shadow-1);
+  color: var(--vel-color-text);
+  font-size: 0.78rem;
+  line-height: 1.45;
+}
+
+.vel-tooltip-content::after {
+  content: "";
+  position: absolute;
+  width: 0.72rem;
+  height: 0.72rem;
+  border-right: 1px solid rgba(134, 200, 255, 0.18);
+  border-bottom: 1px solid rgba(134, 200, 255, 0.18);
+  background: var(--vel-color-surface-elevated);
+  transform: rotate(45deg);
+}
+
+.vel-tooltip[data-vel-placement="top"] .vel-tooltip-content::after {
+  left: calc(50% - 0.36rem);
+  bottom: -0.4rem;
+}
+
+.vel-tooltip[data-vel-placement="bottom"] .vel-tooltip-content::after {
+  left: calc(50% - 0.36rem);
+  top: -0.4rem;
+  transform: rotate(225deg);
+}
+
+.vel-tooltip[data-vel-placement="start"] .vel-tooltip-content::after {
+  top: calc(50% - 0.36rem);
+  right: -0.4rem;
+  transform: rotate(-45deg);
+}
+
+.vel-tooltip[data-vel-placement="end"] .vel-tooltip-content::after {
+  top: calc(50% - 0.36rem);
+  left: -0.4rem;
+  transform: rotate(135deg);
 }
