@@ -1,31 +1,50 @@
-const DEFAULT_LIMIT = 250;
+import { createInMemoryJsonPersistence } from './persistence.js';
 
-export function createAuditLog(limit = DEFAULT_LIMIT) {
-  const entries = [];
-  let nextId = 1;
+const DEFAULT_LIMIT = 250;
+const AUDIT_PERSISTENCE_KEY = 'audit-log';
+const DEFAULT_AUDIT_STATE = {
+  entries: [],
+  nextId: 1
+};
+
+export function createAuditLog(options = {}) {
+  const normalizedOptions = typeof options === 'number' ? { limit: options } : options;
+  const {
+    limit = DEFAULT_LIMIT,
+    persistence = createInMemoryJsonPersistence()
+  } = normalizedOptions;
 
   return {
-    record(entry) {
-      const storedEntry = {
-        id: nextId++,
-        ...entry
-      };
+    async record(entry) {
+      let storedEntry = null;
 
-      entries.push(storedEntry);
+      await persistence.update(AUDIT_PERSISTENCE_KEY, DEFAULT_AUDIT_STATE, (state) => {
+        storedEntry = {
+          id: state.nextId,
+          ...entry
+        };
 
-      if (entries.length > limit) {
-        entries.splice(0, entries.length - limit);
-      }
+        state.nextId += 1;
+        state.entries.push(storedEntry);
+
+        if (state.entries.length > limit) {
+          state.entries.splice(0, state.entries.length - limit);
+        }
+
+        return state;
+      });
 
       return storedEntry;
     },
 
-    list(maxEntries = 50) {
-      return entries.slice(-maxEntries).reverse();
+    async list(maxEntries = 50) {
+      const state = await persistence.read(AUDIT_PERSISTENCE_KEY, DEFAULT_AUDIT_STATE);
+      return state.entries.slice(-maxEntries).reverse();
     },
 
-    size() {
-      return entries.length;
+    async size() {
+      const state = await persistence.read(AUDIT_PERSISTENCE_KEY, DEFAULT_AUDIT_STATE);
+      return state.entries.length;
     }
   };
 }

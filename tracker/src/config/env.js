@@ -3,6 +3,10 @@ const DEFAULT_PORT = 8787;
 export function readEnvironment(source = process.env) {
   return {
     port: readPort(source.PORT),
+    storage: {
+      mode: readStorageMode(source.TRACKER_STORAGE_MODE),
+      path: readOptionalString(source.TRACKER_STORAGE_PATH)
+    },
     github: {
       webhookSecret: readOptionalString(source.GITHUB_WEBHOOK_SECRET),
       token: readOptionalString(source.GITHUB_TOKEN),
@@ -41,12 +45,26 @@ function readOptionalInteger(value) {
 }
 
 function readOptionalString(value) {
-  if (typeof value !== 'string') {
+  if (typeof value !== 'string' && typeof value !== 'number' && typeof value !== 'boolean') {
     return null;
   }
 
-  const normalized = value.trim();
+  const normalized = String(value).trim();
   return normalized.length > 0 ? normalized : null;
+}
+
+function readStorageMode(value) {
+  const normalized = readOptionalString(value)?.toLowerCase();
+
+  switch (normalized) {
+    case 'auto':
+    case 'memory':
+    case 'file':
+    case 'kv':
+      return normalized;
+    default:
+      return 'auto';
+  }
 }
 
 function readOptionalList(value) {

@@ -1,4 +1,9 @@
-import { TRACKED_PROJECT_VIEW_COMMAND, trackerCommandRegistry } from './discord/commandRegistry.js';
+import {
+  LEGACY_TRACKED_PROJECT_VIEW_COMMAND,
+  PROJECTS_COMMAND,
+  TRACKER_COMMAND,
+  trackerCommandRegistry
+} from './discord/commandRegistry.js';
 import { verifyDiscordSignature } from './discord/verifySignature.js';
 import { normalizeGitHubWebhook } from './github/normalizeWebhook.js';
 import {
@@ -12,6 +17,7 @@ import { fetchGitHubProjectView } from './github/projectView.js';
 import { verifyGitHubSignature } from './github/verifySignature.js';
 import { createAuditLog } from './sync/auditLog.js';
 import { createMappingStore } from './sync/mappingStore.js';
+import { createSettingsStore } from './sync/settingsStore.js';
 
 const textDecoder = new TextDecoder();
 
@@ -50,11 +56,13 @@ const LANE_EMBED_COLORS = Object.freeze({
   in_progress: 0xea580c,
   done: 0x16a34a
 });
+const SETTINGS_EMBED_COLOR = 0x0f766e;
 
 export function createTrackerHandler({
   environment,
   mappingStore = createMappingStore(),
   auditLog = createAuditLog(),
+  settingsStore = createSettingsStore(),
   clock = () => new Date().toISOString()
 }) {
   return async function handleTrackerRequest({ method = 'GET', url = 'http://localhost/', headers = {}, bodyBuffer = new Uint8Array() }) {
@@ -62,6 +70,11 @@ export function createTrackerHandler({
       const requestUrl = new URL(url, 'http://localhost');
 
       if (method === 'GET' && requestUrl.pathname === '/health') {
+        const [mappingCount, auditEntryCount] = await Promise.all([
+          mappingStore.size(),
+          auditLog.size()
+        ]);
+
         return createJsonResult(200, {
           status: 'ok',
           service: 'veloracss-tracker',
@@ -77,11 +90,13 @@ export function createTrackerHandler({
             discordApplicationId: Boolean(environment.discord.applicationId),
             discordBotToken: Boolean(environment.discord.botToken),
             discordGuildId: Boolean(environment.discord.guildId),
-            discordOperatorRoleIds: environment.discord.operatorRoleIds.length
+            discordOperatorRoleIds: environment.discord.operatorRoleIds.length,
+            storageMode: environment.storage.mode,
+            storagePath: environment.storage.path
           },
           state: {
-            mappingCount: mappingStore.size(),
-            auditEntryCount: auditLog.size()
+            mappingCount,
+            auditEntryCount
           }
         });
       }
@@ -118,7 +133,7 @@ export function createTrackerHandler({
           publicKey: environment.discord.publicKey,
           signatureHeader: getHeaderValue(headers, 'x-signature-ed25519'),
           timestampHeader: getHeaderValue(headers, 'x-signature-timestamp'),
-          payloadBuffer
+          payloadBuffer: bodyBuffer
         });
 
         if (!signatureCheck.ok) {
@@ -128,10 +143,11 @@ export function createTrackerHandler({
           });
         }
 
-        const payload = parseJson(payloadBuffer);
+        const payload = parseJson(bodyBuffer);
         const interactionResponse = await buildDiscordInteractionResponse({
           payload,
           environment,
+          settingsStore,
           auditLog,
           clock
         });
@@ -141,20 +157,20 @@ export function createTrackerHandler({
 
       if (method === 'GET' && requestUrl.pathname === '/mappings') {
         return createJsonResult(200, {
-          items: mappingStore.list()
+          items: await mappingStore.list()
         });
       }
 
       if (method === 'GET' && requestUrl.pathname === '/audit') {
         return createJsonResult(200, {
-          entries: auditLog.list(50)
+          entries: await auditLog.list(50)
         });
       }
 
       if (method === 'POST' && requestUrl.pathname === '/github/webhook') {
         const signatureCheck = await verifyGitHubSignature({
           secret: environment.github.webhookSecret,
-          payloadBuffer,
+          payloadBuffer: bodyBuffer,
           signatureHeader: getHeaderValue(headers, 'x-hub-signature-256')
         });
 
@@ -165,7 +181,7 @@ export function createTrackerHandler({
           });
         }
 
-        const payload = parseJson(payloadBuffer);
+        const payload = parseJson(bodyBuffer);
         const eventName = getHeaderValue(headers, 'x-github-event') ?? 'unknown';
         const deliveryId = getHeaderValue(headers, 'x-github-delivery') ?? 'missing-delivery-id';
         const normalizedEvent = normalizeGitHubWebhook({
@@ -175,9 +191,9 @@ export function createTrackerHandler({
           receivedAt: clock()
         });
 
-        const mappingRecord = mappingStore.upsertFromGitHub(normalizedEvent);
+        const mappingRecord = await mappingStore.upsertFromGitHub(normalizedEvent);
 
-        auditLog.record({
+        await auditLog.record({
           kind: 'github_webhook',
           deliveryId,
           eventName,
@@ -217,8 +233,8 @@ function createJsonResult(statusCode, payload) {
   };
 }
 
-async function buildDiscordInteractionResponse({ payload, environment, auditLog, clock }) {
-  auditLog.record({
+async function buildDiscordInteractionResponse({ payload, environment, settingsStore, auditLog, clock }) {
+  await auditLog.record({
     kind: 'discord_interaction',
     interactionId: payload.id ?? null,
     interactionType: payload.type ?? null,
@@ -235,15 +251,15 @@ async function buildDiscordInteractionResponse({ payload, environment, auditLog,
   }
 
   if (payload.type === 2) {
-    return buildDiscordCommandInteractionResponse(payload, environment);
+    return buildDiscordCommandInteractionResponse(payload, environment, settingsStore);
   }
 
   if (payload.type === 3) {
-    return buildDiscordComponentInteractionResponse(payload, environment);
+    return buildDiscordComponentInteractionResponse(payload, environment, settingsStore);
   }
 
   if (payload.type === 5) {
-    return buildDiscordModalInteractionResponse(payload, environment);
+    return buildDiscordModalInteractionResponse(payload, environment, settingsStore);
   }
 
   return {
@@ -255,34 +271,104 @@ async function buildDiscordInteractionResponse({ payload, environment, auditLog,
   };
 }
 
-async function buildDiscordCommandInteractionResponse(payload, environment) {
+async function buildDiscordCommandInteractionResponse(payload, environment, settingsStore) {
   if (environment.discord.guildId && payload.guild_id !== environment.discord.guildId) {
     return createEphemeralDiscordResponse('This tracker is restricted to the configured Discord guild.');
   }
 
-  if (payload.data?.name !== TRACKED_PROJECT_VIEW_COMMAND) {
+  if (![TRACKER_COMMAND, PROJECTS_COMMAND, LEGACY_TRACKED_PROJECT_VIEW_COMMAND].includes(payload.data?.name)) {
     return createEphemeralDiscordResponse(`Tracker command not implemented: ${payload.data?.name ?? 'unknown'}.`);
   }
 
   try {
-    const status = readInteractionOptionValue(payload.data?.options, 'status') ?? 'all';
-    const projectView = await fetchGitHubProjectView({
-      token: environment.github.token,
-      org: environment.github.org,
-      projectNumber: environment.github.projectNumber,
-      status
-    });
+    const route = readTrackerCommandRoute(payload.data);
 
-    return {
-      type: 4,
-      data: buildProjectDashboardMessage(projectView, status)
-    };
+    if (route.kind === 'legacy-board' || route.subcommandName === 'board') {
+      const status = readInteractionOptionValue(route.options, 'status') ?? 'all';
+      const projectKey = readInteractionOptionValue(route.options, 'project') ?? null;
+      const projectContext = await resolveTrackerProjectContext({ payload, environment, settingsStore, projectKey });
+      const projectView = await fetchGitHubProjectView({
+        token: environment.github.token,
+        org: projectContext.org,
+        projectNumber: projectContext.projectNumber,
+        status
+      });
+
+      return {
+        type: 4,
+        data: buildProjectDashboardMessage(projectView, status, projectContext)
+      };
+    }
+
+    if (route.groupName === 'settings' && (route.subcommandName === 'show' || route.subcommandName === 'list')) {
+      const settingsView = await settingsStore.getGuildSettings({
+        guildId: payload.guild_id ?? null,
+        fallbackProject: createDefaultTrackerProject(environment)
+      });
+
+      return {
+        type: 4,
+        data: {
+          flags: DISCORD_EPHEMERAL_FLAG,
+          embeds: [buildProjectSettingsEmbed(settingsView)]
+        }
+      };
+    }
+
+    if (route.groupName === 'settings' && route.subcommandName === 'set') {
+      ensureWriterAccess(payload, environment);
+
+      const savedProject = await settingsStore.saveGuildProject({
+        guildId: payload.guild_id ?? null,
+        projectKey: readInteractionOptionValue(route.options, 'key'),
+        org: readInteractionOptionValue(route.options, 'org'),
+        projectNumber: readInteractionOptionValue(route.options, 'project_number'),
+        label: readInteractionOptionValue(route.options, 'label'),
+        makeActive: Boolean(readInteractionOptionValue(route.options, 'make_active'))
+      });
+      const settingsView = await settingsStore.getGuildSettings({
+        guildId: payload.guild_id ?? null,
+        fallbackProject: createDefaultTrackerProject(environment)
+      });
+
+      return {
+        type: 4,
+        data: {
+          flags: DISCORD_EPHEMERAL_FLAG,
+          embeds: [buildProjectSettingsEmbed(settingsView, `Saved ${savedProject.label}.`)]
+        }
+      };
+    }
+
+    if (route.groupName === 'settings' && route.subcommandName === 'use') {
+      ensureWriterAccess(payload, environment);
+
+      const activeProject = await settingsStore.setActiveGuildProject({
+        guildId: payload.guild_id ?? null,
+        projectKey: readInteractionOptionValue(route.options, 'key'),
+        fallbackProject: createDefaultTrackerProject(environment)
+      });
+      const settingsView = await settingsStore.getGuildSettings({
+        guildId: payload.guild_id ?? null,
+        fallbackProject: createDefaultTrackerProject(environment)
+      });
+
+      return {
+        type: 4,
+        data: {
+          flags: DISCORD_EPHEMERAL_FLAG,
+          embeds: [buildProjectSettingsEmbed(settingsView, `Active project switched to ${activeProject.label}.`)]
+        }
+      };
+    }
+
+    return createEphemeralDiscordResponse(`Tracker command not implemented: ${payload.data?.name ?? 'unknown'}.`);
   } catch (error) {
-    return createEphemeralDiscordResponse(`Tracker could not load GitHub Project ${environment.github.projectNumber ?? 'unknown'}: ${error.message}`);
+    return createEphemeralDiscordResponse(`Tracker command failed: ${error.message}`);
   }
 }
 
-async function buildDiscordComponentInteractionResponse(payload, environment) {
+async function buildDiscordComponentInteractionResponse(payload, environment, settingsStore) {
   if (environment.discord.guildId && payload.guild_id !== environment.discord.guildId) {
     return createEphemeralDiscordResponse('This tracker is restricted to the configured Discord guild.');
   }
@@ -292,32 +378,45 @@ async function buildDiscordComponentInteractionResponse(payload, environment) {
 
   try {
     if (componentType === DISCORD_COMPONENT_TYPE_BUTTON && customId.startsWith(TRACKER_REFRESH_COMPONENT_ID)) {
-      const status = readComponentStatus(customId, TRACKER_REFRESH_COMPONENT_ID) ?? 'all';
+      const dashboardState = readDashboardStateFromCustomId(customId, TRACKER_REFRESH_COMPONENT_ID);
+      const projectContext = await resolveTrackerProjectContext({
+        payload,
+        environment,
+        settingsStore,
+        projectKey: dashboardState.projectKey
+      });
       const projectView = await fetchGitHubProjectView({
         token: environment.github.token,
-        org: environment.github.org,
-        projectNumber: environment.github.projectNumber,
-        status
+        org: projectContext.org,
+        projectNumber: projectContext.projectNumber,
+        status: dashboardState.status
       });
 
       return {
         type: DISCORD_MESSAGE_UPDATE_TYPE,
-        data: buildProjectDashboardMessage(projectView, status)
+        data: buildProjectDashboardMessage(projectView, dashboardState.status, projectContext)
       };
     }
 
-    if (componentType === DISCORD_COMPONENT_TYPE_STRING_SELECT && customId === TRACKER_STATUS_COMPONENT_ID) {
+    if (componentType === DISCORD_COMPONENT_TYPE_STRING_SELECT && customId.startsWith(TRACKER_STATUS_COMPONENT_ID)) {
+      const dashboardState = readDashboardStateFromCustomId(customId, TRACKER_STATUS_COMPONENT_ID);
       const status = normalizeDashboardStatusKey(payload.data?.values?.[0] ?? 'all');
+      const projectContext = await resolveTrackerProjectContext({
+        payload,
+        environment,
+        settingsStore,
+        projectKey: dashboardState.projectKey
+      });
       const projectView = await fetchGitHubProjectView({
         token: environment.github.token,
-        org: environment.github.org,
-        projectNumber: environment.github.projectNumber,
+        org: projectContext.org,
+        projectNumber: projectContext.projectNumber,
         status
       });
 
       return {
         type: DISCORD_MESSAGE_UPDATE_TYPE,
-        data: buildProjectDashboardMessage(projectView, status)
+        data: buildProjectDashboardMessage(projectView, status, projectContext)
       };
     }
 
@@ -326,24 +425,24 @@ async function buildDiscordComponentInteractionResponse(payload, environment) {
         return createEphemeralDiscordResponse('Everyone can view the dashboard, but only admins or configured operator roles can change GitHub from Discord.');
       }
 
-      const status = readComponentStatus(customId, TRACKER_MANAGE_COMPONENT_ID) ?? 'all';
-      return openManagerPanel({ payload, environment, status });
+      const dashboardState = readDashboardStateFromCustomId(customId, TRACKER_MANAGE_COMPONENT_ID);
+      return await openManagerPanel({ payload, environment, settingsStore, status: dashboardState.status, projectKey: dashboardState.projectKey });
     }
 
     if (componentType === DISCORD_COMPONENT_TYPE_BUTTON && customId.startsWith(TRACKER_MANAGER_REFRESH_COMPONENT_ID)) {
-      return refreshManagerPanel({ payload, environment });
+      return await refreshManagerPanel({ payload, environment, settingsStore });
     }
 
     if (componentType === DISCORD_COMPONENT_TYPE_STRING_SELECT && customId.startsWith(TRACKER_MANAGER_ITEM_COMPONENT_ID)) {
-      return selectManagerItem({ payload, environment });
+      return await selectManagerItem({ payload, environment, settingsStore });
     }
 
     if (componentType === DISCORD_COMPONENT_TYPE_STRING_SELECT && customId.startsWith(TRACKER_MANAGER_STATUS_COMPONENT_ID)) {
-      return updateManagerStatus({ payload, environment });
+      return await updateManagerStatus({ payload, environment, settingsStore });
     }
 
     if (componentType === DISCORD_COMPONENT_TYPE_STRING_SELECT && customId.startsWith(TRACKER_MANAGER_PRIORITY_COMPONENT_ID)) {
-      return updateManagerPriority({ payload, environment });
+      return await updateManagerPriority({ payload, environment, settingsStore });
     }
 
     if (componentType === DISCORD_COMPONENT_TYPE_BUTTON && customId.startsWith(TRACKER_MANAGER_CREATE_COMPONENT_ID)) {
@@ -351,19 +450,19 @@ async function buildDiscordComponentInteractionResponse(payload, environment) {
     }
 
     if (componentType === DISCORD_COMPONENT_TYPE_BUTTON && customId.startsWith(TRACKER_MANAGER_EDIT_COMPONENT_ID)) {
-      return openEditManagerModal({ payload, environment });
+      return await openEditManagerModal({ payload, environment, settingsStore });
     }
 
     if (componentType === DISCORD_COMPONENT_TYPE_BUTTON && customId.startsWith(TRACKER_MANAGER_DELETE_COMPONENT_ID)) {
-      return askManagerDelete({ payload, environment });
+      return await askManagerDelete({ payload, environment, settingsStore });
     }
 
     if (componentType === DISCORD_COMPONENT_TYPE_BUTTON && customId.startsWith(TRACKER_MANAGER_DELETE_CONFIRM_COMPONENT_ID)) {
-      return confirmManagerDelete({ payload, environment });
+      return await confirmManagerDelete({ payload, environment, settingsStore });
     }
 
     if (componentType === DISCORD_COMPONENT_TYPE_BUTTON && customId.startsWith(TRACKER_MANAGER_DELETE_CANCEL_COMPONENT_ID)) {
-      return cancelManagerDelete({ payload, environment });
+      return await cancelManagerDelete({ payload, environment, settingsStore });
     }
 
     return createEphemeralDiscordResponse(`Tracker dashboard control not implemented: ${customId || 'unknown'}.`);
@@ -372,7 +471,7 @@ async function buildDiscordComponentInteractionResponse(payload, environment) {
   }
 }
 
-async function buildDiscordModalInteractionResponse(payload, environment) {
+async function buildDiscordModalInteractionResponse(payload, environment, settingsStore) {
   if (environment.discord.guildId && payload.guild_id !== environment.discord.guildId) {
     return createEphemeralDiscordResponse('This tracker is restricted to the configured Discord guild.');
   }
@@ -385,11 +484,11 @@ async function buildDiscordModalInteractionResponse(payload, environment) {
 
   try {
     if (customId.startsWith(TRACKER_MANAGER_CREATE_MODAL_ID)) {
-      return submitCreateManagerModal({ payload, environment });
+      return await submitCreateManagerModal({ payload, environment, settingsStore });
     }
 
     if (customId.startsWith(TRACKER_MANAGER_EDIT_MODAL_ID)) {
-      return submitEditManagerModal({ payload, environment });
+      return await submitEditManagerModal({ payload, environment, settingsStore });
     }
 
     return createEphemeralDiscordResponse(`Tracker modal not implemented: ${customId || 'unknown'}.`);
@@ -398,25 +497,23 @@ async function buildDiscordModalInteractionResponse(payload, environment) {
   }
 }
 
-function buildProjectDashboardMessage(projectView, selectedStatus) {
+function buildProjectDashboardMessage(projectView, selectedStatus, projectContext) {
   const normalizedStatus = normalizeDashboardStatusKey(selectedStatus);
 
   return {
     allowed_mentions: {
       parse: []
     },
-    embeds: buildDashboardEmbeds(projectView, normalizedStatus),
-    components: buildDashboardComponents(projectView, normalizedStatus)
+    embeds: buildDashboardEmbeds(projectView, normalizedStatus, projectContext),
+    components: buildDashboardComponents(projectView, normalizedStatus, projectContext)
   };
 }
 
-function buildDashboardEmbeds(projectView, selectedStatus) {
-  const embeds = [buildDashboardOverviewEmbed(projectView, selectedStatus)];
+function buildDashboardEmbeds(projectView, selectedStatus, projectContext) {
+  const embeds = [buildDashboardOverviewEmbed(projectView, selectedStatus, projectContext)];
 
   if (selectedStatus === 'all') {
-    for (const lane of projectView.lanes) {
-      embeds.push(buildLaneEmbed(lane));
-    }
+    embeds.push(buildDashboardBoardEmbed(projectView));
   } else {
     embeds.push(buildFilteredResultsEmbed(projectView, selectedStatus));
   }
@@ -424,14 +521,19 @@ function buildDashboardEmbeds(projectView, selectedStatus) {
   return embeds;
 }
 
-function buildDashboardOverviewEmbed(projectView, selectedStatus) {
+function buildDashboardOverviewEmbed(projectView, selectedStatus, projectContext) {
   return {
     type: 'rich',
     title: projectView.title,
     url: projectView.url,
-    description: 'Live planning dashboard for the Velora team board.',
+    description: `Live planning dashboard for ${escapeMarkdown(projectContext.label)}.`,
     color: STATUS_EMBED_COLORS[selectedStatus] ?? STATUS_EMBED_COLORS.all,
     fields: [
+      {
+        name: 'Project',
+        value: `\`${projectContext.key}\` · ${escapeMarkdown(projectContext.org)} #${projectContext.projectNumber}`,
+        inline: false
+      },
       {
         name: 'View',
         value: formatStatusFilterLabel(selectedStatus),
@@ -459,13 +561,24 @@ function buildDashboardOverviewEmbed(projectView, selectedStatus) {
   };
 }
 
-function buildLaneEmbed(lane) {
+function buildDashboardBoardEmbed(projectView) {
   return {
     type: 'rich',
-    title: `${lane.label} · ${lane.count}`,
-    color: LANE_EMBED_COLORS[lane.key] ?? STATUS_EMBED_COLORS.all,
-    description: buildLaneDescription(lane)
+    title: 'Board snapshot',
+    color: STATUS_EMBED_COLORS.all,
+    fields: buildDashboardBoardFields(projectView.lanes),
+    footer: {
+      text: 'Board view · top cards per lane'
+    }
   };
+}
+
+function buildDashboardBoardFields(lanes) {
+  return lanes.map((lane) => ({
+    name: `${formatLaneGlyph(lane.key)} ${lane.label} · ${lane.count}`,
+    value: buildLaneColumnValue(lane),
+    inline: true
+  }));
 }
 
 function buildFilteredResultsEmbed(projectView, selectedStatus) {
@@ -491,6 +604,20 @@ function buildLaneDescription(lane) {
   return lines.join('\n').slice(0, 4000);
 }
 
+function buildLaneColumnValue(lane) {
+  if (lane.items.length === 0) {
+    return '*No items in this lane.*';
+  }
+
+  const blocks = lane.items.map((item, index) => formatBoardCard(item, index + 1));
+
+  if (lane.count > lane.items.length) {
+    blocks.push(`*+${lane.count - lane.items.length} more*`);
+  }
+
+  return truncateText(blocks.join('\n\n'), 1024);
+}
+
 function buildFilteredDescription(projectView, selectedStatus) {
   if (projectView.items.length === 0) {
     return `No ${formatStatusFilterLabel(selectedStatus).toLowerCase()} items matched that filter.`;
@@ -505,7 +632,7 @@ function buildFilteredDescription(projectView, selectedStatus) {
   return lines.join('\n').slice(0, 4000);
 }
 
-function buildDashboardComponents(projectView, selectedStatus) {
+function buildDashboardComponents(projectView, selectedStatus, projectContext) {
   return [
     {
       type: 1,
@@ -514,7 +641,7 @@ function buildDashboardComponents(projectView, selectedStatus) {
           type: 2,
           style: 1,
           label: 'Refresh',
-          custom_id: `${TRACKER_REFRESH_COMPONENT_ID}|s=${selectedStatus}`
+          custom_id: buildDashboardCustomId(TRACKER_REFRESH_COMPONENT_ID, selectedStatus, projectContext.key)
         },
         {
           type: 2,
@@ -526,7 +653,7 @@ function buildDashboardComponents(projectView, selectedStatus) {
           type: 2,
           style: 2,
           label: 'Manage',
-          custom_id: `${TRACKER_MANAGE_COMPONENT_ID}|s=${selectedStatus}`
+          custom_id: buildDashboardCustomId(TRACKER_MANAGE_COMPONENT_ID, selectedStatus, projectContext.key)
         }
       ]
     },
@@ -535,7 +662,7 @@ function buildDashboardComponents(projectView, selectedStatus) {
       components: [
         {
           type: 3,
-          custom_id: TRACKER_STATUS_COMPONENT_ID,
+          custom_id: buildDashboardCustomId(TRACKER_STATUS_COMPONENT_ID, selectedStatus, projectContext.key),
           placeholder: 'Switch dashboard view',
           min_values: 1,
           max_values: 1,
@@ -585,6 +712,41 @@ function formatProjectItemLine(item) {
   return `• ${prefix}${truncateText(title, 180)}`;
 }
 
+function formatBoardCard(item, index) {
+  const title = item.url ? `[${escapeMarkdown(item.title)}](${item.url})` : escapeMarkdown(item.title);
+  const metadata = [];
+
+  if (item.priority) {
+    metadata.push(item.priority);
+  }
+
+  if (item.driver) {
+    metadata.push(item.driver);
+  }
+
+  if (item.targetDate) {
+    metadata.push(item.targetDate);
+  } else if (item.iteration) {
+    metadata.push(item.iteration);
+  }
+
+  const metadataLine = metadata.length > 0 ? `\`${truncateText(metadata.join(' · '), 90)}\`` : '`No metadata`';
+  return `**${index}. ${truncateText(title, 110)}**\n${metadataLine}`;
+}
+
+function formatLaneGlyph(laneKey) {
+  switch (laneKey) {
+    case 'todo':
+      return '○';
+    case 'in_progress':
+      return '◐';
+    case 'done':
+      return '●';
+    default:
+      return '•';
+  }
+}
+
 function formatStatusFilterLabel(status) {
   switch (normalizeDashboardStatusKey(status)) {
     case 'todo':
@@ -615,13 +777,23 @@ function normalizeDashboardStatusKey(value) {
   }
 }
 
-function readComponentStatus(customId, prefix) {
-  if (!customId.startsWith(`${prefix}|s=`)) {
-    return 'all';
+function buildDashboardCustomId(prefix, status, projectKey = null) {
+  const parts = [prefix, `s=${encodeURIComponent(normalizeDashboardStatusKey(status))}`];
+
+  if (projectKey) {
+    parts.push(`p=${encodeURIComponent(projectKey)}`);
   }
 
-  const encodedStatus = customId.slice(`${prefix}|s=`.length);
-  return normalizeDashboardStatusKey(encodedStatus ?? 'all');
+  return parts.join('|');
+}
+
+function readDashboardStateFromCustomId(customId, prefix) {
+  const params = readStateParamsFromCustomId(customId, prefix);
+
+  return {
+    status: normalizeDashboardStatusKey(params.s ?? 'all'),
+    projectKey: params.p ?? null
+  };
 }
 
 function hasTrackerOperatorAccess(payload, environment) {
@@ -664,17 +836,19 @@ function createEphemeralDiscordResponse(content) {
   };
 }
 
-async function openManagerPanel({ payload, environment, status }) {
+async function openManagerPanel({ payload, environment, settingsStore, status, projectKey = null }) {
+  const projectContext = await resolveTrackerProjectContext({ payload, environment, settingsStore, projectKey });
   const editorData = await fetchGitHubProjectEditorData({
     token: environment.github.token,
-    org: environment.github.org,
-    projectNumber: environment.github.projectNumber,
+    org: projectContext.org,
+    projectNumber: projectContext.projectNumber,
     status
   });
   const selectedItem = resolveSelectedItem(editorData.items, null);
   const managerState = {
     userId: readInteractionUserId(payload),
     status: normalizeDashboardStatusKey(status),
+    projectKey: projectContext.key,
     selectedItemId: selectedItem?.id ?? null
   };
 
@@ -689,16 +863,17 @@ async function openManagerPanel({ payload, environment, status }) {
   };
 }
 
-async function refreshManagerPanel({ payload, environment, notice = null }) {
+async function refreshManagerPanel({ payload, environment, settingsStore, notice = null }) {
   const managerState = readRequiredManagerState({
     payload,
     customId: payload.data?.custom_id ?? '',
     prefix: TRACKER_MANAGER_REFRESH_COMPONENT_ID
   });
+  const projectContext = await resolveTrackerProjectContext({ payload, environment, settingsStore, projectKey: managerState.projectKey });
   const editorData = await fetchGitHubProjectEditorData({
     token: environment.github.token,
-    org: environment.github.org,
-    projectNumber: environment.github.projectNumber,
+    org: projectContext.org,
+    projectNumber: projectContext.projectNumber,
     status: managerState.status
   });
   const selectedItem = resolveSelectedItem(editorData.items, managerState.selectedItemId);
@@ -717,17 +892,18 @@ async function refreshManagerPanel({ payload, environment, notice = null }) {
   };
 }
 
-async function selectManagerItem({ payload, environment }) {
+async function selectManagerItem({ payload, environment, settingsStore }) {
   const managerState = readRequiredManagerState({
     payload,
     customId: payload.data?.custom_id ?? '',
     prefix: TRACKER_MANAGER_ITEM_COMPONENT_ID
   });
   const nextSelectedItemId = payload.data?.values?.[0] ?? null;
+  const projectContext = await resolveTrackerProjectContext({ payload, environment, settingsStore, projectKey: managerState.projectKey });
   const editorData = await fetchGitHubProjectEditorData({
     token: environment.github.token,
-    org: environment.github.org,
-    projectNumber: environment.github.projectNumber,
+    org: projectContext.org,
+    projectNumber: projectContext.projectNumber,
     status: managerState.status
   });
   const selectedItem = resolveSelectedItem(editorData.items, nextSelectedItemId);
@@ -746,17 +922,18 @@ async function selectManagerItem({ payload, environment }) {
   };
 }
 
-async function updateManagerStatus({ payload, environment }) {
+async function updateManagerStatus({ payload, environment, settingsStore }) {
   ensureWriterAccess(payload, environment);
   const managerState = readRequiredManagerState({
     payload,
     customId: payload.data?.custom_id ?? '',
     prefix: TRACKER_MANAGER_STATUS_COMPONENT_ID
   });
+  const projectContext = await resolveTrackerProjectContext({ payload, environment, settingsStore, projectKey: managerState.projectKey });
   const editorData = await fetchGitHubProjectEditorData({
     token: environment.github.token,
-    org: environment.github.org,
-    projectNumber: environment.github.projectNumber,
+    org: projectContext.org,
+    projectNumber: projectContext.projectNumber,
     status: managerState.status
   });
   const selectedItem = requireSelectedItem(editorData.items, managerState.selectedItemId);
@@ -781,21 +958,23 @@ async function updateManagerStatus({ payload, environment }) {
       }
     },
     environment,
+    settingsStore,
     notice: `Updated ${selectedItem.title} to ${nextStatus}.`
   });
 }
 
-async function updateManagerPriority({ payload, environment }) {
+async function updateManagerPriority({ payload, environment, settingsStore }) {
   ensureWriterAccess(payload, environment);
   const managerState = readRequiredManagerState({
     payload,
     customId: payload.data?.custom_id ?? '',
     prefix: TRACKER_MANAGER_PRIORITY_COMPONENT_ID
   });
+  const projectContext = await resolveTrackerProjectContext({ payload, environment, settingsStore, projectKey: managerState.projectKey });
   const editorData = await fetchGitHubProjectEditorData({
     token: environment.github.token,
-    org: environment.github.org,
-    projectNumber: environment.github.projectNumber,
+    org: projectContext.org,
+    projectNumber: projectContext.projectNumber,
     status: managerState.status
   });
   const selectedItem = requireSelectedItem(editorData.items, managerState.selectedItemId);
@@ -821,6 +1000,7 @@ async function updateManagerPriority({ payload, environment }) {
       }
     },
     environment,
+    settingsStore,
     notice: nextPriority ? `Updated ${selectedItem.title} to priority ${nextPriority}.` : `Cleared priority for ${selectedItem.title}.`
   });
 }
@@ -842,17 +1022,18 @@ function openCreateManagerModal({ payload }) {
   };
 }
 
-async function openEditManagerModal({ payload, environment }) {
+async function openEditManagerModal({ payload, environment, settingsStore }) {
   ensureWriterAccess(payload, environment);
   const managerState = readRequiredManagerState({
     payload,
     customId: payload.data?.custom_id ?? '',
     prefix: TRACKER_MANAGER_EDIT_COMPONENT_ID
   });
+  const projectContext = await resolveTrackerProjectContext({ payload, environment, settingsStore, projectKey: managerState.projectKey });
   const editorData = await fetchGitHubProjectEditorData({
     token: environment.github.token,
-    org: environment.github.org,
-    projectNumber: environment.github.projectNumber,
+    org: projectContext.org,
+    projectNumber: projectContext.projectNumber,
     status: managerState.status
   });
   const selectedItem = requireSelectedItem(editorData.items, managerState.selectedItemId);
@@ -871,17 +1052,18 @@ async function openEditManagerModal({ payload, environment }) {
   };
 }
 
-async function askManagerDelete({ payload, environment }) {
+async function askManagerDelete({ payload, environment, settingsStore }) {
   ensureWriterAccess(payload, environment);
   const managerState = readRequiredManagerState({
     payload,
     customId: payload.data?.custom_id ?? '',
     prefix: TRACKER_MANAGER_DELETE_COMPONENT_ID
   });
+  const projectContext = await resolveTrackerProjectContext({ payload, environment, settingsStore, projectKey: managerState.projectKey });
   const editorData = await fetchGitHubProjectEditorData({
     token: environment.github.token,
-    org: environment.github.org,
-    projectNumber: environment.github.projectNumber,
+    org: projectContext.org,
+    projectNumber: projectContext.projectNumber,
     status: managerState.status
   });
   const selectedItem = requireSelectedItem(editorData.items, managerState.selectedItemId);
@@ -904,17 +1086,18 @@ async function askManagerDelete({ payload, environment }) {
   };
 }
 
-async function confirmManagerDelete({ payload, environment }) {
+async function confirmManagerDelete({ payload, environment, settingsStore }) {
   ensureWriterAccess(payload, environment);
   const managerState = readRequiredManagerState({
     payload,
     customId: payload.data?.custom_id ?? '',
     prefix: TRACKER_MANAGER_DELETE_CONFIRM_COMPONENT_ID
   });
+  const projectContext = await resolveTrackerProjectContext({ payload, environment, settingsStore, projectKey: managerState.projectKey });
   const editorData = await fetchGitHubProjectEditorData({
     token: environment.github.token,
-    org: environment.github.org,
-    projectNumber: environment.github.projectNumber,
+    org: projectContext.org,
+    projectNumber: projectContext.projectNumber,
     status: managerState.status
   });
   const selectedItem = requireSelectedItem(editorData.items, managerState.selectedItemId);
@@ -931,8 +1114,8 @@ async function confirmManagerDelete({ payload, environment }) {
 
   const refreshedEditorData = await fetchGitHubProjectEditorData({
     token: environment.github.token,
-    org: environment.github.org,
-    projectNumber: environment.github.projectNumber,
+    org: projectContext.org,
+    projectNumber: projectContext.projectNumber,
     status: managerState.status
   });
   const nextSelectedItem = resolveSelectedItem(refreshedEditorData.items, null);
@@ -951,7 +1134,7 @@ async function confirmManagerDelete({ payload, environment }) {
   };
 }
 
-async function cancelManagerDelete({ payload, environment }) {
+async function cancelManagerDelete({ payload, environment, settingsStore }) {
   const managerState = readRequiredManagerState({
     payload,
     customId: payload.data?.custom_id ?? '',
@@ -967,26 +1150,28 @@ async function cancelManagerDelete({ payload, environment }) {
       }
     },
     environment,
+    settingsStore,
     notice: 'Delete cancelled.'
   });
 }
 
-async function submitCreateManagerModal({ payload, environment }) {
+async function submitCreateManagerModal({ payload, environment, settingsStore }) {
   ensureWriterAccess(payload, environment);
   const managerState = readRequiredManagerState({
     payload,
     customId: payload.data?.custom_id ?? '',
     prefix: TRACKER_MANAGER_CREATE_MODAL_ID
   });
+  const projectContext = await resolveTrackerProjectContext({ payload, environment, settingsStore, projectKey: managerState.projectKey });
   const editorData = await fetchGitHubProjectEditorData({
     token: environment.github.token,
-    org: environment.github.org,
-    projectNumber: environment.github.projectNumber,
+    org: projectContext.org,
+    projectNumber: projectContext.projectNumber,
     status: managerState.status
   });
   const formValues = readManagerModalValues(payload.data?.components ?? []);
-  const createdStatus = managerState.status === 'all' ? 'Todo' : formatStatusFilterLabel(managerState.status);
-  const created = await createProjectDraftItem({
+  const createdStatus = managerState.status === 'all' ? undefined : formatStatusFilterLabel(managerState.status);
+  await createProjectDraftItem({
     token: environment.github.token,
     projectId: editorData.projectId,
     fields: editorData.fields,
@@ -999,39 +1184,21 @@ async function submitCreateManagerModal({ payload, environment }) {
     }
   });
 
-  const refreshedEditorData = await fetchGitHubProjectEditorData({
-    token: environment.github.token,
-    org: environment.github.org,
-    projectNumber: environment.github.projectNumber,
-    status: managerState.status
-  });
-  const nextSelectedItem = resolveSelectedItem(refreshedEditorData.items, created.itemId);
-
-  return {
-    type: 4,
-    data: createEphemeralDiscordData(buildManagerMessage({
-      editorData: refreshedEditorData,
-      managerState: {
-        ...managerState,
-        selectedItemId: nextSelectedItem?.id ?? null
-      },
-      confirmDelete: false,
-      notice: `Created ${formValues.title} in GitHub Projects.`
-    }))
-  };
+  return createEphemeralDiscordResponse(`Created ${formValues.title} in GitHub Projects. Refresh the manager panel to load the new card.`);
 }
 
-async function submitEditManagerModal({ payload, environment }) {
+async function submitEditManagerModal({ payload, environment, settingsStore }) {
   ensureWriterAccess(payload, environment);
   const managerState = readRequiredManagerState({
     payload,
     customId: payload.data?.custom_id ?? '',
     prefix: TRACKER_MANAGER_EDIT_MODAL_ID
   });
+  const projectContext = await resolveTrackerProjectContext({ payload, environment, settingsStore, projectKey: managerState.projectKey });
   const editorData = await fetchGitHubProjectEditorData({
     token: environment.github.token,
-    org: environment.github.org,
-    projectNumber: environment.github.projectNumber,
+    org: projectContext.org,
+    projectNumber: projectContext.projectNumber,
     status: managerState.status
   });
   const selectedItem = requireSelectedItem(editorData.items, managerState.selectedItemId);
@@ -1059,26 +1226,7 @@ async function submitEditManagerModal({ payload, environment }) {
     }
   });
 
-  const refreshedEditorData = await fetchGitHubProjectEditorData({
-    token: environment.github.token,
-    org: environment.github.org,
-    projectNumber: environment.github.projectNumber,
-    status: managerState.status
-  });
-  const nextSelectedItem = resolveSelectedItem(refreshedEditorData.items, selectedItem.id);
-
-  return {
-    type: 4,
-    data: createEphemeralDiscordData(buildManagerMessage({
-      editorData: refreshedEditorData,
-      managerState: {
-        ...managerState,
-        selectedItemId: nextSelectedItem?.id ?? null
-      },
-      confirmDelete: false,
-      notice: `Updated ${formValues.title || selectedItem.title}.`
-    }))
-  };
+  return createEphemeralDiscordResponse(`Updated ${formValues.title || selectedItem.title}. Refresh the manager panel to load the latest GitHub state.`);
 }
 
 function buildManagerMessage({ editorData, managerState, confirmDelete, notice }) {
@@ -1389,26 +1537,12 @@ function readRequiredManagerState({ payload, customId, prefix }) {
 }
 
 function readManagerStateFromCustomId(customId, prefix) {
-  if (!customId.startsWith(prefix)) {
-    const error = new Error('Tracker manager state was missing from the Discord interaction.');
-    error.statusCode = 400;
-    throw error;
-  }
-
-  const parts = customId.slice(prefix.length).split('|').filter(Boolean);
-  const params = {};
-
-  for (const part of parts) {
-    const [key, value] = part.split('=');
-
-    if (key && value) {
-      params[key] = decodeURIComponent(value);
-    }
-  }
+  const params = readStateParamsFromCustomId(customId, prefix);
 
   return {
     userId: params.u ?? null,
     status: normalizeDashboardStatusKey(params.s ?? 'all'),
+    projectKey: params.p ?? null,
     selectedItemId: params.i ?? null
   };
 }
@@ -1419,6 +1553,10 @@ function buildManagerCustomId(prefix, managerState) {
     `u=${encodeURIComponent(managerState.userId ?? '')}`,
     `s=${encodeURIComponent(managerState.status ?? 'all')}`
   ];
+
+  if (managerState.projectKey) {
+    parts.push(`p=${encodeURIComponent(managerState.projectKey)}`);
+  }
 
   if (managerState.selectedItemId) {
     parts.push(`i=${encodeURIComponent(managerState.selectedItemId)}`);
@@ -1437,6 +1575,119 @@ function ensureWriterAccess(payload, environment) {
 
 function readInteractionUserId(payload) {
   return payload.member?.user?.id ?? payload.user?.id ?? null;
+}
+
+function readStateParamsFromCustomId(customId, prefix) {
+  if (!customId.startsWith(prefix)) {
+    const error = new Error('Tracker state was missing from the Discord interaction.');
+    error.statusCode = 400;
+    throw error;
+  }
+
+  const parts = customId.slice(prefix.length).split('|').filter(Boolean);
+  const params = {};
+
+  for (const part of parts) {
+    const [key, value] = part.split('=');
+
+    if (key && value) {
+      params[key] = decodeURIComponent(value);
+    }
+  }
+
+  return params;
+}
+
+function readTrackerCommandRoute(data) {
+  if (data?.name === LEGACY_TRACKED_PROJECT_VIEW_COMMAND) {
+    return {
+      kind: 'legacy-board',
+      commandName: data.name,
+      groupName: null,
+      subcommandName: 'board',
+      options: data.options ?? []
+    };
+  }
+
+  const firstOption = Array.isArray(data?.options) ? data.options[0] ?? null : null;
+
+  if (!firstOption) {
+    return {
+      kind: 'command',
+      commandName: data?.name ?? null,
+      groupName: null,
+      subcommandName: null,
+      options: []
+    };
+  }
+
+  if (firstOption.type === 2) {
+    const nestedOption = firstOption.options?.[0] ?? null;
+
+    return {
+      kind: 'command',
+      commandName: data?.name ?? null,
+      groupName: firstOption.name,
+      subcommandName: nestedOption?.name ?? null,
+      options: nestedOption?.options ?? []
+    };
+  }
+
+  return {
+    kind: 'command',
+    commandName: data?.name ?? null,
+    groupName: null,
+    subcommandName: firstOption.name,
+    options: firstOption.options ?? []
+  };
+}
+
+function createDefaultTrackerProject(environment) {
+  return {
+    key: 'default',
+    label: `${environment.github.org ?? 'GitHub'} #${environment.github.projectNumber ?? 'unset'}`,
+    org: environment.github.org,
+    projectNumber: environment.github.projectNumber
+  };
+}
+
+async function resolveTrackerProjectContext({ payload, environment, settingsStore, projectKey = null }) {
+  return settingsStore.resolveProject({
+    guildId: payload.guild_id ?? null,
+    projectKey,
+    fallbackProject: createDefaultTrackerProject(environment)
+  });
+}
+
+function buildProjectSettingsEmbed(settingsView, notice = null) {
+  return {
+    type: 'rich',
+    title: 'Tracker project settings',
+    color: SETTINGS_EMBED_COLOR,
+    description: notice ?? 'Manage saved GitHub Projects for this Discord guild and switch the active board without redeploying the tracker.',
+    fields: [
+      {
+        name: 'Active project',
+        value: formatProjectSettingsLine(settingsView.activeProject, true),
+        inline: false
+      },
+      {
+        name: 'Saved projects',
+        value: settingsView.projects.map((project) => formatProjectSettingsLine(project, project.key === settingsView.activeProjectKey)).join('\n'),
+        inline: false
+      },
+      {
+        name: 'How to change it',
+        value: '`/tracker settings set key:<name> org:<org> project_number:<number> [label] [make_active:true]`\n`/tracker settings use key:<name>`',
+        inline: false
+      }
+    ]
+  };
+}
+
+function formatProjectSettingsLine(project, isActive) {
+  const marker = isActive ? '• active' : '• saved';
+  return `\`${project.key}\` ${escapeMarkdown(project.label)}\n${marker} · ${escapeMarkdown(project.org)} #${project.projectNumber}`;
 }
 
 function resolveSelectedItem(items, selectedItemId) {

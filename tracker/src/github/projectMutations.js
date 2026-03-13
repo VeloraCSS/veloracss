@@ -327,25 +327,26 @@ async function clearProjectFieldValue({ token, projectId, itemId, fieldId, fetch
 }
 
 function buildFieldValue(field, value) {
-  switch (field.key) {
-    case 'status':
-    case 'priority': {
-      const optionId = field.optionsByName.get(value.toLowerCase()) ?? null;
+  switch (field.dataType) {
+    case 'SINGLE_SELECT': {
+      const normalizedValue = resolveSingleSelectFieldValue(field, value);
+      const optionId = field.optionsByName.get(normalizedValue) ?? null;
 
       if (!optionId) {
-        throw createConfigurationError(`The ${field.name} option "${value}" does not exist on this GitHub Project.`);
+        const availableOptions = field.options.map((option) => option.name).join(', ');
+        const availableOptionsSuffix = availableOptions.length > 0 ? ` Available options: ${availableOptions}.` : '';
+        throw createConfigurationError(`The ${field.name} option "${value}" does not exist on this GitHub Project.${availableOptionsSuffix}`);
       }
 
       return {
         singleSelectOptionId: optionId
       };
     }
-    case 'driver':
-    case 'notes':
+    case 'TEXT':
       return {
         text: value
       };
-    case 'targetDate':
+    case 'DATE':
       return {
         date: value
       };
@@ -366,13 +367,13 @@ function normalizeProjectFields(nodes) {
         fields.priority = createSingleSelectField('priority', node);
         break;
       case FIELD_NAMES.driver:
-        fields.driver = createCommonField('driver', node);
+        fields.driver = createWritableField('driver', node);
         break;
       case FIELD_NAMES.notes:
-        fields.notes = createCommonField('notes', node);
+        fields.notes = createWritableField('notes', node);
         break;
       case FIELD_NAMES.targetDate:
-        fields.targetDate = createCommonField('targetDate', node);
+        fields.targetDate = createWritableField('targetDate', node);
         break;
       case FIELD_NAMES.iteration:
         fields.iteration = createIterationField('iteration', node);
@@ -395,6 +396,28 @@ function createCommonField(key, node) {
     name: node.name,
     dataType: node.dataType
   };
+}
+
+function createWritableField(key, node) {
+  if (node.dataType === 'SINGLE_SELECT') {
+    return createSingleSelectField(key, node);
+  }
+
+  return createCommonField(key, node);
+}
+
+function resolveSingleSelectFieldValue(field, value) {
+  const normalizedValue = value.toLowerCase();
+
+  if (field.optionsByName.has(normalizedValue)) {
+    return normalizedValue;
+  }
+
+  if (field.key === 'driver' && field.optionsByName.has('user')) {
+    return 'user';
+  }
+
+  return normalizedValue;
 }
 
 function createSingleSelectField(key, node, optional = false) {

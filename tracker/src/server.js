@@ -1,21 +1,28 @@
 import http from 'node:http';
+import { fileURLToPath } from 'node:url';
 
 import { createTrackerHandler } from './app.js';
 import { createAuditLog } from './sync/auditLog.js';
+import { createJsonFilePersistence } from './sync/filePersistence.js';
 import { createMappingStore } from './sync/mappingStore.js';
+import { createSettingsStore } from './sync/settingsStore.js';
 
 const MAX_BODY_SIZE_BYTES = 1024 * 1024;
+const DEFAULT_STORAGE_PATH = fileURLToPath(new URL('../.data/tracker-state.json', import.meta.url));
 
 export function createTrackerServer({
   environment,
-  mappingStore = createMappingStore(),
-  auditLog = createAuditLog(),
+  mappingStore,
+  auditLog,
+  settingsStore,
   clock = () => new Date().toISOString()
 }) {
+  const trackerStores = createServerTrackerStores({ environment, mappingStore, auditLog, settingsStore });
   const handler = createTrackerHandler({
     environment,
-    mappingStore,
-    auditLog,
+    mappingStore: trackerStores.mappingStore,
+    auditLog: trackerStores.auditLog,
+    settingsStore: trackerStores.settingsStore,
     clock
   });
 
@@ -38,6 +45,38 @@ export function createTrackerServer({
       });
     }
   });
+}
+
+function createServerTrackerStores({ environment, mappingStore, auditLog, settingsStore }) {
+  if (mappingStore && auditLog && settingsStore) {
+    return {
+      mappingStore,
+      auditLog,
+      settingsStore
+    };
+  }
+
+  if (environment.storage.mode === 'memory') {
+    return {
+      mappingStore: mappingStore ?? createMappingStore(),
+      auditLog: auditLog ?? createAuditLog(),
+      settingsStore: settingsStore ?? createSettingsStore()
+    };
+  }
+
+  if (environment.storage.mode === 'kv') {
+    throw new Error('TRACKER_STORAGE_MODE=kv is only supported by the Cloudflare Worker runtime.');
+  }
+
+  const persistence = createJsonFilePersistence({
+    filePath: environment.storage.path ?? DEFAULT_STORAGE_PATH
+  });
+
+  return {
+    mappingStore: mappingStore ?? createMappingStore({ persistence }),
+    auditLog: auditLog ?? createAuditLog({ persistence }),
+    settingsStore: settingsStore ?? createSettingsStore({ persistence })
+  };
 }
 
 function readNodeHeaderValue(value) {

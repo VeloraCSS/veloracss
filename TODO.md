@@ -29,6 +29,8 @@
 - [ ] Rebuild component coverage toward the full Bootstrap component catalog on top of the 1.0 utility and runtime layers
 - [ ] Publish a 1.0 migration guide from Velora 0.1 to the replatformed surface
 - [ ] Build the first Discord <-> GitHub Projects sync broker slice
+- [x] Create the VeloraX org webhook for the live tracker Worker
+- [x] Point the Discord application Interactions URL at the live tracker Worker
 - [x] Add Discord interaction verification to the tracker scaffold
 - [x] Add a read-only Discord project view command for the VeloraCSS Team Planning board
 - [x] Register the Discord command set against the Discord API
@@ -36,6 +38,7 @@
 - [x] Add a Discord writer panel with modal-based create/edit/delete flows for GitHub Project items
 - [x] Add a repo-owned always-on hosting blueprint for the tracker service
 - [x] Make the tracker runtime Cloudflare Worker-ready without relying on in-memory Discord sessions
-- [ ] Persist tracker mappings and audit logs beyond memory
+- [x] Persist tracker mappings and audit logs beyond memory
+- [ ] Re-register the renamed Discord tracker commands so `tracker` and `projects` appear live in the guild
 
 
