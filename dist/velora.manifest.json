@@ -1,0 +1,7 @@
+{
+  "version": "0.1.1",
+  "files": {
+    "css": "dist/velora.css",
+    "css_min": "dist/velora.min.css"
+  }
+}

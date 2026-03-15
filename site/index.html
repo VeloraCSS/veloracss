@@ -1,0 +1,55 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>VeloraCSS — Utility-first CSS</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link rel="stylesheet" href="../dist/velora.css">
+  <style>
+    /* Page layout helpers for demo */
+    .site { font-family: Inter, system-ui, Arial, sans-serif; color: var(--vel-neutral-900); }
+    .hero .buttons { display:flex; justify-content:center; gap:1rem; margin-top:1rem; }
+    .features { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:1rem; padding:2rem; max-width:1200px; margin:0 auto; }
+    .card { padding:1rem; border:1px solid rgba(15,23,42,0.04); border-radius:8px; background:#fff; }
+    header { background: #fff; position: sticky; top:0; z-index:50; }
+  </style>
+</head>
+<body class="site">
+  <header class="nav">
+    <div class="brand">VeloraCSS</div>
+    <nav style="margin-left:auto">
+      <a href="index.html">Home</a> ·
+      <a href="docs/quick-start.html">Docs</a> ·
+      <a href="#">GitHub</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <h1>VeloraCSS — Utility-first CSS for fast UI</h1>
+      <p class="text-lg">A small, token-driven utility framework with polished starter components. This demo front page is a starter site that mirrors the structure of well-known docs sites so we can iterate quickly.</p>
+      <div class="buttons">
+        <button class="button">Get started</button>
+        <button class="button button-outline">Documentation</button>
+      </div>
+    </section>
+
+    <section class="features">
+      <div class="card">
+        <h3>Utilities</h3>
+        <p>Small atomic utilities for spacing, alignment, typography and color.</p>
+      </div>
+      <div class="card">
+        <h3>Components</h3>
+        <p>Starter components built from utilities: Button, Card, Nav, Hero.</p>
+      </div>
+      <div class="card">
+        <h3>Themes</h3>
+        <p>Token-driven theming and a manifest for generated surfaces.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer style="padding:2rem; text-align:center; color:var(--vel-neutral-700)">© VeloraCSS</footer>
+</body>
+</html>

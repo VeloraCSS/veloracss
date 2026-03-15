@@ -1,0 +1,22 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Install deps (if any)
+        run: echo "No install step in scaffold; add build steps as needed"
+      - name: Lint placeholder
+        run: echo "Add stylelint/eslint run commands here"
+      - name: Build placeholder
+        run: echo "Add build steps (npm run build) if package.json has them"

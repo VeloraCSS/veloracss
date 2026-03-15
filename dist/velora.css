@@ -1,0 +1,23 @@
+:root {
+  --vel-primary: #0ea5a4;
+  --vel-primary-600: #089e9b;
+  --vel-secondary: #7c3aed;
+  --vel-neutral-900: #0f172a;
+  --vel-neutral-700: #334155;
+  --vel-white: #ffffff;
+  --vel-space-1: 4px;
+  --vel-space-2: 8px;
+  --vel-space-4: 16px;
+}
+
+/* Utility shorthand examples (starter only) */
+.px-4 { padding-left: 1rem; padding-right: 1rem; }
+.py-8 { padding-top: 2rem; padding-bottom: 2rem; }
+.text-center { text-align: center; }
+.text-lg { font-size: 1.125rem; }
+.container { max-width: 1200px; margin-left: auto; margin-right: auto; padding-left: 1rem; padding-right: 1rem; }
+
+/* Import components */
+@import "../src/components/button.css";
+@import "../src/components/nav.css";
+@import "../src/components/hero.css";

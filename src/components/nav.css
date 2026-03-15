@@ -1,0 +1,9 @@
+/* Basic nav layout */
+.nav {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  padding: 1rem 2rem;
+  border-bottom: 1px solid rgba(15,23,42,0.04);
+}
+.nav .brand { font-weight: 700; font-size: 1.125rem; }
