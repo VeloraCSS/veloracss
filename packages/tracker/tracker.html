@@ -1,0 +1,191 @@
+<!doctype html>
+<html lang="en" data-vel-theme="light">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>VeloraCSS Tracker</title>
+		<meta
+			name="description"
+			content="Public Velora tracker board with live GitHub Project lanes, runtime health, and current planning slices."
+		/>
+		<link rel="icon" type="image/png" href="./brand/velora-sm-logo.png" />
+		<link rel="apple-touch-icon" href="./brand/velora-sm-logo.png" />
+		<link rel="stylesheet" href="./dist/velora.css" />
+		<link rel="stylesheet" href="./site.css" />
+	</head>
+	<body class="site-body site-body-app">
+			<div class="site-shell site-shell-app">
+				<div class="site-frame site-frame-app vel-shell vel-stack-lg">
+					<header class="site-nav">
+						<nav class="vel-navbar" aria-label="Primary">
+							<a class="vel-navbar-brand" href="./index.html">
+								<span class="vel-navbar-mark">V</span>
+								<span>VeloraCSS</span>
+							</a>
+
+							<div class="vel-navbar-nav">
+								<a class="vel-navbar-link" href="./index.html">Home</a>
+								<a class="vel-navbar-link" href="./docs/index.html">Docs</a>
+								<a class="vel-navbar-link" href="./tracker.html" aria-current="page">Tracker</a>
+								<a class="vel-navbar-link" href="./examples/index.html">Examples</a>
+								<a class="vel-navbar-link" href="./proof.html">Proof</a>
+							</div>
+
+							<div class="vel-navbar-actions">
+								<a class="vel-button vel-button-ghost" href="https://github.com/orgs/VeloraX/projects/10">GitHub board</a>
+								<a class="vel-button vel-button-primary" href="#tracker-board">Board snapshot</a>
+							</div>
+						</nav>
+					</header>
+
+					<main class="site-main vel-stack-lg">
+						<section class="tracker-page">
+							<section class="tracker-hero">
+								<article class="tracker-hero-panel">
+									<span class="tracker-kicker">Live planning surface</span>
+									<div class="vel-stack-sm">
+										<h1 class="tracker-title">A full-width view of the board, not a cramped chat embed.</h1>
+										<p class="tracker-lead">This HTML page reads the live tracker Worker directly, keeps the repo Pages surface lightweight, and mirrors the same GitHub Project board that drives the Discord tracker runtime.</p>
+									</div>
+
+									<div class="tracker-hero-meta">
+										<span class="tracker-meta-chip">GitHub Pages HTML surface</span>
+										<span class="tracker-meta-chip">Live Worker-backed board</span>
+										<span class="tracker-meta-chip">Full-width responsive layout</span>
+									</div>
+
+									<div class="tracker-hero-actions">
+										<a class="tracker-link-button tracker-link-button-primary" id="tracker-github-link" href="https://github.com/orgs/VeloraX/projects/10" target="_blank" rel="noreferrer">Open GitHub board</a>
+										<a class="tracker-link-button" href="https://veloracss.spiritbocs.workers.dev/health" target="_blank" rel="noreferrer">Open live health endpoint</a>
+										<button class="tracker-refresh-button" id="tracker-refresh" type="button">Refresh data</button>
+									</div>
+								</article>
+
+								<aside class="tracker-hero-aside">
+									<article class="tracker-status-rail">
+										<h2 class="tracker-status-rail-title">Board pulse</h2>
+
+										<div class="tracker-status-rail-list">
+											<div class="tracker-status-row">
+												<span class="tracker-status-dot" data-status="Todo"></span>
+												<span>Todo</span>
+												<span class="tracker-status-value" data-count="todo">0</span>
+											</div>
+											<div class="tracker-status-row">
+												<span class="tracker-status-dot" data-status="In progress"></span>
+												<span>In progress</span>
+												<span class="tracker-status-value" data-count="in-progress">0</span>
+											</div>
+											<div class="tracker-status-row">
+												<span class="tracker-status-dot" data-status="Done"></span>
+												<span>Done</span>
+												<span class="tracker-status-value" data-count="done">0</span>
+											</div>
+										</div>
+									</article>
+
+									<article class="tracker-health-panel" id="tracker-health-panel">
+										<div>
+											<h2 class="tracker-panel-title">Runtime status</h2>
+											<p class="tracker-health-copy">The public page and Discord board are both reading from the same Worker runtime and persisted tracker state.</p>
+										</div>
+
+										<div class="tracker-health-grid" id="tracker-health-grid">
+											<div class="tracker-health-row">
+												<span class="tracker-health-label">Service</span>
+												<span class="tracker-health-value">Loading...</span>
+											</div>
+										</div>
+									</article>
+								</aside>
+							</section>
+
+							<article class="tracker-alert" id="tracker-project-alert" hidden>
+								<h2 class="tracker-panel-title">Live project feed unavailable</h2>
+								<p class="tracker-alert-copy" id="tracker-project-alert-copy"></p>
+							</article>
+
+							<section class="tracker-summary-grid" aria-label="Tracker summary cards">
+								<article class="tracker-summary-card">
+									<span class="tracker-summary-label">Project</span>
+									<span class="tracker-summary-value" id="tracker-project-title">VeloraCSS Team Planning</span>
+									<p class="tracker-summary-copy">The public view is sourced from the live GitHub Project read endpoint, not a static snapshot.</p>
+								</article>
+
+								<article class="tracker-summary-card">
+									<span class="tracker-summary-label">Visible list</span>
+									<span class="tracker-summary-value" id="tracker-visible-count">0</span>
+									<p class="tracker-summary-copy" id="tracker-filter-summary">Current filter: All items.</p>
+								</article>
+
+								<article class="tracker-summary-card">
+									<span class="tracker-summary-label">Total tracked cards</span>
+									<span class="tracker-summary-value" id="tracker-total-count">0</span>
+									<p class="tracker-summary-copy">Board totals stay visible even when the detail list is filtered down.</p>
+								</article>
+
+								<article class="tracker-summary-card">
+									<span class="tracker-summary-label">Discord surface</span>
+									<span class="tracker-summary-value" id="tracker-runtime-link">Loading...</span>
+									<p class="tracker-summary-copy">The same tracker Worker powers both the web page and the Discord control plane.</p>
+								</article>
+							</section>
+
+							<section class="tracker-board-panel" id="tracker-board">
+								<div class="tracker-panel-head">
+									<div>
+										<h2 class="tracker-panel-title">Board snapshot</h2>
+										<p class="tracker-panel-copy">The lane board stays visible at full width and reflows naturally with the browser instead of compressing into a chat column.</p>
+									</div>
+
+									<div class="tracker-filter-row" aria-label="Status filters" id="tracker-filter-row">
+										<button class="tracker-filter-button tracker-filter-button-active" type="button" data-status-filter="all">All items</button>
+										<button class="tracker-filter-button" type="button" data-status-filter="todo">Todo</button>
+										<button class="tracker-filter-button" type="button" data-status-filter="in_progress">In progress</button>
+										<button class="tracker-filter-button" type="button" data-status-filter="done">Done</button>
+									</div>
+								</div>
+
+								<div class="tracker-board-grid" id="tracker-board-grid"></div>
+							</section>
+
+							<section class="tracker-main-grid">
+								<article class="tracker-list-panel">
+									<div class="tracker-panel-head">
+										<div>
+											<h2 class="tracker-panel-title">Current slice</h2>
+											<p class="tracker-panel-copy">Choose a card to inspect its notes, driver, and timing details without leaving the page.</p>
+										</div>
+									</div>
+
+									<div class="tracker-items-grid" id="tracker-items-grid"></div>
+								</article>
+
+								<aside class="tracker-detail-panel" id="tracker-detail-panel">
+									<div class="tracker-empty">
+										<p class="tracker-empty-copy">Select a card from the current slice to inspect its details here.</p>
+									</div>
+								</aside>
+							</section>
+						</section>
+					</main>
+
+					<footer class="site-footer">
+						<div class="site-footer-panel">
+							<div class="vel-stack-xs">
+								<p class="vel-text-sm vel-text-primary vel-font-medium">VeloraCSS Tracker</p>
+								<p class="vel-body vel-text-muted">Repo Pages stays HTML-first. The Svelte app remains the main site surface, while this page stays lean and reads the same live planning data.</p>
+							</div>
+							<div class="site-link-row">
+								<a class="vel-button vel-button-ghost" href="./docs/index.html">Docs</a>
+								<a class="vel-button vel-button-ghost" href="./examples/index.html">Examples</a>
+								<a class="vel-button vel-button-ghost" href="./proof.html">Proof</a>
+							</div>
+						</div>
+					</footer>
+				</div>
+			</div>
+
+			<script type="module" src="./tracker.js"></script>
+		</body>
+	</html>

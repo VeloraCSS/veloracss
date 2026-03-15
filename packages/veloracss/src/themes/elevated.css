@@ -1,0 +1,94 @@
+/**
+ * vel-elevated.css — opt-in elevated visual preset
+ *
+ * Applies heavier shadows and richer motion when explicitly requested.
+ * Velora's default design language stays sharp and restrained.
+ * Import this file (after velora.css) only when a project needs
+ * a more expressive, elevated aesthetic.
+ *
+ * Usage:
+ *   import "veloracss/themes/elevated";
+ *   <link rel="stylesheet" href="dist/vel-elevated.css" />
+ *
+ * Or scope to a subtree:
+ *   <div data-vel-theme="elevated"> ... </div>
+ */
+
+/* ── Global elevated mode ─────────────────────────────────── */
+[data-vel-theme="elevated"],
+.vel-theme-elevated {
+  /* Shadows — deeper z-layering */
+  --vel-shadow-sm: 0 2px 6px rgba(0, 0, 0, 0.35), 0 1px 2px rgba(0, 0, 0, 0.25);
+  --vel-shadow-md: 0 4px 16px rgba(0, 0, 0, 0.32), 0 2px 6px rgba(0, 0, 0, 0.22);
+  --vel-shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.30), 0 4px 12px rgba(0, 0, 0, 0.20);
+  --vel-shadow-xl: 0 16px 56px rgba(0, 0, 0, 0.28), 0 8px 20px rgba(0, 0, 0, 0.18);
+  --vel-shadow-2xl: 0 24px 80px rgba(0, 0, 0, 0.26), 0 12px 28px rgba(0, 0, 0, 0.16);
+
+  /* Motion — more expressive transitions */
+  --vel-duration-150: 150ms;
+  --vel-duration-200: 200ms;
+  --vel-duration-300: 300ms;
+  --vel-easing-default: cubic-bezier(0.22, 1, 0.36, 1);
+  --vel-easing-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+
+  /* Border radius — softer geometry */
+  --vel-radius-sm: 0.375rem;
+  --vel-radius-md: 0.625rem;
+  --vel-radius-lg: 1rem;
+  --vel-radius-xl: 1.5rem;
+  --vel-radius-full: 9999px;
+}
+
+/* ── Component overrides in elevated mode ─────────────────── */
+[data-vel-theme="elevated"] .vel-card,
+.vel-theme-elevated .vel-card {
+  box-shadow: var(--vel-shadow-md);
+  transition: box-shadow var(--vel-duration-200) var(--vel-easing-default),
+              transform var(--vel-duration-200) var(--vel-easing-default);
+}
+
+[data-vel-theme="elevated"] .vel-card:hover,
+.vel-theme-elevated .vel-card:hover {
+  box-shadow: var(--vel-shadow-xl);
+  transform: translateY(-2px);
+}
+
+[data-vel-theme="elevated"] .vel-btn,
+.vel-theme-elevated .vel-btn {
+  box-shadow: var(--vel-shadow-sm);
+  transition: box-shadow var(--vel-duration-150) var(--vel-easing-default),
+              transform var(--vel-duration-150) var(--vel-easing-default);
+}
+
+[data-vel-theme="elevated"] .vel-btn:hover,
+.vel-theme-elevated .vel-btn:hover {
+  box-shadow: var(--vel-shadow-md);
+  transform: translateY(-1px);
+}
+
+[data-vel-theme="elevated"] .vel-btn:active,
+.vel-theme-elevated .vel-btn:active {
+  box-shadow: var(--vel-shadow-sm);
+  transform: translateY(0);
+}
+
+[data-vel-theme="elevated"] .vel-modal-dialog,
+.vel-theme-elevated .vel-modal-dialog {
+  box-shadow: var(--vel-shadow-2xl);
+}
+
+[data-vel-theme="elevated"] .vel-dropdown-menu,
+.vel-theme-elevated .vel-dropdown-menu {
+  box-shadow: var(--vel-shadow-lg);
+}
+
+/* ── Reduced-motion guard ─────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  [data-vel-theme="elevated"] .vel-card,
+  [data-vel-theme="elevated"] .vel-btn,
+  .vel-theme-elevated .vel-card,
+  .vel-theme-elevated .vel-btn {
+    transition: none;
+    transform: none;
+  }
+}

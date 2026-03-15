@@ -1,0 +1,33 @@
+.vel-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 2.75rem;
+  padding-inline: 1rem;
+  border-radius: var(--vel-radius-md);
+  border: 1px solid transparent;
+  cursor: pointer;
+  text-decoration: none;
+  transition: transform 160ms ease, background-color 160ms ease, border-color 160ms ease;
+}
+
+.vel-button:hover {
+  transform: translateY(-1px);
+}
+
+.vel-button-primary {
+  background: linear-gradient(135deg, var(--vel-color-primary), var(--vel-color-primary-strong));
+  color: var(--vel-color-primary-ink);
+}
+
+.vel-button-secondary {
+  background: var(--vel-color-surface-elevated);
+  border-color: var(--vel-color-border);
+  color: var(--vel-color-text);
+}
+
+.vel-button-ghost {
+  background: transparent;
+  border-color: var(--vel-color-border);
+  color: var(--vel-color-text-muted);
+}

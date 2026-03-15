@@ -1,0 +1,94 @@
+/* Focus ring — consistent keyboard focus indicator */
+.vel-focus-ring:focus-visible {
+  outline: 2px solid var(--vel-color-primary);
+  outline-offset: 2px;
+}
+
+.vel-focus-ring-inset:focus-visible {
+  outline: 2px solid var(--vel-color-primary);
+  outline-offset: -2px;
+}
+
+/* Skip navigation link (visually hidden until focused) */
+.vel-skip-link {
+  position: absolute;
+  top: -100%;
+  left: var(--vel-space-4);
+  z-index: 999;
+  display: inline-flex;
+  align-items: center;
+  padding: var(--vel-space-3) var(--vel-space-4);
+  border-radius: var(--vel-radius-sm);
+  background: var(--vel-color-primary);
+  color: var(--vel-color-primary-ink);
+  font-weight: 650;
+  text-decoration: none;
+  transition: top 120ms ease;
+}
+
+.vel-skip-link:focus-visible {
+  top: var(--vel-space-4);
+}
+
+/* ARIA state — visible selected state */
+[aria-selected="true"].vel-aria-selected,
+.vel-aria-selected[aria-selected="true"] {
+  background: var(--vel-color-primary-soft);
+  color: var(--vel-color-text);
+  border-color: color-mix(in srgb, var(--vel-color-primary) 35%, transparent);
+}
+
+/* ARIA state — visible expanded state */
+[aria-expanded="true"].vel-aria-expanded,
+.vel-aria-expanded[aria-expanded="true"] {
+  color: var(--vel-color-primary);
+}
+
+/* ARIA state — disabled */
+[aria-disabled="true"].vel-aria-disabled,
+.vel-aria-disabled[aria-disabled="true"] {
+  opacity: 0.55;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* ARIA state — invalid */
+[aria-invalid="true"].vel-aria-invalid,
+.vel-aria-invalid[aria-invalid="true"] {
+  border-color: color-mix(in srgb, var(--vel-color-danger) 62%, transparent);
+  outline-color: var(--vel-color-danger);
+}
+
+/* High contrast mode support */
+@media (forced-colors: active) {
+  .vel-focus-ring:focus-visible {
+    outline: 3px solid ButtonText;
+  }
+}
+
+/* Reduced motion — disable decorative animations */
+@media (prefers-reduced-motion: reduce) {
+  .vel-motion-safe\:animate-none {
+    animation: none !important;
+  }
+
+  .vel-motion-reduce\:transition-none {
+    transition: none !important;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Respect motion preference without destroying layout */
+@media (prefers-reduced-motion: no-preference) {
+  .vel-motion-safe\:animate-spin {
+    animation: vel-spin 1s linear infinite;
+  }
+}

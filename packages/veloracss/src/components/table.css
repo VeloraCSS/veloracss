@@ -1,0 +1,75 @@
+.vel-table-wrap {
+  overflow-x: auto;
+  border-radius: var(--vel-radius-md);
+  border: 1px solid var(--vel-color-border);
+  background: var(--vel-color-surface-elevated);
+}
+
+.vel-table {
+  width: 100%;
+  min-width: 36rem;
+  border-collapse: collapse;
+  color: var(--vel-color-text);
+}
+
+.vel-table caption {
+  padding: var(--vel-space-4);
+  color: var(--vel-color-text-muted);
+  text-align: left;
+}
+
+.vel-table thead th {
+  padding: var(--vel-space-3) var(--vel-space-4);
+  background: linear-gradient(180deg, rgba(99, 179, 255, 0.08), transparent 75%), var(--vel-color-surface-raised);
+  color: var(--vel-color-text-muted);
+  font-size: 0.75rem;
+  font-weight: 650;
+  letter-spacing: 0.06em;
+  text-align: left;
+  text-transform: uppercase;
+}
+
+.vel-table tbody tr {
+  border-top: 1px solid var(--vel-color-border);
+}
+
+.vel-table th,
+.vel-table td {
+  padding: var(--vel-space-3) var(--vel-space-4);
+  vertical-align: top;
+}
+
+.vel-table td {
+  color: var(--vel-color-text);
+}
+
+.vel-table tbody td > * {
+  margin: 0;
+}
+
+.vel-table tbody td > * + * {
+  margin-top: var(--vel-space-1);
+}
+
+.vel-table-compact thead th,
+.vel-table-compact th,
+.vel-table-compact td {
+  padding: var(--vel-space-2) var(--vel-space-3);
+}
+
+.vel-table-striped tbody tr:nth-child(even) {
+  background: color-mix(in srgb, var(--vel-color-surface-raised) 72%, transparent);
+}
+
+.vel-table-hover tbody tr:hover {
+  background: linear-gradient(180deg, rgba(99, 179, 255, 0.08), transparent 85%), var(--vel-color-primary-soft);
+}
+
+.vel-table-align-middle th,
+.vel-table-align-middle td {
+  vertical-align: middle;
+}
+
+.vel-table-numeric {
+  text-align: right;
+}

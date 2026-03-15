@@ -1,0 +1,73 @@
+.vel-steps {
+  display: grid;
+  gap: var(--vel-space-4);
+}
+
+.vel-step {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: var(--vel-space-4);
+  align-items: start;
+  padding: var(--vel-space-4);
+  border-radius: var(--vel-radius-lg);
+  border: 1px solid var(--vel-color-border);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), transparent 60%), var(--vel-color-surface-elevated);
+}
+
+.vel-step-marker {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: 999px;
+  border: 1px solid rgba(99, 179, 255, 0.24);
+  background: rgba(99, 179, 255, 0.08);
+  color: var(--vel-color-primary);
+  font-size: 0.82rem;
+  font-weight: 700;
+}
+
+.vel-step-body {
+  display: grid;
+  gap: var(--vel-space-2);
+}
+
+.vel-step-title {
+  font-size: 0.98rem;
+  font-weight: 650;
+  color: var(--vel-color-text);
+}
+
+.vel-step-copy {
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: var(--vel-color-text-muted);
+}
+
+.vel-step-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--vel-space-2);
+}
+
+.vel-step.is-complete {
+  border-color: rgba(95, 224, 163, 0.22);
+  background: linear-gradient(180deg, rgba(95, 224, 163, 0.12), transparent 55%), var(--vel-color-surface-elevated);
+}
+
+.vel-step.is-complete .vel-step-marker {
+  border-color: rgba(95, 224, 163, 0.3);
+  background: rgba(95, 224, 163, 0.16);
+  color: var(--vel-color-success);
+}
+
+.vel-step.is-current {
+  border-color: rgba(99, 179, 255, 0.28);
+  box-shadow: var(--vel-shadow-1);
+}
+
+.vel-step.is-current .vel-step-marker {
+  background: linear-gradient(135deg, rgba(99, 179, 255, 0.22), rgba(47, 140, 255, 0.18));
+  color: var(--vel-color-text);
+}

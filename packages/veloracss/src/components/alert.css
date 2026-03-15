@@ -1,0 +1,42 @@
+.vel-alert {
+  display: grid;
+  gap: var(--vel-space-1);
+  padding: var(--vel-space-4);
+  border-radius: var(--vel-radius-md);
+  border: 1px solid transparent;
+}
+
+.vel-alert-title {
+  font-size: 0.84rem;
+  font-weight: 650;
+  letter-spacing: 0.02em;
+}
+
+.vel-alert-copy {
+  font-size: 0.92rem;
+  line-height: 1.6;
+}
+
+.vel-alert-info {
+  background: linear-gradient(180deg, rgba(134, 200, 255, 0.12), transparent 70%), var(--vel-color-surface-elevated);
+  border-color: rgba(134, 200, 255, 0.24);
+  color: var(--vel-color-info);
+}
+
+.vel-alert-success {
+  background: linear-gradient(180deg, rgba(95, 224, 163, 0.12), transparent 70%), var(--vel-color-surface-elevated);
+  border-color: rgba(95, 224, 163, 0.24);
+  color: var(--vel-color-success);
+}
+
+.vel-alert-warning {
+  background: linear-gradient(180deg, rgba(255, 211, 107, 0.12), transparent 70%), var(--vel-color-surface-elevated);
+  border-color: rgba(255, 211, 107, 0.24);
+  color: var(--vel-color-warning);
+}
+
+.vel-alert-danger {
+  background: linear-gradient(180deg, rgba(255, 138, 138, 0.12), transparent 70%), var(--vel-color-surface-elevated);
+  border-color: rgba(255, 138, 138, 0.24);
+  color: var(--vel-color-danger);
+}

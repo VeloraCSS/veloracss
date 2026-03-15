@@ -1,0 +1,15 @@
+.vel-w-full {
+  width: 100%;
+}
+
+.vel-max-w-copy {
+  max-width: 64ch;
+}
+
+.vel-max-w-panel {
+  max-width: 28rem;
+}
+
+.vel-min-h-card {
+  min-height: 12rem;
+}

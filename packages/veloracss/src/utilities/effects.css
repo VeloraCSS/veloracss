@@ -1,0 +1,11 @@
+.vel-shadow-1 {
+  box-shadow: var(--vel-shadow-1);
+}
+
+.vel-shadow-2 {
+  box-shadow: var(--vel-shadow-2);
+}
+
+.vel-ring-primary {
+  box-shadow: 0 0 0 1px rgba(99, 179, 255, 0.28), var(--vel-shadow-1);
+}

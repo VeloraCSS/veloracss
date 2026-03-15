@@ -1,0 +1,63 @@
+.vel-p-3 {
+  padding: var(--vel-space-3);
+}
+
+.vel-p-4 {
+  padding: var(--vel-space-4);
+}
+
+.vel-p-5 {
+  padding: var(--vel-space-5);
+}
+
+.vel-p-6 {
+  padding: var(--vel-space-6);
+}
+
+.vel-px-4 {
+  padding-inline: var(--vel-space-4);
+}
+
+.vel-px-5 {
+  padding-inline: var(--vel-space-5);
+}
+
+.vel-py-3 {
+  padding-block: var(--vel-space-3);
+}
+
+.vel-py-4 {
+  padding-block: var(--vel-space-4);
+}
+
+.vel-py-6 {
+  padding-block: var(--vel-space-6);
+}
+
+.vel-py-8 {
+  padding-block: var(--vel-space-8);
+}
+
+.vel-gap-2 {
+  gap: var(--vel-space-2);
+}
+
+.vel-gap-3 {
+  gap: var(--vel-space-3);
+}
+
+.vel-gap-4 {
+  gap: var(--vel-space-4);
+}
+
+.vel-gap-6 {
+  gap: var(--vel-space-6);
+}
+
+.vel-mt-4 {
+  margin-top: var(--vel-space-4);
+}
+
+.vel-mt-6 {
+  margin-top: var(--vel-space-6);
+}

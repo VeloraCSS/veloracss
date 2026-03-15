@@ -1,0 +1,66 @@
+/* Visually hidden — accessible screen-reader helper */
+.vel-sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.vel-not-sr-only {
+  position: static;
+  width: auto;
+  height: auto;
+  padding: 0;
+  margin: 0;
+  overflow: visible;
+  clip: auto;
+  white-space: normal;
+}
+
+/* Stretched link — makes an anchor fill its nearest positioned ancestor */
+.vel-stretched-link::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: auto;
+  background-color: transparent;
+}
+
+/* Clearfix — contains floated children */
+.vel-clearfix::after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Intrinsic ratio containers */
+.vel-ratio {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+}
+
+.vel-ratio > * {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.vel-ratio-1x1    { aspect-ratio: 1 / 1; }
+.vel-ratio-4x3    { aspect-ratio: 4 / 3; }
+.vel-ratio-16x9   { aspect-ratio: 16 / 9; }
+.vel-ratio-21x9   { aspect-ratio: 21 / 9; }
+.vel-ratio-3x4    { aspect-ratio: 3 / 4; }
+.vel-ratio-9x16   { aspect-ratio: 9 / 16; }
+
+/* Text utilities */
+.vel-text-nowrap  { white-space: nowrap; }
+.vel-text-balance { text-wrap: balance; }
+.vel-text-pretty  { text-wrap: pretty; }

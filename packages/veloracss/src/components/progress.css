@@ -1,0 +1,64 @@
+@keyframes vel-progress-stripes {
+  to {
+    background-position-x: 1.5rem;
+  }
+}
+
+.vel-progress {
+  overflow: hidden;
+  height: 0.95rem;
+  border-radius: var(--vel-radius-sm);
+  border: 1px solid var(--vel-color-border);
+  background: var(--vel-color-surface-raised);
+}
+
+.vel-progress-sm {
+  height: 0.65rem;
+}
+
+.vel-progress-lg {
+  height: 1.25rem;
+}
+
+.vel-progress-bar {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  height: 100%;
+  padding-inline: var(--vel-space-2);
+  background: linear-gradient(135deg, var(--vel-color-primary), var(--vel-color-primary-strong));
+  color: var(--vel-color-primary-ink);
+  font-size: 0.72rem;
+  font-weight: 650;
+  line-height: 1;
+  white-space: nowrap;
+  transition: width var(--vel-transition-base);
+}
+
+.vel-progress-striped .vel-progress-bar {
+  background-image:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.18) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.18) 50%, rgba(255, 255, 255, 0.18) 75%, transparent 75%, transparent),
+    linear-gradient(135deg, var(--vel-color-primary), var(--vel-color-primary-strong));
+  background-size: 1.5rem 1.5rem, 100% 100%;
+}
+
+.vel-progress-animated .vel-progress-bar {
+  animation: vel-progress-stripes 900ms linear infinite;
+}
+
+.vel-progress-bar-success {
+  background: linear-gradient(135deg, var(--vel-color-success), color-mix(in srgb, var(--vel-color-success) 72%, black));
+}
+
+.vel-progress-bar-warning {
+  background: linear-gradient(135deg, var(--vel-color-warning), color-mix(in srgb, var(--vel-color-warning) 78%, black));
+  color: var(--vel-color-primary-ink);
+}
+
+.vel-progress-bar-danger {
+  background: linear-gradient(135deg, var(--vel-color-danger), color-mix(in srgb, var(--vel-color-danger) 78%, black));
+}
+
+.vel-progress-bar-info {
+  background: linear-gradient(135deg, var(--vel-color-info), color-mix(in srgb, var(--vel-color-info) 78%, black));
+}

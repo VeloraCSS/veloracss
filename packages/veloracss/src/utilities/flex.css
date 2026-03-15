@@ -1,0 +1,31 @@
+.vel-flex {
+  display: flex;
+}
+
+.vel-inline-flex {
+  display: inline-flex;
+}
+
+.vel-flex-col {
+  flex-direction: column;
+}
+
+.vel-flex-wrap {
+  flex-wrap: wrap;
+}
+
+.vel-items-center {
+  align-items: center;
+}
+
+.vel-justify-start {
+  justify-content: flex-start;
+}
+
+.vel-justify-center {
+  justify-content: center;
+}
+
+.vel-justify-between {
+  justify-content: space-between;
+}
