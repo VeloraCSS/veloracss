@@ -1,0 +1,15 @@
+{
+  "name": "velora-docs",
+  "private": true,
+  "version": "0.1.0",
+  "description": "VeloraCSS documentation site powered by VitePress",
+  "scripts": {
+    "dev": "vitepress dev",
+    "build": "vitepress build",
+    "serve": "vitepress serve"
+  },
+  "dependencies": {
+    "vite": "^8.0.0",
+    "vitepress": "^1.6.4"
+  }
+}

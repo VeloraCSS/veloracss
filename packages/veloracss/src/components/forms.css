@@ -1,0 +1,350 @@
+.vel-form {
+  width: 100%;
+}
+
+.vel-field {
+  display: grid;
+  gap: var(--vel-space-2);
+}
+
+.vel-label {
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: var(--vel-color-text);
+}
+
+.vel-input,
+.vel-select,
+.vel-textarea {
+  --vel-form-border-color: var(--vel-color-border);
+  --vel-form-background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), transparent 55%), var(--vel-color-surface-raised);
+  --vel-form-text-color: var(--vel-color-text);
+  --vel-form-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.03);
+  --vel-form-ring-color: var(--vel-color-primary-soft);
+  width: 100%;
+  min-height: 3rem;
+  padding: 0.85rem 0.95rem;
+  border-radius: var(--vel-radius-sm);
+  border: 1px solid var(--vel-form-border-color);
+  background: var(--vel-form-background);
+  color: var(--vel-form-text-color);
+  line-height: 1.35;
+  box-shadow: var(--vel-form-shadow);
+  transition: border-color 160ms ease, box-shadow 160ms ease, background-color 160ms ease;
+}
+
+.vel-select {
+  appearance: none;
+  -webkit-appearance: none;
+  padding-right: 2.75rem;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none'%3E%3Cpath d='M4 6.25 8 10.25l4-4' stroke='%239cb1cf' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E"), linear-gradient(180deg, rgba(255, 255, 255, 0.02), transparent 55%);
+  background-repeat: no-repeat, repeat;
+  background-position: right 0.95rem center, 0 0;
+  background-size: 0.95rem, auto;
+  background-color: var(--vel-color-surface-raised);
+}
+
+.vel-input::placeholder,
+.vel-textarea::placeholder {
+  color: var(--vel-color-text-muted);
+}
+
+.vel-input:focus,
+.vel-select:focus,
+.vel-textarea:focus {
+  outline: none;
+  --vel-form-border-color: color-mix(in srgb, var(--vel-color-primary) 68%, transparent);
+  box-shadow: 0 0 0 4px var(--vel-form-ring-color), var(--vel-form-shadow);
+}
+
+.vel-input:disabled,
+.vel-select:disabled,
+.vel-textarea:disabled {
+  --vel-form-border-color: color-mix(in srgb, var(--vel-color-border) 82%, transparent);
+  --vel-form-background: linear-gradient(180deg, rgba(255, 255, 255, 0.01), transparent 55%), var(--vel-color-surface);
+  --vel-form-text-color: var(--vel-color-text-muted);
+  cursor: not-allowed;
+  opacity: 0.72;
+}
+
+.vel-input:read-only,
+.vel-textarea:read-only {
+  --vel-form-border-color: color-mix(in srgb, var(--vel-color-border-strong) 82%, transparent);
+  --vel-form-background: linear-gradient(180deg, rgba(255, 255, 255, 0.015), transparent 55%), var(--vel-color-surface-elevated);
+}
+
+.vel-input:is(:invalid, [aria-invalid="true"]):not(:placeholder-shown),
+.vel-select:is(:invalid, [aria-invalid="true"]),
+.vel-textarea:is(:invalid, [aria-invalid="true"]):not(:placeholder-shown),
+.vel-input-danger {
+  --vel-form-border-color: color-mix(in srgb, var(--vel-color-danger) 62%, transparent);
+  --vel-form-ring-color: var(--vel-color-danger-soft);
+}
+
+.vel-input:is(:valid, [aria-invalid="false"]):not(:placeholder-shown),
+.vel-select:is(:valid, [aria-invalid="false"]),
+.vel-textarea:is(:valid, [aria-invalid="false"]):not(:placeholder-shown) {
+  --vel-form-border-color: color-mix(in srgb, var(--vel-color-success) 58%, transparent);
+  --vel-form-ring-color: var(--vel-color-success-soft);
+}
+
+.vel-input:disabled::placeholder,
+.vel-textarea:disabled::placeholder {
+  color: color-mix(in srgb, var(--vel-color-text-muted) 88%, transparent);
+}
+
+.vel-textarea {
+  min-height: 8rem;
+  resize: vertical;
+}
+
+.vel-input-danger {
+  border-color: rgba(255, 138, 138, 0.4);
+}
+
+.vel-help {
+  font-size: 0.8rem;
+  line-height: 1.5;
+  color: var(--vel-color-text-muted);
+}
+
+.vel-help-success {
+  color: var(--vel-color-success);
+}
+
+.vel-help-danger {
+  color: var(--vel-color-danger);
+}
+
+.vel-check {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  color: var(--vel-color-text-muted);
+}
+
+.vel-check-input {
+  margin-top: 0.15rem;
+  width: 1rem;
+  height: 1rem;
+  accent-color: var(--vel-color-primary-strong);
+}
+
+.vel-check-input:focus-visible {
+  outline: 2px solid var(--vel-color-primary-soft);
+  outline-offset: 0.15rem;
+}
+
+.vel-check-input:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.vel-check-copy {
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+.vel-control-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--vel-space-3);
+  align-items: center;
+}
+
+/* Input group — prepend/append addons */
+.vel-input-group {
+  display: flex;
+  align-items: stretch;
+}
+
+.vel-input-group .vel-input,
+.vel-input-group .vel-select {
+  flex: 1 1 auto;
+  min-width: 0;
+  border-radius: 0;
+}
+
+.vel-input-group > :first-child,
+.vel-input-group > .vel-input-group-text:first-child {
+  border-radius: var(--vel-radius-sm) 0 0 var(--vel-radius-sm);
+}
+
+.vel-input-group > :last-child,
+.vel-input-group > .vel-input-group-text:last-child {
+  border-radius: 0 var(--vel-radius-sm) var(--vel-radius-sm) 0;
+}
+
+.vel-input-group-text {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.85rem 0.95rem;
+  border: 1px solid var(--vel-color-border);
+  background: var(--vel-color-surface-raised);
+  color: var(--vel-color-text-muted);
+  font-size: 0.9rem;
+  line-height: 1.35;
+  white-space: nowrap;
+}
+
+.vel-input-group .vel-input { border-left: 0; }
+.vel-input-group .vel-input-group-text + .vel-input { border-left: 1px solid var(--vel-color-border); }
+
+/* Floating label field */
+.vel-floating {
+  position: relative;
+}
+
+.vel-floating .vel-input,
+.vel-floating .vel-select,
+.vel-floating .vel-textarea {
+  padding-top: 1.5rem;
+  padding-bottom: 0.5rem;
+}
+
+.vel-floating-label {
+  position: absolute;
+  top: 0.85rem;
+  left: 0.95rem;
+  color: var(--vel-color-text-muted);
+  font-size: 0.9rem;
+  pointer-events: none;
+  transform-origin: 0 0;
+  transition: transform 160ms ease, font-size 160ms ease, color 160ms ease, top 160ms ease;
+}
+
+.vel-floating .vel-input:focus ~ .vel-floating-label,
+.vel-floating .vel-input:not(:placeholder-shown) ~ .vel-floating-label,
+.vel-floating .vel-textarea:focus ~ .vel-floating-label,
+.vel-floating .vel-textarea:not(:placeholder-shown) ~ .vel-floating-label,
+.vel-floating .vel-select:focus ~ .vel-floating-label {
+  top: 0.4rem;
+  font-size: 0.72rem;
+  color: var(--vel-color-primary);
+  letter-spacing: 0.03em;
+}
+
+/* Range input */
+.vel-range {
+  --vel-range-track: var(--vel-color-border);
+  --vel-range-fill: var(--vel-color-primary);
+  --vel-range-thumb: var(--vel-color-primary);
+
+  width: 100%;
+  height: 1.5rem;
+  padding: 0;
+  background: transparent;
+  cursor: pointer;
+  appearance: none;
+  -webkit-appearance: none;
+}
+
+.vel-range::-webkit-slider-runnable-track {
+  height: 0.35rem;
+  border-radius: 999px;
+  background: var(--vel-range-track);
+}
+
+.vel-range::-webkit-slider-thumb {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 1.1rem;
+  height: 1.1rem;
+  margin-top: -0.38rem;
+  border-radius: 50%;
+  background: var(--vel-range-thumb);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.24);
+  transition: box-shadow 160ms ease;
+}
+
+.vel-range:focus-visible::-webkit-slider-thumb {
+  box-shadow: 0 0 0 4px var(--vel-color-primary-soft), 0 1px 4px rgba(0, 0, 0, 0.24);
+}
+
+.vel-range::-moz-range-track {
+  height: 0.35rem;
+  border-radius: 999px;
+  background: var(--vel-range-track);
+}
+
+.vel-range::-moz-range-thumb {
+  width: 1.1rem;
+  height: 1.1rem;
+  border: 0;
+  border-radius: 50%;
+  background: var(--vel-range-thumb);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.24);
+}
+
+/* Switch toggle */
+.vel-switch {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--vel-space-3);
+  cursor: pointer;
+}
+
+.vel-switch-input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+}
+
+.vel-switch-track {
+  --vel-switch-w: 2.75rem;
+  --vel-switch-h: 1.5rem;
+
+  position: relative;
+  display: inline-block;
+  width: var(--vel-switch-w);
+  height: var(--vel-switch-h);
+  flex-shrink: 0;
+  border-radius: 999px;
+  border: 1px solid var(--vel-color-border);
+  background: var(--vel-color-surface-raised);
+  transition: background-color 200ms ease, border-color 200ms ease;
+}
+
+.vel-switch-track::after {
+  content: "";
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: calc(var(--vel-switch-h) - 6px);
+  height: calc(var(--vel-switch-h) - 6px);
+  border-radius: 50%;
+  background: var(--vel-color-text-muted);
+  transition: transform 200ms ease, background-color 200ms ease;
+}
+
+.vel-switch-input:checked + .vel-switch-track {
+  background: var(--vel-color-primary);
+  border-color: var(--vel-color-primary);
+}
+
+.vel-switch-input:checked + .vel-switch-track::after {
+  transform: translateX(calc(var(--vel-switch-w) - var(--vel-switch-h)));
+  background: #fff;
+}
+
+.vel-switch-input:focus-visible + .vel-switch-track {
+  outline: 2px solid var(--vel-color-primary-soft);
+  outline-offset: 2px;
+}
+
+.vel-switch-input:disabled + .vel-switch-track {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.vel-switch-label {
+  font-size: 0.9rem;
+  line-height: 1.5;
+  color: var(--vel-color-text);
+  user-select: none;
+}

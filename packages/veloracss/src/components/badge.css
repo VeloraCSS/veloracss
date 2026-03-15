@@ -1,0 +1,51 @@
+.vel-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 1.55rem;
+  padding-inline: 0.7rem;
+  border-radius: var(--vel-radius-sm);
+  border: 1px solid var(--vel-color-border);
+  background: var(--vel-color-surface-raised);
+  color: var(--vel-color-text);
+  font-size: 0.72rem;
+  font-weight: 650;
+  letter-spacing: 0.05em;
+  line-height: 1;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.vel-badge-pill {
+  border-radius: var(--vel-radius-pill);
+}
+
+.vel-badge-primary {
+  border-color: rgba(99, 179, 255, 0.28);
+  background: var(--vel-color-primary-soft);
+  color: var(--vel-color-primary);
+}
+
+.vel-badge-success {
+  border-color: rgba(95, 224, 163, 0.28);
+  background: var(--vel-color-success-soft);
+  color: var(--vel-color-success);
+}
+
+.vel-badge-warning {
+  border-color: rgba(255, 211, 107, 0.28);
+  background: var(--vel-color-warning-soft);
+  color: var(--vel-color-warning);
+}
+
+.vel-badge-danger {
+  border-color: rgba(255, 138, 138, 0.28);
+  background: var(--vel-color-danger-soft);
+  color: var(--vel-color-danger);
+}
+
+.vel-badge-info {
+  border-color: rgba(134, 200, 255, 0.28);
+  background: var(--vel-color-info-soft);
+  color: var(--vel-color-info);
+}

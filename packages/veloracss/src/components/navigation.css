@@ -1,0 +1,166 @@
+.vel-navbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--vel-space-4);
+  padding: var(--vel-space-4) var(--vel-space-5);
+  border-radius: var(--vel-radius-md);
+  border: 1px solid var(--vel-color-border);
+  background:
+    linear-gradient(180deg, rgba(99, 179, 255, 0.1), transparent 45%),
+    var(--vel-color-surface-elevated);
+  box-shadow: var(--vel-shadow-1);
+}
+
+.vel-navbar-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--vel-space-3);
+  color: var(--vel-color-text);
+  text-decoration: none;
+  font-weight: 650;
+  letter-spacing: -0.02em;
+}
+
+.vel-navbar-mark {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: var(--vel-radius-sm);
+  background: linear-gradient(135deg, var(--vel-color-primary), var(--vel-color-primary-strong));
+  color: var(--vel-color-primary-ink);
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+.vel-navbar-nav {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--vel-space-2);
+}
+
+.vel-navbar-link {
+  display: inline-flex;
+  align-items: center;
+  min-height: 2.5rem;
+  padding-inline: 0.9rem;
+  border-radius: var(--vel-radius-sm);
+  color: var(--vel-color-text-muted);
+  text-decoration: none;
+  transition: background-color 160ms ease, color 160ms ease, border-color 160ms ease;
+}
+
+.vel-navbar-link:hover,
+.vel-navbar-link[aria-current="page"] {
+  background: var(--vel-color-primary-soft);
+  color: var(--vel-color-text);
+}
+
+.vel-navbar-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--vel-space-3);
+}
+
+.vel-breadcrumb {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--vel-space-2);
+  color: var(--vel-color-text-muted);
+}
+
+.vel-breadcrumb-link {
+  color: inherit;
+  text-decoration: none;
+}
+
+.vel-breadcrumb-link:hover {
+  color: var(--vel-color-text);
+}
+
+.vel-breadcrumb-separator {
+  color: rgba(156, 177, 207, 0.56);
+}
+
+.vel-breadcrumb-current {
+  color: var(--vel-color-text);
+}
+
+.vel-tabs {
+  display: grid;
+  gap: var(--vel-space-4);
+}
+
+.vel-tab-list {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: var(--vel-space-2);
+  padding: var(--vel-space-2);
+  border-radius: var(--vel-radius-md);
+  border: 1px solid var(--vel-color-border);
+  background: var(--vel-color-surface-raised);
+}
+
+.vel-tab {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 2.5rem;
+  padding-inline: 1rem;
+  border: 1px solid transparent;
+  border-radius: var(--vel-radius-sm);
+  background: transparent;
+  color: var(--vel-color-text-muted);
+  cursor: pointer;
+  transition: background-color 160ms ease, color 160ms ease, border-color 160ms ease;
+}
+
+.vel-tab:hover,
+.vel-tab.is-active,
+.vel-tab[aria-selected="true"] {
+  background: linear-gradient(135deg, rgba(99, 179, 255, 0.16), rgba(47, 140, 255, 0.14));
+  border-color: rgba(99, 179, 255, 0.24);
+  color: var(--vel-color-text);
+}
+
+.vel-tab-panel {
+  padding: var(--vel-space-5);
+  border-radius: var(--vel-radius-md);
+  border: 1px solid var(--vel-color-border);
+  background: linear-gradient(180deg, rgba(99, 179, 255, 0.08), transparent 42%), var(--vel-color-surface-elevated);
+}
+
+.vel-pagination {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--vel-space-2);
+}
+
+.vel-page-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 2.5rem;
+  min-height: 2.5rem;
+  padding-inline: 0.85rem;
+  border-radius: var(--vel-radius-sm);
+  border: 1px solid var(--vel-color-border);
+  background: var(--vel-color-surface-elevated);
+  color: var(--vel-color-text-muted);
+  text-decoration: none;
+  transition: background-color 160ms ease, color 160ms ease, border-color 160ms ease;
+}
+
+.vel-page-link:hover,
+.vel-page-link[aria-current="page"] {
+  background: var(--vel-color-primary-soft);
+  border-color: rgba(99, 179, 255, 0.3);
+  color: var(--vel-color-text);
+}

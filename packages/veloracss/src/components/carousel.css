@@ -1,0 +1,176 @@
+/* ── Carousel ─────────────────────────────────────────────── */
+
+/*
+ * CSS-only mode: add vel-carousel-snap for a pure scroll-snap
+ * horizontally scrollable track. No JS needed.
+ *
+ * JS-enhanced mode: add data-vel-carousel to enable slide
+ * activation via the Velora runtime (auto-play, keyboard, etc).
+ * The CSS supports active-state driven by [aria-hidden="false"].
+ */
+
+.vel-carousel {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--vel-radius-md);
+}
+
+/* ── Slide track ──────────────────────────────────────────── */
+.vel-carousel-track {
+  display: flex;
+}
+
+.vel-carousel-slide {
+  flex: 0 0 100%;
+  width: 100%;
+  min-height: 16rem;
+  transition: transform 320ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ── Scroll-snap (CSS-only) ───────────────────────────────── */
+.vel-carousel-snap .vel-carousel-track {
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+
+.vel-carousel-snap .vel-carousel-track::-webkit-scrollbar {
+  display: none;
+}
+
+.vel-carousel-snap .vel-carousel-slide {
+  scroll-snap-align: start;
+  flex-shrink: 0;
+}
+
+/* ── Controls (prev / next buttons) ──────────────────────── */
+.vel-carousel-prev,
+.vel-carousel-next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  border: 1px solid rgba(134, 200, 255, 0.2);
+  border-radius: var(--vel-radius-full);
+  background: rgba(7, 17, 31, 0.64);
+  backdrop-filter: blur(6px);
+  color: var(--vel-color-text);
+  cursor: pointer;
+  transition: background-color 160ms ease, border-color 160ms ease;
+}
+
+.vel-carousel-prev:hover,
+.vel-carousel-next:hover {
+  background: rgba(99, 179, 255, 0.18);
+  border-color: rgba(99, 179, 255, 0.32);
+}
+
+.vel-carousel-prev {
+  left: var(--vel-space-3);
+}
+
+.vel-carousel-next {
+  right: var(--vel-space-3);
+}
+
+.vel-carousel-prev svg,
+.vel-carousel-next svg {
+  width: 1.1rem;
+  height: 1.1rem;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* ── Indicators ───────────────────────────────────────────── */
+.vel-carousel-indicators {
+  position: absolute;
+  bottom: var(--vel-space-3);
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  gap: var(--vel-space-2);
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.vel-carousel-dot {
+  width: 0.5rem;
+  height: 0.5rem;
+  border: 0;
+  border-radius: var(--vel-radius-full);
+  background: rgba(226, 232, 240, 0.45);
+  cursor: pointer;
+  transition: background-color 200ms ease, transform 200ms ease, width 200ms ease;
+  padding: 0;
+}
+
+.vel-carousel-dot[aria-current="true"],
+.vel-carousel-dot.is-active {
+  background: var(--vel-color-text);
+  width: 1.25rem;
+}
+
+/* ── Caption overlay ──────────────────────────────────────── */
+.vel-carousel-caption {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: var(--vel-space-5) var(--vel-space-5) var(--vel-space-4);
+  background: linear-gradient(to top, rgba(6, 11, 23, 0.86) 0%, transparent 100%);
+}
+
+.vel-carousel-caption-title {
+  font-size: 1rem;
+  font-weight: 650;
+  color: var(--vel-color-text);
+  margin: 0 0 var(--vel-space-1);
+}
+
+.vel-carousel-caption-copy {
+  font-size: 0.84rem;
+  color: rgba(226, 232, 240, 0.72);
+  margin: 0;
+}
+
+/* ── Crossfade variant ────────────────────────────────────── */
+.vel-carousel-fade .vel-carousel-track {
+  display: grid;
+}
+
+.vel-carousel-fade .vel-carousel-slide {
+  grid-area: 1 / 1;
+  opacity: 0;
+  transition: opacity 400ms ease;
+  pointer-events: none;
+}
+
+.vel-carousel-fade .vel-carousel-slide[aria-hidden="false"] {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* ── Reduced motion ───────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  .vel-carousel-slide,
+  .vel-carousel-fade .vel-carousel-slide {
+    transition: none;
+  }
+
+  .vel-carousel-snap .vel-carousel-track {
+    scroll-behavior: auto;
+  }
+}

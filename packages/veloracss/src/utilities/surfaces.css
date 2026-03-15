@@ -1,0 +1,68 @@
+.vel-bg-surface {
+  background: var(--vel-color-surface);
+}
+
+.vel-bg-elevated {
+  background: var(--vel-color-surface-elevated);
+}
+
+.vel-bg-soft {
+  background: var(--vel-color-surface-soft);
+}
+
+.vel-bg-primary {
+  background: var(--vel-color-primary);
+}
+
+.vel-bg-primary-soft {
+  background: var(--vel-color-primary-soft);
+}
+
+.vel-text-on-primary {
+  color: var(--vel-color-primary-ink);
+}
+
+.vel-border {
+  border: 1px solid var(--vel-color-border);
+}
+
+.vel-border-primary {
+  border: 1px solid rgba(99, 179, 255, 0.35);
+}
+
+.vel-radius-sm {
+  border-radius: var(--vel-radius-sm);
+}
+
+.vel-radius-md {
+  border-radius: var(--vel-radius-md);
+}
+
+.vel-radius-lg {
+  border-radius: var(--vel-radius-lg);
+}
+
+.vel-radius-pill {
+  border-radius: var(--vel-radius-pill);
+}
+
+.vel-chip {
+  display: inline-flex;
+  align-items: center;
+  min-height: 2rem;
+  padding-inline: 0.75rem;
+  border-radius: var(--vel-radius-sm);
+  font-size: 0.8rem;
+  font-weight: 560;
+}
+
+.vel-panel {
+  padding: var(--vel-space-4);
+  border-radius: var(--vel-radius-md);
+  background: linear-gradient(180deg, var(--vel-color-surface-tint), transparent 55%), var(--vel-color-surface-raised);
+  border: 1px solid var(--vel-color-border);
+}
+
+.vel-swatch {
+  min-height: 5rem;
+}

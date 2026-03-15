@@ -1,0 +1,166 @@
+/* site/styles.css - improved Tailwind-like frontpage skin for VeloraCSS */
+
+/* Base reset / typography */
+* { box-sizing: border-box; }
+html,body { height: 100%; }
+body {
+  margin: 0;
+  background: #f8fafc;
+  color: #0f172a;
+  font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  line-height: 1.45;
+}
+
+/* Utility-ish container */
+.container {
+  max-width: 1100px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+/* Header / nav */
+header.nav {
+  background: #fff;
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  box-shadow: 0 1px 0 rgba(15,23,42,0.04);
+}
+.nav {
+  display:flex;
+  align-items:center;
+  gap:1rem;
+  padding: 1rem 0;
+}
+.brand {
+  font-weight: 800;
+  font-size: 1.125rem;
+  letter-spacing: -0.02em;
+}
+.toplinks { margin-left:auto; display:flex; gap:0.75rem; align-items:center; }
+.toplinks a { text-decoration:none; color:#0f172a; font-weight:600; opacity:0.95; }
+
+/* Hero */
+.hero {
+  position: relative;
+  min-height: 56vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4rem 1rem;
+  color: white;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(2,6,23,0.55), rgba(2,6,23,0.45));
+  z-index: 1;
+}
+.hero-inner {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  width: 100%;
+}
+.hero h1 {
+  font-size: 2.25rem;
+  line-height: 1.02;
+  margin: 0 0 0.75rem;
+  font-weight: 800;
+  color: #ffffff;
+}
+@media (min-width: 768px) {
+  .hero { min-height: 64vh; padding: 6rem 1rem; }
+  .hero h1 { font-size: 3.25rem; }
+  .hero p { font-size: 1.125rem; }
+}
+.hero p {
+  margin: 0 auto;
+  max-width: 60ch;
+  color: rgba(255,255,255,0.90);
+}
+
+/* Buttons */
+.buttons { display:inline-flex; gap:0.75rem; margin-top:1rem; justify-content:center; }
+.btn {
+  display:inline-flex; align-items:center; justify-content:center; gap:.5rem;
+  padding:.75rem 1.25rem; border-radius:.75rem; font-weight:700; cursor:pointer; border:0; text-decoration:none;
+}
+.btn-primary {
+  background: linear-gradient(180deg,#34D399,#059669);
+  color: #fff;
+  box-shadow: 0 10px 30px rgba(4,120,87,0.12);
+}
+.btn-secondary {
+  background: rgba(255,255,255,0.12);
+  color: #fff;
+  border: 1px solid rgba(255,255,255,0.12);
+}
+
+/* Code sample */
+.code-box {
+  margin-top: 1.25rem;
+  display: inline-block;
+  background: rgba(255,255,255,0.06);
+  padding: 0.6rem 0.75rem;
+  border-radius: 0.5rem;
+  color: #e6fffa;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, "Roboto Mono", "Segoe UI Mono", monospace;
+  font-size: 0.95rem;
+  box-shadow: 0 6px 18px rgba(2,6,23,0.18);
+}
+
+/* Features grid */
+.features {
+  display:grid;
+  gap:1rem;
+  grid-template-columns: repeat(1, minmax(0,1fr));
+  padding: 3rem 0;
+}
+@media (min-width:768px) {
+  .features { grid-template-columns: repeat(3, minmax(0,1fr)); }
+}
+.card {
+  background: #fff;
+  border-radius: 0.6rem;
+  padding: 1.1rem;
+  border: 1px solid rgba(15,23,42,0.04);
+  box-shadow: 0 8px 24px rgba(15,23,42,0.04);
+}
+.card h3{ margin:0 0 0.5rem; font-weight:700; }
+.card p{ margin:0; color:#475569; }
+
+/* Example callout / code + screenshot row */
+.row {
+  display:grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+  align-items:center;
+  padding: 2rem 0 4rem;
+}
+@media (min-width: 992px) {
+  .row { grid-template-columns: 1fr 420px; gap: 2rem; }
+}
+.screenshot {
+  width:100%;
+  border-radius:0.6rem;
+  border:1px solid rgba(15,23,42,0.04);
+  box-shadow: 0 12px 30px rgba(2,6,23,0.06);
+  overflow:hidden;
+}
+
+/* Footer */
+footer { padding:3rem 1rem; text-align:center; color:#64748b; background:transparent; }
+
+/* Helpers */
+.text-lg { font-size: 1.125rem; color:#e6fffa; }
+.lead { font-size: 1.125rem; color: rgba(255,255,255,0.9); }
+.center { text-align:center; }

@@ -1,0 +1,147 @@
+.vel-action-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--vel-space-4);
+  padding: var(--vel-space-4);
+  border: 1px solid var(--vel-color-border);
+  border-radius: var(--vel-radius-md);
+  background: linear-gradient(180deg, rgba(99, 179, 255, 0.08), transparent 45%), var(--vel-color-surface-elevated);
+}
+
+.vel-action-meta {
+  display: grid;
+  gap: var(--vel-space-1);
+}
+
+.vel-action-title {
+  font-size: 0.96rem;
+  font-weight: 650;
+  color: var(--vel-color-text);
+}
+
+.vel-action-copy {
+  font-size: 0.88rem;
+  line-height: 1.55;
+  color: var(--vel-color-text-muted);
+}
+
+.vel-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--vel-space-2);
+}
+
+.vel-button-group {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: var(--vel-space-2);
+}
+
+.vel-icon-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  padding: 0;
+  border: 1px solid var(--vel-color-border);
+  border-radius: var(--vel-radius-sm);
+  background: var(--vel-color-surface-elevated);
+  color: var(--vel-color-text-muted);
+  cursor: pointer;
+  transition: background-color 160ms ease, border-color 160ms ease, color 160ms ease, transform 160ms ease;
+}
+
+.vel-icon-button:hover {
+  transform: translateY(-1px);
+  background: var(--vel-color-primary-soft);
+  border-color: rgba(99, 179, 255, 0.28);
+  color: var(--vel-color-text);
+}
+
+.vel-icon-button svg {
+  width: 1rem;
+  height: 1rem;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 1.75;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* ── Close / dismiss button ───────────────────────────────── */
+.vel-close {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 1.75rem;
+  height: 1.75rem;
+  padding: 0;
+  border: 0;
+  border-radius: var(--vel-radius-sm);
+  background: transparent;
+  color: var(--vel-color-text-muted);
+  cursor: pointer;
+  opacity: 0.7;
+  transition: background-color 120ms ease, color 120ms ease, opacity 120ms ease;
+}
+
+.vel-close:hover {
+  background: rgba(226, 232, 240, 0.1);
+  color: var(--vel-color-text);
+  opacity: 1;
+}
+
+.vel-close:disabled {
+  opacity: 0.3;
+  pointer-events: none;
+}
+
+.vel-close::before {
+  content: "\00D7";
+  font-size: 1.25rem;
+  line-height: 1;
+  font-weight: 300;
+}
+
+/* ── Chip / tag button ────────────────────────────────────── */
+.vel-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--vel-space-2);
+  height: 2rem;
+  padding-inline: 0.75rem;
+  border: 1px solid var(--vel-color-border);
+  border-radius: var(--vel-radius-full);
+  background: var(--vel-color-surface-elevated);
+  color: var(--vel-color-text-muted);
+  font-size: 0.82rem;
+  cursor: default;
+  transition: border-color 160ms ease, background-color 160ms ease;
+}
+
+.vel-chip-dismiss {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.1rem;
+  height: 1.1rem;
+  margin-inline-start: var(--vel-space-1);
+  border: 0;
+  border-radius: var(--vel-radius-full);
+  background: rgba(226, 232, 240, 0.15);
+  color: inherit;
+  cursor: pointer;
+  font-size: 0.65rem;
+  line-height: 1;
+  padding: 0;
+  transition: background-color 120ms ease;
+}
+
+.vel-chip-dismiss:hover {
+  background: rgba(226, 232, 240, 0.28);
+}

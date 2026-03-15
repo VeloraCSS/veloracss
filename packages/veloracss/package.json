@@ -1,0 +1,12 @@
+{
+  "name": "veloracss",
+  "version": "0.1.0",
+  "description": "Core VeloraCSS framework package.",
+  "main": "src/velora.js",
+  "style": "src/velora.css",
+  "scripts": {
+    "build": "echo 'No build step defined.'",
+    "start": "echo 'No start step defined.'"
+  },
+  "license": "MIT"
+}

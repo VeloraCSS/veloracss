@@ -59,6 +59,7 @@
     }
   },
   "scripts": {
+    "checkout-build-run": "git checkout chore/add-build",
     "build": "node build.mjs",
     "audit:docs": "node scripts/audit-docs.mjs",
     "prepack": "npm run build",

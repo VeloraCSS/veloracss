@@ -1,0 +1,198 @@
+/* vel-prose: opinionated rich-text / editorial content styling */
+.vel-prose {
+  max-width: 65ch;
+  color: var(--vel-color-text);
+  line-height: 1.75;
+}
+
+.vel-prose :is(h1, h2, h3, h4, h5, h6) {
+  margin-top: 1.75em;
+  margin-bottom: 0.6em;
+  color: var(--vel-color-text);
+  letter-spacing: -0.03em;
+  line-height: 1.15;
+  font-weight: 650;
+}
+
+.vel-prose h1 { font-size: clamp(1.8rem, 4vw, 2.5rem); }
+.vel-prose h2 { font-size: clamp(1.35rem, 3vw, 1.75rem); }
+.vel-prose h3 { font-size: 1.25rem; }
+.vel-prose h4 { font-size: 1.05rem; }
+.vel-prose h5, .vel-prose h6 { font-size: 0.95rem; }
+
+.vel-prose :is(h1, h2, h3, h4, h5, h6):first-child {
+  margin-top: 0;
+}
+
+.vel-prose p {
+  margin-top: 0;
+  margin-bottom: 1.25em;
+}
+
+.vel-prose :is(ul, ol) {
+  margin-top: 0;
+  margin-bottom: 1.25em;
+  padding-left: 1.5em;
+}
+
+.vel-prose ul { list-style-type: disc; }
+.vel-prose ol { list-style-type: decimal; }
+
+.vel-prose li {
+  margin-bottom: 0.35em;
+  line-height: 1.65;
+}
+
+.vel-prose li > :is(ul, ol) {
+  margin-top: 0.35em;
+  margin-bottom: 0.35em;
+}
+
+.vel-prose blockquote {
+  margin: 1.5em 0;
+  padding: 0.85rem 1.15rem;
+  border-left: 3px solid color-mix(in srgb, var(--vel-color-primary) 55%, transparent);
+  background: var(--vel-color-primary-soft);
+  border-radius: 0 var(--vel-radius-sm) var(--vel-radius-sm) 0;
+  color: var(--vel-color-text-muted);
+  font-style: italic;
+}
+
+.vel-prose blockquote p {
+  margin: 0;
+}
+
+.vel-prose code {
+  padding: 0.14em 0.42em;
+  border-radius: var(--vel-radius-sm);
+  background: color-mix(in srgb, var(--vel-color-surface-raised) 85%, var(--vel-color-primary-soft));
+  color: var(--vel-color-primary);
+  font-family: var(--vel-font-mono);
+  font-size: 0.875em;
+}
+
+.vel-prose pre {
+  margin: 1.5em 0;
+  padding: var(--vel-space-4);
+  border-radius: var(--vel-radius-md);
+  border: 1px solid var(--vel-color-border);
+  background: var(--vel-color-surface-raised);
+  overflow-x: auto;
+}
+
+.vel-prose pre code {
+  padding: 0;
+  border-radius: 0;
+  background: transparent;
+  color: inherit;
+  font-size: 0.9rem;
+}
+
+.vel-prose :is(table) {
+  width: 100%;
+  margin: 1.5em 0;
+  border-collapse: collapse;
+  font-size: 0.93rem;
+}
+
+.vel-prose :is(th, td) {
+  padding: var(--vel-space-2) var(--vel-space-3);
+  border: 1px solid var(--vel-color-border);
+  text-align: left;
+  vertical-align: top;
+}
+
+.vel-prose th {
+  background: var(--vel-color-surface-raised);
+  font-weight: 650;
+  font-size: 0.82rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--vel-color-text-muted);
+}
+
+.vel-prose hr {
+  margin: 2em 0;
+  border: 0;
+  border-top: 1px solid var(--vel-color-border);
+}
+
+.vel-prose a {
+  color: var(--vel-color-primary);
+  text-decoration: underline;
+  text-decoration-color: color-mix(in srgb, var(--vel-color-primary) 40%, transparent);
+  text-underline-offset: 0.2em;
+  transition: text-decoration-color 120ms ease;
+}
+
+.vel-prose a:hover {
+  text-decoration-color: var(--vel-color-primary);
+}
+
+.vel-prose strong { font-weight: 680; }
+.vel-prose em { font-style: italic; }
+
+.vel-prose img {
+  max-width: 100%;
+  height: auto;
+  border-radius: var(--vel-radius-md);
+}
+
+.vel-prose-wide { max-width: 80ch; }
+.vel-prose-sm   { max-width: 52ch; }
+
+/* ── Figure ───────────────────────────────────────────────── */
+.vel-figure {
+  display: inline-block;
+  margin: 0;
+}
+
+.vel-figure-img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  border-radius: var(--vel-radius-md);
+}
+
+.vel-figure-caption {
+  display: block;
+  margin-top: var(--vel-space-2);
+  font-size: 0.82rem;
+  color: var(--vel-color-text-muted);
+  line-height: 1.5;
+}
+
+/* ── Lead text ────────────────────────────────────────────── */
+.vel-lead {
+  font-size: clamp(1.05rem, 2.2vw, 1.2rem);
+  color: var(--vel-color-text-muted);
+  line-height: 1.7;
+}
+
+/* ── Display headings ─────────────────────────────────────── */
+.vel-display-1 { font-size: clamp(2.5rem, 6vw, 4.5rem); font-weight: 700; letter-spacing: -0.04em; line-height: 1.05; }
+.vel-display-2 { font-size: clamp(2rem, 5vw, 3.5rem);   font-weight: 700; letter-spacing: -0.035em; line-height: 1.08; }
+.vel-display-3 { font-size: clamp(1.75rem, 4vw, 2.75rem); font-weight: 650; letter-spacing: -0.03em; line-height: 1.1; }
+.vel-display-4 { font-size: clamp(1.5rem, 3.5vw, 2.25rem); font-weight: 650; letter-spacing: -0.025em; line-height: 1.15; }
+
+/* ── Blockquote (standalone, outside prose) ───────────────── */
+.vel-blockquote {
+  margin: 0;
+  padding-left: var(--vel-space-5);
+  border-left: 3px solid var(--vel-color-primary);
+  color: var(--vel-color-text-muted);
+  font-style: italic;
+  line-height: 1.7;
+}
+
+.vel-blockquote-footer {
+  display: block;
+  margin-top: var(--vel-space-2);
+  font-size: 0.84rem;
+  font-style: normal;
+  color: var(--vel-color-text-muted);
+}
+
+.vel-blockquote-footer::before {
+  content: "\2014\00A0";
+}

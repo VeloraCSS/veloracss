@@ -1,0 +1,64 @@
+.vel-display {
+  font-size: clamp(2.75rem, 7vw, 5.5rem);
+  line-height: 0.95;
+  letter-spacing: -0.06em;
+  font-weight: 700;
+}
+
+.vel-headline {
+  font-size: clamp(1.8rem, 4vw, 2.8rem);
+  line-height: 1;
+  letter-spacing: -0.05em;
+  font-weight: 680;
+}
+
+.vel-title {
+  font-size: clamp(1.35rem, 3vw, 1.8rem);
+  line-height: 1.1;
+  letter-spacing: -0.04em;
+  font-weight: 650;
+}
+
+.vel-body-lg {
+  font-size: 1.05rem;
+  line-height: 1.7;
+}
+
+.vel-body {
+  font-size: 0.96rem;
+  line-height: 1.7;
+}
+
+.vel-text-sm {
+  font-size: 0.84rem;
+  line-height: 1.55;
+}
+
+.vel-eyebrow,
+.vel-card-eyebrow {
+  font-size: 0.74rem;
+  line-height: 1;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  color: var(--vel-color-primary);
+}
+
+.vel-text-center {
+  text-align: center;
+}
+
+.vel-text-muted {
+  color: var(--vel-color-text-muted);
+}
+
+.vel-text-primary {
+  color: var(--vel-color-primary);
+}
+
+.vel-font-medium {
+  font-weight: 560;
+}
+
+.vel-font-mono {
+  font-family: var(--vel-font-mono);
+}

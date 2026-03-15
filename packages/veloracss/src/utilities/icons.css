@@ -1,0 +1,46 @@
+/* Icon sizing and presentation helpers */
+.vel-icon {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  flex-shrink: 0;
+  vertical-align: middle;
+}
+
+/* Explicit size variants */
+.vel-icon-xs  { width: 0.75rem; height: 0.75rem; }
+.vel-icon-sm  { width: 1rem;    height: 1rem; }
+.vel-icon-md  { width: 1.25rem; height: 1.25rem; }
+.vel-icon-lg  { width: 1.5rem;  height: 1.5rem; }
+.vel-icon-xl  { width: 2rem;    height: 2rem; }
+.vel-icon-2xl { width: 2.5rem;  height: 2.5rem; }
+
+/* Inline icon inside text — aligns to cap height */
+.vel-icon-inline {
+  display: inline;
+  width: 1.15em;
+  height: 1.15em;
+  vertical-align: -0.2em;
+}
+
+/* Semantic icon colors */
+.vel-icon-primary  { color: var(--vel-color-primary); }
+.vel-icon-muted    { color: var(--vel-color-text-muted); }
+.vel-icon-success  { color: var(--vel-color-success); }
+.vel-icon-warning  { color: var(--vel-color-warning); }
+.vel-icon-danger   { color: var(--vel-color-danger); }
+.vel-icon-info     { color: var(--vel-color-info); }
+
+/* Icon in a circular container */
+.vel-icon-wrap {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.vel-icon-wrap-sm { width: 1.75rem; height: 1.75rem; }
+.vel-icon-wrap-lg { width: 3rem;    height: 3rem; }
